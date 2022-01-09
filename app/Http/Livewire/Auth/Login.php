@@ -32,7 +32,11 @@ class Login extends Component
             return;
         }
 
-        return redirect()->intended(route('home'));
+        if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
+            return redirect('/admin');
+        }
+        return redirect('/');
+        //return redirect()->intended(route('home'));
     }
 
     public function render()

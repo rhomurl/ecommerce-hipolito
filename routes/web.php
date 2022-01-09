@@ -9,6 +9,7 @@ use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
+Route::get('redirects', 'App\Http\Controllers\AuthRedirect@index')->middleware('verified');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -54,3 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 });
+
+
+Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(function () {
+    Route::get('/', Admin\AdminHome::class)->name('overview');
+
+}); 
