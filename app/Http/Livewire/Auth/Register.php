@@ -39,8 +39,13 @@ class Register extends Component
 
         event(new Registered($user));
 
-        Auth::login($user, true);
+        $user->assignRole('customer');
 
+        Auth::login($user, true);
+        
+        if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
+            return redirect('/admin');
+        }
         return redirect()->intended(route('home'));
     }
 

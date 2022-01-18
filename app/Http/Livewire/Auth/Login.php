@@ -35,8 +35,7 @@ class Login extends Component
         if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
             return redirect('/admin');
         }
-        return redirect('/');
-        //return redirect()->intended(route('home'));
+        return redirect()->intended(route('home'));
     }
 
     public function render()

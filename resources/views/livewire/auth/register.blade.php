@@ -1,86 +1,84 @@
 @section('title', 'Create a new account')
 
-<div>
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <a href="{{ route('home') }}">
-            <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
-        </a>
+<section class="section-content padding-y">
 
-        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
-            Create a new account
-        </h2>
-
-        <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
-            Or
-            <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
-                sign in to your account
-            </a>
-        </p>
-    </div>
-
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+          <article class="card-body">
+            <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
             <form wire:submit.prevent="register">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 leading-5">
-                        Name
-                    </label>
-
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="name" id="name" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
-                    </div>
-
-                    @error('name')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mt-6">
-                    <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
-                        Email address
-                    </label>
-
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="email" id="email" type="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
-                    </div>
-
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Name</label>
+                              <input wire:model.lazy="name" id="name" type="text" autofocus class="form-control @error('name') text-warning @enderror" placeholder="Enter your name">
+                        @error('name')
+                            <p class="mt-2 text-warning">{{ $message }}</p>
+                        @enderror
+                        </div> <!-- form-group end.// -->
+                        {{--<div class="col form-group">
+                            <label>Last name</label>
+                              <input type="text" class="form-control" placeholder="">
+                        </div>--}} <!-- form-group end.// -->
+                    </div> <!-- form-row end.// -->
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input wire:model.lazy="email" id="email" type="email" required class="form-control @error('email') text-warning @enderror" placeholder="Enter your email">
+                        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                     @error('email')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        <p class="mt-2 text-warning">{{ $message }}</p>
                     @enderror
-                </div>
+                    </div> <!-- form-group end.// -->
 
-                <div class="mt-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
-                        Password
-                    </label>
-
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="password" id="password" type="password" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('password') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                    {{--<div class="form-group">
+                        <label class="custom-control custom-radio custom-control-inline">
+                          <input class="custom-control-input" checked="" type="radio" name="gender" value="option1">
+                          <span class="custom-control-label"> Male </span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                          <input class="custom-control-input" type="radio" name="gender" value="option2">
+                          <span class="custom-control-label"> Female </span>
+                        </label>
+                    </div> <!-- form-group end.// -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>City</label>
+                          <input type="text" class="form-control">
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group col-md-6">
+                          <label>Country</label>
+                          <select id="inputState" class="form-control">
+                            <option> Choose...</option>
+                              <option>Uzbekistan</option>
+                              <option>Russia</option>
+                              <option selected="">United States</option>
+                              <option>India</option>
+                              <option>Afganistan</option>
+                          </select>
+                        </div> <!-- form-group end.// -->
+                    </div>--}} <!-- form-row.// -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Create password</label>
+                            <input wire:model.lazy="password" id="password" type="password" required class="form-control" type="password">
+                        @error('password')
+                            <p class="mt-2 text-warning">{{ $message }}</p>
+                        @enderror
+                        
+                        </div> <!-- form-group end.// --> 
+                        <div class="form-group col-md-6">
+                            <label>Repeat password</label>
+                            <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" required class="form-control">
+                        </div> <!-- form-group end.// -->  
                     </div>
-
-                    @error('password')
-                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mt-6">
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 leading-5">
-                        Confirm Password
-                    </label>
-
-                    <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" required class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 appearance-none rounded-md focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                    </div>
-                </div>
-
-                <div class="mt-6">
-                    <span class="block w-full rounded-md shadow-sm">
-                        <button type="submit" class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Register
-                        </button>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Register  </button>
+                    </div> <!-- form-group// -->           
+                </form>
+            </article><!-- card-body.// -->
+        </div> <!-- card .// -->
+        <p class="text-center mt-4">Have an account? <a href="{{ route('login') }}">Log In</a></p>
+        <br><br>
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+    
+    
+    </section>

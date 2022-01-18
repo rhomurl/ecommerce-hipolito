@@ -1,37 +1,30 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+    content: ['./**/*.html'],
+    darkMode: 'class', // or 'media'
     theme: {
+        themeVariants: ['dark', 'light'],
         extend: {
+            maxHeight: {
+                0: '0',
+                xl: '36rem',
+            },
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
         },
     },
     variants: {
-        extend: {
-            backgroundColor: ['active'],
-        }
-    },
-    purge: {
-        content: [
-            './app/**/*.php',
-            './resources/**/*.html',
-            './resources/**/*.js',
-            './resources/**/*.jsx',
-            './resources/**/*.ts',
-            './resources/**/*.tsx',
-            './resources/**/*.php',
-            './resources/**/*.vue',
-            './resources/**/*.twig',
-        ],
-        options: {
-            defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
-            whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/],
-        },
+        backgroundColor: ['hover', 'focus', 'active', 'odd', 'dark'],
+        display: ['responsive', 'dark'],
+        textColor: ['focus-within', 'hover', 'active', 'dark'],
+        placeholderColor: ['focus', 'dark'],
+        borderColor: ['focus', 'hover', 'dark'],
+        divideColor: ['dark'],
+        boxShadow: ['focus'],
     },
     plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
+        require('@tailwindcss/forms')
     ],
-};
+}

@@ -60,5 +60,13 @@ Route::middleware('auth')->group(function () {
 
 Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(function () {
     Route::get('/', Admin\AdminHome::class)->name('overview');
+    Route::get('banners', Admin\BannerComponent::class)->name('banners');
+    Route::get('products', Admin\ProductComponent::class)->name('products');
+    Route::get('brands', Admin\BrandComponent::class)->name('brands');
+    Route::get('categories', Admin\CategoryComponent::class)->name('categories');
+    Route::get('usermanagement', Admin\BrandComponent::class)->name('manageuser');
+    Route::get('orders', Admin\BrandComponent::class)->name('orders');
+    Route::get('/order/{order_id}', Admin\BrandComponent::class)->name('order.details');
+    Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
 
 }); 
