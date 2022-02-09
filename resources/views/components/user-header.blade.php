@@ -37,18 +37,11 @@
             <li><a href="#" class="nav-link"> Help </a></li>
         </ul>
         <ul class="navbar-nav">
-            <li><a href="#" class="nav-link"> <img src="images/icons/flags/US.png" height="16"> Ship to </a></li>
-            <li class="nav-item dropdown">
-                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">   Watchlist </a>
-                <ul class="dropdown-menu small">
-                    <li><a class="dropdown-item" href="#">First item</a></li>
-                    <li><a class="dropdown-item" href="#">Second item</a></li>
-                    <li><a class="dropdown-item" href="#">Third item </a></li>
-                </ul>
-            </li>
-            <li><a href="#" class="nav-link"> My shop </a></li>
+            <li><a href="#" class="nav-link"> <img src="{{ asset('images/icons/flags/US.png') }}" height="16"> Ship to </a></li>
+            <li><a href="{{ route('user.overview') }}" class="nav-link"> Profile </a></li>
+            <li><a href="{{ route('user.orders') }}" class="nav-link"> Orders </a></li>
             <li><a href="#" class="nav-link"> <i class="fa fa-bell"></i> </a></li>
-            <li><a href="#" class="nav-link"> <i class="fa fa-shopping-cart"></i> </a></li>
+            <li><a href="{{ route('cart') }}" class="nav-link"> <i class="fa fa-shopping-cart"></i> </a></li>
         </ul> <!-- list-inline //  -->
       </div> <!-- navbar-collapse .// -->
     </div> <!-- container //  -->
@@ -59,7 +52,7 @@
     <div class="row row-sm">
         <div class="col-6 col-sm col-md col-lg  flex-grow-0">
             <a href="{{ route('home') }}" class="brand-wrap">
-                <img class="logo" src="images/logo.png">
+                <img class="logo" src="{{ asset('images/logo.png') }}">
             </a> <!-- brand-wrap.// -->
         </div>
         <div class="col-6 col-sm col-md col-lg flex-md-grow-0">
@@ -74,24 +67,9 @@
     
         
         </div> <!-- col.// -->
-        <div class="col-lg-6 col-xl col-md-5 col-sm-12 flex-grow-1">
-            <form action="#" class="search-header">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <select class="custom-select border-left"  name="category_name">
-                            <option value="">All type</option><option value="codex">Special</option>
-                            <option value="comments">Only best</option>
-                            <option value="content">Latest</option>
-                    </select>
-                </div>
-            </form> <!-- search-wrap .end// -->
-        </div> <!-- col.// -->
-        <div class="col col-lg col-md flex-grow-0">
-            <button class="btn btn-block btn-primary" type="submit"> Search </button>
-        </div>
-        <div class="col col-lg col-md flex-grow-0">
-            <button class="btn btn-block btn-light" type="submit"> Advanced </button>
-        </div>
+        
+      @livewire('shop.search-bar')
+        {{---search bar here--}}
     </div> <!-- row.// -->
     </section> <!-- header-main .// -->
     

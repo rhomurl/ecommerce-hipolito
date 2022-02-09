@@ -13,6 +13,7 @@ use Livewire\Component;
 
 class ProductComponent extends Component
 {
+    //https://laravel-livewire.com/docs/2.x/query-string
     protected $listeners = ['updateComponent' => 'render'];
 
     use WithFileUploads;
