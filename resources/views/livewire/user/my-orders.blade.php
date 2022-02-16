@@ -29,7 +29,7 @@
                         Delivered
                     @endif
                     <br><br>
-                    <a href="{{ route('user.order.details', $order->id ) }}" class="btn btn-outline-primary">More Details</a> 
+                    <a href="{{ route('user.order.details', $order->id ) }}" class="btn btn-outline-primary mb-2">More Details</a> 
                     <br>
                     @if($order->status == "pending")
                         <a wire:click.prevent="paynow({{ $order->id }})" href="#" class="btn btn-outline-primary">Pay Now</a>

@@ -1,8 +1,3 @@
-@if(\Session::has('orderid'))
-        <div class="alert alert-success">{{ \Session::get('orderid') }}</div>
-        {{ \Session::forget('orderid') }}
-    @endif
-
 <div class="container" style="max-width:720px;">
       {{ $this->transid }}
     <main class="col-md-12 mt-5">
@@ -10,6 +5,9 @@
         <h4 class="card-title m-3">Online Payment</h4>
         <div id="paypal-button-container"></div>
       </div>
+      <span class="text-danger">
+        Please do not back the page to prevent unsuccessful transaction
+      </span>
     
     {{--<div class="card mb-4">
       <div class="card-body">

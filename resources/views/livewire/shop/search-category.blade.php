@@ -6,8 +6,8 @@
         <div class="card-body">
             <ol class="breadcrumb float-left">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item">Search Results</li>
-                <li class="breadcrumb-item active">{{ $this->sdata }}</li>
+                <li class="breadcrumb-item">Category</li>
+                <li class="breadcrumb-item active">{{ $this->catname->name }}</li>
             </ol>
         </div> <!-- card-body .// -->
     </div> <!-- card.// -->
@@ -81,7 +81,7 @@
     
     <header class="mb-3">
             <div class="form-inline">
-                <strong class="mr-md-auto">{{ $resultCount }} {{ $resultCount == 1 || $resultCount == 0 ? 'product' : 'products'}} found </strong>
+                <strong class="mr-md-auto">{{ $resultCount }} products found </strong>
                 <span class="mr-3">Products per page</span>
                 <select wire:model="perpage" class="mr-2 form-control">
                     <option>10</option>
@@ -124,10 +124,11 @@
                         
                         <p class="text-muted mt-3">{{ $result->category->name }}</p>
                         <p class="mt-3">
-                            @if($result->quantity)
-                            @role('customer')
+                            
+                            @if($result->quantity > 0)
+                                @role('customer')
                                 <a wire:click.prevent="addToCart({{ $result->id }})" href="#" class="btn btn-outline-primary"> Add to Cart </a>
-                            @endrole
+                                @endrole
                             @else
                                 Out of stock
                             @endif
@@ -138,7 +139,6 @@
         </article> <!-- card-product .// -->
     @empty
         No products found
-        {{--Insert image product not found--}}
     @endforelse
     
     

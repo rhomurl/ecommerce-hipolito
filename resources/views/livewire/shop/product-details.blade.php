@@ -70,9 +70,15 @@
             </div> <!-- col.// -->
             @role('customer')
             <div class="form-group col-md">
-                <a wire:click.prevent="addToCart('{{ $this->product->id }}', '{{ $this->qty }}')" href="#" class="btn  btn-primary"> 
-                    <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
+              @if($this->product->quantity == 0)
+                <a href="#" class="btn btn-primary disabled"> 
+                  <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
                 </a>
+              @else
+                <a wire:click.prevent="addToCart('{{ $this->product->id }}', '{{ $this->qty }}')" href="#" class="btn btn-primary"> 
+                  <i class="fas fa-shopping-cart"></i> <span class="text">Add to cart</span> 
+                </a>
+              @endif
             </div> <!-- col.// -->
             @endrole
             

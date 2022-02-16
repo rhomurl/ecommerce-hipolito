@@ -57,7 +57,7 @@ class Step1 extends Component
     {
         $this->validate([
             'address_book_id' => 'required',
-            //'payment_mode' => 'required',
+            'payment_mode' => 'required',
         ]);
                 
         $cart = Cart::with('product')->where('user_id', Auth::id())->get();
@@ -102,6 +102,10 @@ class Step1 extends Component
                 $order->save();
 
                 foreach ($cart as $cartProduct){
+                    
+                    //if($cartProduct->product->quantity > $cartProduct->qty){
+                    //    dd('no way');
+                   // }
                     $order->products()->attach($cartProduct->product_id, [
                         'quantity' => $cartProduct->qty,
                         'user_id' => auth()->id(),
@@ -126,11 +130,10 @@ class Step1 extends Component
                 $this->emit('updateCart');
 
                 //Session::flash('orderid', $order->id);
-               // dd($order->id);
+               //dd($order->id);
                if($this->payment_mode == 'cod'){
                     redirect()
-                    ->route('checkout.success')
-                    ->with('orderid', $order->id);
+                    ->route('checkout.success', $order->id);
                }
                 else{
                     redirect()

@@ -28,7 +28,11 @@ class Checkout extends Component
 
         $orderid = Session::get('orderid');
         $this->orderidz = Session::get('orderid');
-        $order = Order::where('id', $orderid)->first();
+        $order = Order::where('id', $orderid)->firstorFail();
+        if(!$order)
+        {
+           return redirect()->route('cart');
+        }
         $this->grandTotal = $order->total;
     }
 

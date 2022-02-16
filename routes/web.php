@@ -63,7 +63,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/product/{slug}', Shop\ProductDetails::class)->name('product.details');
 Route::get('/search/{sdata}', Shop\SearchResult::class)->name('product.search');
+Route::get('/search/category/{slug}', Shop\SearchCategory::class)->name('category.search');
+Route::get('/search/brand/{slug}', Shop\SearchBrand::class)->name('brand.search');
 Route::get('/cart', Shop\ShoppingCart::class)->middleware('auth')->name('cart');
+
 
 Route::post('/checkout/response', 'App\Http\Livewire\Shop\Checkout@response');
 Route::get('/checkout/success/{orderid}', Shop\CheckoutSuccess::class)->name('checkout.success');

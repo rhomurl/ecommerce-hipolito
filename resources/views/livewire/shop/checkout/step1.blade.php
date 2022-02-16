@@ -66,17 +66,17 @@
 
             </tbody>
             </table>
-            <button class="btn btn-primary float-md-right"> Place Order <i class="fa fa-chevron-right"></i> </button>
+            
         </div> <!-- card.// -->
         <br>
         <article class="accordion" id="accordion_pay">
             <div class="card">
                 <header class="card-header">
-                    <img src="{{ asset('images/misc/payment-paypal.png') }}" class="float-right" height="24"> 
+                    <img src="{{ asset('images/misc/paypal_cc_payment.png') }}" class="float-right" height="24"> 
                     <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet" aria-expanded="false">
                         <input wire:model="payment_mode" value="paypal" type="radio" name="payment_mode" class="form-check-input">
                         <h6 class="form-check-label"> 
-                            Paypal 
+                            PayPal/Credit Card
                         </h6>
                     </label>
                 </header>
@@ -84,17 +84,13 @@
                 <div id="pay_paynet" class="collapse" data-parent="#accordion_pay" style="">
                 <div class="card-body">
                     <p class="text-center text-muted">Connect your PayPal account and use it to pay your bills. You'll be redirected to PayPal to add your billing information.</p>
-                    <p class="text-center">
-                        <a href="#"><img src="{{ asset('images/misc/btn-paypal.png') }}" height="32"></a>
-                        <br><br>
-                    </p>
                 </div> <!-- card body .// -->
                 </div> <!-- collapse .// -->
             </div> <!-- card.// -->
     
             <div class="card">
                 <header class="card-header">
-                    <img src="bootstrap-ecommerce-html/images/misc/payment-paypal.png" class="float-right" height="24"> 
+                    <img src="{{ asset('images/misc/cod_payment.jpg') }}" class="float-right" height="36"> 
                     <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_cod" aria-expanded="false">
                         <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="form-check-input">
                         <h6 class="form-check-label"> 
@@ -105,11 +101,11 @@
                 <div id="pay_cod" class="collapse" data-parent="#accordion_pay" style="">
                 <div class="card-body">
                     <p class="text-center text-muted">Payment will be given upon delivery.</p>
-                        <br><br>
                 </div> <!-- card body .// -->
                 </div> <!-- collapse .// -->
             </div> <!-- card.// -->     
-            
+            <button class="btn btn-primary float-md-right"> Place Order <i class="fa fa-chevron-right"></i> </button>
         </article>
+        
     </form>
 </div>

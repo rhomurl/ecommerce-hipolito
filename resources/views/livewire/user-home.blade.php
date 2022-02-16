@@ -14,6 +14,9 @@
     
     <div class="row">
         @foreach ($this->products as $product)
+            @if($product->quantity == 0)
+                
+            @else
             <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                 <div class="card card-product-grid">
                     <a href="{{ route('product.details', $product->slug) }}" class="img-wrap"> <img src="{{ asset('storage/') }}/{{ $product->image }}"> </a>
@@ -37,6 +40,8 @@
                     </figcaption>
                 </div>
             </div> 
+
+            @endif
         @endforeach
         
 

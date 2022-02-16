@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -9,10 +10,12 @@ use Livewire\Component;
 
 class UserHome extends Component
 {
+    use LivewireAlert;
+
     public $cartProducts = [];
     
     public function mount(){
-        $this->products = Product::limit(4)->get();
+        $this->products = Product::whereNotNull('quantity')->get();
     }
 
     public function addToCart($productId)
@@ -34,8 +37,14 @@ class UserHome extends Component
         $this->cartProducts[] = $productId;
         $this->emit('updateCart');
 
-        session()->flash('message', 'Product Added to Cart');
-        return redirect(route('cart'));
+        $this->alert('success', 'Product Added to Cart!', [
+            'position' => 'top-end',
+            'timer' => '1500',
+            'toast' => true,
+            'timerProgressBar' => true,
+        ]);
+        //session()->flash('message', 'Product Added to Cart');
+        //return redirect(route('cart'));
     }
 
     public function render()

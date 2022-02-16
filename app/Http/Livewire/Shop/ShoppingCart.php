@@ -57,7 +57,7 @@ class ShoppingCart extends Component
                 || $products[$cartProduct->product_id] < $cartProduct->qty) {
                 $this->checkout_message = 'Error: Product ' . $cartProduct->product->name . ' not found in stock';
             }
-            return redirect()->route('checkout.step1');
+            return redirect()->route('cart');
         }
     }
 

@@ -4,37 +4,34 @@ namespace App\Http\Livewire\Shop;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
+use App\Models\Brand;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 use Livewire\Component;
 
-class SearchResult extends Component
+class SearchBrand extends Component
 {
     use LivewireAlert;
     use WithPagination;
 
-    public $sdata;
+    public $slug;
     public $perpage;
 
-    public function mount($sdata){
-         $this->sdata = str_replace("+", " ", $sdata);
-    }
+    public function mount($slug){
+        $this->slug = $slug;
+   }
 
     public function render()
     {
-        $results = Product::where('name', 'LIKE', '%' . $this->sdata . '%')
-            ->orWhere('slug','like','LIKE', "%{$this->sdata}%");
-
+        $brand_id = Brand::select('id')->where('slug', '=', $this->slug)->firstOrFail();
+        $this->brandname = Brand::select('name')->where('slug', '=', $this->slug)->firstOrFail();
+        $results = Product::where('category_id', $brand_id->id);
+        
         $resultCount = $results->count();
         $results = $results->paginate($this->perpage);
-            //->paginate($this->perpage);
 
-        //$resultCount = Product::where('name', 'LIKE', '%' . $this->sdata . '%')
-         //   ->orWhere('slug','like','LIKE', "%{$this->sdata}%")
-            //->count();
-
-        return view('livewire.shop.search-result', compact('results', 'resultCount'))->layout('layouts.user');
+        return view('livewire.shop.search-brand', compact('results', 'resultCount'))->layout('layouts.user');
     }
 
     public function addToCart($productId)

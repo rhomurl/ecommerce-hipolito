@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Livewire\Shop;
+
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -8,21 +10,19 @@ use Livewire\Component;
 
 class ProductDetails extends Component
 {
+    use LivewireAlert;
+
     protected $listeners = ['increaseQuantity' => 'addToCart'];
     
     public $cartProducts = [];
-    public $slug, $qty;
+    public $slug, $qty = 1;
     
 
     public function mount ($slug)
     {
         $this->slug = $slug; 
        
-        $this->product = Product::where('slug', $this->slug)
-            ->first();
-            if(!$this->product){
-                abort(404);
-            }
+        $this->product = Product::where('slug', $this->slug)->firstorFail();
     }
 
     public function render()
@@ -50,8 +50,14 @@ class ProductDetails extends Component
         $this->cartProducts[] = $productId;
         $this->emit('updateCart');
 
-        session()->flash('message', 'Product Added to Cart');
-        return redirect(route('cart'));
+        $this->alert('success', 'Product Added to Cart!', [
+            'position' => 'top-end',
+            'timer' => '1500',
+            'toast' => true,
+            'timerProgressBar' => true,
+        ]);
+        //session()->flash('message', 'Product Added to Cart');
+        //return redirect(route('cart'));
         
     }
 

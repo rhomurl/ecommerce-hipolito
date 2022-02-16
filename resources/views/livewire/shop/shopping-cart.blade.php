@@ -99,6 +99,7 @@
                         <hr>
                         <p class="text-center mb-3">
                             <img src="{{ asset("images/misc/payment-paypal.png") }}">
+                            <img src="{{ asset("images/misc/cod_payment.jpg") }}" height="50%" width="50%">
                         </p>
                         
                 </div> <!-- card-body.// -->
