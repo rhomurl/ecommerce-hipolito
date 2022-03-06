@@ -69,6 +69,8 @@
         </div> <!-- col.// -->
         
       @livewire('shop.search-bar')
+
+      
         {{---search bar here--}}
     </div> <!-- row.// -->
     </section> <!-- header-main .// -->

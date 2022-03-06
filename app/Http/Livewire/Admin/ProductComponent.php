@@ -2,22 +2,31 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
+
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
-use Livewire\WithPagination;
+use App\Traits\ModelComponentTrait;
+
 use Livewire\Component;
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 
 class ProductComponent extends Component
 {
+    use LivewireAlert;
+    use ModelComponentTrait;
+    use WithFileUploads;
+    use WithPagination;
+
     //https://laravel-livewire.com/docs/2.x/query-string
     protected $listeners = ['updateComponent' => 'render'];
 
-    use WithFileUploads;
-    use WithPagination;
+    
 
     public $isOpen = 0;
     public $search = "";
@@ -41,7 +50,8 @@ class ProductComponent extends Component
         $image = $prod->image;
        
         if($prod->quantity > 0){
-            $this->emit("openModal", "admin.failed-modal", ["message" => 'This product cannot be deleted']); 
+            //$this->emit("openModal", "admin.failed-modal", ["message" => 'This product cannot be deleted']); 
+            $this->errorAlert('This Product Cannot Be Deleted!');
         }
         else{
             if(Storage::exists('public/' . $image)){
@@ -51,10 +61,11 @@ class ProductComponent extends Component
                     Storage::delete(['upload/test.png', 'upload/test2.png']);
                 */
             }else{
-                dd('File does not exists.');
+                //dd('File does not exists.');
             }
-            $this->emit("openModal", "admin.success-modal", ["message" => 'Product Deleted Successfully']); 
+            //$this->emit("openModal", "admin.success-modal", ["message" => 'Product Deleted Successfully']); 
             Product::where('id', $id)->delete();
+            $this->successAlert('Product Deleted Successfully!');
         }     
     }
 }

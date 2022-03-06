@@ -22,11 +22,11 @@ class OrderDetails extends Component
         $status = 0;
         
         $userCheck = Order::where('id', $this->order_id)
-            ->where('user_id', Auth::id())->get();
+            //->where('user_id', Auth::id())
+            
+            ->get();
 
-        if(!count($userCheck)){
-            abort(404);
-        }
+       
 
 
         $order = Order::with('transaction')->findorFail($this->order_id);

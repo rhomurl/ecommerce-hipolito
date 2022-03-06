@@ -18,7 +18,7 @@
     </div>
 @endif--}}
 
-<a href="{{ route('admin.orders') }}">
+<a href="{{ route('admin.orders') }}" class="mb-3">
     Back to Orders
 </a>
     <div class="grid gap-6 mb-8 md:grid-cols-2">

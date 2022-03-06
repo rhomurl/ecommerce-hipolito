@@ -2,16 +2,22 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
-use Livewire\WithFileUploads;
+use App\Traits\ModelComponentTrait;
+
+//use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class ProductEdit extends ModalComponent
 {
-    use WithFileUploads;
-    
+    use LivewireAlert;
+    use ModelComponentTrait;
+    //use WithFileUploads;
+
     public $product, $name, $category_id, $brand_id, $product_id, $slug, $description, $selling_price, $quantity, $image;
 
     public function mount($id)
@@ -49,21 +55,16 @@ class ProductEdit extends ModalComponent
             'quantity' => $this->quantity]
         );
         
-        
-        $this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Product Updated Successfully.' : 'Product Added Successfully']);
+        //$this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Product Updated Successfully.' : 'Product Added Successfully']);
         $this->resetInputFields();
- 
+        $this->closeModal();
+        $this->successAlert('Product Updated Successfully!');
     }
-
-    private function resetInputFields(){
-        $this->reset();
-        $this->resetValidation();
-    }
-
+    
     public function render()
     {
-        $categories = Category::get();
-        $brands = Brand::get();
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $brands = Brand::orderBy('name', 'ASC')->get();
         return view('livewire.admin.product-edit', compact('categories', 'brands'));
     }
 }

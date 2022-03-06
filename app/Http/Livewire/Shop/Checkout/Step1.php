@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Shop\Checkout;
 use DB;
 use Session;
 
+
+use App\Notifications\OrderNotification;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
@@ -132,6 +134,22 @@ class Step1 extends Component
                 //Session::flash('orderid', $order->id);
                //dd($order->id);
                if($this->payment_mode == 'cod'){
+                    $user = Auth::user();
+
+                    $orderData = [
+                        'greeting' => 'Thank you for your order!',
+                        'name' => 'Hello ' . $user->name . ',',
+                        'body' => ' Thank you for your order from Allena Mindoro. We received your order #' . $order->id . ' on ' . $order->created_at->format('F j Y h:i A') . ' and your payment method is Cash on Delivery. We will email you once your order has been shipped. We wish you enjoy shopping with us and thank you again for choosing our store!' ,
+                        'orderText' => 'View Order',
+                        'orderDetails' => [
+                            'id' => $order->id,
+                        ],
+                        'url' => url(route('user.order.details', $order->id )),
+                        'thankyou' => ''
+                    ];
+
+                    $user->notify(new OrderNotification($orderData));
+
                     redirect()
                     ->route('checkout.success', $order->id);
                }

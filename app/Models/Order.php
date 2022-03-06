@@ -4,11 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use App\Traits\MultiTenantModelTrait;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, MultiTenantModelTrait, Notifiable;
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        //'deleted_at'
+    ];
+    
     protected $fillable = [
         'id',
         'user_id',

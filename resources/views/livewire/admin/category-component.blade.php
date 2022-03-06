@@ -13,11 +13,11 @@
     </div>
     <div class="w-full overflow-hidden rounded-lg shadow-xs border border-gray-200 dark:border-gray-700">
         <div class="w-full overflow-x-auto">
-            @if(!$isOpen)
+            
         <div class="ml-5 mt-4 mb-5">
             <input wire:model="search" type="text" placeholder="Search category" class="px-2 py-2 text-sm text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-100 focus:border-gray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 " autofocus/>
         </div>
-    @endif
+    
             <table class="w-full whitespace-no-wrap">
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -30,9 +30,7 @@
                     @each('livewire.admin.category', $categories, 'category','livewire.admin.empty-table')
                 </tbody>
             </table>
-            @if(!$isOpen)
-                {{ $categories->links() }}
-            @endif
+            {{ $categories->links() }}  
         </div>
     </div>
 </div>

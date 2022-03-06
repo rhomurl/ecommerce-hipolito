@@ -12,7 +12,7 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
         @livewireStyles
     </head>
@@ -39,9 +39,9 @@
                         <li class="relative px-6 py-3">
                            <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.banners' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                             <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.banners' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.banners') }}">
-                                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                                  </svg>
                                 <span class="ml-4">Banner Management</span>
                             </a>
                         </li>
@@ -227,7 +227,19 @@
                     </ul>
                     <ul>
                         <li class="relative px-6 py-3">
-                            <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
+                            <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.banners' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.banners' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.banners') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                                  </svg>
+                                <span class="ml-4">Banner Management</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li class="relative px-6 py-3">
+                            <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.products' || \Route::current()->getName() == 'admin.categories' || \Route::current()->getName() == 'admin.brands' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                            <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150  hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
                                 <span class="inline-flex items-center">
                                     <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                         <path
@@ -251,15 +263,15 @@
                                     class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                                     aria-label="submenu"
                                 >
-                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ \Route::current()->getName() == 'admin.products' ? 'text-gray-800 dark:text-gray-100' : '' }} ">
                                         <a class="w-full" href="{{ route('admin.products') }}">Products</a>
                                     </li>
-                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ \Route::current()->getName() == 'admin.brands' ? 'text-gray-800 dark:text-gray-100' : '' }} ">
                                         <a class="w-full" href="{{ route('admin.brands') }}">
                                             Brands
                                         </a>
                                     </li>
-                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ \Route::current()->getName() == 'admin.categories' ? 'text-gray-800 dark:text-gray-100' : '' }} ">
                                         <a class="w-full" href="{{ route('admin.categories') }}">
                                             Categories
                                         </a>

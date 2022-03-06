@@ -13,7 +13,7 @@ use App\Http\Livewire\UserHome;
 use App\Http\Livewire\User;
 use App\Http\Livewire\Admin;
 use App\Http\Livewire\Shop;
-
+use App\Http\Livewire\Testupload;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,9 @@ Route::middleware('guest')->group(function () {
 
     Route::get('register', Register::class)
         ->name('register');
+
+        Route::get('auth/google', 'App\Http\Controllers\Auth\LoginController@redirectToGoogle')->name('socialLogin.redirect');
+        Route::get('auth/google/callback', 'App\Http\Controllers\Auth\LoginController@handleGoogleCallback')->name('socialLogin.callback');
 });
 
 Route::get('password/reset', Email::class)
@@ -66,7 +69,7 @@ Route::get('/search/{sdata}', Shop\SearchResult::class)->name('product.search');
 Route::get('/search/category/{slug}', Shop\SearchCategory::class)->name('category.search');
 Route::get('/search/brand/{slug}', Shop\SearchBrand::class)->name('brand.search');
 Route::get('/cart', Shop\ShoppingCart::class)->middleware('auth')->name('cart');
-
+Route::get('/upload', Testupload::class)->middleware('auth')->name('ul');
 
 Route::post('/checkout/response', 'App\Http\Livewire\Shop\Checkout@response');
 Route::get('/checkout/success/{orderid}', Shop\CheckoutSuccess::class)->name('checkout.success');
@@ -78,7 +81,7 @@ Route::get('/paypal/cancel', 'App\Http\Controllers\PaypalTest@cancel')->name('pa
 Route::get('/checkout', Shop\Checkout\Step1::class)->middleware('check_if_user')->name('checkout.step1');
 Route::get('/checkout/paypal', Shop\Checkout::class)->middleware('check_if_user')->name('checkout');
 
-Route::name('user.')->prefix('user')->middleware(['check_if_user'])->group(function () {
+Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])->group(function () {
     Route::get('/', User\AccountOverview::class);
     Route::get('overview', User\AccountOverview::class)->name('overview');
     Route::get('orders', User\MyOrders::class)->name('orders');
@@ -96,7 +99,7 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('products', Admin\ProductComponent::class)->name('products');
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
     Route::get('categories', Admin\CategoryComponent::class)->name('categories');
-    Route::get('usermanagement', Admin\BrandComponent::class)->name('manageuser');
+    Route::get('manageuser', Admin\UserManagement::class)->name('manageuser');
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
     Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');

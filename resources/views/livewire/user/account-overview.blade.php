@@ -29,14 +29,14 @@
     <article class="card-group card-stat">
         <figure class="card bg">
             <div class="p-3">
-                 <h4 class="title">38</h4>
+                 <h4 class="title">{{ $this->order_count }}</h4>
                 <span>Orders</span>
             </div>
         </figure>
         <figure class="card bg">
             <div class="p-3">
-                 <h4 class="title">5</h4>
-                <span>Wishlists</span>
+                 <h4 class="title">{{ $this->order_processing_count }}</h4>
+                <span>Placed</span>
             </div>
         </figure>
         <figure class="card bg">

@@ -14,7 +14,6 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\AddressBook;
 
-//use App\Notifications\OrderConfirmation;
 use Illuminate\Support\Facades\Auth;
 //use Illuminate\Notifications\Notifiable;
 use Livewire\Component;

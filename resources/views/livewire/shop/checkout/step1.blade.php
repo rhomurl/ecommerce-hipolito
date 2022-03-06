@@ -1,23 +1,30 @@
 <div class="container" style="max-width:720px;">
-    <div class="row">
+    <div class="row mt-2">
         @if($this->checkout_message)
         <div class="alert alert-danger" role="alert">
             {{ $this->checkout_message}}
         </div>
         @endif
         <form wire:submit.prevent="placeOrder">
-        <select wire:model="address_book_id" required>
-            <option value="" selected>--choose address--</option>
+
+        <div class="card">
+            <h4 class="card-title ml-3 mt-3">Address</h4>
             @forelse($addresses as $address)
-                <option value="{{ $address->id }}">
-                  {{ $address->entry_street_address }}, 
-                  {{ $address->barangay->name }},
-                  {{ $address->barangay->city->name }},  
-                  {{ $address->barangay->city->zip }}</option>
-            @empty
-                    No address
-            @endforelse
+            <select class="form-control" wire:model="address_book_id" required>
+                <option value="" selected>--choose address--</option>
+                
+                    <option value="{{ $address->id }}">
+                    {{ $address->entry_street_address }}, 
+                    {{ $address->barangay->name }},
+                    {{ $address->barangay->city->name }},  
+                    {{ $address->barangay->city->zip }}</option>
+               
             </select>
+            @empty
+            No address. Add an address?
+            <a href="{{ route('user.address.create')}}" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>
+    @endforelse
+        </div>
     </div>
 
     <div class="card">
@@ -71,6 +78,7 @@
         <br>
         <article class="accordion" id="accordion_pay">
             <div class="card">
+                <h4 class="card-title ml-3 mt-3">Payment Method</h4>
                 <header class="card-header">
                     <img src="{{ asset('images/misc/paypal_cc_payment.png') }}" class="float-right" height="24"> 
                     <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet" aria-expanded="false">

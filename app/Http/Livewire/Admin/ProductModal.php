@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
@@ -10,11 +11,16 @@ use LivewireUI\Modal\ModalComponent;
 
 class ProductModal extends ModalComponent
 {
+    use LivewireAlert;
     use WithFileUploads;
 
     public $product, $name, $category_id, $brand_id, $product_id, $category_idx, $category_namex, $slug, $description, $selling_price, $quantity, $image;
 
     public function create(){
+        $messages = array(
+            'image.mimes' => 'Only jpeg, png, jpg is allowed!',
+        );
+
         $this->validate([
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
             'category_id' => 'required',
@@ -22,7 +28,7 @@ class ProductModal extends ModalComponent
             'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:255',
             'selling_price' => 'required|numeric|min:0|max:1000000.00',
             'quantity' => 'required|integer|min:0|max:999999',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif
+            'image' => 'required|image|mimes:jpeg,png,jpg
             max:2048',
         ]);
 
@@ -37,8 +43,18 @@ class ProductModal extends ModalComponent
         );
 
         
-        $this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Product Updated Successfully.' : 'Product Added Successfully']);
+        //$this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Product Updated Successfully.' : 'Product Added Successfully']);
         $this->resetInputFields();
+        $this->closeModal();
+
+        $this->alert('success', 'Product Created Successfully!', [
+            'position' => 'center',
+            'timer' => '1500',
+            'toast' => false,
+            'timerProgressBar' => true,
+            'width' => '600',
+           ]);
+        $this->emit('updateComponent');
  
     }
 

@@ -2,16 +2,23 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use App\Models\Banner;
-use Livewire\WithFileUploads;
+use App\Traits\ModelComponentTrait;
+
 use Illuminate\Support\Facades\Storage;
+
 use LivewireUI\Modal\ModalComponent;
+//use Livewire\WithFileUploads;
 
 class BannerEdit extends ModalComponent
 {
-    use WithFileUploads;
+    use LivewireAlert;
+    use ModelComponentTrait;
+    //use WithFileUploads;
 
-    public $name;
+    public $name, $banner_id;
 
     public function mount($id){
         $this->banner_id = $id;
@@ -29,7 +36,10 @@ class BannerEdit extends ModalComponent
                 'name' =>  $this->name,
             ]
         );
-        $this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
+        //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
+        $this->resetInputFields();
+        $this->closeModal();
+        $this->successAlert('Banner Updated Successfully!'); 
     }
 
     public function render()

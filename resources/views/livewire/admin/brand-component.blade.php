@@ -39,7 +39,7 @@
                                         <p class="font-semibold">{{ $brand->name }}</p>
                                         <p class="text-xs text-gray-600 dark:text-gray-400">
                                             {{ $brand->product->count() }}
-                                            {{-- $brand->product->count() == '1' ? 'product': 'products' --}} 
+                                            {{ $brand->product->count() == '1' ? 'product': 'products' }} 
                                         </p>
                                     </div>
                                 </div>

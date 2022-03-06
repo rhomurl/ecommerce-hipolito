@@ -26,6 +26,8 @@
         <p class="font-semibold">
             @if($order->status == 'ordered')
                 Ordered
+            @elseif($order->status == 'pending')
+                Pending
             @elseif($order->status == 'delivered')
                 Delivered
             @elseif($order->status == 'otw')

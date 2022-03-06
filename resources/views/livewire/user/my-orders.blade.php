@@ -11,7 +11,7 @@
             {{--<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>--}}
 
             <strong class="d-inline-block mr-3">Order ID: {{ $order->id }}</strong>
-            <span class="float-right">Order Date: {{ \Carbon\Carbon::parse($order->created_at)->isoFormat('MMM Do YYYY') }}</span>
+            <span class="float-right">Order Date: {{ \Carbon\Carbon::parse($order->created_at)->isoFormat('Do MMM YYYY, h:mm a') }}</span>
 
         </header>
         <div class="card-body">
@@ -32,7 +32,7 @@
                     <a href="{{ route('user.order.details', $order->id ) }}" class="btn btn-outline-primary mb-2">More Details</a> 
                     <br>
                     @if($order->status == "pending")
-                        <a wire:click.prevent="paynow({{ $order->id }})" href="#" class="btn btn-outline-primary">Pay Now</a>
+                        <a wire:click.prevent="paynow({{ $order->id }})" href="#" class="btn btn-outline-danger">Pay Now</a>
                     @endif
                 </div>
 

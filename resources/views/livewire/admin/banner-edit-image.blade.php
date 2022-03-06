@@ -8,13 +8,32 @@
         <div class="px-4 py-3 mb-8 bg-white rounded-lg">
             <!-- Invalid input -->
             @if($this->image)
-                <img src="{{ asset('storage/') }}/{{ $this->image }}" height="50" width="50"/>
+                <img src="{{ asset('storage/') }}/{{ $this->image }}" height="50" width="100"/>
             @endif
             <label class="block mt-4 text-sm">
                 <span class="text-gray-700">
                     Image
                 </span><br>
-                <input wire:model="image" type="file" name="image" required>
+                <input wire:model="image" type="file" name="image" 
+                class="form-control
+                block
+                w-full
+                px-3
+                py-1.5
+                text-base
+                font-normal
+                text-gray-700
+                bg-white bg-clip-padding
+                border border-solid border-gray-300
+                rounded
+                transition
+                ease-in-out
+                m-0
+                focus:text-gray-700 
+                focus:bg-white 
+                focus:border-blue-600 
+                sfocus:outline-none" 
+                required>
                 @error('image')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}

@@ -15,6 +15,12 @@
                 <div class="space-y-6">
                     {{ $content }}
                 </div>
+
+                @if(isset($msg))
+                    <h2 class="text-2xl font-semibold text-center text-gray-900 mt-5">
+                        {{ $msg }}
+                    </h2>
+                @endif
             </div>
 
             <div class="bg-white justify-end px-4 pb-5 sm:px-4 sm:space-x-6 sm:flex">

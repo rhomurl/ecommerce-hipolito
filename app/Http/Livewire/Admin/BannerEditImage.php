@@ -2,16 +2,23 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use App\Models\Banner;
-use Livewire\WithFileUploads;
+use App\Traits\ModelComponentTrait;
+
 use Illuminate\Support\Facades\Storage;
+
 use LivewireUI\Modal\ModalComponent;
+use Livewire\WithFileUploads;
 
 class BannerEditImage extends ModalComponent
 {
+    use LivewireAlert;
+    use ModelComponentTrait;
     use WithFileUploads;
-
-    public $image;
+    
+    public $banner_id, $image;
 
     public function mount($id){
         $this->banner_id = $id;
@@ -21,7 +28,7 @@ class BannerEditImage extends ModalComponent
 
     public function create(){
         $this->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $bannerxx = Banner::findOrFail($this->banner_id);
@@ -41,7 +48,10 @@ class BannerEditImage extends ModalComponent
                 'image' =>  $this->image->store('images/banners', 'public'),
             ]
         );
-        $this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
+        //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
+        $this->resetInputFields();
+        $this->forceClose()->closeModal();
+        $this->successAlert('Banner Image Updated Successfully!');
     }
 
 

@@ -2,25 +2,30 @@
 
 namespace App\Http\Livewire\Admin;
 
+
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use App\Models\Category;
 use App\Models\Product;
+
+use App\Traits\ModelComponentTrait;
+
 use Livewire\WithPagination;
-use DB;
 use Livewire\Component;
+use DB;
 
 class CategoryComponent extends Component
 {
-    protected $listeners = ['updateComponent' => 'render'];
-
+    use LivewireAlert;
+    use ModelComponentTrait;
     use WithPagination;
 
-    public $isOpen = 0;
+    protected $listeners = ['updateComponent' => 'render'];
     public $search = "";
 
     public function render()
     {
-        
-        $categories = Category::where('name', 'like', '%'.$this->search.'%')->paginate(10);
+        $categories = $this->getData(new Category());
         return view('livewire.admin.category-component', compact('categories'))->layout('layouts.admin');
     }
 
@@ -32,11 +37,13 @@ class CategoryComponent extends Component
     {
         $product_qty = DB::table('products')->where('category_id', '=', $id)->whereNotNull('quantity')->get();
         if(count($product_qty)){
-            $this->emit("openModal", "admin.failed-modal", ["message" => 'This category cannot be deleted']); 
+            //$this->emit("openModal", "admin.failed-modal", ["message" => 'This category cannot be deleted']); 
+            $this->errorAlert('This Category Cannot Be Deleted!');
         }
         else{
-            $this->emit("openModal", "admin.success-modal", ["message" => 'Category Deleted Successfully']); 
+            //$this->emit("openModal", "admin.success-modal", ["message" => 'Category Deleted Successfully']); 
             Category::where('id', $id)->delete();
+            $this->successAlert('Category Deleted Successfully!');
         }     
     }
 }

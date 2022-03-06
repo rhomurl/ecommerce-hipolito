@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaypalController;
-use App\Http\Controllers\OrderStatus;
+use App\Http\Controllers\FacebookBotController;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
 /*
@@ -37,4 +37,5 @@ Route::get('/orders', function() {
  //   return new Order(Order::findOrFail($id));
 //});
 
-Route::get('/order/status/{id}', [OrderStatus::class, 'getStatus']);
+Route::get('/order/status/{id}/{email}', [FacebookBotController::class, 'getStatus'])
+    ->middleware('throttle:5,1');
