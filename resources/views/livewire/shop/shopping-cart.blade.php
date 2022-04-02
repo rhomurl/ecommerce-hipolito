@@ -11,7 +11,9 @@
         @endif
 
         @if($this->checkout_message)
-            {{ $this->checkout_message }}
+            <div class="alert alert-warning">
+                {{ $this->checkout_message }} is out of stock and it is removed from the cart.
+            </div>
         @endif
     <div class="card">
         

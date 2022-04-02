@@ -1355,3 +1355,200 @@ html[dir='rtl'] .itemside .info {
   padding-right: 15px;
   padding-left: initial; }
 /*# sourceMappingURL=ui.css.map */
+/* ================= TRACKING ============== */
+.tracking-wrap {
+  position: relative;
+  background-color: #ddd;
+  height: 7px;
+  display: flex;
+  margin-bottom: 60px;
+  margin-top: 50px;
+}
+.tracking-wrap .step {
+  flex-grow: 1;
+  width: 25%;
+  margin-top: -18px;
+  text-align: center;
+  position: relative;
+}
+.tracking-wrap .step::before {
+  height: 7px;
+  position: absolute;
+  content: "";
+  width: 100%;
+  left: 0;
+  top: 18px;
+}
+.tracking-wrap .icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  border-radius: 100%;
+  background: #ddd;
+}
+.tracking-wrap .text {
+  display: block;
+  margin-top: 7px;
+}
+.tracking-wrap .step.active .icon {
+  background: #3167eb;
+  color: #fff;
+}
+.tracking-wrap .step.error .icon {
+  background: #DC143C;
+  color: #fff;
+}
+.tracking-wrap .step.active .text {
+  font-weight: 400;
+  color: #000;
+}
+.tracking-wrap .step.active:before {
+  background: #3167eb;
+}
+.tracking-wrap .step.error:before {
+  background: #DC143C;
+}
+.menu-category {
+  margin: 0;
+  padding: 0;
+}
+.menu-category li {
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #e4e4e4;
+}
+.menu-category li:last-child {
+  border-bottom: 0;
+}
+.menu-category a {
+  color: #212529;
+}
+.menu-category > li > a {
+  display: block;
+  padding: 10px 18px;
+}
+.menu-category .submenu {
+  display: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 250px;
+  background: #fff;
+}
+.menu-category .submenu li {
+  list-style: none;
+}
+.menu-category .submenu li a {
+  padding: 10px 16px;
+  display: block;
+}
+.menu-category li:hover {
+  background: #f8f9fa;
+  transition: all 0.3s;
+}
+.menu-category li:hover .submenu {
+  display: block;
+  margin-left: 0px;
+}
+.menu-category .has-submenu > a:after {
+  content: "›";
+  font-size: 24px;
+  color: #999;
+  line-height: 18px;
+  font-weight: bold;
+  float: right;
+}
+
+.form-inline input[type=number] {
+  max-width: 100px;
+}
+
+.input-spinner {
+  width: 125px;
+  flex-wrap: nowrap;
+  display: inline-flex;
+  vertical-align: middle;
+}
+.input-spinner input.form-control {
+  text-align: center;
+  max-width: 46px;
+  font-weight: bold;
+  flex-basis: 46px;
+  border-color: #e4e4e4;
+  flex-grow: 0;
+}
+.input-spinner .btn {
+  width: 42px;
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.checkbox-btn {
+  position: relative;
+}
+.checkbox-btn input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.checkbox-btn input:checked ~ .btn {
+  border-color: #3167eb;
+  background-color: #3167eb;
+  color: #fff;
+}
+
+.btn-check {
+  position: relative;
+  display: inline-block;
+  border: 2px solid #dee2e6;
+  transition: 0s !important;
+}
+.btn-check input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.btn-check input:checked ~ .btn {
+  border-color: #3167eb;
+  background-color: #3167eb;
+  color: #fff;
+}
+.btn-check:hover:not(.active) {
+  border-color: #bbb;
+}
+
+.js-check {
+  position: relative;
+}
+.js-check .title {
+  margin-left: 22px;
+}
+.js-check input {
+  position: absolute;
+  top: 21px;
+  left: 18px;
+}
+.js-check.active {
+  border-color: #3167eb;
+}
+.js-check:hover:not(.active) {
+  border-color: #ccc;
+}
+
+.js-check.box {
+  width: 100%;
+  border-width: 3px;
+}
+
+.card-header .form-check {
+  margin-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

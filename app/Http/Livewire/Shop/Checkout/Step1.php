@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Shop\Checkout;
 
 use DB;
-use Session;
 
+
+//use App\Traits\ModelComponentTrait;
+//use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use App\Notifications\OrderNotification;
 use App\Models\Cart;
@@ -13,15 +15,29 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\AddressBook;
 use Illuminate\Support\Facades\Auth;
+
 use Livewire\Component;
 
 class Step1 extends Component
 {
+    //use LivewireAlert;
+    //use ModelComponentTrait;
+
     public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
     public $address_book_id, $payment_mode, $checkout_message, $shipping, $transid;
 
+    public function mount(){
+        if(auth()->user()->address_book_id){
+            $this->address_book_id = auth()->user()->address_book_id;
+            $this->msg_add_default = "Default";
+        }
+    }
+
     public function render()
     {
+        
+       
+
         $addresses = AddressBook::with('barangay.city')
         ->where('user_id', Auth::id())
         ->latest()
@@ -47,7 +63,7 @@ class Step1 extends Component
         if($cartItems->count() == 0){
             redirect(route('cart'));
         }
- 
+
          $this->totalCart = $cartItems->sum('total');
          $this->totalCartWithoutTax = $cartItems->sum('total') + $this->shipping;
          $this->grandTotal = $this->totalCartWithoutTax;
@@ -67,12 +83,7 @@ class Step1 extends Component
             ->whereIn('id', $cart->pluck('product_id'))
             ->pluck('quantity', 'id');
 
-        foreach ($cart as $cartProduct){
-            if(!isset($products[$cartProduct->product_id]) 
-                || $products[$cartProduct->product_id] < $cartProduct->qty) {
-                $this->checkout_message = 'Error: Product ' . $cartProduct->product->name . ' not found in stock';
-            }
-        }
+        
 
         try{
             $this->resetValidation();
@@ -128,7 +139,7 @@ class Step1 extends Component
                 }
                 $transaction->save();
                
-                Cart::where('user_id', Auth::user()->id)->delete();        
+                Cart::where('user_id', Auth::user()->id)->delete();
                 $this->emit('updateCart');
 
                 //Session::flash('orderid', $order->id);
@@ -150,6 +161,7 @@ class Step1 extends Component
 
                     $user->notify(new OrderNotification($orderData));
 
+                    
                     redirect()
                     ->route('checkout.success', $order->id);
                }
@@ -160,9 +172,34 @@ class Step1 extends Component
                 }
                
             });
-        } catch (\Exception $exception){
-            //$this->checkout_message = "Something wrong";
-            dd($exception->getMessage());
         }
+        catch (\Illuminate\Database\QueryException $exception){
+            foreach ($cart as $cartProduct){
+                if(!isset($products[$cartProduct->product_id]) 
+                    || $products[$cartProduct->product_id] < $cartProduct->qty) {
+                        Cart::where('product_id', $cartProduct->product->id)
+                            ->where('user_id', Auth::id())->delete();
+
+
+                        redirect()
+                        ->route('cart')
+                        ->with('checkout_message', $cartProduct->product->name);
+                        
+                    //$this->checkout_message = 'Error: Product ' . $cartProduct->product->name . ' not found in stock';
+                }
+            }
+            
+            //$this->checkout_message = "Something wrong";
+            //dd("Query Exception: " . $exception->getMessage());
+        }
+         catch (\Exception $exception){
+            
+            //$this->checkout_message = "Something wrong";
+            dd("General: " . $exception->getMessage());
+        }
+        
+
+        
+
     }
 }

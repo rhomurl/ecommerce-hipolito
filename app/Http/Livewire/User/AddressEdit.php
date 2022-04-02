@@ -31,15 +31,10 @@ class AddressEdit extends Component
         $this->entry_street_address = $address->entry_street_address;
         $this->entry_phonenumber = $address->entry_phonenumber;
         $this->entry_postcode = $address->entry_postcode;
-
         $this->cities = City::all();
-        $this->barangays = collect();
-    }
-
-    public function updatedCity($value)
-    {
-        $this->barangays = Barangay::where('city_id', $value)->get();
-        $this->barangay = $this->barangays->first()->id ?? null;
+        //$this->barangays = collect();
+        $this->barangays = Barangay::where('city_id',  $this->city)->get();
+        //$this->barangay = $this->barangays->first()->id ?? null;
     }
 
     public function storeAddress()

@@ -4,9 +4,14 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Models\Order;
+use DB;
 
 class Kernel extends ConsoleKernel
 {
+    protected $commands = [
+        'App\Console\Commands\CancelOrderCommand',
+    ];
     /**
      * Define the application's command schedule.
      *
@@ -15,7 +20,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('cancel:order')->everyTwoMinutes()->withoutOverlapping();
+        
+        /*$schedule->call(function () {
+            Order::where('status', 'pending')
+            ->where('created_at', '<=', now()->subMinutes(30)->toDateTimeString())
+            ->get();
+        })->everyFiveMinutes();*/
     }
 
     /**

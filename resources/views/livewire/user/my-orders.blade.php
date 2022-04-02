@@ -21,6 +21,8 @@
                     
                     @if($order->status == "pending")
                         Pending
+                    @elseif($order->status == "cancelled")
+                        Cancelled
                     @elseif($order->status == "ordered")
                         Ordered
                     @elseif($order->status == "processing")
@@ -29,10 +31,29 @@
                         Delivered
                     @endif
                     <br><br>
-                    <a href="{{ route('user.order.details', $order->id ) }}" class="btn btn-outline-primary mb-2">More Details</a> 
+                     
                     <br>
+                    @if($order->status == "pending" || ($order->transaction->mode == "cod" && $order->status == "ordered"))
+
+                    <div x-data="{ confirmDelete:false }" class="overflow-hidden">
+                        <button x-show="!confirmDelete" x-on:click="confirmDelete=true" class="btn btn-outline-primary">
+                            Cancel
+                        </button>
+                        <div class="overflow-hidden">
+                            <span x-show="confirmDelete">Are you sure you want to cancel?<br></span>
+                            <a wire:click.prevent="cancelOrder({{ $order->id }})" x-show="confirmDelete" x-on:click="confirmDelete=false" href="#" class="btn btn-outline-danger">Yes</a>
+                            <a x-show="confirmDelete" x-on:click="confirmDelete=false" class="btn btn-outline-danger">No</a>
+                        </div>
+                    </div>
+                    @endif
+
                     @if($order->status == "pending")
                         <a wire:click.prevent="paynow({{ $order->id }})" href="#" class="btn btn-outline-danger">Pay Now</a>
+                    @endif
+                    
+                    @if($order->status == "pending" && $order->transaction->mode == "paypal")
+                    <br><br>
+                        Please pay before <b>{{ \Carbon\Carbon::parse($order->created_at)->addMinutes(60)->isoFormat('MMM D, YYYY, h:mm a') }}</b> to avoid cancellation.
                     @endif
                 </div>
 
@@ -62,13 +83,20 @@
                         @endif
                         <span class="b">Total: ₱ {{ $order->total }} </span>
                     </p>
+                    <a href="{{ route('user.order.details', $order->uuid ) }}" class="btn btn-outline-primary mb-2">More Details</a>
+                    
                 </div>
             </div> <!-- row.// -->
         </div> <!-- card-body .// -->
 
         </article> <!-- card order-item .// -->
     @empty
+        <div class="card-body">
+
+            <div class="row">
         No orders found
+            </div>
+        </div>
     @endforelse
 
     

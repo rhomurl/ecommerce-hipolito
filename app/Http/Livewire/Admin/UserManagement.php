@@ -21,7 +21,10 @@ class UserManagement extends Component
 
     public function render()
     {
-        $users = $this->getData(new User());
+        $users = User::role('customer')
+            ->where('name', 'like', '%'.$this->search.'%')
+            ->orderBy('name', 'ASC')
+            ->paginate(10);
         return view('livewire.admin.user-management',  compact('users'))->layout('layouts.admin');
     }
 

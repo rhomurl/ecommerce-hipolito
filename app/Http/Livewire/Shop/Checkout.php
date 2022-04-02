@@ -28,6 +28,14 @@ class Checkout extends Component
         $orderid = Session::get('orderid');
         $this->orderidz = Session::get('orderid');
         $order = Order::where('id', $orderid)->firstorFail();
+        $this->uuid = $order->uuid;
+
+        $transaction = Transaction::where('order_id', $orderid)
+            ->where('status', 'cancelled')->first();
+        if($transaction){
+            abort(404);
+        }
+        
         if(!$order)
         {
            return redirect()->route('cart');

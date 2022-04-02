@@ -40,6 +40,31 @@ class CategorySeeder extends Seeder
                 'name' => 'LPG Hose',
                 'slug' => 'lpg-hose',
             ],
+            [
+                'id' => 6,
+                'name' => 'Plywood',
+                'slug' => 'plywood',
+            ],
+            [
+                'id' => 7,
+                'name' => 'Steel',
+                'slug' => 'steel',
+            ],
+            [
+                'id' => 8,
+                'name' => 'Cement',
+                'slug' => 'cement',
+            ],
+            [
+                'id' => 9,
+                'name' => 'Door',
+                'slug' => 'door',
+            ],
+            [
+                'id' => 10,
+                'name' => 'Construction Equipment',
+                'slug' => 'construction-equipment',
+            ],
         ];
 
         Category::insert($category);

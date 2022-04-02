@@ -3,7 +3,8 @@
 namespace App\Http\Livewire;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\Cart;
+//use App\Models\Cart;
+use App\Models\Banner;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -16,8 +17,10 @@ class UserHome extends Component
     
     public function mount(){
         $this->products = Product::whereNotNull('quantity')->get();
+        $this->banners = Banner::take(5)->get();
     }
 
+    /*
     public function addToCart($productId)
     {
         if(!Auth::check()){
@@ -46,6 +49,7 @@ class UserHome extends Component
         //session()->flash('message', 'Product Added to Cart');
         //return redirect(route('cart'));
     }
+    */
 
     public function render()
     {

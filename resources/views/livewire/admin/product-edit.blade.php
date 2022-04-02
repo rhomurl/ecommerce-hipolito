@@ -57,7 +57,8 @@
                 <span class="text-gray-700">
                     Description
                 </span>
-                <input type="text" wire:model.defer="description" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Description" required>
+                <textarea type="text" wire:model.defer="description" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Description" required>
+                </textarea>
                 @error('description')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}

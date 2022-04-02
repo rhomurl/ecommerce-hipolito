@@ -1,7 +1,19 @@
 <script>
 paypal.Buttons({
       onCancel: function (data, actions) {
-    actions.redirect('{{ route('paypal.cancel') }}');
+        return fetch('/api/paypal/order/cancel/', {
+          method: 'POST',
+          body:JSON.stringify({
+              user_orderid : '{{ $this->orderidz }}'
+              })
+          }).then(function(res) {
+              return res.json();
+          }).then(function(res) {
+              if(res.response == 'Cancelled'){
+                actions.redirect('{{ route('order.cancel') }}');
+              }
+          });
+    
   },
 
 // Sets up the transaction when a payment button is clicked
@@ -25,8 +37,8 @@ onApprove: function(data, actions) {
   return fetch('/api/paypal/order/capture/' , {
       method: 'POST',
       body :JSON.stringify({
-          orderId : data.orderID,
-          orderidz : '{{ $this->orderidz }}'
+          paypal_orderid : data.orderID,
+          user_orderid : '{{ $this->orderidz }}'
           //payment_gateway_id: $("#payapalId").val(),
           //user_id: "{{ auth()->user()->id }}",
       })
@@ -51,10 +63,17 @@ onApprove: function(data, actions) {
 
      if(orderData.status === 'COMPLETED'){
         actions.redirect("{{ route('checkout.success', $this->orderidz) }}");
-     }
+      }
+      // Transaction ID
+      //console.log(orderData.purchase_units[0].payments.captures[0].id);
+       
+      //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+        
+     
       //syccess for demo purposes
     //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
       //var transaction = orderData.purchase_units[0].payments.captures[0];
+      //console.log(transaction);
   });
 }
 

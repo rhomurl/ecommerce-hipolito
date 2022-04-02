@@ -27,9 +27,11 @@
         <link href="{{ asset('fonts/fontawesome/css/all.min.css') }}" type="text/css" rel="stylesheet">
 
         <!-- custom style -->
-        <link href="{{ asset("css/ui_v2.css") }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset("css/ui.css") }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css" />
         
+        @yield('style')
+
         @livewireStyles
 
         <!-- custom javascript -->

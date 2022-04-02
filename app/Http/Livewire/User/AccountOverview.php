@@ -19,9 +19,9 @@ class AccountOverview extends Component
             ->where('status', 'ordered')
             ->count();
 
+        
         $addresses = AddressBook::with('barangay.city')
-        ->where('user_id', Auth::id())
-        ->limit(1)
+        ->where('id', auth()->user()->address_book_id)
         ->get();
 
         return view('livewire.user.account-overview', compact('addresses'))->extends('layouts.user-profile');

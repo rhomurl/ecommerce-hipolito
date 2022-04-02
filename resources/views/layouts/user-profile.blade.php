@@ -17,6 +17,7 @@
                     <a class="list-group-item {{ \Route::current()->getName() == 'user.overview' ? 'active' : '' }}" href="{{ route('user.overview') }}"> Account overview  </a>
                     <a class="list-group-item {{ \Route::current()->getName() == 'user.address' ? 'active' : '' }}" href="{{ route('user.address') }}"> My Address </a>
                     <a class="list-group-item {{ \Route::current()->getName() == 'user.orders' ? 'active' : '' }}" href="{{ route('user.orders') }}"> My Orders </a>
+                    <a class="list-group-item {{ \Route::current()->getName() == 'user.wishlists' ? 'active' : '' }}" href="{{ route('user.wishlists') }}"> My Wishlists </a>
                     <a class="list-group-item" href="page-profile-setting.html"> Settings </a>
                     <a class="list-group-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Log out </a>

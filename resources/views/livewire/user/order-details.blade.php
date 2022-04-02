@@ -1,19 +1,28 @@
 @section('title', 'Order Details')
 <div>
-    <a href="{{ route('user.orders') }}" class="btn btn-primary"> <i class="fa fa-chevron-left"></i> Back to My Orders</a><br><br>
+    
 
     
     <article class="card mb-4">
+        
         <header class="card-header">
+            <a href="{{ route('user.orders') }}" class="btn btn-primary"> <i class="fa fa-chevron-left"></i> Back to My Orders</a><br><br>
             <strong class="d-inline-block mr-3">Order ID: {{ $order->id }}</strong>
             <span class="float-right">Order Date and Time: {{ \Carbon\Carbon::parse($order->created_at)->format('F j Y h:i A')}}</span>
         </header>
         <div class="card-body">
             <div class="tracking-wrap">
-                <div class="step {{ $order->status == 'ordered' ? 'active' : 'active' }}">
-                    <span class="icon"> <i class="fa fa-check"></i> </span>
-                    <span class="text">Order Placed</span>
-                </div> <!-- step.// -->
+                @if($order->status == 'cancelled')
+                    <div class="step {{ $order->status == 'cancelled' ? 'error' : 'error' }}">
+                        <span class="icon"> <i class="fa fa-times"></i> </span>
+                        <span class="text">Cancelled</span>
+                    </div> <!-- step.// -->
+                @else
+                    <div class="step {{ $order->status == 'ordered' ? 'active' : 'active' }}">
+                        <span class="icon"> <i class="fa fa-check"></i> </span>
+                        <span class="text">Order Placed</span>
+                    </div> <!-- step.// -->
+                @endif
                 <div class="step {{ $order->status == 'ordered' ? '' : $order->status == 'processing' ? 'active' : $order->status == 'otw' ? 'active' : $order->status == 'delivered' ? 'active' : ''  }}">
                     <span class="icon"> <i class="fa fa-user"></i> </span>
                     <span class="text">Processing</span>

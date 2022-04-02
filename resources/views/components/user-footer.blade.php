@@ -2,24 +2,26 @@
     <div class="container">
         <section class="footer-top  padding-y-lg">
             <div class="row">
-                <aside class="col-md-4 col-12">
-                    <article class="mr-md-4">
-                        <h5 class="title">Contact us</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in feugiat lorem. </p>
-                        <ul class="list-icon">
-                            <li> <i class="icon fa fa-map-marker"> </i>542 Fake Street, Cityname 10021 Netheerlends </li>
-                            <li> <i class="icon fa fa-envelope"> </i> info@example.com</li>
-                            <li> <i class="icon fa fa-phone"> </i> (800) 060-0730, (800) 060-0730</li>
-                            <li> <i class="icon fa fa-clock"> </i>Mon-Sat 10:00pm - 7:00pm</li>
-                        </ul>
-                    </article>
-                </aside>
+                @if(!Request::is('about-us'))
+                    <aside class="col-md-4 col-12">
+                        <article class="mr-md-4">
+                            <h5 class="title">Contact us</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in feugiat lorem. </p>
+                            <ul class="list-icon">
+                                <li> <i class="icon fa fa-map-marker"> </i>Brgy. Marauoy, Lipa City, Batangas</li>
+                                <li> <i class="icon fa fa-envelope"> </i> hipolitoshardware@gmail.com</li>
+                                <li> <i class="icon fa fa-phone"> </i> +(63) 995 140 1951</li>
+                                <li> <i class="icon fa fa-clock"> </i>Mon-Sat 7:00am - 7:00pm</li>
+                            </ul>
+                        </article>
+                    </aside>
+                @endif
                 <aside class="col-md col-6">
                     <h5 class="title">Information</h5>
                     <ul class="list-unstyled">
-                        <li> <a href="#">About us</a></li>
-                        <li> <a href="#">Career</a></li>
-                        <li> <a href="#">Find a store</a></li>
+                        <li> <a href="{{ route('about') }}">About Us</a></li>
+                        <li> <a href="{{ route('shipping.policy') }}">Shipping Policy</a></li>
+                        <li> <a href="#">Privacy Policy</a></li>
                         <li> <a href="#">Rules and terms</a></li>
                         <li> <a href="#">Sitemap</a></li>
                     </ul>

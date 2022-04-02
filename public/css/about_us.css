@@ -1,0 +1,156 @@
+/*===== Font awsome CDN =====*/
+@import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* body {
+    background: black;
+    color: white;
+} */
+/*===================================== ABOUT_2ND_SECTION =================================*/
+#about-second-section {
+    padding-top: 100px;
+}
+/* ABOUT_2ND_SECTION */
+.about-img-1 img {
+    height: auto;
+    max-width: 100%;
+    border: none;
+    border-radius: 50%;
+}
+.about-first-section-title {
+    font-size: 40px;
+    line-height: 46px;
+    margin: 50px 0px 0px 0px;
+    font-weight: 600;
+    color: #002639;
+}
+.about_para {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #484848;
+}
+.about_para1 {
+    margin: 20px 0px 0px 0px;
+}
+.about-green-check {
+    margin: 20px 0px 0px 15px;
+}
+.fa-check span {
+    margin: 0px 0px 0px 15px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #484848;
+}
+.about-green-check .fa-check {
+    margin-top: 15px;
+}
+.view-details-btn {
+    text-decoration: none;
+    color: #252628;
+    display: inline-block;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0 40px;
+    font-size: 16px;
+    height: 50px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 5;
+    margin-top: 35px;
+    border: 2px solid #fcc741;
+    line-height: 46px;
+    transition: all 0.3s linear;
+}
+
+/* COUNTER UP ANIMATION */
+.box {
+    width: 100%;
+    padding-top: 30px;
+}
+.counter-box {
+    background: lightgray;
+    text-align: center;
+    padding: 15px;
+}
+.counter-title {
+    font-weight: 400;
+    font-size: 16px;
+    color: #203151;
+}
+.counter {
+    font-size: 30px;
+    font-weight: 700;
+    color: #203151;
+}
+@media all and (max-width: 992px) {
+    .counter-wrapper {
+        gap: 10px;
+    }
+}
+
+.counter-plus-sign {
+    /* float: right; */
+    color: #203151;
+    font-size: 30px;
+    font-weight: 600;
+}
+/* END OF COUNTER UP ANIMATION */
+/*======================================= END_OF_ABOUT_2ND_SECTION ======================*/
+/*======================================= ABOUT_3RD_SECTION =============================*/
+.googlemaps-section {
+    padding-top: 50px;
+}
+.our-location-wrapper {
+    width: 100%;
+    position: relative;
+}
+.our-location h1, p {
+    color: white;
+}
+.our-location h1 {
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+.our-location p {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Arial;
+}
+.our-location {
+    background-color: rgba(27, 41, 69, 0.95);
+    color: black;
+    box-shadow: 15px 15px 20px;
+    width: 380px;
+    text-align: center;
+    padding: 60px;
+    position: relative;
+    /* top: -600px;
+    left: 100px; */
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    margin-bottom: -400px;
+}
+@media all and (max-width: 992px) {
+    .our-location {
+        background-color: rgba(27, 41, 69, 0.95);
+        box-shadow: 0px 0px 0px;
+        text-align: center;
+        padding: 60px;
+        width: 100%;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        margin-bottom: 10px;
+    }
+}
+/*======================================= END_OF_ABOUT_3RD_SECTION ======================*/

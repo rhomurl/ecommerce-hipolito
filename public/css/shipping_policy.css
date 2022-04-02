@@ -1,0 +1,135 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* body {
+    background: black;
+    color: white;
+} */
+.shipping-policy-title {
+    text-align: center;
+}
+.shipping-policy-wrapper {
+    position: relative;
+    width: 100%;
+}
+.shipping-policy-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.home-second-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.home-who-we-are-wrapper {
+    background-image: url(../images/misc/homepage_img_3.jpg);
+    background-size: cover;
+    height: 750px;
+    width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.home-who-we-are {
+    padding: 80px 0px;
+    position: relative;
+}
+.home-who-we-are-content {
+    background-color: rgba(27, 41, 69, 0.95);
+    height: 580px;
+    width: 100%;
+    padding: 70px;
+    color: white;
+}
+.who-we-are-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+.home-who-we-are-sub-title {
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+}
+.home-meet-btn-wrapper {
+    float: right;
+}
+.home-meet-btn {
+    text-decoration: none;
+    background-color: #fcc741;
+    transition: all 0.3s linear;
+    border: 0;
+    padding: 10px 20px;
+    color: #252628;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 5;
+}
+.home-meet-btn:hover {
+    transition: all 0.3s linear;
+    background-color: rgb(164, 118, 3);
+    color: white;
+}
+.who-we-are-card-wrapper {
+    padding-top: 0px;
+}
+.who-we-are-cards-content {
+    text-align: center;
+}
+.who-we-are-cards {
+    /* background: darkred; */
+    padding: 30px 0px 0px 0px;
+}
+.who-we-are-cards-content .card-imgs {
+    padding: 40px;
+    width: 50%;
+}
+.card-imgs {
+    font-size: 80px;
+}
+.who-we-are-cards-content h2 {
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+.who-we-are-cards-content p {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media all and (max-width: 1400px) {
+    .home-who-we-are-wrapper {
+        background-image: url(../images/misc/homepage_img_3.jpg);
+        background-size: cover;
+        height: auto;
+        width: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    .home-who-we-are-sub-title {
+        color: white;
+        font-size: 30px;
+        font-weight: 600;
+    }
+    /* .home-who-we-are {
+        padding: 80px 0px;
+    } */
+    .home-who-we-are-content {
+        background-color: rgba(27, 41, 69, 0.95);
+        height: auto;
+        width: 100%;
+        padding: 30px;
+        color: white;
+    }
+}

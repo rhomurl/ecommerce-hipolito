@@ -5,12 +5,15 @@ namespace App\Http\Livewire\Shop;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Wishlist;
+use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ProductDetails extends Component
 {
     use LivewireAlert;
+    use ModelComponentTrait;
 
     protected $listeners = ['increaseQuantity' => 'addToCart'];
     
@@ -50,12 +53,13 @@ class ProductDetails extends Component
         $this->cartProducts[] = $productId;
         $this->emit('updateCart');
 
-        $this->alert('success', 'Product Added to Cart!', [
+        /*$this->alert('success', 'Product Added to Cart!', [
             'position' => 'top-end',
             'timer' => '1500',
             'toast' => true,
             'timerProgressBar' => true,
-        ]);
+        ]);*/
+        $this->successToast('Product Added to Cart!');
         //session()->flash('message', 'Product Added to Cart');
         //return redirect(route('cart'));
         
@@ -69,6 +73,25 @@ class ProductDetails extends Component
     public function addQty(){
         $this->qty = $this->qty + 1;
 
+    }
+
+    public function addToWishlist($id)
+    {
+        if(!Auth::check()){
+            return redirect()->route('login');
+        }
+
+        $wishlist = Wishlist::where('product_id', $id)
+                    ->where('user_id', Auth::id())
+                    ->first();
+        
+        if (!$wishlist) {
+            Wishlist::create(['user_id' => Auth::id(), 'product_id' => $id]);
+            $this->successToast('Product Added to Wishlist!');
+        } 
+        else {
+            $this->errorToast('Product Already in Wishlist!');
+        }
     }
     
 }

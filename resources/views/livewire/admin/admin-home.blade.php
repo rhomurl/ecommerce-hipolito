@@ -1,3 +1,4 @@
+@section('title', 'Dashboard')
 
 <div>
     
@@ -15,6 +16,8 @@
             <!-- State cards -->
             <div class="grid grid-cols-1 gap-8 p-4 lg:grid-cols-2 xl:grid-cols-4">
                 <!-- Value card -->
+                
+
                 <div class="flex items-center justify-between p-4 bg-white dark:bg-gray-800 dark:text-gray-100 rounded-md">
                     <div>
                         <h6 class="text-xs dark:text-gray-100 font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">

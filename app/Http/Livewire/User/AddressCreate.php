@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\User;
 
-use App\Models\City;
-use App\Models\Barangay;
 use App\Models\AddressBook;
+use App\Models\Barangay;
+use App\Models\City;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;    
 use Livewire\Component;
 
@@ -22,6 +23,7 @@ class AddressCreate extends Component
     {
         $this->cities = City::all();
         $this->barangays = collect();
+        
     }
 
     public function render()
@@ -32,7 +34,7 @@ class AddressCreate extends Component
             ->take(5)
             ->get();*/
 
-
+            
         return view('livewire.user.address-create')->extends('layouts.user-profile');
     }
 
@@ -45,6 +47,8 @@ class AddressCreate extends Component
 
     public function storeAddress()
     {
+        $addrcount = AddressBook::where('user_id', Auth::user()->id)->count();
+
         $this->validate([
             'entry_company' => 'max:255',
             'entry_firstname' => 'required|string|max:255',
@@ -55,7 +59,8 @@ class AddressCreate extends Component
         ]);
 
         try{
-            AddressBook::create([
+            
+            $c_address = AddressBook::create([
                 'user_id' => Auth::user()->id,
                 'entry_company' => $this->entry_company,
                 'entry_firstname' => $this->entry_firstname,
@@ -65,6 +70,16 @@ class AddressCreate extends Component
                 'barangay_id' => $this->barangay,
                 'entry_phonenumber' => $this->entry_phonenumber,
             ]);
+
+            if($addrcount == 0){
+                $user = User::find(Auth::user()->id);
+                $user->address_book_id = $c_address->id;
+                $user->save();
+
+            }
+            //$transaction = Transaction::where('order_id', '=', $user_orderid)
+            //$cart->update(['qty' => $cart->qty + $qty]);
+            //->update(array('status' => 'cancelled'));
 
             $this->entry_company = '';
             $this->entry_firstname = '';

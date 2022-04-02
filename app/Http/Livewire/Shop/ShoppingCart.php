@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shop;
 
+use Session;
 use App\Models\Cart;
 use App\Models\Product;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -20,6 +21,9 @@ class ShoppingCart extends Component
     public $countries;
     public $checkout_message;
 
+    public function mount(){
+        $this->checkout_message = Session::get('checkout_message');
+    }
 
     public function render()
     {
@@ -55,12 +59,19 @@ class ShoppingCart extends Component
         foreach ($cart as $cartProduct){
             if(!isset($products[$cartProduct->product_id]) 
                 || $products[$cartProduct->product_id] < $cartProduct->qty) {
-                $this->checkout_message = 'Error: Product ' . $cartProduct->product->name . ' not found in stock';
-            }
-            return redirect()->route('checkout.step1');
-        }
-    }
+                    Cart::where('product_id', $cartProduct->product->id)
+                    ->where('user_id', Auth::id())->delete();
 
+
+                return redirect()
+                ->route('cart')
+                ->with('checkout_message', $cartProduct->product->name);
+            }
+            
+        }
+         redirect()->route('checkout.step1');
+    }
+    
     public function increaseQuantity($id)
     {
         $this->emit('increaseQuantity', $id);

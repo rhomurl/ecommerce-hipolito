@@ -10,26 +10,18 @@ use Livewire\Component;
 
 class OrderDetails extends Component
 {
-    public $order_id;
+    public $uuid;
 
-    public function mount($order_id)
+    public function mount($uuid)
     {
-        $this->order_id = $order_id;
+        $this->uuid = $uuid;
     }
 
     public function render()
     {
-        $status = 0;
-        
-        $userCheck = Order::where('id', $this->order_id)
-            //->where('user_id', Auth::id())
-            
-            ->get();
-
-       
-
-
-        $order = Order::with('transaction')->findorFail($this->order_id);
+        //$status = 0;
+        $userCheck = Order::where('uuid', $this->uuid)->get();
+        $order = Order::with('transaction')->where('uuid', $this->uuid)->firstOrFail();
     
         $address = AddressBook::with('barangay.city')->where('id', $order->address_book_id)->first();
         

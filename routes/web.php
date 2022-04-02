@@ -64,20 +64,28 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
+Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
+
 Route::get('/product/{slug}', Shop\ProductDetails::class)->name('product.details');
 Route::get('/search/{sdata}', Shop\SearchResult::class)->name('product.search');
 Route::get('/search/category/{slug}', Shop\SearchCategory::class)->name('category.search');
 Route::get('/search/brand/{slug}', Shop\SearchBrand::class)->name('brand.search');
 Route::get('/cart', Shop\ShoppingCart::class)->middleware('auth')->name('cart');
-Route::get('/upload', Testupload::class)->middleware('auth')->name('ul');
 
+Route::get('/shipping-policy', Shop\ShippingPolicy::class)->name('shipping.policy');
+Route::get('/about-us', Shop\AboutUs::class)->name('about');
+
+
+Route::get('/checkout/success/{id}', Shop\CheckoutSuccess::class)->name('checkout.success');
+/*
 Route::post('/checkout/response', 'App\Http\Livewire\Shop\Checkout@response');
-Route::get('/checkout/success/{orderid}', Shop\CheckoutSuccess::class)->name('checkout.success');
 Route::get('/paypal/create', 'App\Http\Controllers\PaypalTest@index')->name('paypal.create');
 Route::get('/paypal/process', 'App\Http\Controllers\PaypalTest@process')->name('paypal.process');
 Route::get('/paypal/success', 'App\Http\Controllers\PaypalTest@success')->name('paypal.success');
-Route::get('/paypal/cancel', 'App\Http\Controllers\PaypalTest@cancel')->name('paypal.cancel');
 
+Route::get('/paypal/cancel', 'App\Http\Controllers\PaypalTest@cancel')->name('paypal.cancel');
+*/
+Route::get('/order/cancel', Shop\OrderCancel::class)->name('order.cancel');
 Route::get('/checkout', Shop\Checkout\Step1::class)->middleware('check_if_user')->name('checkout.step1');
 Route::get('/checkout/paypal', Shop\Checkout::class)->middleware('check_if_user')->name('checkout');
 
@@ -85,12 +93,12 @@ Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])-
     Route::get('/', User\AccountOverview::class);
     Route::get('overview', User\AccountOverview::class)->name('overview');
     Route::get('orders', User\MyOrders::class)->name('orders');
-    Route::get('order/{order_id}', User\OrderDetails::class)->name('order.details');
+    Route::get('order/{uuid}', User\OrderDetails::class)->name('order.details');
     Route::get('edit', User\EditProfile::class)->name('edit');
     Route::get('address', User\MyAddress::class)->name('address');
     Route::get('address/create', User\AddressCreate::class)->name('address.create');
-    
     Route::get('address/edit/{id}', User\AddressEdit::class)->name('address.edit');
+    Route::get('wishlists', User\MyWishlists::class)->name('wishlists');
 }); 
 
 Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(function () {
@@ -100,6 +108,7 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
     Route::get('categories', Admin\CategoryComponent::class)->name('categories');
     Route::get('manageuser', Admin\UserManagement::class)->name('manageuser');
+    Route::get('managerole', Admin\RoleManagement::class)->name('managerole');
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
     Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');

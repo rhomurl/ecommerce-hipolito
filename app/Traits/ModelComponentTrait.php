@@ -37,6 +37,24 @@ trait ModelComponentTrait
         $this->emit('updateComponent');
     }
 
+    public function successToast($message){
+        $this->alert('success', $message, [
+            'position' => 'bottom-end',
+            'timer' => '1500',
+            'toast' => true,
+            'timerProgressBar' => true,
+        ]);
+    }
+
+    public function errorToast($message){
+        $this->alert('error', $message, [
+            'position' => 'bottom-end',
+            'timer' => '1500',
+            'toast' => true,
+            'timerProgressBar' => true,
+        ]);
+    }
+
     private function resetInputFields(){
         $this->reset();
         $this->resetValidation();

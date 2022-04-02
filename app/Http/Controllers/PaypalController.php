@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Session;
 use Illuminate\Http\Request;
+use App\Models\OrderProduct;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Transaction;
+use DB;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaypalController extends Controller
@@ -39,8 +42,8 @@ class PaypalController extends Controller
 
     public function capture(Request $request){
         $data = json_decode($request->getContent(), true);
-        $orderId = $data['orderId'];
-        $orderidz = $data['orderidz'];
+        $orderId = $data['paypal_orderid'];
+        $orderidz = $data['user_orderid'];
 
         //Init Paypal
         $provider = new PayPalClient;
@@ -52,15 +55,46 @@ class PaypalController extends Controller
         $result = $provider->capturePaymentOrder($orderId);
 
         if($result['status'] == 'COMPLETED'){
+            
             $order = Order::find($orderidz);
             $order->status = 'ordered';
+            $order->transaction_id = $orderId;
             $order->save();
 
             $transaction = Transaction::where('order_id', '=', $orderidz)
                 ->update(array('status' => 'ordered'));
-           
+
+            
         }
 
         return response()->json($result);
+    }
+
+    public function cancel(Request $request){
+        $data = json_decode($request->getContent(), true);
+        $user_orderid = $data['user_orderid'];
+
+        $cart = OrderProduct::select("product_id", DB::raw("sum(quantity) as product_qty"))
+        ->groupBy('product_id')
+        ->where('order_id', $user_orderid)
+        ->get();
+
+        foreach ($cart as $cartProduct){
+            Product::find($cartProduct->product_id)->increment('quantity', $cartProduct->product_qty);
+        }
+
+        $order = Order::find($user_orderid);
+            $order->status = 'cancelled';
+            $order->save();
+
+        $transaction = Transaction::where('order_id', '=', $user_orderid)
+            ->update(array('status' => 'cancelled'));
+
+        
+        $result = [
+            'response' => "Cancelled"
+        ];
+        return response()->json($result);
+
     }
 }

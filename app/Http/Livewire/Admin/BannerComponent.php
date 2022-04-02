@@ -42,8 +42,6 @@ class BannerComponent extends Component
                 Delete Multiple File like this way
                 Storage::delete(['upload/test.png', 'upload/test2.png']);
             */
-        }else{
-            //dd('File does not exists.');
         }
         Banner::where('id', $id)->delete();  
         $this->successAlert('Banner Deleted Successfully!');

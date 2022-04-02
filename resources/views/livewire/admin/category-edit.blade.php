@@ -11,7 +11,7 @@
                 <span class="text-gray-700">
                     Name
                 </span>
-                <input type="text" wire:model.defer="name" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Name" required>
+                <input type="text" wire:model="name" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Name" required>
                 @error('name')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
@@ -24,7 +24,7 @@
                 <span class="text-gray-700">
                     Slug
                 </span>
-                <input wire:model.defer="slug" class="block w-full mt-1 text-sm border rounded appearance-none p-2  focus:shadow-outline-blue focus:outline-none  form-input" placeholder="" disabled>
+                <input placeholder="{{ Str::slug($this->name) }}" class="block w-full mt-1 text-sm border rounded appearance-none p-2  focus:shadow-outline-blue focus:outline-none  form-input" disabled>
             </label>
         </div>
     </x-slot>

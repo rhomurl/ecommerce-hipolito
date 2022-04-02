@@ -61,7 +61,12 @@ class AdminHome extends Component
         $trevcountYesterday = Order::sum('total');
         $this->trev_current_count = $trevcountYesterday;
         $trevcountYesterday = $trevcountYesterday - $revcountToday;
+        if($revcountToday == 0 && $trevcountYesterday == 0){
+            $this->rev_percent_change = 0;
+        }
+        else{
         $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
+        }
 
         $userCount = User::role('customer')
         ->whereDate('created_at', today())
@@ -71,14 +76,23 @@ class AdminHome extends Component
         $userCountYesterday = User::role('customer')->count();
         $this->user_current_count = $userCountYesterday;
         $userCountYesterday = $userCountYesterday - $userCount;
+        if($userCount == 0 && $userCountYesterday == 0){
+            $this->user_percent_change = 0;
+        }
+        else{
         $this->user_percent_change = ($userCount/$userCountYesterday)*100;
-
+        }
         // Orders
         $orderCountToday = $order->count();
         $this->totalOrders = Order::count();
         $ordersYesterday = $this->totalOrders - $order->count();
-        $this->order_percent_change = ($orderCountToday/$ordersYesterday)*100;
-
+        if($orderCountToday == 0 && $ordersYesterday == 0)
+        {
+            $this->order_percent_change = 0;
+        }
+        else{
+            $this->order_percent_change = ($orderCountToday/$ordersYesterday)*100;
+        }
         // Total Revenue (Last 7 days) Chart
         $data = collect([]);
         $data0 = collect([]);
