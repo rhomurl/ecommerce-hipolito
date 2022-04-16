@@ -14,7 +14,7 @@ class AddAddressBookIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('address_book_id');
+            $table->integer('address_book_id')->nullable();
         });
     }
 
