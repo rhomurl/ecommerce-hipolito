@@ -6,13 +6,12 @@
         <title>@yield('title') - Admin</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         
-        
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="{{ asset('dashboard/assets/js/init-alpine.js') }}"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
 
-       <link rel="stylesheet" href="{{ asset('dashboard/build/tailwind.css') }}"/>
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
         @livewireStyles

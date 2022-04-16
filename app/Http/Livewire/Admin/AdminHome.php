@@ -65,7 +65,7 @@ class AdminHome extends Component
             $this->rev_percent_change = 0;
         }
         else{
-            $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
+        $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
         }
 
         $userCount = User::role('customer')
@@ -80,7 +80,7 @@ class AdminHome extends Component
             $this->user_percent_change = 0;
         }
         else{
-            $this->user_percent_change = ($userCount/$userCountYesterday)*100;
+        $this->user_percent_change = ($userCount/$userCountYesterday)*100;
         }
         // Orders
         $orderCountToday = $order->count();

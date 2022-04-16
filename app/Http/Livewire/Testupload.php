@@ -7,8 +7,6 @@ use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
-
 use Livewire\Component;
 
 class Testupload extends Component
@@ -22,22 +20,6 @@ class Testupload extends Component
         $this->validate([
             'photo' => 'image|max:1024',
         ]);
-    }
-
-    public function uploadPhoto(){
-        
-        
-    }
-
-    public function create(){
-        $disk = Storage::disk('gcs');
-        $this->validate([
-            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-        $disk->put('avatars/1', $this->photo);
-        
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Image Updated Successfully.' : 'Image Added Successfully']);
     }
 
     public function render()
