@@ -167,7 +167,8 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -176,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
 
     ],
 
