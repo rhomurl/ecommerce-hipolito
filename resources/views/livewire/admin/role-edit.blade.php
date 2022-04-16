@@ -25,7 +25,11 @@
             <select wire:model="role_id" class="block w-full mt-1 text-sm border rounded appearance-none form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple" required>
                 <option value="{{ $this->role_user }}" selected>{{ $this->role_user }}</option>
                 @foreach($roles as $role)
-                    <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @if($role->name == $this->role_user)
+
+                    @else
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @endif
                 @endforeach
             </select>
             @error('role_id')

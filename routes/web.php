@@ -108,7 +108,7 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
     Route::get('categories', Admin\CategoryComponent::class)->name('categories');
     Route::get('manageuser', Admin\UserManagement::class)->name('manageuser');
-    Route::get('managerole', Admin\RoleManagement::class)->name('managerole');
+    Route::get('managerole', Admin\RoleManagement::class)->middleware(['role:super-admin'])->name('managerole');
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
     Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');

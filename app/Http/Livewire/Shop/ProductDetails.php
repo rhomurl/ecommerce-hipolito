@@ -30,7 +30,20 @@ class ProductDetails extends Component
 
     public function render()
     {
-        return view('livewire.shop.product-details')->layout('layouts.user');
+        $query = Product::query();
+        $product = (clone $query)
+            ->where('slug', $this->slug)
+            ->first();
+        $productId = (clone $query)
+            ->select('id')
+            ->where('slug', $this->slug);
+        $related_products = Product::where('category_id', $product->category_id)
+            ->whereNotIn('id', $productId)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        return view('livewire.shop.product-details', compact('related_products'))->layout('layouts.user');
     }
 
     

@@ -17,6 +17,8 @@ class RoleManagement extends Component
     use ModelComponentTrait;
     use WithPagination;
 
+    protected $listeners = ['updateComponent' => 'render'];
+    
     public $search = "";
 
     public function render()

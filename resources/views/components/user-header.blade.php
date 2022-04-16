@@ -81,7 +81,8 @@
               <li class="nav-item">
                <a class="nav-link" href="#">Home</a>
             </li>
-            <li class="nav-item dropdown">
+            {{--
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"> Demo pages </a>
                 <div class="dropdown-menu dropdown-large">
                     <nav class="row">
@@ -108,31 +109,9 @@
                         </div>
                     </nav> <!--  row end .// -->
                 </div> <!--  dropdown-menu dropdown-large end.// -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Electronics</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Fashion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Beauty</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Motors</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sports</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gardening</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Deals</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Under $10</a>
-            </li>
+              </li>
+            --}}
+            @livewire('components.header-categories')
           </ul>
     </nav> <!-- navbar-main  .// -->
     

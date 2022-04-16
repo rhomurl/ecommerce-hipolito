@@ -251,8 +251,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 19,
-                'name' => 'Royou 1 Gang Outlet',
-                'slug' => 'royou-1-gang-outlet',
+                'name' => 'Royu 1 Gang Outlet',
+                'slug' => 'royu-1-gang-outlet',
                 //'s_description' => 'Power connection devices used in domestic and light commercial environments.',
                 'description' => 'Royu Classic Series Plate 1 gang, blank and with cover.Weather-Proof Plate Cover Slim Type (RCP6)',
                 'selling_price' => '115.00',
@@ -264,8 +264,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 20,
-                'name' => 'Royou 2 Gang Outlet Dark Gray',
-                'slug' => 'royou-2-gang-outlet-dark-gray',
+                'name' => 'Royu 2 Gang Outlet Dark Gray',
+                'slug' => 'royu-2-gang-outlet-dark-gray',
                 //'s_description' => 'Power connection devices used in domestic and light commercial environments.',
                 'description' => 'Royu Classic Series Plate 2 gang, blank and with cover.Weather-Proof Plate Cover Slim Type (RCP6)',
                 'selling_price' => '230.00',

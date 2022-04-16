@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                    @each('livewire.admin.user-lists', $users, 'user','livewire.admin.empty-table')
+                    @each('livewire.admin.user-lists-role', $users, 'user','livewire.admin.empty-table')
                 </tbody>
             </table>
             {{ $users->links() }}  

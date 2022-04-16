@@ -1,5 +1,5 @@
 
-  <section class="section-content bg-white padding-y">
+  <section class="section-content bg-lightgray padding-y">
     
       
     <div class="container">
@@ -107,11 +107,11 @@
     
     <!-- ================ ITEM DETAIL END .// ================= -->
     
-    
+    <hr>
     </div> <!-- container .//  -->
     </section>
 
-
+    
     <section class="section-name padding-y bg">
         <div class="container">
         
