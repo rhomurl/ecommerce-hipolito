@@ -17,13 +17,21 @@ class Testupload extends Component
 
     public function updatedPhoto()
     {
-        $this->validate([
+        
+    }
+
+    public function up(){
+        $validatedData = $this->validate([
             'photo' => 'image|max:1024',
         ]);
+
+        
+        $disk->put('test', $this->photo);
     }
 
     public function render()
-    {
+    {   //$disk = \Storage::disk('gcs');
+        //$this->url = $disk->url('/test/V9wiR0uRTjzcSRfhj1H4Tb60zGaJTWPMBbX6pFXS.png');
         //$all_roles_in_database = Role::all()->pluck('name');
         $user = User::findorFail(2);
         

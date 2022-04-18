@@ -14,7 +14,7 @@
     <div class="card">
     <article class="gallery-wrap"> 
         <div class="img-big-wrap">
-          <div> <a href="#"><img src="{{ asset('storage/') }}/{{$product->image}}"></a></div>
+          <div> <a href="#"><img src="https://storage.googleapis.com/hipolito-storage-1/{{$product->image}}"></a></div>
         </div> <!-- slider-product.// -->
         {{--<div class="thumbs-wrap">
           <a href="#" class="item-thumb"> <img src="images/items/15.jpg"></a>
