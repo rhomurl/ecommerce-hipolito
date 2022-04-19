@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Shop\Checkout;
 use DB;
 
 
-//use App\Traits\ModelComponentTrait;
+use App\Traits\ModelComponentTrait;
 //use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use App\Notifications\OrderNotification;
@@ -21,7 +21,7 @@ use Livewire\Component;
 class Step1 extends Component
 {
     //use LivewireAlert;
-    //use ModelComponentTrait;
+    use ModelComponentTrait;
 
     public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
     public $address_book_id, $payment_mode, $checkout_message, $shipping, $transid;
@@ -150,12 +150,12 @@ class Step1 extends Component
                     $orderData = [
                         'greeting' => 'Thank you for your order!',
                         'name' => 'Hello ' . $user->name . ',',
-                        'body' => ' Thank you for your order from Allena Mindoro. We received your order #' . $order->id . ' on ' . $order->created_at->format('F j Y h:i A') . ' and your payment method is Cash on Delivery. We will email you once your order has been shipped. We wish you enjoy shopping with us and thank you again for choosing our store!' ,
+                        'body' => ' Thank you for your order from Hipolito`s Hardware. We received your order #' . $order->id . ' on ' . $order->created_at->format('F j Y h:i A') . ' and your payment method is Cash on Delivery. We will email you once your order has been shipped. We wish you enjoy shopping with us and thank you again for choosing our store!' ,
                         'orderText' => 'View Order',
                         'orderDetails' => [
                             'id' => $order->id,
                         ],
-                        'url' => url(route('user.order.details', $order->id )),
+                        'url' => url(route('user.order.details', $order->uuid )),
                         'thankyou' => ''
                     ];
 

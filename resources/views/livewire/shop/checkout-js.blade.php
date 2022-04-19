@@ -38,9 +38,10 @@ onApprove: function(data, actions) {
       method: 'POST',
       body :JSON.stringify({
           paypal_orderid : data.orderID,
-          user_orderid : '{{ $this->orderidz }}'
+          user_orderid : '{{ $this->orderidz }}',
+          user_id: "{{ auth()->user()->id }}",
           //payment_gateway_id: $("#payapalId").val(),
-          //user_id: "{{ auth()->user()->id }}",
+          
       })
   }).then(function(res) {
       return res.json();

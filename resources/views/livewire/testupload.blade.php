@@ -8,6 +8,8 @@
  
     {{ $this->url }}
     User role is: {{ $user->getRoleNames()[0] }}
+
+    <a wire:click.prevent="get_object_v4_signed_url('hipolito-storage-1', 'images/products/10.jpg')">Get object</a>
 </div>
 
 

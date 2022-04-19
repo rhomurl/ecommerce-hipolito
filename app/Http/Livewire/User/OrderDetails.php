@@ -6,10 +6,13 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\AddressBook;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\ModelComponentTrait;
 use Livewire\Component;
 
 class OrderDetails extends Component
 {
+    use ModelComponentTrait;
+    
     public $uuid;
 
     public function mount($uuid)

@@ -23,15 +23,51 @@
                         <span class="text">Order Placed</span>
                     </div> <!-- step.// -->
                 @endif
-                <div class="step {{ $order->status == 'ordered' ? '' : $order->status == 'processing' ? 'active' : $order->status == 'otw' ? 'active' : $order->status == 'delivered' ? 'active' : ''  }}">
+                
+                    @if($order->status == 'ordered')
+                        <div class="step">
+                    @elseif($order->status == 'processing')
+                        <div class="step active">
+                    @elseif($order->status == 'otw')
+                        <div class="step active">
+                    @elseif($order->status == 'delivered')
+                        <div class="step active">
+                    @else
+                        <div class="step">
+                    @endif
+                
                     <span class="icon"> <i class="fa fa-user"></i> </span>
                     <span class="text">Processing</span>
                 </div> <!-- step.// -->
-                <div class="step {{ $order->status == 'ordered' ? '' : $order->status == 'processing' ? '' : $order->status == 'otw' ? 'active' : $order->status == 'delivered' ? 'active' : ''  }}">
+
+                    @if($order->status == 'ordered')
+                        <div class="step">
+                    @elseif($order->status == 'processing')
+                        <div class="step">
+                    @elseif($order->status == 'otw')
+                        <div class="step active">
+                    @elseif($order->status == 'delivered')
+                        <div class="step active">
+                    @else
+                        <div class="step">
+                    @endif
+
                     <span class="icon"> <i class="fa fa-truck"></i> </span>
                     <span class="text">On the way</span>
                 </div> <!-- step.// -->
-                <div class="step {{ $order->status == 'ordered' ? '' : $order->status == 'processing' ? '' : $order->status == 'otw' ? '' : $order->status == 'delivered' ? 'active' : ''  }}">
+
+                    @if($order->status == 'ordered')
+                        <div class="step">
+                    @elseif($order->status == 'processing')
+                        <div class="step">
+                    @elseif($order->status == 'otw')
+                        <div class="step">
+                    @elseif($order->status == 'delivered')
+                        <div class="step active">
+                    @else
+                        <div class="step">
+                    @endif
+
                     <span class="icon"> <i class="fa fa-box"></i> </span>
                     <span class="text">Delivered</span>
                 </div> <!-- step.// -->
@@ -86,7 +122,7 @@
             <ul class="row">
                 <li class="col-md-5">
                     <figure class="itemside mb-3">
-                        <div class="aside"><img src="{{ asset('storage') }}/{{ $item->product->image }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $item->product->image }}'" class="img-sm border"></div>
+                        <div class="aside"><img src="{{ $this->getProductURL($item->product->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $item->product->image }}'" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
                             <p class="title">{{ $item->product->name}}</p>
                             <span class="text-muted">₱ {{$item->price}} <br> Qty: {{$item->quantity}}</span>

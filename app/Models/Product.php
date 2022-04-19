@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Google\Cloud\Storage\StorageClient;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,4 +33,6 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+
 }

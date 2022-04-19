@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\AddressBook;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -18,6 +19,7 @@ use Livewire\Component;
 class OrderDetails extends Component
 {
     use LivewireAlert;
+    use ModelComponentTrait;
 
     public $order_id, $order_status, $status;
 

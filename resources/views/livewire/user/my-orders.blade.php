@@ -27,6 +27,8 @@
                         Ordered
                     @elseif($order->status == "processing")
                         Processing
+                    @elseif($order->status == "otw")
+                        On The Way
                     @elseif($order->status == "delivered")
                         Delivered
                     @endif

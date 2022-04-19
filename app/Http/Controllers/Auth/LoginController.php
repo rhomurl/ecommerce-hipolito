@@ -10,6 +10,7 @@ use App\Models\User;
 use Exception;
 use Socialite;
 use Auth;
+use Illuminate\Auth\Events\Registered;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,10 @@ class LoginController extends Controller
 
     public function handleProviderCallback(Request $request, $provider)
     {
+        if (!$request->has('code') || $request->has('denied')) {
+            return redirect('login');
+        }
+
         $user = Socialite::driver($provider)->user();
         $auth_user = $this->findOrCreateUser($user, $provider);
         
@@ -52,6 +57,7 @@ class LoginController extends Controller
                 'provider_id' => $user->id,
             ]);
 
+            event(new Registered($newUser));
             return $newUser->assignRole('customer');
 
 

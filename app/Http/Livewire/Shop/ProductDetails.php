@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Shop;
 
+//use Google\Cloud\Storage\StorageClient;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
 use App\Models\Cart;
@@ -30,6 +31,8 @@ class ProductDetails extends Component
 
     public function render()
     {
+        
+
         $query = Product::query();
         $product = (clone $query)
             ->where('slug', $this->slug)
@@ -42,6 +45,8 @@ class ProductDetails extends Component
             ->inRandomOrder()
             ->limit(8)
             ->get();
+        
+        //$product_image_url = $disk->temporaryUrl($product_url, now()->addMinutes(30));
 
         return view('livewire.shop.product-details', compact('related_products'))->layout('layouts.user');
     }

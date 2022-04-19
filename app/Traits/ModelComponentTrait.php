@@ -59,4 +59,9 @@ trait ModelComponentTrait
         $this->reset();
         $this->resetValidation();
     }
+
+    public function getProductURL($url){
+        $disk = \Storage::disk('gcs');
+        return $disk->temporaryUrl($url, now()->addMinutes(30));
+    }
 }
