@@ -54,14 +54,12 @@ class ProductComponent extends Component
             $this->errorAlert('This Product Cannot Be Deleted!');
         }
         else{
-            if(Storage::exists('public/' . $image)){
-                Storage::delete('public/' . $image);
+            if (Storage::disk('gcs')->exists($image)) {
+                Storage::disk('gcs')->delete($image);
                 /*
                     Delete Multiple File like this way
                     Storage::delete(['upload/test.png', 'upload/test2.png']);
                 */
-            }else{
-                //dd('File does not exists.');
             }
             //$this->emit("openModal", "admin.success-modal", ["message" => 'Product Deleted Successfully']); 
             Product::where('id', $id)->delete();

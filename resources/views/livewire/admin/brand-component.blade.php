@@ -87,7 +87,7 @@
                     @endforelse
                 </tbody>
             </table>
-                {{ $brands->links() }}
+            {{ $brands->links('vendor.pagination.default')}}
             </div>
     </div>
 </div>

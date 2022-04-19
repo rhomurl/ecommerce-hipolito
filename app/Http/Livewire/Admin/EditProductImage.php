@@ -33,19 +33,14 @@ class EditProductImage extends ModalComponent
 
         $productxx = Product::findOrFail($this->product_id);
         
-        if(Storage::exists('public/' . $productxx->image)){
-            Storage::delete('public/' . $productxx->image);
-            /*
-                Delete Multiple File like this way
-                Storage::delete(['upload/test.png', 'upload/test2.png']);
-            */
-        }else{
-            //dd('File does not exists.');
+        if (Storage::disk('gcs')->exists($productxx->image)) {
+            Storage::disk('gcs')->delete($productxx->image);
         }
 
+        $image_name = $this->image->hashName();
         $product = Product::updateOrCreate(['id' => $this->product_id],
             [
-                'image' =>  $this->image->store('images/products', 'public'),
+                'image' =>  $this->image->storeAs('images/products', $image_name , 'gcs'),
             ]
         );
         $this->resetInputFields();

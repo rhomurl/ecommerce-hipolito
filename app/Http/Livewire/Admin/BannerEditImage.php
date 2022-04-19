@@ -27,25 +27,30 @@ class BannerEditImage extends ModalComponent
     }
 
     public function create(){
+        //$disk = \Storage::disk('gcs');
+
+
         $this->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $bannerxx = Banner::findOrFail($this->banner_id);
+
+
+        $extension = $this->image->extension();
+        $banner_name = 'banner_'.sha1(date('Y-m-d H:i:s').uniqid()).'.'.$extension;
         
-        if(Storage::exists('public/' . $bannerxx->image)){
-            Storage::delete('public/' . $bannerxx->image);
+        if (Storage::disk('gcs')->exists($bannerxx->image)) {
+                Storage::disk('gcs')->delete($bannerxx->image);
             /*
                 Delete Multiple File like this way
                 Storage::delete(['upload/test.png', 'upload/test2.png']);
             */
-        }else{
-            //dd('File does not exists.');
         }
 
         $banner = Banner::updateOrCreate(['id' => $this->banner_id],
             [
-                'image' =>  $this->image->store('images/banners', 'public'),
+                'image' => $this->image->storeAs('images/banners', $banner_name , 'gcs')
             ]
         );
         //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);

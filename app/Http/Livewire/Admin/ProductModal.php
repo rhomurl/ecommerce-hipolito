@@ -32,13 +32,17 @@ class ProductModal extends ModalComponent
             max:2048',
         ]);
 
+        $image_name = $this->image->hashName();
+        //$extension = $this->image->extension();
+        //$image_name = $name . '.' . $extension;
+
         $product = Product::updateOrCreate(['id' => $this->product_id],
             ['name' => $this->name,
             'category_id' => $this->category_id,
             'brand_id' => $this->brand_id,
             'description' => $this->description,
             'selling_price' => $this->selling_price,
-            'image' =>  $this->image->store('images/products', 'public'),
+            'image' =>  $this->image->storeAs('images/products', $image_name , 'gcs'),
             'quantity' => $this->quantity]
         );
 

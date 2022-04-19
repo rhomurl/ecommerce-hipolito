@@ -66,7 +66,7 @@ class AdminHome extends Component
             $this->rev_percent_change = 0;
         }
         else{
-        $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
+            $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
         }
 
         $userCount = User::role('customer')

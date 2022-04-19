@@ -36,8 +36,8 @@ class BannerComponent extends Component
         $prod = Banner::where('id', $id)->first();
         $image = $prod->image;
 
-        if(Storage::exists('public/' . $image)){
-            Storage::delete('public/' . $image);
+        if (Storage::disk('gcs')->exists($image)) {
+                Storage::disk('gcs')->delete($image);
             /*
                 Delete Multiple File like this way
                 Storage::delete(['upload/test.png', 'upload/test2.png']);
@@ -45,6 +45,5 @@ class BannerComponent extends Component
         }
         Banner::where('id', $id)->delete();  
         $this->successAlert('Banner Deleted Successfully!');
-        //$this->emit("openModal", "admin.success-modal", ["message" => 'Banner Deleted Successfully']); 
     }
 }
