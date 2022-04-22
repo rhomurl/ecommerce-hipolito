@@ -43,6 +43,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::get('password/reset', Email::class)
+    ->middleware('throttle:6,1')
     ->name('password.request');
 
 Route::get('password/reset/{token}', Reset::class)

@@ -131,13 +131,13 @@ a:hover {
   transition: .5s; }
 
 .hover-bg:hover {
-  background: #ff6a00;
+  background: #0d6efd;
   /* For browsers that do not support gradients */
   /* For Safari 5.1 to 6.0 */
   /* For Opera 11.1 to 12.0 */
   /* For Firefox 3.6 to 15 */
-  background: -webkit-gradient(linear, left top, right bottom, from(#ff6a00), to(#ff6a00));
-  background: linear-gradient(to bottom right, #ff6a00, #ff6a00);
+  background: -webkit-gradient(linear, left top, right bottom, from(#0d6efd), to(#0d6efd));
+  background: linear-gradient(to bottom right, #0d6efd, #0d6efd);
   /* Standard syntax */
   -webkit-transition: .5s;
   transition: .5s; }
@@ -436,10 +436,10 @@ p:last-child {
   display: inline-block; }
 
 .navbar-main .nav-link:hover {
-  color: #ff6a00; }
+  color: #0d6efd; }
 
 .search-header {
-  border: 2px solid #ff6a00;
+  border: 2px solid #0d6efd;
   border-radius: 0.55rem; }
   .search-header .form-control, .search-header .custom-select {
     border-color: transparent; }
@@ -498,7 +498,7 @@ p:last-child {
 .section-footer ul a {
   color: inherit; }
   .section-footer ul a:hover {
-    color: #ff6a00; }
+    color: #0d6efd; }
 
 .section-footer .logo-footer {
   height: 40px; }
@@ -566,7 +566,7 @@ p:last-child {
     border-color: #9099a6; }
 
 .btn-light.active i {
-  color: #ff6a00; }
+  color: #0d6efd; }
 
 .btn .text + i {
   margin-left: 10px; }
@@ -594,7 +594,7 @@ p:last-child {
     margin-bottom: 5px;
     color: #212529; }
   .itemside a.title:hover {
-    color: #ff6a00; }
+    color: #0d6efd; }
 
 a.itemside {
   color: initial; }
@@ -715,7 +715,7 @@ ul.row, ul.row-sm {
     margin-bottom: 7px; }
   .list-normal li:before {
     content: "\2022";
-    color: #ff6a00;
+    color: #0d6efd;
     display: inline-block;
     width: 1em;
     margin-left: -1em; }
@@ -729,7 +729,7 @@ ul.row, ul.row-sm {
   .list-menu a {
     color: #212529; }
     .list-menu a:hover {
-      color: #ff6a00; }
+      color: #0d6efd; }
 
 .cols-two {
   -webkit-column-count: 2;
@@ -747,14 +747,14 @@ ul.row, ul.row-sm {
 a[class*='card'] {
   color: initial; }
   a[class*='card']:hover .title {
-    color: #ff6a00; }
+    color: #0d6efd; }
 
 /* BASE STYLE FOR PRODUCT ITEM */
 [class*='card-product'] a.title {
   color: #212529;
   display: block; }
   [class*='card-product'] a.title:hover {
-    color: #ff6a00; }
+    color: #0d6efd; }
 
 [class*='card-product'] .img-wrap .badge {
   top: 10px;
@@ -797,7 +797,7 @@ a[class*='card'] {
     .card-product-grid .topbar a {
       color: #ccc; }
       .card-product-grid .topbar a:hover {
-        color: #ff6a00; }
+        color: #0d6efd; }
   .card-product-grid .fix-height {
     height: 80px;
     overflow: hidden; }
@@ -874,7 +874,7 @@ a[class*='card'] {
     -webkit-transition: .2s;
     transition: .2s; }
   .card-category:hover {
-    border-color: #ff6a00; }
+    border-color: #0d6efd; }
 
 .card-banner {
   display: -webkit-box;
@@ -1118,7 +1118,7 @@ a[class*='card'] {
         padding: 10px 16px;
         display: block; }
     .nav-home-aside .menu-category a:hover {
-      color: #ff6a00;
+      color: #0d6efd;
       -webkit-transition: all 0.3s;
       transition: all 0.3s; }
     .nav-home-aside .menu-category li:hover .submenu {
@@ -1139,7 +1139,7 @@ a[class*='card'] {
     color: #212529;
     padding: 5px 0; }
     .dropdown-large a:hover {
-      color: #ff6a00; }
+      color: #0d6efd; }
 
 @media all and (min-width: 992px) {
   .dropdown-large {
@@ -1175,8 +1175,8 @@ a[class*='card'] {
     z-index: -1;
     opacity: 0; }
   .checkbox-btn input:checked ~ .btn {
-    border-color: #ff6a00;
-    background-color: #ff6a00;
+    border-color: #0d6efd;
+    background-color: #0d6efd;
     color: #fff; }
 
 .js-check {
@@ -1188,7 +1188,7 @@ a[class*='card'] {
     top: 21px;
     left: 16px; }
   .js-check.active {
-    border-color: #ff6a00; }
+    border-color: #0d6efd; }
 
 .js-check.box {
   width: 100%;
@@ -1291,7 +1291,7 @@ body {
     display: inline-block;
     overflow: hidden; }
     .gallery-wrap .thumbs-wrap .item-thumb:hover {
-      border-color: #ff6a00; }
+      border-color: #0d6efd; }
   .gallery-wrap .thumbs-wrap img {
     max-width: 100%;
     max-height: 100%;

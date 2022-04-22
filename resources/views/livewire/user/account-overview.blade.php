@@ -5,7 +5,7 @@
 <div class="card-body">			
     <figure class="icontext">
             <div class="icon">
-                <img class="rounded-circle img-sm border" src="{{ asset('images/avatars/avatar3.jpg') }}">
+                <img class="rounded-circle img-sm border" src="https://ui-avatars.com/api/?background=random&name={{ Auth::user()->name }}">
             </div>
             <div class="text">
                 <strong> {{ Auth::user()->name }}</strong> <br> 

@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Auth\Passwords;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Auth;
 
 class Email extends Component
 {
@@ -15,12 +17,19 @@ class Email extends Component
 
     public function sendResetPasswordLink()
     {
+
+
+
         $this->validate([
             'email' => ['required', 'email'],
         ]);
 
+        if (RateLimiter::tooManyAttempts('send-message:'.Auth::id(), $perMinute = 5)) {
+            $seconds = RateLimiter::availableIn('send-message:'.$user->id);
+            dd('You may try again in '.$seconds.' seconds.');
+        }
         $response = $this->broker()->sendResetLink(['email' => $this->email]);
-
+        
         if ($response == Password::RESET_LINK_SENT) {
             $this->emailSentMessage = trans($response);
 
