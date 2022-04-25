@@ -1,4 +1,4 @@
-<section class="bg-secondary  padding-y-sm">
+{{--<section class="bg-secondary  padding-y-sm">
     <div class="container">
         <ol class="breadcrumb p-2 ">
             <li class="breadcrumb-item"> <a class="text-white" href="{{ route('home') }}">1. Home</a>  </li>
@@ -7,7 +7,8 @@
             <li class="breadcrumb-item text-white"> 4. Payment   </li>
           </ol>
     </div> <!-- container //  -->
-</section>
+</section>--}}
+
 <div class="container mt-5" style="max-width:720px;">
     <form wire:submit.prevent="placeOrder">
     <div class="card">

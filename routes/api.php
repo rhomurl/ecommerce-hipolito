@@ -42,8 +42,13 @@ Route::get('/orders', function() {
 Route::get('/order/status/{id}/{email}', [FacebookBotController::class, 'getStatus'])
     ->middleware('throttle:5,1');
 
-Route::get('/order/status/test', [FacebookBotController::class, 'getOrderDetails'])
+Route::get('/order/details/{id}', [FacebookBotController::class, 'getOrderDetails'])
 ->middleware('throttle:5,1');
+
+Route::get('/user/verify/{email}', [FacebookBotController::class, 'checkEmail'])
+->middleware('throttle:5,1');
+
+
 
 Route::get('/order/{id}', function ($id) {
     return new OrderResource(Order::findOrFail($id));

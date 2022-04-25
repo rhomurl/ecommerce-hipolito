@@ -9,6 +9,8 @@ use App\Models\Transaction;
 use App\Models\AddressBook;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 
 class FacebookBotController extends Controller
 {
@@ -69,47 +71,82 @@ class FacebookBotController extends Controller
         return response()->json($myArray);
     }
 
-    public function getOrderDetails(Request $request){
-        $order = Order::findorFail(9);
+    public function checkEmail(Request $request, $email){
+        $user = User::where('email', $email)->first();
+
+        if(!$user){
+            $error = 'true';
+            $msg = 'Email not found';
+        }
+        else{
+            $error = 'false';
+            $msg = '';
+        }
+        $array = [
+            "set_attributes" => 
+                [
+                    "error" => $error,
+                ],
+            'messages' => [
+                [
+                    "text" => $msg,
+                ],
+            ]
+        ];
+
+        return response()->json($array);
+    }
+
+    public function getOrderDetails(Request $request, $id){
+        $key = "s0WBJhAfLbdgTbyVVDX2SYQdsPdsJ9CA";
+
+        if($request->header('X-Hipolito') != $key){
+            return response()->json(['message' => 'Something went wrong!', 'code' => '403']);
+        }
+        //X-RateLimit-Remaining
+        /*if($response->status() == 429){
+            return response()->json(['message' => 'Something went wrong! Please try again after 60 seconds', 'code' => '429']);
+        }*/
+
+        $order = Order::findorFail($id);
         $user = User::findorFail($order->user_id);
         $transaction = Transaction::where('order_id', $order->id)->first();
         $address = AddressBook::findorFail($order->address_book_id);
         $order_products = OrderProduct::where('order_id', $order->id)->get();
 
         $array = [
-            'message' => [
+            'messages' => [
                 [
                 'attachment' => [
                     'type' => 'template',
                     'payload' => [
                         'template_type' => "receipt",
-                        'receipt_name' => $user->name,
-                        'order_number' => $order->id,
+                        'recipient_name' => "".$user->name."", //
+                        'order_number' => "".$order->id."", //
                         'currency' => 'PHP',
                         'payment_method' => $transaction->mode,
                         'order_url' => route('user.order.details', $order->uuid),
-                        'timestamp' => $order->created_at->getTimestamp(),
+                        'timestamp' => "".$order->created_at->getTimestamp()."", //
                         'address' => [
                             'street_1' => $address->entry_street_address,
                             'street_2' => "",
-                            'barangay' => $address->barangay->name,
                             'city' => $address->barangay->city->name,
                             'postal_code' => $address->barangay->city->zip,
-                            //'state' =>
+                            'state' => 'CA',
                             'country' => 'PH'
                         ],
                         'summary' => [
                             'subtotal' => $order->subtotal,
-                            'shipping_cost' => "",
-                            'total_tax' => "",
+                            'shipping_cost' => 0,
+                            'total_tax' => 0,
                             'total_cost' => $order->total
                         ],
-                        'adjustments' => [
+                        /*'adjustments' => [
                             [
                                 'name' => "test",
-                                'amount' => '1'
+                                'amount' => 1
                             ]
-                        ],
+                        ],*/
                         'elements' => []
                         ],
                     ],
@@ -118,7 +155,7 @@ class FacebookBotController extends Controller
         ];
 
         foreach ($order_products as $key => $order_product) {
-            $array['message'][0]['attachment']['payload']['elements'][$key] = [
+            $array['messages'][0]['attachment']['payload']['elements'][$key] = [
                 'title' => $order_product->product->name,
                 'subtitle' => '',
                 'quantity' => $order_product->quantity,
@@ -128,8 +165,8 @@ class FacebookBotController extends Controller
             ];
         }
 
-        //return response()->json($array);
-        return $array;
+        return response()->json($array);
+        //return $array;
     }
 
     //public function getStatus(Request $request)
