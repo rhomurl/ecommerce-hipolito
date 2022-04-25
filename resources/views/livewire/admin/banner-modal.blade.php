@@ -23,6 +23,10 @@
                 <span class="text-gray-700">
                     Image
                 </span><br>
+                @if ($image)
+                    Photo Preview:
+                    <img src="{{ $image->temporaryUrl() }}">
+                @endif
                 <input wire:model.defer="image" type="file" name="image" required>
                 @error('image')
                     <span class="text-xs text-red-600 dark:text-red-400">

@@ -21,5 +21,6 @@ class CitySeeder extends Seeder
                 'zip' => '4217',
             ],
         ];
+        City::insert($city);
     }
 }

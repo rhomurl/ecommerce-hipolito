@@ -34,17 +34,22 @@ class BannerModal extends ModalComponent
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
+
+        $extension = $this->image->extension();
+        $banner_name = 'banner_'.sha1(date('Y-m-d H:i:s').uniqid()).'.'.$extension;
+        
         $banner = Banner::updateOrCreate(
             ['id' => $this->banner_id],
             [
                 'name' => $this->name,
-                'image' => $this->image->store('images/banners', 'public')
+                'image' => $this->image->storeAs('images/banners', $banner_name , 'gcs')
             ]
         );
         //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
         $this->resetInputFields();
         $this->closeModal();
-        $this->successAlert('Banner Updated Successfully!');
+        $message = $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully';
+        $this->successAlert($message);
     }
 
     public function render()

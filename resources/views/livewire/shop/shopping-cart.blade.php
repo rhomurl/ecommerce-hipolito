@@ -35,7 +35,7 @@
                     <figure class="itemside">
                         <div class="aside">
                             <a href="{{ route('product.details', $cartItem->slug ) }}">
-                            <img src="{{ asset('storage') }}/{{ $cartItem->image }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $cartItem->image }}'" class="img-sm">
+                            <img src="{{ $this->getProductURL($cartItem->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $cartItem->image }}'" class="img-sm">
                             </a>
                         </div>
                         <figcaption class="info">

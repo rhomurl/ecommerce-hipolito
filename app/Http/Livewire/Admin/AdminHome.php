@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Carbon\Carbon; 
 use DB;
-
+use App\Traits\ModelComponentTrait;
 use App\Charts\UserChart;
 use App\Charts\OrderChart;
 use App\Models\Order;
@@ -16,6 +16,7 @@ use Livewire\Component;
 
 class AdminHome extends Component
 {
+    use ModelComponentTrait;
     //use LivewireAlert;
     public function render()
     {
@@ -65,7 +66,7 @@ class AdminHome extends Component
             $this->rev_percent_change = 0;
         }
         else{
-        $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
+            $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
         }
 
         $userCount = User::role('customer')

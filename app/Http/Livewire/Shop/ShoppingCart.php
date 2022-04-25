@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use Session;
+use App\Traits\ModelComponentTrait;
 use App\Models\Cart;
 use App\Models\Product;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -12,6 +13,7 @@ use Livewire\Component;
 class ShoppingCart extends Component
 {
     use LivewireAlert;
+    use ModelComponentTrait;
 
     protected $listeners = ['updateCart' => 'render', 'increaseQuantity' => 'addToCart'];
 

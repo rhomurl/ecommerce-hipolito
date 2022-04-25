@@ -147,7 +147,7 @@
                     <ol class="list-decimal">
                     @foreach ($topProducts as $topProduct)
                     
-                        <img src="{{ asset('storage/') }}/{{ $topProduct->product->image }}" height="25%" width="25%"/>
+                        <img src="{{ $this->getProductURL($topProduct->product->image) }}" height="25%" width="25%"/>
                         <li class="text-xl ml-6 border-b font-medium text-gray-500 dark:text-light">{{ $topProduct->product->name }} - {{ $topProduct->product_qty . ' sold' }}  {{--(₱ $topProduct->product_total)--}} </li>
                     
                     @endforeach

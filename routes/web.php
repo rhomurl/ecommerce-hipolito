@@ -36,11 +36,14 @@ Route::middleware('guest')->group(function () {
     Route::get('register', Register::class)
         ->name('register');
 
-        Route::get('auth/google', 'App\Http\Controllers\Auth\LoginController@redirectToGoogle')->name('socialLogin.redirect');
-        Route::get('auth/google/callback', 'App\Http\Controllers\Auth\LoginController@handleGoogleCallback')->name('socialLogin.callback');
+    Route::get('auth/{provider}', 'App\Http\Controllers\Auth\LoginController@redirectToProvider')->name('socialLogin.redirect');
+    Route::get('auth/{provider}/callback', 'App\Http\Controllers\Auth\LoginController@handleProviderCallback')->name('socialLogin.callback');
+        //Route::get('auth/google', 'App\Http\Controllers\Auth\LoginController@redirectToGoogle')->name('socialLogin.redirect');
+        //Route::get('auth/google/callback', 'App\Http\Controllers\Auth\LoginController@handleGoogleCallback')->name('socialLogin.callback');
 });
 
 Route::get('password/reset', Email::class)
+    ->middleware('throttle:6,1')
     ->name('password.request');
 
 Route::get('password/reset/{token}', Reset::class)

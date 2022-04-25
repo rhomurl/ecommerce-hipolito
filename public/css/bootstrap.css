@@ -142,7 +142,7 @@ a {
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #ff6a00;
+    color: #0a58ca;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -2108,15 +2108,15 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #ff6a00;
-  border-color: #ff6a00; }
+  background-color: #0d6efd;
+  border-color: #0d6efd; }
   .btn-primary:hover {
     color: #fff;
-    background-color: #d95a00;
-    border-color: #cc5500; }
+    background-color: #0b5ed7;
+    border-color: #0a58ca; }
   .btn-primary:focus, .btn-primary.focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 128, 38, 0.5);
-            box-shadow: 0 0 0 0.2rem rgba(255, 128, 38, 0.5); }
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(20, 36, 59, 0.5);
+            box-shadow: 0 0 0 0.2rem rgb(49 132 253 / 50%); }
   .btn-primary.disabled, .btn-primary:disabled {
     color: #fff;
     background-color: #ff6a00;
@@ -2269,8 +2269,8 @@ fieldset:disabled a.btn {
             box-shadow: 0 0 0 0.2rem rgba(222, 210, 201, 0.5); }
   .btn-light.disabled, .btn-light:disabled {
     color: #212529;
-    background-color: #fff0e5;
-    border-color: #fff0e5; }
+    background-color: #dbe9ff;
+    border-color: #dbe9ff; }
   .btn-light:not(:disabled):not(.disabled):active, .btn-light:not(:disabled):not(.disabled).active,
   .show > .btn-light.dropdown-toggle {
     color: #212529;

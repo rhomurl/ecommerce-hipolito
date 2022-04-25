@@ -15,12 +15,12 @@
               @foreach($this->banners as $banner) 
                 @if ($loop->first)
                     <div class="carousel-item active">
-                    <img src="{{ asset('storage/') }}/{{ $banner->image }}" alt="{{ $banner->name }}"> 
+                    <img src="{{ $this->getProductURL($banner->image) }}" alt="{{ $banner->name }}"> 
                     </div>
                 @else
 
                 <div class="carousel-item">
-                    <img src="{{ asset('storage/') }}/{{ $banner->image }}" alt="{{ $banner->name }}"> 
+                    <img src="{{ $this->getProductURL($banner->image) }}" alt="{{ $banner->name }}"> 
                 </div>
                 @endif
             
@@ -59,7 +59,7 @@
             @else
             <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                 <div class="card card-product-grid">
-                    <a href="{{ route('product.details', $product->slug) }}" class="img-wrap"> <img src="{{ asset('storage/') }}/{{ $product->image }}"> </a>
+                    <a href="{{ route('product.details', $product->slug) }}" class="img-wrap"> <img src="{{ $this->getProductURL($product->image) }}"> </a>
                     <figcaption class="info-wrap">
                         {{--<ul class="rating-stars mb-1">
                             <li style="width:80%" class="stars-active">

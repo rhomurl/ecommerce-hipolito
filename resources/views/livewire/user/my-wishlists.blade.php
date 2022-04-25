@@ -7,7 +7,7 @@
             @forelse($wishlists as $wishlist)
             <div class="col-md-6">
                 <figure class="itemside mb-4">
-                    <div class="aside"><img src="{{ asset('storage/') }}/{{$wishlist->products->image}}" class="border img-md"></div>
+                    <div class="aside"><img src="{{ $this->getProductURL($wishlist->products->image) }}" class="border img-md"></div>
                     <figcaption class="info">
                         <a href="#" class="title">{{ $wishlist->products->name }}</a>
                         <p class="price mb-2">{{ $wishlist->products->selling_price }}</p>

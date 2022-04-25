@@ -7,8 +7,8 @@
           <div class="card-body">
           <h4 class="card-title mb-4">Sign in</h4>
           <form wire:submit.prevent="authenticate">
-                <a href="{{ route('socialLogin.redirect') }}" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp;  Sign in with Facebook</a>
-                <a href="{{ route('socialLogin.redirect') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp;  Sign in with Google</a>
+                <a href="{{ route('socialLogin.redirect', 'facebook') }}" class="btn btn-facebook btn-block mb-2"> <i class="fab fa-facebook-f"></i> &nbsp;  Sign in with Facebook</a>
+                <a href="{{ route('socialLogin.redirect', 'google') }}" class="btn btn-google btn-block mb-4"> <i class="fab fa-google"></i> &nbsp;  Sign in with Google</a>
               <div class="form-group">
                  <input wire:model.lazy="email" placeholder="Enter your email" id="email" name="email" type="email" required autofocus class="form-control">
               </div> <!-- form-group// -->

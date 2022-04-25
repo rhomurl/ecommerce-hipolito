@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Traits\ModelComponentTrait;
 //use App\Models\Cart;
 use App\Models\Banner;
 use App\Models\Product;
@@ -12,6 +13,7 @@ use Livewire\Component;
 class UserHome extends Component
 {
     use LivewireAlert;
+    use ModelComponentTrait;
 
     public $cartProducts = [];
     

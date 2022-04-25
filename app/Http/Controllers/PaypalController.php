@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Session;
+use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use App\Models\OrderProduct;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\Transaction;
 use DB;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -44,6 +46,8 @@ class PaypalController extends Controller
         $data = json_decode($request->getContent(), true);
         $orderId = $data['paypal_orderid'];
         $orderidz = $data['user_orderid'];
+        $user_id = $data['user_id'];
+        $user = User::find($user_id);
 
         //Init Paypal
         $provider = new PayPalClient;
@@ -63,6 +67,20 @@ class PaypalController extends Controller
 
             $transaction = Transaction::where('order_id', '=', $orderidz)
                 ->update(array('status' => 'ordered'));
+            
+            $orderData = [
+                'greeting' => 'Thank you for your order!',
+                'name' => 'Hello '. $user->name . ',',
+                'body' => ' Thank you for your order from Hipolito`s Hardware. We received your order #' . $order->id . ' on ' . $order->created_at->format('F j Y h:i A') . ' and your payment method is PayPal. We will email you once your order has been shipped. We wish you enjoy shopping with us and thank you again for choosing our store!' ,
+                'orderText' => 'View Order',
+                'orderDetails' => [
+                    'id' => $order->id,
+                ],
+                'url' => url(route('user.order.details', $order->uuid )),
+                'thankyou' => ''
+            ];
+
+            $user->notify(new OrderNotification($orderData));
 
             
         }

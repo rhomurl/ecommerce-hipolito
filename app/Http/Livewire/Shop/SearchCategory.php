@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Traits\ModelComponentTrait;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Cart;
@@ -14,7 +15,8 @@ class SearchCategory extends Component
 {
     use LivewireAlert;
     use WithPagination;
-
+    use ModelComponentTrait;
+    
     public $slug;
     public $perpage;
 

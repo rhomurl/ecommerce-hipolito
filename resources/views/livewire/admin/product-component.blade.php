@@ -91,7 +91,7 @@
                             </td>
 
                             <td class="px-4 py-3"><div class="flex items-center text-sm"><div>
-                                <img src="{{ asset('storage/') }}/{{ $product->image }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $product->image }}'" height="50" width="50"/>
+                                <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $product->image }}'" height="50" width="50"/>
                                     </div>
                                 </div>
                             </td>

@@ -14,7 +14,7 @@
     <div class="card">
     <article class="gallery-wrap"> 
         <div class="img-big-wrap">
-          <div> <a href="#"><img src="https://storage.googleapis.com/hipolito-storage-1/{{$product->image}}"></a></div>
+          <div> <a href="#"><img src="{{ $this->getProductURL($product->image) }}"></a></div>
         </div> <!-- slider-product.// -->
         {{--<div class="thumbs-wrap">
           <a href="#" class="item-thumb"> <img src="images/items/15.jpg"></a>
@@ -178,7 +178,7 @@
                       <figure class="itemside mb-2">
                         <div class="aside">
                           <a href="#">
-                            <img src="{{ asset('storage/') }}/{{$product->image}}" onerror="this.src=''" class="border img-sm">
+                            <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
                           </a>
                           </div>
                         <figcaption class="info align-self-center">
@@ -192,7 +192,7 @@
                     <figure class="itemside mb-2">
                       <div class="aside">
                         <a href="#">
-                          <img src="{{ asset('storage/') }}/{{$product->image}}" onerror="this.src=''" class="border img-sm">
+                          <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
                         </a>
                         </div>
                       <figcaption class="info align-self-center">
@@ -206,7 +206,7 @@
                   <figure class="itemside mb-2">
                     <div class="aside">
                       <a href="#">
-                        <img src="{{ asset('storage/') }}/{{$product->image}}" onerror="this.src=''" class="border img-sm">
+                        <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
                       </a>
                       </div>
                     <figcaption class="info align-self-center">
@@ -220,7 +220,7 @@
                 <figure class="itemside mb-2">
                   <div class="aside">
                     <a href="#">
-                      <img src="{{ asset('storage/') }}/{{$product->image}}" onerror="this.src=''" class="border img-sm">
+                      <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
                     </a>
                     </div>
                   <figcaption class="info align-self-center">

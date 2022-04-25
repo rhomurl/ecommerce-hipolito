@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Google\Cloud\Storage\StorageClient;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
@@ -13,7 +14,7 @@ class Testupload extends Component
 {
     use WithFileUploads;
     
-    public $photo, $cp;
+    public $photo, $cp, $url;
 
     public function updatedPhoto()
     {
@@ -29,9 +30,13 @@ class Testupload extends Component
         $disk->put('test', $this->photo);
     }
 
+    
+
     public function render()
-    {   //$disk = \Storage::disk('gcs');
-        //$this->url = $disk->url('/test/V9wiR0uRTjzcSRfhj1H4Tb60zGaJTWPMBbX6pFXS.png');
+    {   $disk = \Storage::disk('gcs');
+        //$url = $disk->url('/test/V9wiR0uRTjzcSRfhj1H4Tb60zGaJTWPMBbX6pFXS.png');
+        $url = $disk->temporaryUrl('/test/V9wiR0uRTjzcSRfhj1H4Tb60zGaJTWPMBbX6pFXS.png', now()->addMinutes(30));
+        print($url);
         //$all_roles_in_database = Role::all()->pluck('name');
         $user = User::findorFail(2);
         

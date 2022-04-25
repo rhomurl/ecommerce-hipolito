@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Shop;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Traits\ModelComponentTrait;
 use App\Models\Product;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,8 @@ class SearchResult extends Component
 {
     use LivewireAlert;
     use WithPagination;
-
+    use ModelComponentTrait;
+    
     public $sdata;
     public $perpage;
 

@@ -45,7 +45,7 @@
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
                                     <div>
-                                        <img src="{{ asset('storage/') }}/{{ $banner->image }}" height="100px" width="100px">
+                                        <img src="{{ $this->getProductURL($banner->image) }}" height="100px" width="100px">
                                     </div>
                                 </div>
                             </td>
