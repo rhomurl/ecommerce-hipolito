@@ -21,10 +21,9 @@ class BrandModal extends ModalComponent
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:brands',
         ]);
 
-        $brand = Brand::updateOrCreate(
-            ['id' => $this->brand_id],
-            ['name' => $this->name]
-        );
+        $brand = Brand::create([
+            'name' => $this->name, 
+        ]);
         
         //$this->emit("openModal", "admin.success-modal", ["message" => $this->brand_id ? 'Brand Updated Successfully.' : 'Brand Added Successfully']);
         $this->resetInputFields();

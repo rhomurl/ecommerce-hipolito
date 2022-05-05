@@ -11,7 +11,7 @@
                                 <li> <i class="icon fa fa-map-marker"> </i>Brgy. Marauoy, Lipa City, Batangas</li>
                                 <li> <i class="icon fa fa-envelope"> </i> hipolitoshardware@gmail.com</li>
                                 <li> <i class="icon fa fa-phone"> </i> +(63) 995 140 1951</li>
-                                <li> <i class="icon fa fa-clock"> </i>Mon-Sat 7:00am - 7:00pm</li>
+                                <li> <i class="icon fa fa-clock"> </i>Mon - Sat 7:00am - 7:00pm</li>
                             </ul>
                         </article>
                     </aside>
@@ -37,9 +37,10 @@
                     </ul>
                 </aside>
                 <aside class="col-md-4 col-12">
-                    <h5 class="title">Newsletter</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer in feugiat lorem. </p>
-                    
+                    <h5 class="title">We Accept</h5>
+                    <img src="{{ asset('images/misc/payment-paypal.png') }}">
+                    <img src="{{ asset('images/misc/cod_payment.jpg') }}" class="ml-3" width="100px" height="50px">
+
                     <form class="form-inline mb-3">
                         <input type="text" placeholder="Email" class="border-0 w-auto form-control" name="">
                         <button class="btn ml-2 btn-warning"> Subscribe</button>

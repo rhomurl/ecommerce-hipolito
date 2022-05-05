@@ -172,9 +172,7 @@
                         </div>
                     </div>
                     <!-- Chart -->
-                    <div class="relative p-4 h-72">
-                        {!! $chart->container() !!}
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -184,4 +182,3 @@
 
     {!! $orderchart->script() !!}
     {!! $userchart->script() !!}
-    {!! $chart->script() !!}

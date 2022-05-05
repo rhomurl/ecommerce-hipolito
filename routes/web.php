@@ -38,8 +38,6 @@ Route::middleware('guest')->group(function () {
 
     Route::get('auth/{provider}', 'App\Http\Controllers\Auth\LoginController@redirectToProvider')->name('socialLogin.redirect');
     Route::get('auth/{provider}/callback', 'App\Http\Controllers\Auth\LoginController@handleProviderCallback')->name('socialLogin.callback');
-        //Route::get('auth/google', 'App\Http\Controllers\Auth\LoginController@redirectToGoogle')->name('socialLogin.redirect');
-        //Route::get('auth/google/callback', 'App\Http\Controllers\Auth\LoginController@handleGoogleCallback')->name('socialLogin.callback');
 });
 
 Route::get('password/reset', Email::class)
@@ -68,6 +66,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
+
 
 Route::get('/product/{slug}', Shop\ProductDetails::class)->name('product.details');
 Route::get('/search/{sdata}', Shop\SearchResult::class)->name('product.search');

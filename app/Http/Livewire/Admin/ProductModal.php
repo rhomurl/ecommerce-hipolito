@@ -17,9 +17,8 @@ class ProductModal extends ModalComponent
     public $product, $name, $category_id, $brand_id, $product_id, $category_idx, $category_namex, $slug, $description, $selling_price, $quantity, $image;
 
     public function create(){
-        $messages = array(
-            'image.mimes' => 'Only jpeg, png, jpg is allowed!',
-        );
+            //'image.mimes' => 'Only jpeg, png, jpg is allowed!',
+
 
         $this->validate([
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
@@ -28,9 +27,8 @@ class ProductModal extends ModalComponent
             'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:255',
             'selling_price' => 'required|numeric|min:0|max:1000000.00',
             'quantity' => 'required|integer|min:0|max:999999',
-            'image' => 'required|image|mimes:jpeg,png,jpg
-            max:2048',
-        ]);
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);             
 
         $image_name = $this->image->hashName();
         //$extension = $this->image->extension();

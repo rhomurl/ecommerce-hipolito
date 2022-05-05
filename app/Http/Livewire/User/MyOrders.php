@@ -26,7 +26,7 @@ class MyOrders extends Component
     {
         $orders = Order::with('transaction')->where('user_id', Auth::id())
             ->orderby('id', 'DESC')
-            ->paginate(10);
+            ->paginate(5);
         return view('livewire.user.my-orders', compact('orders'))->extends('layouts.user-profile');
     }
 
