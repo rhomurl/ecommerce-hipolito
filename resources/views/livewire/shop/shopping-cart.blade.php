@@ -113,7 +113,7 @@
                         @if(count($cartItems) > 0)
                             <a wire:click.prevent="setAmountForCheckout()" href="#" class="btn btn-primary btn-block"> Checkout <i class="fa fa-chevron-right"></i> </a>
                         @else
-                            <a href="#" class="btn btn-primary btn-block disabled"> Checkout <i class="fa fa-chevron-right"></i> </a>
+                            <a href="#" class="btn btn-secondary btn-block disabled"> Checkout <i class="fa fa-chevron-right"></i> </a>
                         @endif
                         </div>
                     </div>

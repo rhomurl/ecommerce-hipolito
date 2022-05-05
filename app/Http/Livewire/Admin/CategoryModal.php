@@ -17,12 +17,16 @@ class CategoryModal extends ModalComponent
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:categories',
         ]);
 
-        $category = Category::updateOrCreate(
+        /*$category = Category::updateOrCreate(
             ['id' => $this->category_id],
             [
                 'name' => $this->name, 
             ]
-        );
+        );*/
+        $category = Category::create([
+            'name' => $this->name, 
+        ]);
+
         
         //$this->emit("openModal", "admin.success-modal", ["message" => $this->category_id ? 'Category Updated Successfully.' : 'Category Added Successfully']);
         $this->resetInputFields();

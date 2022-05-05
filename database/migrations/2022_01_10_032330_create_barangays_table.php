@@ -18,7 +18,7 @@ class CreateBarangaysTable extends Migration
             $table->foreignId('city_id')->constrained();
             $table->string('name');
             $table->float('shippingfee');
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

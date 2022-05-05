@@ -59,35 +59,36 @@ class AdminHome extends Component
         $revcountToday = Order::whereDate('created_at', today());
         $order = $revcountToday;
         $revcountToday = $revcountToday->sum('total');
-        $trevcountYesterday = Order::sum('total');
-        $this->trev_current_count = $trevcountYesterday;
-        $trevcountYesterday = $trevcountYesterday - $revcountToday;
-        if($revcountToday == 0 && $trevcountYesterday == 0){
+        $revcountTotal = Order::sum('total');
+        $this->trev_current_count = $revcountTotal;
+        $trevcountYesterday = $revcountTotal - $revcountToday;
+        if($revcountTotal == 0 || $trevcountYesterday == 0){
             $this->rev_percent_change = 0;
         }
         else{
             $this->rev_percent_change = ($revcountToday/$trevcountYesterday)*100;
         }
 
-        $userCount = User::role('customer')
-        ->whereDate('created_at', today())
-        ->count();
+        $userToday = User::role('customer')
+            ->whereDate('created_at', today())
+            ->count();
         
         // Registered Users
-        $userCountYesterday = User::role('customer')->count();
-        $this->user_current_count = $userCountYesterday;
-        $userCountYesterday = $userCountYesterday - $userCount;
-        if($userCount == 0 && $userCountYesterday == 0){
+        $userTotal = User::role('customer')->count();
+        $this->user_current_count = $userTotal;
+        $userYesterday = $userTotal - $userToday;
+
+        if($userTotal == 0 || $userYesterday == 0){
             $this->user_percent_change = 0;
         }
         else{
-        $this->user_percent_change = ($userCount/$userCountYesterday)*100;
+            $this->user_percent_change = ($userToday/$userYesterday)*100;
         }
         // Orders
         $orderCountToday = $order->count();
         $this->totalOrders = Order::count();
         $ordersYesterday = $this->totalOrders - $order->count();
-        if($orderCountToday == 0 && $ordersYesterday == 0)
+        if($orderCountToday == 0 || $ordersYesterday == 0)
         {
             $this->order_percent_change = 0;
         }
@@ -118,7 +119,7 @@ class AdminHome extends Component
 
 
         //s$topProductsx = OrderProduct::
-        $dataxc = OrderProduct::with('product')->groupBy('product_id')
+       /* $dataxc = OrderProduct::with('product')->groupBy('product_id')
             ->get()
             ->map(function ( $item ) {
                 return (object)[
@@ -132,9 +133,9 @@ class AdminHome extends Component
             ->color($borderColors)
             ->backgroundcolor($fillColors);
 
-
+*/
         //dd($topProducts);
 
-        return view('livewire.admin.admin-home', compact('chart','orderchart', 'userchart', 'topProducts'))->layout('layouts.admin');
+        return view('livewire.admin.admin-home', compact('orderchart', 'userchart', 'topProducts'))->layout('layouts.admin');
     }
 }

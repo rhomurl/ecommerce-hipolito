@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     {
         $products = [
             [
-                'id' => 1,
+                //'id' => 1,
                 'name' => 'Mondo SkimCoat 20kg',
                 'slug' => 'mondo-skimcoat-20kg',
                 //'s_description' => 'Superior strength and durability.',
@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '2',
             ],
             [
-                'id' => 2,
+                //'id' => 2,
                 'name' => 'Ultra Fino Skimcoat 20kg',
                 'slug' => 'ultra-fino-skimcoat-20kg',
                 //'s_description' => 'Concrete surface finisher.',
@@ -42,7 +42,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '3',
             ],
             [
-                'id' => 3,
+                //'id' => 3,
                 'name' => 'Standard Brass Padlock 50mm',
                 'slug' => 'standard-brass-padlock-50mm',
                 //'s_description' => 'Is suited for indoor or outdoor use.',
@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '4',
             ],
             [
-                'id' => 4,
+                //'id' => 4,
                 'name' => 'Philips LED Light Bulb 10W',
                 'slug' => 'philips-led-10w',
                 //'s_description' => 'Philips interfaced option provide an optimal light and comfort.',
@@ -68,7 +68,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '5',
             ],
             [
-                'id' => 5,
+                //'id' => 5,
                 'name' => 'Tokina Gas Regulator',
                 'slug' => 'tokina-gas-regulator',
                 //'s_description' => 'With adjustable pressure knob with gauge and anti explode.',
@@ -81,7 +81,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '6',
             ],
             [
-                'id' => 6,
+                //'id' => 6,
                 'name' => 'Marine Plywood 1/4',
                 'slug' => 'marine-plywood-1-4',
                 //'s_description' => 'it is made of poplar wood which has medium low capacity, water resistant and ideal for boat making, home building and furniture making.',
@@ -94,7 +94,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '7',
             ],
             [
-                'id' => 7,
+                //'id' => 7,
                 'name' => 'Marine Plywood 3/4',
                 'slug' => 'marine-plywood-3-4',
                 //'s_description' => 'Waterproof marine grade plywood for building and construction.',
@@ -107,7 +107,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '7',
             ],
             [
-                'id' => 8,
+                //'id' => 8,
                 'name' => 'Marine Plywood Sanepa 9mm',
                 'slug' => 'marine-plywood-sanepa-9mm',
                 //'s_description' => 'Its quality is known to withstand any weather condition makes it the ideal plywood for boat-making, home building and furniture-making.',
@@ -120,7 +120,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '7',
             ],
             [
-                'id' => 9,
+                //'id' => 9,
                 'name' => 'Marine Plywood Hardflex 4x8 12mm',
                 'slug' => 'marine-plywood-hardflex-4x8-12mm',
                 //'s_description' => 'Full eucalytpus hardwood, best grade.',
@@ -133,7 +133,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '7',
             ],
             [
-                'id' => 10,
+                //'id' => 10,
                 'name' => 'Marine Plywood Crocodile 1/2',
                 'slug' => 'marine-plywood-crocodile-1-2',
                 //'s_description' => 'Best phenolic board, film faced plywood 1/2 phenolic board crocodile phenolic.',
@@ -146,7 +146,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '7',
             ],
             [
-                'id' => 11,
+                //'id' => 11,
                 'name' => 'PVC Pipe Black 82mm',
                 'slug' => 'pvc-pipe-black-82mm',
                 //'s_description' => 'PVC Pipe is used to create an access point for pipe cleaning and inspection in existing upvc soil pipe.',
@@ -159,7 +159,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '8',
             ],
             [
-                'id' => 12,
+                //'id' => 12,
                 'name' => 'PVC Orange Clamp 1/2',
                 'slug' => 'pvc-orange-clamp-1-2',
                 //'s_description' => 'This is used to secure 1/2" sized electrical pipes on concrete /wood surfaces.',
@@ -172,7 +172,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '9',
             ],
             [
-                'id' => 13,
+                //'id' => 13,
                 'name' => 'PVC Elbow 90',
                 'slug' => 'pvc-elbow-90',
                 //'s_description' => 'PVC elbow 90 degrees are the most common type ofelbowand used when space is available and flow is more critical.',
@@ -185,7 +185,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '8',
             ],
             [
-                'id' => 14,
+                //'id' => 14,
                 'name' => 'Neltex Clean Out',
                 'slug' => 'neltex-clean-out',
                 //'s_description' => 'Extremely tough, suitable for long-term use.',
@@ -198,7 +198,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '8',
             ],
             [
-                'id' => 15,
+                //'id' => 15,
                 'name' => 'PVC Blue Coupling 1/2',
                 'slug' => 'pvc-blue-coupling-1-2',
                 //'s_description' => 'This is Commonly used in laying pipes for potable water supply.',
@@ -211,7 +211,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '10',
             ],
             [
-                'id' => 16,
+                //'id' => 16,
                 'name' => 'Firefly Weatherproof Socket',
                 'slug' => 'firefly-weatherproof-socket',
                 //'s_description' => 'Firefly Rubber Weatherproof Socket Receptacle E27 for Indoor and Outdoor 4A 250V.',
@@ -224,7 +224,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '1',
             ],
             [
-                'id' => 17,
+                //'id' => 17,
                 'name' => 'Universal Socket Adaptor',
                 'slug' => 'universal-socket-adaptor',
                 //'s_description' => 'Universal World Wide Travel Charger Adapter Plug.',
@@ -237,7 +237,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '11',
             ],
             [
-                'id' => 18,
+                //'id' => 18,
                 'name' => 'Swing Type Plug',
                 'slug' => 'swing-type-plug',
                 //'s_description' => 'Insides of Omni electrical plugs are made of copper.',
@@ -250,7 +250,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '11',
             ],
             [
-                'id' => 19,
+               //'id' => 19,
                 'name' => 'Royu 1 Gang Outlet',
                 'slug' => 'royu-1-gang-outlet',
                 //'s_description' => 'Power connection devices used in domestic and light commercial environments.',
@@ -263,7 +263,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '12',
             ],
             [
-                'id' => 20,
+                //'id' => 20,
                 'name' => 'Royu 2 Gang Outlet Dark Gray',
                 'slug' => 'royu-2-gang-outlet-dark-gray',
                 //'s_description' => 'Power connection devices used in domestic and light commercial environments.',
@@ -276,7 +276,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '12',
             ],
             [
-                'id' => 21,
+                //'id' => 21,
                 'name' => 'Stikwel 1L',
                 'slug' => 'stikwel-1l',
                 //'s_description' => 'Original 1 liter Water-based wood glue.',
@@ -289,7 +289,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '13',
             ],
             [
-                'id' => 22,
+                //'id' => 22,
                 'name' => 'Stikwel 1/2L',
                 'slug' => 'stikwel-1-2l',
                 //'s_description' => 'Original 1/2 liter Water-Based wood glue.',
@@ -302,7 +302,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '13',
             ],
             [
-                'id' => 23,
+                //'id' => 23,
                 'name' => 'PVC Wye Orange 3x2',
                 'slug' => 'pvc-wye-orange-3x2',
                 //'s_description' => 'A Y-shaped fitting with three openings used to create branch lines.',
@@ -315,7 +315,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '8',
             ],
             [
-                'id' => 24,
+                //'id' => 24,
                 'name' => 'PVC Tee 1/2',
                 'slug' => 'pvc-tee-1-2',
                 //'s_description' => 'PVC tee is a t-shaped pipe fitting.',
@@ -328,7 +328,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '8',
             ],
             [
-                'id' => 25,
+                //'id' => 25,
                 'name' => 'PVC Elbow 45',
                 'slug' => 'pvc-elbow-45',
                 //'s_description' => 'Elbows used to change the angle or direction of the pipe run. Most commonly in 90 degrees and 45 degree turns.',
@@ -341,7 +341,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '8',
             ],
             [
-                'id' => 26,
+                //'id' => 26,
                 'name' => 'Prestone Super Coolant 1L',
                 'slug' => 'prestone-super-coolant-1l',
                 //'s_description' => 'Preston radiator super coolant helped the vehicle(s) engines last longer with improved technology to allow longer lifespan.',
@@ -354,7 +354,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '14',
             ],
             [
-                'id' => 27,
+                //'id' => 27,
                 'name' => 'Stanley Padlock 25mm',
                 'slug' => 'stanley-padlock-25mm',
                 //'s_description' => 'Standard shuckle padlocks are suited for both indoor or outdoor use.',
@@ -367,7 +367,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '4',
             ],
             [
-                'id' => 28,
+                //'id' => 28,
                 'name' => 'Steel Bar Stainless Round 3/4',
                 'slug' => 'steel-bar-stainless-round-3-4',
                 //'s_description' => 'Round stainless steel bar is a steel bar or mesh of steel used as a tension device in reinforced concrete.',
@@ -380,7 +380,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 29,
+                //'id' => 29,
                 'name' => 'Flat Bar 1/4 x 2 5 FT',
                 'slug' => 'flat-bar-1-4-x-2-5-ft',
                 //'s_description' => 'Flat bar steel is a general purpose steel alloy.',
@@ -393,7 +393,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 30,
+                //'id' => 30,
                 'name' => 'Angle Bar A/B 3mm',
                 'slug' => 'angle-bar-a-b-3mm',
                 //'s_description' => 'Angle bar is a metal bracket in the form of a right angle.',
@@ -406,7 +406,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 31,
+                //'id' => 31,
                 'name' => 'Welding Rod 5/64 2.0mm',
                 'slug' => 'welding-rod-5-64-2.0mm',
                 //'s_description' => 'Suitable for DIY crafts, home decoration, electrical, engineering, Education, static models and more.',
@@ -419,7 +419,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 32,
+                //'id' => 32,
                 'name' => 'Angle Bar 2x2 3mm',
                 'slug' => 'angle-bar-2x2-3mm',
                 //'s_description' => 'Angle bar is a metal bracket in the form of a right angle.',
@@ -432,7 +432,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 33,
+                //'id' => 33,
                 'name' => 'Flat Bar 3/8x8',
                 'slug' => 'flat-bar-3-8x8',
                 //'s_description' => 'Flat bar steel is a general purpose steel alloy.',
@@ -445,7 +445,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 34,
+                //'id' => 34,
                 'name' => 'Steel Window Hinges Left & Right',
                 'slug' => 'steel-window-hinges-left-right',
                 //'s_description' => 'Window hinges is a mechanical bearing that connects two solid objects.',
@@ -458,7 +458,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 35,
+                //'id' => 35,
                 'name' => 'Plain Round Bar Ordinary 12mm',
                 'slug' => 'plain-round-bar-ordinary-12mm',
                 //'s_description' => 'Plain Round Bar is a type of rebar that has a smooth surface.',
@@ -471,7 +471,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 36,
+                //'id' => 36,
                 'name' => 'Square Bar 16mm',
                 'slug' => 'square-bar-16mm',
                 //'s_description' => 'Sqare bar is used for turning, boring out, grooving, etc.',
@@ -484,7 +484,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '15',
             ],
             [
-                'id' => 37,
+                //'id' => 37,
                 'name' => 'Republic Cement',
                 'slug' => 'republic-cement',
                 //'s_description' => 'The natural mineral component (philippine tuff) ensures increased strengh and durability over time.',
@@ -497,7 +497,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '16',
             ],
             [
-                'id' => 38,
+                //'id' => 38,
                 'name' => 'Fortune Cement',
                 'slug' => 'fortune-cement',
                 //'s_description' => 'Fortune cement is a premium quality blended cement.',
@@ -510,7 +510,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '16',
             ],
             [
-                'id' => 39,
+                //'id' => 39,
                 'name' => 'Front Doorknob',
                 'slug' => 'front-doorknob',
                 //'s_description' => 'A door handle or door knob is a mechanism used to open or close a door.',
@@ -523,7 +523,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '17',
             ],
             [
-                'id' => 40,
+                //'id' => 40,
                 'name' => 'PVC Door 60x190 With Louver Pad',
                 'slug' => 'pvc-door-60x190-with-louver-pad',
                 //'s_description' => 'PVC door for bathroom with free doorknob.',
@@ -536,7 +536,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '18',
             ],
             [
-                'id' => 41,
+                //'id' => 41,
                 'name' => 'Welding Machine Inverter Type 160 A',
                 'slug' => 'welding-machine-inverter-type-160-a',
                 //'s_description' => 'Welding machine is used for welding grills, doors, steel plates, Iron tanks, and most metal materials.',
@@ -549,7 +549,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '19',
             ],
             [
-                'id' => 42,
+                //'id' => 42,
                 'name' => 'Welding Machine Yamato Inverter 300 A',
                 'slug' => 'welding-machine-yamato-inverter-300-a',
                 //'s_description' => 'Welding machine is used for welding grills, doors, steel plates, Iron tanks, and most metal materials.',
@@ -562,7 +562,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '20',
             ],
             [
-                'id' => 43,
+                //'id' => 43,
                 'name' => 'Adjustable Wrench',
                 'slug' => 'adjustable-wrench',
                 //'s_description' => 'Used for plumbing, automotive or home use.',
@@ -575,7 +575,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '4',
             ],
             [
-                'id' => 44,
+                //'id' => 44,
                 'name' => 'Powerhouse Trowel',
                 'slug' => 'powerhouse-trowel',
                 //'s_description' => 'Powerhouse is a small hand tool used for digging, applying, smoothing, or moving small amounts of viscous or particulate material.',
@@ -588,7 +588,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '21',
             ],
             [
-                'id' => 45,
+                //'id' => 45,
                 'name' => 'Tape Measure 3m',
                 'slug' => 'tape-measure-3m',
                 //'s_description' => 'Tape measure is used to measure distance.',
@@ -601,7 +601,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '4',
             ],
             [
-                'id' => 46,
+                //'id' => 46,
                 'name' => 'Tape Measure 5m',
                 'slug' => 'tape-measure-5m',
                 //'s_description' => 'Tape measure is used to measure distance.',
@@ -614,7 +614,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '4',
             ],
             [
-                'id' => 47,
+                //'id' => 47,
                 'name' => 'Paint Tray',
                 'slug' => 'paint-tray',
                 //'s_description' => 'Paint tray is typically having a well and a ridged slope with which to spread paint evenly over the roller.',
@@ -627,7 +627,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '21',
             ],
             [
-                'id' => 48,
+                //'id' => 48,
                 'name' => 'Claw Hammer',
                 'slug' => 'claw-hammer',
                 //'s_description' => 'Claw hammer is made from drop-forged carbon steel, heat treated, ground, and polished.',
@@ -640,7 +640,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '4',
             ],
             [
-                'id' => 49,
+                //'id' => 49,
                 'name' => 'Boysen Aryclic Color Yellow 1L',
                 'slug' => 'boysen-aryclic-color-yellow-1l',
                 //'s_description' => 'is a 100% acrylic latex paint with excellent hiding, durability and dirt pick – up resistance.',
@@ -653,7 +653,7 @@ class ProductSeeder extends Seeder
                 'brand_id' => '22',
             ],
             [
-                'id' => 50,
+                //'id' => 50,
                 'name' => 'Boysen Tinting Color Black 1/4L',
                 'slug' => 'boysen-tinting-color-black-1-4l',
                 //'s_description' => 'is a 100% acrylic latex paint with excellent hiding, durability and dirt pick – up resistance.',

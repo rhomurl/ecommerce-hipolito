@@ -16,52 +16,52 @@ class CategorySeeder extends Seeder
     {
         $category = [
             [
-                'id' => 1,
+                //'id' => 1,
                 'name' => 'Paint',
                 'slug' => 'paint',
             ],
             [
-                'id' => 2,
+                //'id' => 2,
                 'name' => 'Light Bulb',
                 'slug' => 'light-bulb',
             ],
             [
-                'id' => 3,
+                //'id' => 3,
                 'name' => 'Skimcoat',
                 'slug' => 'skimcoat',
             ],
             [
-                'id' => 4,
+                //'id' => 4,
                 'name' => 'Fittings',
                 'slug' => 'fittings',
             ],
             [
-                'id' => 5,
+                //'id' => 5,
                 'name' => 'LPG Hose',
                 'slug' => 'lpg-hose',
             ],
             [
-                'id' => 6,
+                //'id' => 6,
                 'name' => 'Plywood',
                 'slug' => 'plywood',
             ],
             [
-                'id' => 7,
+                //'id' => 7,
                 'name' => 'Steel',
                 'slug' => 'steel',
             ],
             [
-                'id' => 8,
+                //'id' => 8,
                 'name' => 'Cement',
                 'slug' => 'cement',
             ],
             [
-                'id' => 9,
+                //'id' => 9,
                 'name' => 'Door',
                 'slug' => 'door',
             ],
             [
-                'id' => 10,
+                //'id' => 10,
                 'name' => 'Construction Equipment',
                 'slug' => 'construction-equipment',
             ],

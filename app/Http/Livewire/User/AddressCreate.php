@@ -14,7 +14,14 @@ class AddressCreate extends Component
     public $barangays;
     public $cities;
 
-    public $error_message, $entry_company, $entry_landmark, $entry_firstname, $entry_lastname, $entry_street_address, $entry_phonenumber, $entry_postcode;
+    public $error_message, 
+    $entry_company, 
+    $entry_landmark, 
+    $entry_firstname, 
+    $entry_lastname, 
+    $entry_street_address, 
+    $entry_phonenumber, 
+    $entry_postcode;
 
     public $barangay;
     public $city;
@@ -55,7 +62,7 @@ class AddressCreate extends Component
             'entry_lastname' => 'required|string|max:255',
             'entry_landmark' => 'required|string|max:255',
             'entry_street_address' => 'required|max:255',
-            'entry_phonenumber' => 'required|max:15',
+            'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
 
         try{

@@ -37,7 +37,7 @@
             <li><a href="#" class="nav-link"> Help </a></li>
         </ul>
         <ul class="navbar-nav">
-            <li><a href="#" class="nav-link"> <img src="{{ asset('images/icons/flags/US.png') }}" height="16"> Ship to </a></li>
+            {{--<li><a href="#" class="nav-link"> <img src="{{ asset('images/icons/flags/US.png') }}" height="16"> Ship to </a></li>--}}
             <li><a href="{{ route('user.overview') }}" class="nav-link"> Profile </a></li>
             <li><a href="{{ route('user.orders') }}" class="nav-link"> Orders </a></li>
             <li><a href="#" class="nav-link"> <i class="fa fa-bell"></i> </a></li>

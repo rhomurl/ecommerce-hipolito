@@ -4131,7 +4131,7 @@ input[type="button"].btn-block {
   border: 1px solid #dee2e6; }
   .page-link:hover {
     z-index: 2;
-    color: #ff6a00;
+    color: #0b5ed7;
     text-decoration: none;
     background-color: #e5e7ea;
     border-color: #dee2e6; }
@@ -4153,8 +4153,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #ff6a00;
-  border-color: #ff6a00; }
+  background-color: #0b5ed7;
+  border-color: #0b5ed7; }
 
 .page-item.disabled .page-link {
   color: #545454;

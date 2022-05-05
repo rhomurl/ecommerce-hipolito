@@ -1,130 +1,420 @@
-{{--<section class="bg-secondary  padding-y-sm">
-    <div class="container">
-        <ol class="breadcrumb p-2 ">
-            <li class="breadcrumb-item"> <a class="text-white" href="{{ route('home') }}">1. Home</a>  </li>
-            <li class="breadcrumb-item"> <a class="text-white" href="{{ route('cart') }}">2. Shopping Cart</a>  </li>
-            <li class="breadcrumb-item active text-muted"><b>3. Order info</b></li>
-            <li class="breadcrumb-item text-white"> 4. Payment   </li>
-          </ol>
-    </div> <!-- container //  -->
-</section>--}}
+@section('style')
+    <link href="{{ asset('css/checkout.css' ) }}" rel="stylesheet">
+@endsection
 
-<div class="container mt-5" style="max-width:720px;">
-    <form wire:submit.prevent="placeOrder">
-    <div class="card">
-        @if($this->checkout_message)
-    <div class="alert alert-danger" role="alert">
-        {{ $this->checkout_message}}
-    </div>
-    @endif
-        <div class="card-body">
-            <h4 class="card-title">Address</h4>
-        @forelse($addresses as $address)
-            
-            <input wire:model="address_book_id" type="radio" value="{{ $address->id }}">
-            <label for="address">{{ $address->entry_street_address }}, 
-            {{ $address->barangay->name }},
-            {{ $address->barangay->city->name }},  
-            {{ $address->barangay->city->zip }}</label>
-            @if($address->id == auth()->user()->address_book_id)
-                <b>{{ $this->msg_add_default }}</b>
-            @endif
-            <br>
-        @empty
-    
-        No address. Add an address?
-        <a href="{{ route('user.address.create')}}" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>
-        @endforelse
-        </div>
-    </div>
-
-    <div class="card mt-3">
-        <h4 class="card-title ml-3 mt-3">Products</h4>
-
-            <table class="table table-borderless table-shopping-cart">
-            <thead class="text-muted">
-            @if(!$cartItems->count() == 0)
-                <tr class="small text-uppercase">
-                <th scope="col" width="240">Product</th>
-                <th scope="col" width="120">Quantity</th>
-                <th scope="col" width="120">Price</th>
-                </tr>
-            @endif
-            </thead>
-            <tbody>
-            @foreach ($cartItems as $cartItem)
-                <tr>
-                    <td>
-                        <figure class="itemside">
-                            <div class="aside">
-                                <a href="#">
-                                <img src="{{ $this->getProductURL($cartItem->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $cartItem->image }}'" class="img-sm">
-                                </a>
-                            </div>
-                            <figcaption class="info">
-                                <a href="#" class="title text-dark">{{ $cartItem->name }}</a>
-                                <p class="text-muted small">{{--Size: XL, Color: blue, <br>--}}Brand: {{ $cartItem->brand }}</p>
-                            </figcaption>
-                        </figure>
-                    </td>
-                    <td> 
-                        <div class="form-inline">
-                            {{ $cartItem->qty }}
-                        </div>
-                    </td>
-                    <td> 
-                        <div class="price-wrap"> 
-                            <var class="price">₱ {{ $cartItem->selling_price * $cartItem->qty }}</var> 
-                            <small class="text-muted">₱ {{ $cartItem->selling_price }}  </small> 
-                        </div> <!-- price-wrap .// -->
-                    </td>
+<section>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <article class="card checkout_card">
                     
-                </tr>
-            @endforeach
+                    
+                    <div class="card-body checkout_card_body">
+                        @if($this->showForm == false)
+                            <form wire:submit.prevent="placeOrder">
+                        @endif
+                        <h5 class="card-title checkout_card_title">Shipping Info</h5>
+                        
+                        @forelse($addresses as $address)
+                            
+                            <label for="address" class="form-check checkout_form_check">
+                            <input wire:model="address_book_id" value="{{ $address->id }}" type="radio" name="address" >
+                            
+                            {{ $address->entry_street_address }}, 
+                            {{ $address->barangay->name }},
+                            {{ $address->barangay->city->name }},  
+                            {{ $address->barangay->city->zip }}
+                            </label>
+                        @if($address->id == auth()->user()->address_book_id)
+                            — <b>{{ $this->msg_add_default }}</b>
+                        @endif
+                        <br>
+                        
+                    @empty
 
-            </tbody>
-            </table>
+                        No address. Add an address?
+                        {{--<a href="{{ route('user.address.create')}}" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>--}}
+                    @endforelse
+
+                    <button wire:click.prevent="showAddr" type="submit" class="btn btn-primary">Add Address</button>
+                    
+
+                        @if($this->showForm == true && $this->addr_count == 0)
+                        <hr>
+                        <h5 class="card-title checkout_card_title">Shipping Info</h5>
+                        <form wire:submit.prevent="storeAddress">
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label checkout_form_label" for="">First Name</label>
+                                <input wire:model="entry_firstname" class="form-control" type="text" placeholder="Enter first name" required>
+                                @error('entry_firstname')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label checkout_form_label" for="">Last Name</label>
+                                <input wire:model="entry_lastname" class="form-control" type="text" placeholder="Enter last name" required>
+                                @error('entry_lastname')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label checkout_form_label" for="">Company</label>
+                                <input wire:model="entry_company" class="form-control" type="text" placeholder="Enter company">
+                                @error('entry_company')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label class="form-label checkout_form_label" for="">Landmark</label>
+                                <input wire:model="entry_landmark" class="form-control" type="text" placeholder="Enter landmark">
+                                @error('entry_landmark')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <label class="form-label checkout_form_label" for="">Street Address</label>
+                                <input wire:model="entry_street_address" class="form-control" type="text" placeholder="Enter street address" required>
+                                @error('entry_street_address')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-sm-4 mb-3">
+                                <label class="form-label checkout_form_label">City</label>
+                                <select wire:model="city" name="city" class="form-control" required>
+                                    <option value="">-- choose city --</option>
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-4 mb-3">
+                                <label class="form-label checkout_form_label">Barangay</label>
+                                <select wire:model="barangay" name="barangay" class="form-control" required>
+                                    @if ($barangays->count() == 0)
+                                        <option value="">-- choose city first --</option>
+                                    @endif
+                                    @foreach ($barangays as $barangay)
+                                        <option value="{{ $barangay->id }}">{{ $barangay->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-4 mb-3">
+                                <label class="form-label checkout_form_label" for="">Phone number</label>
+                                <input wire:model="entry_phonenumber" class="form-control" type="text" placeholder="Enter phone number">
+                                @error('entry_phonenumber')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <h5 class="card-title checkout_card_title">Shipping info</h5>
+                        <div class="row mb-3">
+                            <div class="col-lg-6 mb-3">
+                                <div class="box box-check checkout_box">
+                                    <label class="form-check checkout_form_check">
+                                        <input wire:model="shipping_method" class="form-check-input" type="radio">
+                                        <b class="border-oncheck"></b>
+                                        <span class="form-check-label">
+                                            "Express delivery"
+                                            <br>
+                                            <small class="text-muted">Within the day delivery</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <div class="box box-check checkout_box">
+                                    <label class="form-check checkout_form_check">
+                                        <input wire:model="shipping_method" class="form-check-input" type="radio">
+                                        <b class="border-oncheck"></b>
+                                        <span class="form-check-label">
+                                            "Standard delivery"
+                                            <br>
+                                            <small class="text-muted">Delivery tomorrow</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            {{--<div class="col-lg-4 mb-3">
+                                <div class="box box-check checkout_box">
+                                    <label class="form-check checkout_form_check">
+                                        <input class="form-check-input" type="radio">
+                                        <b class="border-oncheck"></b>
+                                        <span class="form-check-label">
+                                            "Self pick-up"
+                                            <br>
+                                            <small class="text-muted">Come to our shop</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>--}}
+                        </div>
+                    
+                        <label class="form-check mb-4 checkout_form_check">
+                            <input wire:model="setAddr" value="1" class="form-check-input" type="checkbox">
+                            <span class="form-check-label">Set as default</span>
+                        </label>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                        <button wire:click.prevent="cancel" type="submit" class="btn btn-light">Cancel</button> 
+                        </form>
+                       @endif
+                   
+                    </div>
+                </article>
+
+                @if($this->showForm == false)
+                    <article class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Payment Method</h5>
+                            <div class="accordion" id="accordion_pay">
+                                <!-- PAYPAL -->
+                                <article class="accordion-item">
+                                    <h6 class="accordion-header">
+                                        <label class="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                            aria-expanded="false">
+                                            <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                            &nbsp;
+                                            Paypal
+                                        </label>
+                                    </h6>
+                                    <div id="collapseOne" data-bs-parent="#accordion_pay"
+                                        class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p class="text-center text-muted">
+                                                "Connect your PayPal account and use it to pay your order. <br>You'll be redirected to PayPal to add your billing information."
+                                                <br>
+                                                <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- END_OF_PAYPAL -->
+                                <!-- CREDIT_CARD -->
+                                <article class="accordion-item">
+                                    <h6 class="accordion-header">
+                                        <label class="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false">
+                                            <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                            &nbsp;
+                                            Credit Card
+                                        </label>
+                                    </h6>
+                                    <div id="collapseTwo" data-bs-parent="#accordion_pay"
+                                        class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p class="text-center text-muted">
+                                                "You'll be redirected to PayPal to add your credit card and billing information<br>Your information is encrypted and processed by PayPal."
+                                                <br>
+                                                <br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- END_OF_CREDIT_CARD -->
+                                <!-- CASH_ON_DELIVERY -->
+                                <article class="accordion-item">
+                                    <h6 class="accordion-header">
+                                        <label class="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false">
+                                            <input wire:model.defer="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
+                                            &nbsp;
+                                            Cash on Delivery
+                                        </label>
+                                    </h6>
+                                    <div id="collapseThree" data-bs-parent="#accordion_pay"
+                                        class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p class="text-center text-muted">
+                                                "Payment will be given upon delivery."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- END_OF_CASH_ON_DELIVERY -->
+                            </div>
+                        </div>
+                    </article>
+                @endif
+            </div>
+
             
-        </div> <!-- card.// -->
+            
+            <!-- SUMMARY_SECTION -->
+            <aside class="col-lg-4">
+                <article class="card">
+                    <div class="card-body">
+                        <h5 class="card-title checkout_card_title">Summary</h5>
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-end">₱970.00</dd>
+                        </dl>
+                        {{--<dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-end text-danger">- ₱0.00</dd>
+                        </dl>--}}
+                        <dl class="dlist-align">
+                            <dt>Shipping fee:</dt>
+                            <dd class="text-end">+ ₱50.00</dd>
+                        </dl>
+                        <hr>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-end">
+                                <strong class="text-dark">₱{{ number_format($this->totalCart, 2) }}</strong>
+                            </dd>
+                        </dl>
+                        <hr>
+                        <h5 class="mb-4">Items in cart</h5>
+                        @foreach ($cartItems as $cartItem)
+                            <div class="itemside align-items-center mb-4">
+                                <div class="aside">
+                                    <b class="badge bg-secondary rounded-pill">{{ $cartItem->qty }}</b>
+                                    <img class="img-sm rounded border checkout_img" src="{{ $this->getProductURL($cartItem->image) }}" alt="{{ $cartItem->name }}">
+                                </div>
+                                <div class="info">
+                                    <a href="#" class="title">{{ $cartItem->name }}</a>
+                                    <div class="price text-muted">Total: ₱{{ number_format($cartItem->selling_price * $cartItem->qty, 2) }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </article>
+            </aside>
+        </div>
         <br>
-        <article class="accordion" id="accordion_pay">
-            <div class="card">
-                <h4 class="card-title ml-3 mt-3">Payment Method</h4>
-                <header class="card-header">
-                    <img src="{{ asset('images/misc/paypal_cc_payment.png') }}" class="float-right" height="24"> 
-                    <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet" aria-expanded="false">
-                        <input wire:model="payment_mode" value="paypal" type="radio" name="payment_mode" class="form-check-input">
-                        <h6 class="form-check-label"> 
-                            PayPal/Credit Card
-                        </h6>
-                    </label>
-                </header>
-                
-                <div id="pay_paynet" class="collapse" data-parent="#accordion_pay" style="">
-                <div class="card-body">
-                    <p class="text-center text-muted">Connect your PayPal account and use it to pay your order. You'll be redirected to PayPal to add your billing information.</p>
-                </div> <!-- card body .// -->
-                </div> <!-- collapse .// -->
-            </div> <!-- card.// -->
+        <br>
+        <!-- PAYMENT METHOD -->
+        <div class="row">
+            <div class="col-lg-8">
+                @if($this->showForm == true)
+                <article class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment Method</h5>
+                        <div class="accordion" id="accordion_pay">
+                            <!-- PAYPAL -->
+                            <article class="accordion-item">
+                                <h6 class="accordion-header">
+                                    <label class="accordion-button collapsed"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                        aria-expanded="false">
+                                        <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                        &nbsp;
+                                        Paypal
+                                    </label>
+                                </h6>
+                                <div id="collapseOne" data-bs-parent="#accordion_pay"
+                                    class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p class="text-center text-muted">
+                                            "Connect your PayPal account and use it to pay your order. <br>You'll be redirected to PayPal to add your billing information."
+                                            <br>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- END_OF_PAYPAL -->
+                            <!-- CREDIT_CARD -->
+                            <article class="accordion-item">
+                                <h6 class="accordion-header">
+                                    <label class="accordion-button collapsed"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                        aria-expanded="false">
+                                        <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                        &nbsp;
+                                        Credit Card
+                                    </label>
+                                </h6>
+                                <div id="collapseTwo" data-bs-parent="#accordion_pay"
+                                    class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p class="text-center text-muted">
+                                            "You'll be redirected to PayPal to add your credit card and billing information<br>Your information is encrypted and processed by PayPal."
+                                            <br>
+                                            <br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- END_OF_CREDIT_CARD -->
+                            <!-- CASH_ON_DELIVERY -->
+                            <article class="accordion-item">
+                                <h6 class="accordion-header">
+                                    <label class="accordion-button collapsed"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                        aria-expanded="false">
+                                        <input wire:model.defer="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
+                                        &nbsp;
+                                        Cash on Delivery
+                                    </label>
+                                </h6>
+                                <div id="collapseThree" data-bs-parent="#accordion_pay"
+                                    class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        <p class="text-center text-muted">
+                                            "Payment will be given upon delivery."
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                            <!-- END_OF_CASH_ON_DELIVERY -->
+                        </div>
+                    </div>
+                </article>
+                @endif
+            </div>
+            <aside class="col-lg-4">
+                <article class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment form</h5>
+                        
+                            <div class="col mb-3">
+                                <label class="form-label">Name on card</label>
+                                <input type="text" class="form-control" name="username" placeholder="Ex. John Smith">
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label">Card number</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber">
+                                    <span class="input-group-text">
+                                        <i class="fab fa-cc-visa"></i>
+                                        &nbsp;
+                                        <i class="fab fa-cc-amex"></i>
+                                        &nbsp;
+                                        <i class="fab fa-cc-mastercard"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <button class="btn w-100 btn-success">Place Order</button>
+                        </form>
+                    </div>
+                </article>
+            </aside>
+        </div>
+        <!-- END OF PAYMENT METHOD -->
+    </div>
+</section>
     
-            <div class="card">
-                <header class="card-header">
-                    <img src="{{ asset('images/misc/cod_payment.jpg') }}" class="float-right" height="36"> 
-                    <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_cod" aria-expanded="false">
-                        <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="form-check-input">
-                        <h6 class="form-check-label"> 
-                            Cash on Delivery 
-                        </h6>
-                    </label>
-                </header>
-                <div id="pay_cod" class="collapse" data-parent="#accordion_pay" style="">
-                <div class="card-body">
-                    <p class="text-center text-muted">Payment will be given upon delivery.</p>
-                </div> <!-- card body .// -->
-                </div> <!-- collapse .// -->
-            </div> <!-- card.// -->     
-            <button class="btn btn-primary float-md-right"> Place Order <i class="fa fa-chevron-right"></i> </button>
-        </article>
-        
-    </form>
-</div>
+    <!-- END OF CHECKOUT SUMMARY -->
+
+@section('scripts')
+   {{-- <script src="{{ asset('js/checkout.js') }}" type="text/javascript"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+@endsection

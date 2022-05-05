@@ -87,7 +87,9 @@
                     @endforelse
                 </tbody>
             </table>
-            {{ $brands->links('vendor.pagination.default')}}
+            @if($brands)
+                {{ $brands->links('livewire.pagination.defaultadmin')}}
+            @endif
             </div>
     </div>
 </div>

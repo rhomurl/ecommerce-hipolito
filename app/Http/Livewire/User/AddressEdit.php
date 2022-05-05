@@ -47,7 +47,7 @@ class AddressEdit extends Component
                 'entry_lastname' => 'required|string|max:255',
                 'entry_landmark' => 'required|string|max:255',
                 'entry_street_address' => 'required|max:255',
-                'entry_phonenumber' => 'required|max:15'
+                'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
             ]);
 
             AddressBook::updateOrCreate(['id' => $this->address_id],
@@ -62,9 +62,16 @@ class AddressEdit extends Component
             
                 session()->flash('message', 'Address Edited Successfully');
                 return redirect(route('user.address'));
-        } catch (\Exception $exception){
-            $this->error_message = "Something went wrong";
+        } 
+        catch (Livewire\Exceptions\PublicPropertyTypeNotAllowedException $exception){
+            $this->error_message = "Please check your number";
+            //$this->error_message = "Something went wrong";
         }
+        catch (\Exception $exception){
+            $this->error_message = $exception;
+            //$this->error_message = "Something went wrong";
+        }
+        
     }
 
     public function render()

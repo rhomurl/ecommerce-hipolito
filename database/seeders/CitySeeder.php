@@ -20,7 +20,13 @@ class CitySeeder extends Seeder
                 'name' => 'Lipa City',
                 'zip' => '4217',
             ],
+            [
+                'id' => 41031,
+                'name' => 'Tanauan City',
+                'zip' => '4027',
+            ],
         ];
+
         City::insert($city);
     }
 }

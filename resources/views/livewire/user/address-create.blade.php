@@ -15,7 +15,7 @@
         {{ csrf_field() }}
           <div class="form-row">
               <div class="col form-group">
-                  <label>Name</label>
+                  <label>First Name</label>
                     <input wire:model="entry_firstname" name="entry_firstname" type="text" class="form-control" value="" required>
                     @error('entry_firstname')
                         <span class="text-danger">
@@ -94,7 +94,7 @@
           <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Phone</label>
-                <input wire:model="entry_phonenumber" name="entry_phonenumber" type="text" class="form-control" placeholder="+639152390900" required>
+                <input wire:model="entry_phonenumber" name="entry_phonenumber" type="text" class="form-control" placeholder="+639160001111" required>
                 @error('entry_phonenumber')
                     <span class="text-danger">
                         {{ $message }}
