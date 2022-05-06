@@ -26,7 +26,7 @@ class SearchResult extends Component
     public function render()
     {
         $results = Product::where('name', 'LIKE', '%' . $this->sdata . '%')
-            ->orWhere('slug','like','LIKE', "%{$this->sdata}%");
+            ->orWhere('slug','LIKE', "%{$this->sdata}%");
 
         $resultCount = $results->count();
         $results = $results->paginate($this->perpage);

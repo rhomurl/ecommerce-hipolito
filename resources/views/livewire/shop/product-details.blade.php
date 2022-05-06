@@ -31,7 +31,7 @@
     <h2 class="title mt-3">{{ $this->product->name }}</h2>
     
     <div class="rating-wrap my-3">
-        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 999 orders </small>
+        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{ $this->productSold ? $this->productSold : "0" }} products sold </small>
     </div> <!-- rating-wrap.// -->
     
     <div class="mb-3"> 

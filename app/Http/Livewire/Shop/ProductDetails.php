@@ -7,8 +7,10 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Wishlist;
+use App\Models\OrderProduct;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
+use DB;
 use Livewire\Component;
 
 class ProductDetails extends Component
@@ -27,6 +29,15 @@ class ProductDetails extends Component
         $this->slug = $slug; 
        
         $this->product = Product::where('slug', $this->slug)->firstorFail();
+
+        
+        $productsold = OrderProduct::select("product_id", DB::raw("sum((quantity) * price) as product_total"), DB::raw("sum(quantity) as product_qty"))
+            ->where('product_id', $this->product->id)
+            ->first();
+        if($productsold){
+            $this->productSold = $productsold->product_qty;
+        }
+
     }
 
     public function render()

@@ -14,7 +14,7 @@ use App\Http\Livewire\User;
 use App\Http\Livewire\Admin;
 use App\Http\Livewire\Shop;
 use App\Http\Livewire\Testupload;
-
+use App\Http\Controllers\GeneratePDF;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,5 +114,7 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
     Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
+
+    Route::get('generate-pdf/{uuid}', [GeneratePDF::class, 'generatePDF'])->name('genPDF');
 
 }); 
