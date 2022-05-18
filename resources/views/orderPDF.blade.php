@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
     <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>Receipt Invoice</title>
+    <title>Receipt Invoice #{{ $prod->transaction->order_id}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -108,7 +108,7 @@
                                         </tr>
                                         <tr>
                                             <th colspan="3" class="text-right">Shipping Fee:</th>
-                                            <th class="text-center">00.00 PHP</th>
+                                            <th class="text-center">{{ number_format($shippingfee, 2) }} PHP</th>
                                         </tr>
                                         <tr>
                                             <th colspan="3" class="text-right">Tax:</th>
@@ -140,7 +140,7 @@
 <style type="text/css">
 body{
     margin-top:10px;
-    background:#eee;    
+    /*background:#eee;*/    
 }
 </style>
 

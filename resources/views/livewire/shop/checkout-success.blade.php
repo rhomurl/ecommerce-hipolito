@@ -49,7 +49,7 @@
                           <h5 class="card-title">Receipt</h5>
                           <div class="itemside mb-3">
                               <div class="aside">
-                                  <span class="icon-sm text-primary  bg-primary-light rounded"> 
+                                  <span class="icon-sm text-secondary  bg-primary-dark rounded"> 
 
                                     @if($order->transaction->mode == 'cod')  
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -104,7 +104,7 @@
 
   @section('style')
   <style>
-  @import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
   
   * {
       margin: 0;
@@ -296,116 +296,6 @@
       top: 10px;
   }
   /*===== END OF STEPS WRAP =====*/
-  /*===== RECEIPE CSS =====*/
-  .card-title {
-      margin-bottom: 1rem;
-  }
-  .itemside {
-      position: relative;
-      display: flex;
-      width: 100%;
-  }
-  .mb-3 {
-      margin-bottom: 1rem !important;
-  }
-  .itemside .aside {
-      position: relative;
-      flex-shrink: 0;
-  }
-  .icon-sm {
-      width: 42px;
-      height: 42px;
-      font-size: 20px;
-  }
-  .icon-xs, .icon-sm, .icon-md, .icon-lg {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-shrink: 0;
-      flex-grow: 0;
-  }
-  .rounded {
-      border-radius: 0.35rem !important;
-  }
-  .bg-primary-light {
-      background-color: #dbe9ff !important;
-  }
-  .text-primary {
-      color: #0d6efd !important;
-  }
-  .fa {
-      font-family: "Font Awesome 5 Brands";
-  }
-  .fa-lg {
-      font-size: 1.33333em;
-      line-height: .75em;
-      vertical-align: -0.0667em;
-  }
-  .fa, .fab, .fal, .far, .fas {
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-font-smoothing: antialiased;
-      display: inline-block;
-      font-style: normal;
-      font-variant: normal;
-      text-rendering: auto;
-  }
-  .itemside .info {
-      padding-left: 0.75rem;
-      flex-grow: 1;
-  }
-  .lh-sm {
-      line-height: 1.25 !important;
-  }
-  strong {
-      color: black;
-      font-weight: 600;
-  }
-  .text-muted {
-      color: #9da1a7 !important;
-  }
-  .dlist-align {
-      display: flex;
-  }
-  [class*=dlist-] {
-      margin-bottom: 5px;
-  }
-  dl {
-      margin-top: 0;
-      margin-bottom: 1rem;
-  }
-  dl {
-      display: block;
-      margin-block-start: 1em;
-      margin-block-end: 1em;
-      margin-inline-start: 0px;
-      margin-inline-end: 0px;
-  }
-  dt {
-      display: block;
-  }
-  .dlist-align dt {
-      width: 150px;
-      word-wrap: break-word;
-      font-weight: normal;
-      color: black;
-  }
-  .dlist-align dd {
-      flex-grow: 1;
-  }
-  [class*=dlist-] dd {
-      margin-bottom: 0;
-  }
-  dd {
-      margin-bottom: 0.5rem;
-      margin-left: 0;
-      color: black;
-  }
-  dd {
-      display: block;
-      margin-inline-start: 40px;
-  }
-  /*===== END OF RECEIPE CSS =====*/
   
   </style>
   

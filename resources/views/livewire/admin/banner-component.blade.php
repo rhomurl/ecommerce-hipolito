@@ -83,7 +83,7 @@
                     @endforelse
                 </tbody>
             </table>
-                {{ $banners->links() }}
+                {{ $banners->links('livewire.pagination.defaultadmin') }}
             </div>
     </div>
 </div>

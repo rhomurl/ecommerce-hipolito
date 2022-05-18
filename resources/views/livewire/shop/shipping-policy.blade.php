@@ -2,17 +2,17 @@
     <link rel="stylesheet" href="{{ asset('css/shipping_policy.css')}}">
 @endsection
 
-<ul>
-    <li>For Lipa City areas, Hipolito's hardware and construction supply aims to deliver the orders within the day with a shipping flat rate of 50 php. We offer free delivery for orders above 4,500php.</li>
-    <li>For Areas outside Lipa, Hipolito's hardware and construction supply aims to deliver the orders the next day with a shipping flat rate of 80 php. We offer free delivery for orders above 8,500php.</li>
-    <li>Orders from South Luzon is also available but it is limited.</li>
-</ul>
+
     <div class="home-who-we-are-wrapper">
 
         <div class="container">
             <header class="section-heading">
-                <h2 class="section-title">Shipping Policy</h2>
+                <h2 class="section-title mt-5">Shipping Policy</h2>
             </header><!-- sect-heading -->
+            <ul>
+                <li>For Lipa City areas, Hipolito's Hardware and Construction Supply aims to deliver the orders within the day with a shipping flat rate of 150 php<br>while 100 php within next day.</li>
+                <li>For Tanauan City areas, Hipolito's Hardware and Construction Supply aims to deliver the orders within the day with a shipping flat rate of 200 php<br>while 150 php within next day.</li>
+            </ul>
             
             <div class="home-who-we-are">
                 

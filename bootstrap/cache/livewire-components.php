@@ -26,7 +26,7 @@
   'auth.register' => 'App\\Http\\Livewire\\Auth\\Register',
   'auth.verify' => 'App\\Http\\Livewire\\Auth\\Verify',
   'components.header-categories' => 'App\\Http\\Livewire\\Components\\HeaderCategories',
-  'p-d-f-preview' => 'App\\Http\\Livewire\\PDFPreview',
+  'components.header-widgets' => 'App\\Http\\Livewire\\Components\\HeaderWidgets',
   'shop.about-us' => 'App\\Http\\Livewire\\Shop\\AboutUs',
   'shop.banner-component' => 'App\\Http\\Livewire\\Shop\\BannerComponent',
   'shop.checkout' => 'App\\Http\\Livewire\\Shop\\Checkout',

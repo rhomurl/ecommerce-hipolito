@@ -24,7 +24,7 @@
                     @each('livewire.admin.user-lists-role', $users, 'user','livewire.admin.empty-table')
                 </tbody>
             </table>
-            {{ $users->links() }}  
+            {{ $users->links('livewire.pagination.defaultadmin') }}
         </div>
     </div>
 </div>

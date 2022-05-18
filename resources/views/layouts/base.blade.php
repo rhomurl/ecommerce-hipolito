@@ -5,12 +5,33 @@
         <meta http-equiv="pragma" content="no-cache" />
         <meta http-equiv="cache-control" content="max-age=604800" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        @hasSection('title')
 
-            <title>@yield('title') - {{ config('app.name') }}</title>
+        <!-- Primary Meta Tags -->
+        @hasSection('title')
+        <title>@yield('title') - {{ config('app.name') }}</title>
         @else
-            <title>{{ config('app.name') }}</title>
+        <title>{{ config('app.name') }} — Buy, Pay, and Deliver</title>
         @endif
+
+        <meta name="title" content="Hipolito's Hardware — Buy, Pay, and Deliver">
+        <meta name="description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://hipolito-hardware.herokuapp.com/">
+        <meta property="og:title" content="Hipolito's Hardware — Buy, Pay, and Deliver">
+        <meta property="og:description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
+        <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1WNsTXvtHYWGZzAn8loKX2sKxQkTcahGC">
+
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://hipolito-hardware.herokuapp.com/">
+        <meta property="twitter:title" content="Hipolito's Hardware — Buy, Pay, and Deliver">
+        <meta property="twitter:description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
+        <meta property="twitter:image" content="https://drive.google.com/uc?export=view&id=1WNsTXvtHYWGZzAn8loKX2sKxQkTcahGC">
+
+        
 
         <!-- Favicon -->
 		<link href="{{ url(asset('favicon.ico')) }}" rel="shortcut icon" type="image/x-icon">
@@ -52,23 +73,24 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HEJL7HKKM"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-8HEJL7HKKM');
+        </script>
     </head>
 
-    <body>
-        
-        <!-- ========================= FOOTER ========================= -->
+    <body>     
         <x-user-header/>
-        <!-- ========================= FOOTER END // ========================= -->
-            
-        <!-- ========================= SECTION MAIN  ========================= -->
+        
         @yield('body')
-        <!-- ========================= SECTION END // ========================= -->
-    
-        <!-- ========================= FOOTER ========================= -->
         <x-user-footer/>
-        <!-- ========================= FOOTER END // ========================= -->
-        
-        
+
         @yield('scripts')
         
         

@@ -31,7 +31,7 @@
         <figure class="card bg">
             <div class="p-3">
                  <h4 class="title">{{ $this->order_count }}</h4>
-                <span>Total Amount Ordered</span>
+                <span></span>
             </div>
         </figure>
         <figure class="card bg">

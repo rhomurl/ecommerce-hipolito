@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Shop\Checkout;
 
 use DB;
 use App\Traits\ModelComponentTrait;
-//use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use App\Notifications\OrderNotification;
 
@@ -24,7 +24,7 @@ use Livewire\Component;
 class Step1 extends Component
 {
     protected $listeners = ['updateAddress' => 'render'];
-    //use LivewireAlert;
+    use LivewireAlert;
     use ModelComponentTrait;
     public $showForm = false;
     public $barangays, $barangay;
@@ -37,7 +37,7 @@ class Step1 extends Component
     $entry_street_address, 
     $entry_phonenumber, 
     $entry_postcode,
-    $shipping_method,
+    $shipping_type,
     $setAddr;
 
     public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
@@ -63,8 +63,30 @@ class Step1 extends Component
 
     public function render()
     {
-        
-       
+        if($this->address_book_id){
+            $address = AddressBook::findOrFail($this->address_book_id);
+            if($address->barangay->city->id == 41014)
+            {
+                if($this->shipping_type == 'express'){
+                    $this->shipping = 150;
+                }
+                else if($this->shipping_type == 'standard'){
+                    $this->shipping = 100;
+                }
+            }
+            else if($address->barangay->city->id == 41031)
+            {
+                if($this->shipping_type == 'express'){
+                    $this->shipping = 200;
+                }
+                else if($this->shipping_type == 'standard'){
+                    $this->shipping = 150;
+                }
+            }
+
+        }
+
+
 
         $addresses = AddressBook::with('barangay.city')
         ->where('user_id', Auth::id())
@@ -94,7 +116,7 @@ class Step1 extends Component
 
          $this->totalCart = $cartItems->sum('total');
          $this->totalCartWithoutTax = $cartItems->sum('total') + $this->shipping;
-         $this->grandTotal = $this->totalCartWithoutTax;
+         $this->grandTotal = $this->totalCartWithoutTax + $this->shipping;
 
         return view('livewire.shop.checkout.step1', compact('addresses', 'cartItems'))->layout('layouts.user');
     }
@@ -116,6 +138,17 @@ class Step1 extends Component
         try{
             $this->resetValidation();
             DB::transaction(function () use ($cart) {
+
+                
+                if($this->shipping_type == "rush")
+                {
+
+                    //$shipping
+                }
+                else if($this->shipping_type == "rush")
+                {
+
+                }
                 /*
                 $order = Order::create([
                     'user_id' => auth()->id(),
@@ -134,6 +167,8 @@ class Step1 extends Component
                 $order->discount = $this->discount;
                 $order->shippingfee = $this->shipping;
                 $order->total = $this->grandTotal - $this->discount;
+                $order->shipping_type = $this->shipping_type;
+
                 if($this->payment_mode == 'cod'){
                     $order->status = 'ordered';
                 }
@@ -233,7 +268,8 @@ class Step1 extends Component
 
     public function cancel()
     {
-        $this->showForm = false;
+        
+        return redirect()->to('/checkout'); 
     }
 
     public function showAddr()
@@ -256,8 +292,13 @@ class Step1 extends Component
             'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
         ]);
 
+        if($addrcount == 5){
+            return $this->error_message = 'Please remove one of your address first!';
+        }
+
         try{
-            
+            $this->resetValidation();
+            DB::transaction(function () use ($addrcount) {
             $c_address = AddressBook::create([
                 'user_id' => Auth::user()->id,
                 'entry_company' => $this->entry_company,
@@ -270,7 +311,7 @@ class Step1 extends Component
             ]);
 
         
-            if($addrcount == 0 || $setAddr == 1){
+            if($addrcount == 0 || $this->setAddr == 1){
                 $user = User::find(Auth::user()->id);
                 $user->address_book_id = $c_address->id;
                 $user->save();
@@ -289,12 +330,27 @@ class Step1 extends Component
             $this->cities = collect();
 
             //session()->flash('message', 'Address Created Successfully');
-            
-            $this->emit('updateAddress');
-            $this->showForm = false;
-            return redirect()->route('checkout.step1');
+            return redirect()->to('/checkout'); 
+            //$this->emit('updateAddress');
+            //$this->showForm = false;
+        });
         }  catch (\Exception $exception){
             $this->error_message = "Something went wrong";
         }
     }
+
+    public function deleteAddr($id)
+    {
+        try{
+            AddressBook::findOrFail($id)->delete();
+            
+            $user = User::find(Auth::user()->id);
+            $user->address_book_id = 0;
+            $user->save();
+            $this->successToast('Address Deleted Successfully!');
+        } catch(\Exception $e){
+            $this->errorAlert('This Address Cannot Be Deleted!');
+        }
+    }
+
 }

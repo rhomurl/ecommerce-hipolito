@@ -1552,3 +1552,41 @@ html[dir='rtl'] .itemside .info {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+
+/* JAVASCRIPT SCROLL EFFECT 
+header.sticky {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+*/
+.widgets-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media all and (max-width: 1100px) {
+  .brand-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+  .logo {
+    width: auto;
+  }
+  .widgets-wrap {
+    padding-top: 10px;
+  }
+}
+@media all and (max-width: 768px) {
+  .widgets-wrap {
+    padding-top: 0px;
+  }
+  .brand-wrap {
+    padding-bottom: 0px;
+  }
+}

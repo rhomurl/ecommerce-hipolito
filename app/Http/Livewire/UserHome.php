@@ -18,7 +18,8 @@ class UserHome extends Component
     public $cartProducts = [];
     
     public function mount(){
-        $this->products = Product::whereNotNull('quantity')->take(8)->get();
+        $this->products = Product::whereNotNull('quantity')->take(12)->get();
+        $this->l_products = Product::whereNotNull('quantity')->take(6)->orderBy('id', 'DESC')->get();
         $this->banners = Banner::take(5)->get();
     }
 

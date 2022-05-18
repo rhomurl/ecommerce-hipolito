@@ -32,6 +32,7 @@ class GeneratePDF extends Controller
             'transDate' => $order->created_at->format('m/d/Y'),
             'generatedAt' => Carbon::now()->format('M d Y h:i A'),
             'subtotal' => $order->subtotal,
+            'shippingfee' => $order->shippingfee,
             'total' => $order->total,
         ];
 

@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'mondo-skimcoat-20kg',
                 //'s_description' => 'Superior strength and durability.',
                 'description' => 'Provides outstanding adhesion to water based paint system.',
-                'selling_price' => '460.00',
+                'selling_price' => '470.00',
 
                 'quantity' => '50',
                 'image' => 'images/products/' . 1 .'.jpg',
@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'ultra-fino-skimcoat-20kg',
                 //'s_description' => 'Concrete surface finisher.',
                 'description' => 'UltraFino Skimcoat cement-based powder for thin plastering applications. When mixed with wate, the smooth creamy consistency makes it easy to correct surface imperfections prior to painting.',
-                'selling_price' => '420.00',
+                'selling_price' => '430.00',
 
                 'quantity' => '38',
                 'image' => 'images/products/' . 2 .'.jpg',
@@ -47,7 +47,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'standard-brass-padlock-50mm',
                 //'s_description' => 'Is suited for indoor or outdoor use.',
                 'description' => 'Constructed with brass pins, stainless steel springs and a double locking hardened steel shackle.',
-                'selling_price' => '840.00',
+                'selling_price' => '850.00',
 
                 'quantity' => '38',
                 'image' => 'images/products/' . 3 .'.jpg',
@@ -60,7 +60,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'philips-led-10w',
                 //'s_description' => 'Philips interfaced option provide an optimal light and comfort.',
                 'description' => 'Improve your home’s atmosphere with Philips high-performance and energy-saving light bulbs.',
-                'selling_price' => '159.00',
+                'selling_price' => '169.00',
 
                 'quantity' => '10',
                 'image' => 'images/products/' . 4 .'.jpg',
@@ -73,7 +73,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'tokina-gas-regulator',
                 //'s_description' => 'With adjustable pressure knob with gauge and anti explode.',
                 'description' => 'With Anti Explode Safety Feature and Adjustable Flow Control Gasul Ball Type Fitting for a more secure and easier installation. Denmark Technology and Quality Guaranteed.',
-                'selling_price' => '240.00',
+                'selling_price' => '250.00',
 
                 'quantity' => '5',
                 'image' => 'images/products/' . 5 .'.jpg',
@@ -86,7 +86,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'marine-plywood-1-4',
                 //'s_description' => 'it is made of poplar wood which has medium low capacity, water resistant and ideal for boat making, home building and furniture making.',
                 'description' => 'Manufactured from softwoods (such as Douglas fir, pine, and redwood), hardwoods (such as ash, maple, and mahogany), or a combination of both. The timber used to make plywood is prepared by steaming or dipping in hot water. It is then peeled into thin plies of between 1-4 mm by a lathe machine.',
-                'selling_price' => '360.00',
+                'selling_price' => '370.00',
 
                 'quantity' => '92',
                 'image' => 'images/products/' . 6 .'.jpg',
@@ -99,7 +99,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'marine-plywood-3-4',
                 //'s_description' => 'Waterproof marine grade plywood for building and construction.',
                 'description' => 'Manufactured from softwoods (such as Douglas fir, pine, and redwood), hardwoods (such as ash, maple, and mahogany), or a combination of both. The timber used to make plywood is prepared by steaming or dipping in hot water. It is then peeled into thin plies of between 1-4 mm by a lathe machine.',
-                'selling_price' => '987.00',
+                'selling_price' => '999.00',
 
                 'quantity' => '64',
                 'image' => 'images/products/' . 7 .'.jpg',
@@ -112,7 +112,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'marine-plywood-sanepa-9mm',
                 //'s_description' => 'Its quality is known to withstand any weather condition makes it the ideal plywood for boat-making, home building and furniture-making.',
                 'description' => 'Santa Clara Marine Plywood is produced locally from two manufacturing plants in Davao and Agusan. Each sheet of Santa Clara Marine Plywood carries the distinct quality seal after passing SMWPI’s stringent quality assurances process. This ensures all products delivered to local and international clients have met quality and worksmanship standards.',
-                'selling_price' => '1600.00',
+                'selling_price' => '1610.00',
 
                 'quantity' => '105',
                 'image' => 'images/products/' . 8 .'.jpg',
@@ -125,7 +125,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'marine-plywood-hardflex-4x8-12mm',
                 //'s_description' => 'Full eucalytpus hardwood, best grade.',
                 'description' => 'Marine hardflex Plywood carries the distinct quality seal after passing SMWPI’s stringent quality assurances process. This ensures all products delivered to local and international clients have met quality and worksmanship standards.',
-                'selling_price' => '1586.00',
+                'selling_price' => '1590.00',
 
                 'quantity' => '87',
                 'image' => 'images/products/' . 9 .'.jpg',
@@ -138,7 +138,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'marine-plywood-crocodile-1-2',
                 //'s_description' => 'Best phenolic board, film faced plywood 1/2 phenolic board crocodile phenolic.',
                 'description' => 'Santa Clara Marine Plywood is produced locally from two manufacturing plants in Davao and Agusan. Each sheet of Santa Clara Marine Plywood carries the distinct quality seal after passing SMWPI’s stringent quality assurances process. This ensures all products delivered to local and international clients have met quality and worksmanship standards.',
-                'selling_price' => '642.00',
+                'selling_price' => '655.00',
 
                 'quantity' => '70',
                 'image' => 'images/products/' . 10 .'.jpg',
@@ -151,7 +151,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-pipe-black-82mm',
                 //'s_description' => 'PVC Pipe is used to create an access point for pipe cleaning and inspection in existing upvc soil pipe.',
                 'description' => 'PVC Pipe is used for water supply and drainage, high quality. PVC pipe extrusion line with new technology, stable operation.',
-                'selling_price' => '687.00',
+                'selling_price' => '699.00',
 
                 'quantity' => '25',
                 'image' => 'images/products/' . 11 .'.jpg',
@@ -164,7 +164,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-orange-clamp-1-2',
                 //'s_description' => 'This is used to secure 1/2" sized electrical pipes on concrete /wood surfaces.',
                 'description' => 'A pipe clamp is a type of clamp often employed in woodworking, piping or cabinet shops. When referring to woodwork or cabinet shops, pipe clamps are usually composed of commercially manufactured clamp heads or "jaws" and a length of common threaded pipe. The capacity of the clamp is determined by the length of the pipe used. When referring to piping, pipe clamps are used to connect the pipe to the pipe hanger assembly.',
-                'selling_price' => '10.00',
+                'selling_price' => '20.00',
 
                 'quantity' => '25',
                 'image' => 'images/products/' . 12 .'.jpg',
@@ -177,7 +177,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-elbow-90',
                 //'s_description' => 'PVC elbow 90 degrees are the most common type ofelbowand used when space is available and flow is more critical.',
                 'description' => 'PVC elbow 90 degrees is used to connect a piece of pipe with a threaded fitting to form an angle of 90 degrees. Also, it allows the user to connect two different size pipes at a 90-degree angle when one pipe has a smooth exterior and the other has a male pipe thread.',
-                'selling_price' => '40.00',
+                'selling_price' => '50.00',
 
                 'quantity' => '139',
                 'image' => 'images/products/' . 13 .'.jpg',
@@ -190,7 +190,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'neltex-clean-out',
                 //'s_description' => 'Extremely tough, suitable for long-term use.',
                 'description' => 'With its ultra high resistance to impact damage and ultra strong tensile strength, it can withstand adverse condition. It exceeds the BPS standard by at least 7 times higher. Ideal for the more discerning users, the ULTIMA SUPRA SERIES provide ultra high impact strength.',
-                'selling_price' => '550.00',
+                'selling_price' => '560.00',
 
                 'quantity' => '28',
                 'image' => 'images/products/' . 14 .'.jpg',
@@ -203,7 +203,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-blue-coupling-1-2',
                 //'s_description' => 'This is Commonly used in laying pipes for potable water supply.',
                 'description' => 'Couplings are one of the most simple (and inexpensive) types of PVC fittings. They are a small part that connects or "couples" one part to another, usually permanently. They can connect pipe to pipe and pipe to fitting.',
-                'selling_price' => '65.00',
+                'selling_price' => '70.00',
 
                 'quantity' => '30',
                 'image' => 'images/products/' . 15 .'.jpg',
@@ -216,7 +216,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'firefly-weatherproof-socket',
                 //'s_description' => 'Firefly Rubber Weatherproof Socket Receptacle E27 for Indoor and Outdoor 4A 250V.',
                 'description' => 'Firefly Weatherproof Socket is 4A 250V Weatherproof Socket used indoors or outdoors to create string of lights.',
-                'selling_price' => '55.00',
+                'selling_price' => '65.00',
 
                 'quantity' => '40',
                 'image' => 'images/products/' . 16 .'.jpg',
@@ -229,7 +229,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'universal-socket-adaptor',
                 //'s_description' => 'Universal World Wide Travel Charger Adapter Plug.',
                 'description' => 'Universal Socket Adaptor can connect your electrical appliance everywhere around the world. The insides of Omni adapters are made of copper. Which make them durable and highly conductive.',
-                'selling_price' => '65.00',
+                'selling_price' => '75.00',
 
                 'quantity' => '50',
                 'image' => 'images/products/' . 17 .'.jpg',
@@ -242,7 +242,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'swing-type-plug',
                 //'s_description' => 'Insides of Omni electrical plugs are made of copper.',
                 'description' => 'Conforms to IEC Standards. With grounding terminal. Withstands over 5000 outlet operations, High impact and mechanical strength, cast aluminum enclosure.',
-                'selling_price' => '76.00',
+                'selling_price' => '87.00',
 
                 'quantity' => '35',
                 'image' => 'images/products/' . 18 .'.jpg',
@@ -255,7 +255,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'royu-1-gang-outlet',
                 //'s_description' => 'Power connection devices used in domestic and light commercial environments.',
                 'description' => 'Royu Classic Series Plate 1 gang, blank and with cover.Weather-Proof Plate Cover Slim Type (RCP6)',
-                'selling_price' => '115.00',
+                'selling_price' => '125.00',
 
                 'quantity' => '65',
                 'image' => 'images/products/' . 19 .'.jpg',
@@ -268,7 +268,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'royu-2-gang-outlet-dark-gray',
                 //'s_description' => 'Power connection devices used in domestic and light commercial environments.',
                 'description' => 'Royu Classic Series Plate 2 gang, blank and with cover.Weather-Proof Plate Cover Slim Type (RCP6)',
-                'selling_price' => '230.00',
+                'selling_price' => '240.00',
 
                 'quantity' => '53',
                 'image' => 'images/products/' . 20 .'.jpg',
@@ -281,7 +281,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'stikwel-1l',
                 //'s_description' => 'Original 1 liter Water-based wood glue.',
                 'description' => 'Low VOC water-based wood glue, Bond is stronger than the Wood. Also good for most porous materials or substrates like paper, textile, ceramic tiles (in dry areas), MDF (Medium Density Fiberboard), particle board, concrete (non-structural), etc.',
-                'selling_price' => '170.00',
+                'selling_price' => '180.00',
 
                 'quantity' => '30',
                 'image' => 'images/products/' . 21 .'.jpg',
@@ -294,7 +294,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'stikwel-1-2l',
                 //'s_description' => 'Original 1/2 liter Water-Based wood glue.',
                 'description' => 'Low VOC water-based wood glue, Bond is stronger than the Wood. Also good for most porous materials or substrates like paper, textile, ceramic tiles (in dry areas), MDF (Medium Density Fiberboard), particle board, concrete (non-structural), etc.',
-                'selling_price' => '95.00',
+                'selling_price' => '105.00',
 
                 'quantity' => '30',
                 'image' => 'images/products/' . 22 .'.jpg',
@@ -307,7 +307,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-wye-orange-3x2',
                 //'s_description' => 'A Y-shaped fitting with three openings used to create branch lines.',
                 'description' => 'PVC wye fittings are designed to offer branch-like connectivity in a pipe line. They are similar in structure to a tee, but with the top branch protruding at a 45 degree angle instead of perpendicular to the other two outlets. We carry standard, reducing and double wye fittings in schedule 40 PVC, and have all sizes.',
-                'selling_price' => '560.00',
+                'selling_price' => '580.00',
 
                 'quantity' => '50',
                 'image' => 'images/products/' . 23 .'.jpg',
@@ -320,7 +320,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-tee-1-2',
                 //'s_description' => 'PVC tee is a t-shaped pipe fitting.',
                 'description' => 'PVC tee has good quality of high acid resistance alkali resistance chemicals resistance. widely used in water supply, chemical industry, water treatment, enviromental protection.',
-                'selling_price' => '148.00',
+                'selling_price' => '159.00',
 
                 'quantity' => '125',
                 'image' => 'images/products/' . 24 .'.jpg',
@@ -333,7 +333,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'pvc-elbow-45',
                 //'s_description' => 'Elbows used to change the angle or direction of the pipe run. Most commonly in 90 degrees and 45 degree turns.',
                 'description' => 'This is used for plumbing decoration, homes, bathrooms, agricultural gardens, temperature heating systems, irrigation plumbing, solar water heaters, etc.',
-                'selling_price' => '36.00',
+                'selling_price' => '47.00',
 
                 'quantity' => '225',
                 'image' => 'images/products/' . 25 .'.jpg',
@@ -346,7 +346,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'prestone-super-coolant-1l',
                 //'s_description' => 'Preston radiator super coolant helped the vehicle(s) engines last longer with improved technology to allow longer lifespan.',
                 'description' => 'Preston with patented formula to prevent corrosion, It helps the vehicle(s) cooling system work more efficiently and can last longer. Preston radiator super coolant compatible with all brands and coolant colors, It can be used in all brands and models of cars or light trucks.',
-                'selling_price' => '1686.00',
+                'selling_price' => '1697.00',
 
                 'quantity' => '15',
                 'image' => 'images/products/' . 26 .'.jpg',
@@ -359,7 +359,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'stanley-padlock-25mm',
                 //'s_description' => 'Standard shuckle padlocks are suited for both indoor or outdoor use.',
                 'description' => 'These locks deliver strength,security and peace of mind for residential and commercial application.',
-                'selling_price' => '139.00',
+                'selling_price' => '149.00',
 
                 'quantity' => '30',
                 'image' => 'images/products/' . 27 .'.jpg',
@@ -372,7 +372,7 @@ class ProductSeeder extends Seeder
                 'slug' => 'steel-bar-stainless-round-3-4',
                 //'s_description' => 'Round stainless steel bar is a steel bar or mesh of steel used as a tension device in reinforced concrete.',
                 'description' => 'Stainless steel reinforcement bars or rebars are used to improve the tensile strength of the concrete, since concrete is very weak in tension, but is strong in compression.',
-                'selling_price' => '162.00',
+                'selling_price' => '172.00',
 
                 'quantity' => '73',
                 'image' => 'images/products/' . 28 .'.jpg',

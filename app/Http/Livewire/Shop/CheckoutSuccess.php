@@ -28,6 +28,6 @@ class CheckoutSuccess extends Component
             redirect()->route('home');
         }
         
-        return view('livewire.shop.checkout-success', compact('order'));
+        return view('livewire.shop.checkout-success', compact('order'))->layout('layouts.user');
     }
 }

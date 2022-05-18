@@ -31,7 +31,13 @@
     <h2 class="title mt-3">{{ $this->product->name }}</h2>
     
     <div class="rating-wrap my-3">
-        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{ $this->productSold ? $this->productSold : "0" }} products sold </small>
+        <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 
+          @if(!$this->productSold)
+            0 product sold
+          @else
+            {{ $this->productSold }} products sold 
+          @endif
+        </small>
     </div> <!-- rating-wrap.// -->
     
     <div class="mb-3"> 
@@ -39,12 +45,12 @@
         {{--<span class="text-muted">USD 562.65 incl. VAT</span>--}}
     </div> <!-- price-detail-wrap .// -->
     
-    <p>Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod
+    {{--<p>Compact sport shoe for running, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
     consequat. Duis aute irure dolor. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat </p>
+    consequat </p>--}}
     
     
     <dl class="row">
@@ -133,37 +139,24 @@
             
             <aside class="col-md-4">
         
-                <div class="box">
+            <div class="box">
         
-            <h5 class="title-description">Related products</h5>
+            <h5 class="title-description">Products you may like</h5>
               
+            @forelse($random_products as $random_product)
+              <article class="media mb-3">
+                <a href="{{ route('product.details', $random_product->slug) }}">
+                  <img src="{{ $this->getProductURL($random_product->image) }}" onerror="this.src=''" class="border img-sm mr-3">
+                </a>
+                <div class="media-body">
+                  <h6 class="mt-0"><a href="{{ route('product.details', $random_product->slug) }}">{{ $random_product->name }}</a></h6>
+                  <p class="mb-2"> {{ Str::limit($random_product->description, 90) }}</p>
+                </div>
+              </article>
+            @empty
+            @endforelse
         
-            <article class="media mb-3">
-              <a href="#"><img class="img-sm mr-3" src="images/posts/3.jpg"></a>
-              <div class="media-body">
-                <h6 class="mt-0"><a href="#">How to use this item</a></h6>
-                <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-              </div>
-            </article>
-        
-            <article class="media mb-3">
-              <a href="#"><img class="img-sm mr-3" src="images/posts/2.jpg"></a>
-              <div class="media-body">
-                <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-                <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-              </div>
-            </article>
-        
-            <article class="media mb-3">
-              <a href="#"><img class="img-sm mr-3" src="images/posts/1.jpg"></a>
-              <div class="media-body">
-                <h6 class="mt-0"><a href="#">New tips and tricks</a></h6>
-                <p class="mb-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin </p>
-              </div>
-            </article>
-        
-        
-                
+
             </div> <!-- box.// -->
             </aside> <!-- col.// -->
             
@@ -174,61 +167,28 @@
                 
                 <h5 class="title-description">Related products</h5>
                 <div class="row">
+                  @forelse($related_products as $related_product)
                     <div class="col-md-3">
                       <figure class="itemside mb-2">
                         <div class="aside">
-                          <a href="#">
-                            <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
+                          <a href="{{ route('product.details', $related_product->slug) }}">
+                            <img src="{{ $this->getProductURL($related_product->image) }}" onerror="this.src=''" class="border img-sm">
                           </a>
                           </div>
                         <figcaption class="info align-self-center">
-                          <a href="#" class="title">Argentina Corned Beef 150g</a>
-                          <strong class="price">₱ 40.00</strong>
+                          <a href="{{ route('product.details', $related_product->slug) }}" class="title">{{ $related_product->name }}</a>
+                          <strong class="price">₱ {{ $related_product->selling_price }}</strong>
                         </figcaption>
                       </figure>
                   </div>
+                  @empty
 
-                  <div class="col-md-3">
-                    <figure class="itemside mb-2">
-                      <div class="aside">
-                        <a href="#">
-                          <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
-                        </a>
-                        </div>
-                      <figcaption class="info align-self-center">
-                        <a href="#" class="title">Argentina Corned Beef 150g</a>
-                        <strong class="price">₱ 40.00</strong>
-                      </figcaption>
-                    </figure>
-                </div>
+                  @endforelse
 
-                <div class="col-md-3">
-                  <figure class="itemside mb-2">
-                    <div class="aside">
-                      <a href="#">
-                        <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
-                      </a>
-                      </div>
-                    <figcaption class="info align-self-center">
-                      <a href="#" class="title">Argentina Corned Beef 150g</a>
-                      <strong class="price">₱ 40.00</strong>
-                    </figcaption>
-                  </figure>
-              </div>
+      
 
-              <div class="col-md-3">
-                <figure class="itemside mb-2">
-                  <div class="aside">
-                    <a href="#">
-                      <img src="{{ $this->getProductURL($product->image) }}" onerror="this.src=''" class="border img-sm">
-                    </a>
-                    </div>
-                  <figcaption class="info align-self-center">
-                    <a href="#" class="title">Argentina Corned Beef 150g</a>
-                    <strong class="price">₱ 40.00</strong>
-                  </figcaption>
-                </figure>
-            </div>
+                
+              
 
             
 

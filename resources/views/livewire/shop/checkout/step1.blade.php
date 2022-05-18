@@ -10,6 +10,10 @@
                     
                     
                     <div class="card-body checkout_card_body">
+                        @if($this->error_message)
+                            {{ $this->error_message }}
+                        @endif
+                        
                         @if($this->showForm == false)
                             <form wire:submit.prevent="placeOrder">
                         @endif
@@ -24,10 +28,12 @@
                             {{ $address->barangay->name }},
                             {{ $address->barangay->city->name }},  
                             {{ $address->barangay->city->zip }}
+                            @if($address->id == auth()->user()->address_book_id)
+                            — <b>{{ $this->msg_add_default }}</b> 
+                            @endif
+                            [<a href="#" wire:click.prevent="deleteAddr({{$address->id}})">Delete</a>]
                             </label>
-                        @if($address->id == auth()->user()->address_book_id)
-                            — <b>{{ $this->msg_add_default }}</b>
-                        @endif
+                       
                         <br>
                         
                     @empty
@@ -46,7 +52,7 @@
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <label class="form-label checkout_form_label" for="">First Name</label>
-                                <input wire:model="entry_firstname" class="form-control" type="text" placeholder="Enter first name" required>
+                                <input wire:model.lazy="entry_firstname" class="form-control" type="text" placeholder="Enter first name" required>
                                 @error('entry_firstname')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -55,7 +61,7 @@
                             </div>
                             <div class="col-6">
                                 <label class="form-label checkout_form_label" for="">Last Name</label>
-                                <input wire:model="entry_lastname" class="form-control" type="text" placeholder="Enter last name" required>
+                                <input wire:model.lazy="entry_lastname" class="form-control" type="text" placeholder="Enter last name" required>
                                 @error('entry_lastname')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -64,7 +70,7 @@
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label class="form-label checkout_form_label" for="">Company</label>
-                                <input wire:model="entry_company" class="form-control" type="text" placeholder="Enter company">
+                                <input wire:model.lazy="entry_company" class="form-control" type="text" placeholder="Enter company">
                                 @error('entry_company')
                                 <span class="text-danger">
                                     {{ $message }}
@@ -73,7 +79,7 @@
                             </div>
                             <div class="col-lg-6 mb-3">
                                 <label class="form-label checkout_form_label" for="">Landmark</label>
-                                <input wire:model="entry_landmark" class="form-control" type="text" placeholder="Enter landmark">
+                                <input wire:model.lazy="entry_landmark" class="form-control" type="text" placeholder="Enter landmark">
                                 @error('entry_landmark')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -82,7 +88,7 @@
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label class="form-label checkout_form_label" for="">Street Address</label>
-                                <input wire:model="entry_street_address" class="form-control" type="text" placeholder="Enter street address" required>
+                                <input wire:model.lazy="entry_street_address" class="form-control" type="text" placeholder="Enter street address" required>
                                 @error('entry_street_address')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -111,7 +117,7 @@
                             </div>
                             <div class="col-sm-4 mb-3">
                                 <label class="form-label checkout_form_label" for="">Phone number</label>
-                                <input wire:model="entry_phonenumber" class="form-control" type="text" placeholder="Enter phone number">
+                                <input wire:model.lazy="entry_phonenumber" class="form-control" type="text" placeholder="Enter phone number">
                                 @error('entry_phonenumber')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -120,12 +126,29 @@
                             </div>
                         </div>
                         <hr class="my-4">
-                        <h5 class="card-title checkout_card_title">Shipping info</h5>
+                        
+                    
+                        <label class="form-check mb-4 checkout_form_check">
+                            <input wire:model="setAddr" value="1" class="form-check-input" type="checkbox">
+                            <span class="form-check-label">Set as default</span>
+                        </label>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                        <button wire:click.prevent="cancel" type="submit" class="btn btn-light">Cancel</button> 
+                        </form>
+                       @endif
+                   
+                    </div>
+                </article>
+
+                @if($this->showForm == false)
+                    <article class="card">
+                        <div class="card-body">
+                        <h5 class="card-title checkout_card_title">Shipping type</h5>
                         <div class="row mb-3">
                             <div class="col-lg-6 mb-3">
                                 <div class="box box-check checkout_box">
                                     <label class="form-check checkout_form_check">
-                                        <input wire:model="shipping_method" class="form-check-input" type="radio">
+                                        <input wire:model="shipping_type" value="express" class="form-check-input" type="radio">
                                         <b class="border-oncheck"></b>
                                         <span class="form-check-label">
                                             "Express delivery"
@@ -138,7 +161,7 @@
                             <div class="col-lg-6 mb-3">
                                 <div class="box box-check checkout_box">
                                     <label class="form-check checkout_form_check">
-                                        <input wire:model="shipping_method" class="form-check-input" type="radio">
+                                        <input wire:model="shipping_type" value="standard" class="form-check-input" type="radio">
                                         <b class="border-oncheck"></b>
                                         <span class="form-check-label">
                                             "Standard delivery"
@@ -162,20 +185,8 @@
                                 </div>
                             </div>--}}
                         </div>
-                    
-                        <label class="form-check mb-4 checkout_form_check">
-                            <input wire:model="setAddr" value="1" class="form-check-input" type="checkbox">
-                            <span class="form-check-label">Set as default</span>
-                        </label>
-                        <button type="submit" class="btn btn-primary">Continue</button>
-                        <button wire:click.prevent="cancel" type="submit" class="btn btn-light">Cancel</button> 
-                        </form>
-                       @endif
-                   
-                    </div>
-                </article>
-
-                @if($this->showForm == false)
+                        </div>
+                    </article>
                     <article class="card">
                         <div class="card-body">
                             <h5 class="card-title">Payment Method</h5>
@@ -261,8 +272,8 @@
                     <div class="card-body">
                         <h5 class="card-title checkout_card_title">Summary</h5>
                         <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                            <dd class="text-end">₱970.00</dd>
+                            <dt>Subtotal:</dt>
+                            <dd class="text-end">₱ {{ number_format($this->totalCart, 2) }}</dd>
                         </dl>
                         {{--<dl class="dlist-align">
                             <dt>Discount:</dt>
@@ -270,13 +281,19 @@
                         </dl>--}}
                         <dl class="dlist-align">
                             <dt>Shipping fee:</dt>
-                            <dd class="text-end">+ ₱50.00</dd>
+                            <dd class="text-end">+ ₱ 
+                                @if($this->shipping) 
+                                    {{ number_format($this->shipping, 2) }}
+                                @else
+                                    {{ number_format(0, 2) }}
+                                @endif
+                            </dd>
                         </dl>
                         <hr>
                         <dl class="dlist-align">
                             <dt>Total:</dt>
                             <dd class="text-end">
-                                <strong class="text-dark">₱{{ number_format($this->totalCart, 2) }}</strong>
+                                <strong class="text-dark">₱{{ number_format($this->grandTotal, 2) }}</strong>
                             </dd>
                         </dl>
                         <hr>
@@ -383,25 +400,6 @@
             <aside class="col-lg-4">
                 <article class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Payment form</h5>
-                        
-                            <div class="col mb-3">
-                                <label class="form-label">Name on card</label>
-                                <input type="text" class="form-control" name="username" placeholder="Ex. John Smith">
-                            </div>
-                            <div class="col mb-3">
-                                <label class="form-label">Card number</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber">
-                                    <span class="input-group-text">
-                                        <i class="fab fa-cc-visa"></i>
-                                        &nbsp;
-                                        <i class="fab fa-cc-amex"></i>
-                                        &nbsp;
-                                        <i class="fab fa-cc-mastercard"></i>
-                                    </span>
-                                </div>
-                            </div>
                             <button class="btn w-100 btn-success">Place Order</button>
                         </form>
                     </div>

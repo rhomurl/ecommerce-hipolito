@@ -25,7 +25,7 @@
                 </tbody>
             </table>
            
-                {{ $orders->links() }}
+                {{ $orders->links('livewire.pagination.defaultadmin') }}
            </div>
     </div>
 </div>

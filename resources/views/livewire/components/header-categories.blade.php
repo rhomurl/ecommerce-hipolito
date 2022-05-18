@@ -1,6 +1,5 @@
-
+<div class="col-6">
     @foreach($categories as $category)
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('category.search', $category->slug )}}">{{ $category->name }}</a>
-        </li>   
+        <a href="{{ route('category.search', $category->slug )}}">{{ $category->name }}</a>
     @endforeach
+</div>

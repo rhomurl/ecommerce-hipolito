@@ -9,7 +9,8 @@ class HeaderCategories extends Component
 {
     public function render()
     {
-        $categories = Category::limit(7)->orderBy('name', 'ASC')->get();
+        $categories = Category::limit(10)->orderBy('name', 'ASC')->get();
+       
         return view('livewire.components.header-categories', compact('categories'));
     }
 }

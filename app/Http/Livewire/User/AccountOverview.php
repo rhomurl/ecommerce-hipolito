@@ -18,6 +18,7 @@ class AccountOverview extends Component
         $this->order_processing_count = Order::where('user_id', Auth::id())
             ->where('status', 'ordered')
             ->count();
+        $this->total_delivery = 
 
         
         $addresses = AddressBook::with('barangay.city')
