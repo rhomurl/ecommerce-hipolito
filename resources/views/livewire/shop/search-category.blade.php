@@ -142,7 +142,7 @@
     @endforelse
     
     
-    {{ $results->links() }}
+    {{ $results->links('livewire.pagination.defaultuser') }}
     
     
         </main> <!-- col.// -->

@@ -11,7 +11,7 @@ use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-//use App\Notifications\OrderConfirmation;
+use App\Notifications\OrderNotification;
 
 //use Illuminate\Notifications\Notifiable;
 use Livewire\Component;
@@ -61,24 +61,33 @@ class OrderDetails extends Component
             );
         }
 
-        /*if($this->order_status == 'otw'){
+        if($this->order_status == 'otw'){
             $order = Order::findorFail($this->order_id);
             $user = User::where('id', $order->user_id)->first();
         
+            if($order->transaction->mode == 'cod')
+            {
+                $msg_payment = " Kindly prepare an amount of " . number_format($order->total, 2) . " PHP.";
+            }
+            else if($order->transaction->mode == 'paypal')
+            {
+                $msg_payment = ' Have someone to receive your order.';
+            }
             $orderData = [
                 'greeting' => 'You order is on the way!',
-                'name' => 'Hello ' . $user->firstname . ',',
-                'body' => ' We are glad that your order #' . $order->id . ' ordered on ' . $order->created_at->format('F j Y h:i A') . ' is on the way. Kindly prepare an amount of '. $order->total .' PHP and your payment method is Cash on Delivery. Thank you for choosing our store!' ,
+                'name' => 'Hello ' . $user->name . ',',
+                'body' => ' We are glad that your order #' . $order->id . ' ordered on ' . $order->created_at->format('F j Y h:i A') . ' is on the way.' . $msg_payment .  ' Thank you again for choosing our store!' ,
                 'orderText' => 'View Order',
                 'orderDetails' => [
                     'id' => $order->id . " - On The Way",
                 ],
-                'url' => url(route('user.order.details', $order->id )),
+                'url' => url(route('user.order.details', $order->uuid )),
                 'thankyou' => ''
             ];
 
-            $user->notify(new OrderConfirmation($orderData));
-        }*/
+            $user->notify(new OrderNotification($orderData));
+        }
+
         $this->alert('success', 'Order Updated Successfully', [
             'position' => 'center',
             'timer' => '1500',

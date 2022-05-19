@@ -23,10 +23,10 @@
                         <h6 class="text-xs dark:text-gray-100 font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light">
                             Total Sales
                         </h6>
-                        <span class="text-xl font-semibold">₱{{ $this->trev_current_count }}</span>
-                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
+                        <span class="text-xl font-semibold">₱{{ number_format($this->trev_current_count, 2) }}</span>
+                        {{--<span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
                             +{{ round($this->rev_percent_change, 2) }}% 
-                        </span>
+                        </span>--}}
                     </div>
                     <div>
                         <span>
@@ -49,9 +49,9 @@
                             Registered Users
                         </h6>
                         <span class="text-xl font-semibold">{{ $this->user_current_count }}</span>
-                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
+                        {{--<span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
                             +{{ round($this->user_percent_change, 2) }}%
-                        </span>
+                        </span>--}}
                     </div>
                     <div>
                         <span>
@@ -69,9 +69,9 @@
                             Orders
                         </h6>
                         <span class="text-xl font-semibold">{{ $this->totalOrders }}</span>
-                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
+                        {{--<span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
                             +{{ round($this->order_percent_change, 2) }}%
-                        </span>
+                        </span>--}}
                     </div>
                     <div>
                         <span>
@@ -86,12 +86,12 @@
                 <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100">
                     <div>
                         <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 dark:text-gray-100 uppercase dark:text-primary-light">
-                            Tickets
+                            Products
                         </h6>
-                        <span class="text-xl font-semibold">20,516</span>
-                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
+                        <span class="text-xl font-semibold">{{ $this->registered_products->count() }}</span>
+                        {{--<span class="inline-block px-2 py-px ml-2 text-xs text-green-500 dark:bg-green-600 dark:text-white bg-green-100 rounded-md">
                             +3.1%
-                        </span>
+                        </span>--}}
                     </div>
                     <div>
                         <span>

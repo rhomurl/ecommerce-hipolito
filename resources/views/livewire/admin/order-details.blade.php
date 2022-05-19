@@ -22,9 +22,9 @@
     Back to Orders
 </a>
 
-<a href="{{ route('admin.genPDF', $order->uuid) }}" class="mb-3">
+{{--<a href="{{ route('admin.genPDF', $order->uuid) }}" class="mb-3">
     Get Invoice
-</a>
+</a>--}}
     <div class="grid gap-6 mb-8 md:grid-cols-2">
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -60,7 +60,7 @@
             <p class="text-gray-600 dark:text-gray-400">
                 <b>Subtotal:</b> ₱ {{ $order->subtotal }}<br>
                 <b>Shipping:</b> ₱ {{ $order->shippingfee }} <br>
-                <b>Discount:</b> ₱ {{ $order->discount }}<br>
+                {{--<b>Discount:</b> ₱ {{ $order->discount }}<br>--}}
                 <b>Order Total:</b> ₱ {{ $order->total }}<br><br>
            
             Order Status:  

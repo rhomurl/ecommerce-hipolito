@@ -55,10 +55,16 @@
     
     <dl class="row">
       <dt class="col-sm-3">Brand</dt>
-      <dd class="col-sm-9"><a href="#">{{ $this->product->brand->name }}</a></dd>
+      <dd class="col-sm-9"><a href="{{ route('brand.search', $this->product->brand->slug) }}">{{ $this->product->brand->name }}</a></dd>
     
       <dt class="col-sm-3">Availability</dt>
-      <dd class="col-sm-9">In Stock</dd>
+      <dd class="col-sm-9">
+        @if($this->product->quantity)
+          In Stock
+        @else
+          Out of Stock
+        @endif
+      </dd>
     </dl>
     
         <div class="form-row mt-4">

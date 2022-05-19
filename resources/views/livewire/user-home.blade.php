@@ -156,7 +156,7 @@
                 <h3>Want to browse all products? </h3>
                 <p>Access all the products you needed</p>
             </div>
-            <div class="mt-3 mt-md-0"><a href="" class="btn btn-outline-light">All Products</a></div>
+            <div class="mt-3 mt-md-0"><a href="{{ route('products.all') }}" class="btn btn-outline-light">All Products</a></div>
         </article>
     </section>
     <!-- =============== SECTION BANNER .//END =============== -->

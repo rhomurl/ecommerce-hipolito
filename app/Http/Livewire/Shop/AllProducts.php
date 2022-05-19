@@ -5,35 +5,26 @@ namespace App\Http\Livewire\Shop;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Traits\ModelComponentTrait;
 use App\Models\Product;
-use App\Models\Brand;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 use Livewire\Component;
 
-class SearchBrand extends Component
+class AllProducts extends Component
 {
     use LivewireAlert;
     use WithPagination;
     use ModelComponentTrait;
 
-    public $slug;
     public $perpage;
-
-    public function mount($slug){
-        $this->slug = $slug;
-    }
 
     public function render()
     {
-        $brand_id = Brand::select('id')->where('slug', '=', $this->slug)->firstOrFail();
-        $this->brandname = Brand::select('name')->where('slug', '=', $this->slug)->firstOrFail();
-        $results = Product::where('brand_id', $brand_id->id);
-        
+        $results = Product::whereNotNull('quantity');
         $resultCount = $results->count();
         $results = $results->paginate($this->perpage);
 
-        return view('livewire.shop.search-brand', compact('results', 'resultCount'))->layout('layouts.user');
+        return view('livewire.shop.all-products', compact('results', 'resultCount'))->layout('layouts.user');
     }
 
     public function addToCart($productId)

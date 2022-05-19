@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
 
-
+Route::get('/products/all', Shop\AllProducts::class)->name('products.all');
 Route::get('/product/{slug}', Shop\ProductDetails::class)->name('product.details');
 Route::get('/search/{sdata}', Shop\SearchResult::class)->name('product.search');
 Route::get('/search/category/{slug}', Shop\SearchCategory::class)->name('category.search');
@@ -76,7 +76,8 @@ Route::get('/cart', Shop\ShoppingCart::class)->middleware('auth')->name('cart');
 
 Route::get('/shipping-policy', Shop\ShippingPolicy::class)->name('shipping.policy');
 Route::get('/about-us', Shop\AboutUs::class)->name('about');
-
+Route::get('/terms-of-service', Shop\TermsofService::class)->name('terms-service');
+Route::get('/privacy-policy', Shop\PrivacyPolicy::class)->name('privacy-policy');
 
 Route::get('/checkout/success/{id}', Shop\CheckoutSuccess::class)->name('checkout.success');
 /*

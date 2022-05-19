@@ -34,6 +34,8 @@
                 On The Way
             @elseif($order->status == 'processing')
                 Processing    
+            @elseif($order->status == 'cancelled')
+                Cancelled    
             @else
                 {{ $order->status }}
             @endif

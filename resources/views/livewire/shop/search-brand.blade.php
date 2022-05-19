@@ -6,7 +6,7 @@
         <div class="card-body">
             <ol class="breadcrumb float-left">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item">Category</li>
+                <li class="breadcrumb-item">Brand</li>
                 <li class="breadcrumb-item active">{{ $this->brandname->name }}</li>
             </ol>
         </div> <!-- card-body .// -->
@@ -142,7 +142,7 @@
     @endforelse
     
     
-    {{ $results->links() }}
+    {{ $results->links('livewire.pagination.defaultuser') }}
     
     
         </main> <!-- col.// -->
