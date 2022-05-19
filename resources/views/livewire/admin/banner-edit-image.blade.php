@@ -7,9 +7,9 @@
     <x-slot name="content">
         <div class="px-4 py-3 mb-8 bg-white rounded-lg">
             <!-- Invalid input -->
-            @if($this->image)
+            {{--@if($this->image)
                 <img src="{{ $this->getProductURL($this->image) }}" height="50" width="100"/>
-            @endif
+            @endif--}}
             <label class="block mt-4 text-sm">
                 <span class="text-gray-700">
                     Image

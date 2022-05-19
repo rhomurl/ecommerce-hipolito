@@ -104,6 +104,7 @@
                              </a>
                          </li>
                     </ul>
+                    @role('super-admin')
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.managerole' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
@@ -114,7 +115,8 @@
                                  <span class="ml-4">Role Management</span>
                              </a>
                          </li>
-                    </ul>                   
+                    </ul>          
+                    @endrole         
                     <ul>
                         <li class="relative px-6 py-3">
                            <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.orders' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
@@ -126,7 +128,7 @@
                             </a>
                         </li>
                     </ul>
-                    <ul>
+                    {{--<ul>
                         <li class="relative px-6 py-3">
                            <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.vouchers' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                             <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.vouchers' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.vouchers') }}">
@@ -136,7 +138,7 @@
                                 <span class="ml-4">Vouchers</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul>--}}
                     
                     <div class="px-6 my-6">
                         <form method="POST" action="{{ route('logout') }}">
@@ -262,6 +264,7 @@
                             </a>
                         </li>
                     </ul>
+                    @role('super-admin')
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.managerole' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
@@ -273,6 +276,7 @@
                             </a>
                         </li>
                     </ul>
+                    @endrole
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.orders' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
@@ -284,7 +288,7 @@
                             </a>
                         </li>
                     </ul>
-                    <ul>
+                    {{--<ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.vouchers' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
                             <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.vouchers' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.vouchers') }}">
@@ -294,7 +298,7 @@
                                 <span class="ml-4">Vouchers</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul>--}}
 
                     <div class="px-6 my-6">
                         <form method="POST" action="{{ route('logout') }}">

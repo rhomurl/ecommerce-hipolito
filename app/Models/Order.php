@@ -28,6 +28,7 @@ class Order extends Model
         'total',
         'status',
         'uuid',
+        'shipping_type',
     ];
 
     protected static function boot()

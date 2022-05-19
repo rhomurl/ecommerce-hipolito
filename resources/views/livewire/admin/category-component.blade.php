@@ -30,7 +30,7 @@
                     @each('livewire.admin.category', $categories, 'category','livewire.admin.empty-table')
                 </tbody>
             </table>
-            {{ $categories->links() }}  
+            {{ $categories->links('livewire.pagination.defaultadmin') }}
         </div>
     </div>
 </div>

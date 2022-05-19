@@ -162,7 +162,7 @@
                 </tbody>
             </table>
             @if(!$isOpen)
-                {{ $products->links() }}
+                {{ $products->links('livewire.pagination.defaultadmin') }}
             @endif
         </div>
     </div>

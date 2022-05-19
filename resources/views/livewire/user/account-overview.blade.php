@@ -31,25 +31,19 @@
         <figure class="card bg">
             <div class="p-3">
                  <h4 class="title">{{ $this->order_count }}</h4>
-                <span>Total Amount Ordered</span>
-            </div>
-        </figure>
-        <figure class="card bg">
-            <div class="p-3">
-                 <h4 class="title">{{ $this->order_processing_count }}</h4>
                 <span>Total Orders</span>
             </div>
         </figure>
         <figure class="card bg">
             <div class="p-3">
-                 <h4 class="title">12</h4>
-                <span>Total delivery</span>
+                 <h4 class="title">{{ $this->order_processing_count }}</h4>
+                <span>Paid Orders</span>
             </div>
         </figure>
         <figure class="card bg">
             <div class="p-3">
-                 <h4 class="title">50</h4>
-                <span>Delivered items</span>
+                 <h4 class="title">{{ $this->total_delivered }}</h4>
+                <span>Delivered Orders</span>
             </div>
         </figure>
     </article>

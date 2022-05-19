@@ -22,13 +22,13 @@ class SearchBrand extends Component
 
     public function mount($slug){
         $this->slug = $slug;
-   }
+    }
 
     public function render()
     {
         $brand_id = Brand::select('id')->where('slug', '=', $this->slug)->firstOrFail();
         $this->brandname = Brand::select('name')->where('slug', '=', $this->slug)->firstOrFail();
-        $results = Product::where('category_id', $brand_id->id);
+        $results = Product::where('brand_id', $brand_id->id);
         
         $resultCount = $results->count();
         $results = $results->paginate($this->perpage);

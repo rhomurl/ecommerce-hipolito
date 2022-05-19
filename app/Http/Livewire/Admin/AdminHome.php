@@ -8,6 +8,7 @@ use App\Traits\ModelComponentTrait;
 use App\Charts\UserChart;
 use App\Charts\OrderChart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderProduct;
 use App\Models\User;
 
@@ -117,7 +118,7 @@ class AdminHome extends Component
         $userchart->dataset('User', 'line', [$users_2_days_ago, $yesterday_users, $today_users])
         ->backgroundColor('purple');
 
-
+        $this->registered_products = Product::all();
         //s$topProductsx = OrderProduct::
        /* $dataxc = OrderProduct::with('product')->groupBy('product_id')
             ->get()

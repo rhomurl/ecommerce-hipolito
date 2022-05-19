@@ -32,19 +32,19 @@
 
                     <div class="about-green-check">
                         <i class="fa fa-check">
-                            Fast response.
+                            <span class="about_para">Fast response.</span>
                         </i>
                         <br>
                         <i class="fa fa-check">
-                            Fast delivery.
+                            <span class="about_para">Fast delivery.</span>
                         </i>
                         <br>
                         <i class="fa fa-check">
-                            Very accomidating.
+                            <span class="about_para">Very accomidating.</span>
                         </i>
                         <br>
                         <i class="fa fa-check">
-                            100% Trusted.
+                            <span class="about_para">100% Trusted.</span>
                         </i>
                         <br>
                     </div>

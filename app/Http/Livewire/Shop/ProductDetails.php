@@ -7,8 +7,10 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Wishlist;
+use App\Models\OrderProduct;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
+use DB;
 use Livewire\Component;
 
 class ProductDetails extends Component
@@ -19,7 +21,7 @@ class ProductDetails extends Component
     protected $listeners = ['increaseQuantity' => 'addToCart'];
     
     public $cartProducts = [];
-    public $slug, $qty = 1;
+    public $slug, $productSold, $qty = 1;
     
 
     public function mount ($slug)
@@ -27,6 +29,12 @@ class ProductDetails extends Component
         $this->slug = $slug; 
        
         $this->product = Product::where('slug', $this->slug)->firstorFail();
+
+        $productsold = OrderProduct::where('product_id', $this->product->id)->sum('quantity');
+        if($productsold){
+            $this->productSold = $productsold;
+        }
+
     }
 
     public function render()
@@ -43,12 +51,17 @@ class ProductDetails extends Component
         $related_products = Product::where('category_id', $product->category_id)
             ->whereNotIn('id', $productId)
             ->inRandomOrder()
-            ->limit(8)
+            ->limit(4)
             ->get();
+        
+        $random_products = Product::whereNotIn('id', $productId)
+        ->inRandomOrder()
+        ->limit(3)
+        ->get();
         
         //$product_image_url = $disk->temporaryUrl($product_url, now()->addMinutes(30));
 
-        return view('livewire.shop.product-details', compact('related_products'))->layout('layouts.user');
+        return view('livewire.shop.product-details', compact('related_products', 'random_products'))->layout('layouts.user');
     }
 
     
@@ -70,6 +83,7 @@ class ProductDetails extends Component
         }
         $this->cartProducts[] = $productId;
         $this->emit('updateCart');
+        $this->emit('updateWidget');
 
         /*$this->alert('success', 'Product Added to Cart!', [
             'position' => 'top-end',

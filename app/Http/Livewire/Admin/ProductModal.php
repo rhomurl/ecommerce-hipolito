@@ -21,10 +21,11 @@ class ProductModal extends ModalComponent
 
 
         $this->validate([
-            'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
+            //'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
+            'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products',
             'category_id' => 'required',
             'brand_id' => 'required',
-            'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:255',
+            'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:500',
             'selling_price' => 'required|numeric|min:0|max:1000000.00',
             'quantity' => 'required|integer|min:0|max:999999',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',

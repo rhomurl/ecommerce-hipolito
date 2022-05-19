@@ -26,7 +26,7 @@
               <div class="form-group">
                   <a href="{{ route('password.request') }}" class="float-right">Forgot password?</a> 
                 <label class="float-left custom-control custom-checkbox"> 
-                    <input wire:model.lazy="remember" id="remember" type="checkbox" class="custom-control-input"> <div class="custom-control-label"> Remember </div> </label>
+                    <input wire:model.lazy="remember" value="true" type="checkbox" class="custom-control-input"> <div class="custom-control-label"> Remember </div> </label>
               </div> <!-- form-group form-check .// -->
               <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-block"> Login  </button>
