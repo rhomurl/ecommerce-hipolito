@@ -82,7 +82,7 @@
         gtag('js', new Date());
 
         gtag('config', 'G-8HEJL7HKKM');
-        </script>
+        </script>  
     </head>
 
     <body>     

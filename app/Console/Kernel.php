@@ -11,6 +11,7 @@ class Kernel extends ConsoleKernel
 {
     protected $commands = [
         'App\Console\Commands\CancelOrderCommand',
+        'App\Console\Commands\RemindEmptyProducts',
     ];
     /**
      * Define the application's command schedule.
@@ -20,6 +21,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('auth:clear-resets')->everyFifteenMinutes();
         $schedule->command('cancel:order')->everyTwoMinutes()->withoutOverlapping();
         
         /*$schedule->call(function () {

@@ -15,6 +15,8 @@ class Email extends Component
     /** @var string|null */
     public $emailSentMessage = false;
 
+    public $recaptcha;
+
     public function sendResetPasswordLink()
     {
 
@@ -22,6 +24,7 @@ class Email extends Component
 
         $this->validate([
             'email' => ['required', 'email'],
+            'recaptcha' => ['required', 'captcha']
         ]);
 
         if (RateLimiter::tooManyAttempts('send-message:'.Auth::id(), $perMinute = 5)) {

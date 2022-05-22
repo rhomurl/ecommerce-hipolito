@@ -6,6 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-gd": "*",
+        "anhskohbo/no-captcha": "^3.4",
         "barryvdh/laravel-dompdf": "^1.0",
         "consoletvs/charts": "6.*",
         "fruitcake/laravel-cors": "^2.0",
@@ -21,8 +23,7 @@
         "spatie/laravel-permission": "^5.4",
         "srmklive/paypal": "~3.0",
         "superbalist/flysystem-google-storage": "^7.2",
-        "wire-elements/modal": "^1.0",
-        "ext-gd" : "*"
+        "wire-elements/modal": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

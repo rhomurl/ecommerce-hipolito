@@ -55,6 +55,6 @@
       <br><br> 
       
 @section('scripts')
-  <script src="https://www.paypal.com/sdk/js?client-id=AdPk0qcNcjnJlIPfrRB_69A9YTNXx6Qo9DR_b_LD-mM7To_FnWcpkvqrjfkDzm_iFiC8Yjuk2Nj8S3in&currency=PHP&locale=en_PH&disable-card=amex,jcb,discover"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AckmZ9rFsnnMBcJmQ22Ruw5OaYT3n2Rm6ZXd06UqX-XXZbTBSLphD9hLvzZ0xb7rtMT5g-U_5N2fvyMa&currency=PHP&locale=en_PH&disable-card=amex,jcb,discover"></script>
   @include('livewire.shop.checkout-js')
 @endsection

@@ -68,7 +68,7 @@ class Step1 extends Component
             if($address->barangay->city->id == 41014)
             {
                 if($this->shipping_type == 'express'){
-                    $this->shipping = 150;
+                    $this->shipping = 0;
                 }
                 else if($this->shipping_type == 'standard'){
                     $this->shipping = 100;
@@ -115,7 +115,7 @@ class Step1 extends Component
         }
 
          $this->totalCart = $cartItems->sum('total');
-         $this->totalCartWithoutTax = $cartItems->sum('total') + $this->shipping;
+         $this->totalCartWithoutTax = $cartItems->sum('total');
          $this->grandTotal = $this->totalCartWithoutTax + $this->shipping;
 
         return view('livewire.shop.checkout.step1', compact('addresses', 'cartItems'))->layout('layouts.user');
