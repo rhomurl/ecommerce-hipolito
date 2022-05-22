@@ -23,7 +23,7 @@
                         <li> <a href="{{ route('shipping.policy') }}">Shipping Policy</a></li>
                         <li> <a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                         <li> <a href="{{ route('terms-service') }}">Terms of Service</a></li>
-                        <li> <a href="#">Sitemap</a></li>
+                        <li> <a href="{{ route('sitemap') }}">Sitemap</a></li>
                     </ul>
                 </aside>
                 <aside class="col-md col-6">

@@ -64,4 +64,14 @@ class Order extends Model
     {
         return $this->hasOne(Transaction::class);
     }
+
+    public function getPaymentModeAttribute()
+    {
+        if($this->transaction->mode == 'paypal'){
+            return 'PayPal';
+        }
+        else if($this->transaction->mode == 'cod'){
+            return 'Cash on Delivery';
+        }
+    }
 }

@@ -13,6 +13,7 @@ use App\Http\Livewire\UserHome;
 use App\Http\Livewire\User;
 use App\Http\Livewire\Admin;
 use App\Http\Livewire\Shop;
+use App\Http\Livewire\Sitemap;
 use App\Http\Livewire\Testupload;
 use App\Http\Controllers\GeneratePDF;
 /*
@@ -67,6 +68,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
 
+Route::get('/sitemap', Sitemap::class)->name('sitemap');
 Route::get('/products/all', Shop\AllProducts::class)->name('products.all');
 Route::get('/product/{slug}', Shop\ProductDetails::class)->name('product.details');
 Route::get('/search/{sdata}', Shop\SearchResult::class)->name('product.search');

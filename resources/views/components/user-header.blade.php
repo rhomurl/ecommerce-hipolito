@@ -60,7 +60,7 @@
 
             @auth
             <li class="nav-item">
-                <span class="nav-link" href="#">Hi, {{ Auth::user()->name }}!</span>
+                <span class="nav-link">Hi, {{ Auth::user()->name }}!</span>
             </li>
             <span class="nav-link">
                 <a

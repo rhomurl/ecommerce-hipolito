@@ -38,10 +38,11 @@
       21 => 'Illuminate\\View\\ViewServiceProvider',
       22 => 'App\\Providers\\GoogleStorageServiceProvider',
       23 => 'Spatie\\Permission\\PermissionServiceProvider',
-      24 => 'App\\Providers\\AppServiceProvider',
-      25 => 'App\\Providers\\AuthServiceProvider',
-      26 => 'App\\Providers\\EventServiceProvider',
-      27 => 'App\\Providers\\RouteServiceProvider',
+      24 => 'Barryvdh\\DomPDF\\ServiceProvider',
+      25 => 'App\\Providers\\AppServiceProvider',
+      26 => 'App\\Providers\\AuthServiceProvider',
+      27 => 'App\\Providers\\EventServiceProvider',
+      28 => 'App\\Providers\\RouteServiceProvider',
     ),
     'aliases' => 
     array (
@@ -73,6 +74,7 @@
       'Queue' => 'Illuminate\\Support\\Facades\\Queue',
       'RateLimiter' => 'Illuminate\\Support\\Facades\\RateLimiter',
       'Redirect' => 'Illuminate\\Support\\Facades\\Redirect',
+      'Redis' => 'Illuminate\\Support\\Facades\\Redis',
       'Request' => 'Illuminate\\Support\\Facades\\Request',
       'Response' => 'Illuminate\\Support\\Facades\\Response',
       'Route' => 'Illuminate\\Support\\Facades\\Route',
@@ -85,6 +87,7 @@
       'View' => 'Illuminate\\Support\\Facades\\View',
       'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
       'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade',
     ),
   ),
   'auth' => 
@@ -233,6 +236,15 @@
       ),
     ),
     'prefix' => 'hipolitos_hardware_cache',
+  ),
+  'captcha' => 
+  array (
+    'secret' => '6LdiUwkgAAAAAEDQ_bEC4iOmIEt6tPaUdZXavxOj',
+    'sitekey' => '6LdiUwkgAAAAALD4SX_W5GaqCDIT3hZwn__lW--i',
+    'options' => 
+    array (
+      'timeout' => 30,
+    ),
   ),
   'charts' => 
   array (
@@ -387,7 +399,7 @@
       array (
         'driver' => 'gcs',
         'project_id' => 'vigilant-shell-347412',
-        'key_file' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\vigilant-shell-347412-f56445493e1d.json',
+        'key_file' => '../vigilant-shell-347412-f56445493e1d.json',
         'bucket' => 'hipolito-storage-1',
       ),
     ),
@@ -604,14 +616,14 @@
     'mode' => 'sandbox',
     'sandbox' => 
     array (
-      'client_id' => 'AdPk0qcNcjnJlIPfrRB_69A9YTNXx6Qo9DR_b_LD-mM7To_FnWcpkvqrjfkDzm_iFiC8Yjuk2Nj8S3in',
-      'client_secret' => 'EMItW7DrF2ek0lqYB075Qm3oiS3hNs6wdZRqgJ_p00fvDCZq6HR-KnRmIdpYZjWQWXFlwP29uAQCPP0l',
+      'client_id' => 'AckmZ9rFsnnMBcJmQ22Ruw5OaYT3n2Rm6ZXd06UqX-XXZbTBSLphD9hLvzZ0xb7rtMT5g-U_5N2fvyMa',
+      'client_secret' => 'EIiJQfcmDGfvzmDNdGO4qR0oAZ_M-PMKslSxFalhxwgfEW91GAvYYnBYWqMw7LmAKo8nxZ_k1Ri1q4kY',
       'app_id' => 'APP-80W284485P519543T',
     ),
     'live' => 
     array (
-      'client_id' => 'ASptvwG26Z1um1ZPtjaUhEF5UINzt6UI_oxW_tGvj_YajvuP0CHlmHsHwIF3yQy64EBWrs5eKoqAdgM4',
-      'client_secret' => 'EEUy8kNqklXsZUss8R6_N1MpI5Tt4qMFqWXCfg8LOEvl_ihyDiuv3FNIDHiYyLP_KL4HLvvAXFxLTaOh',
+      'client_id' => '',
+      'client_secret' => '',
       'app_id' => '',
     ),
     'payment_action' => 'Sale',
@@ -809,6 +821,30 @@
       0 => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\resources\\views',
     ),
     'compiled' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\framework\\views',
+  ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'convert_entities' => true,
+    'defines' => 
+    array (
+      'font_dir' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\fonts',
+      'font_cache' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\fonts',
+      'temp_dir' => 'C:\\Users\\Stein\\AppData\\Local\\Temp',
+      'chroot' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
+    ),
   ),
   'flare' => 
   array (

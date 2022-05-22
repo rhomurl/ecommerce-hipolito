@@ -129,7 +129,7 @@
         
         <div class="row">
             <div class="col-md-8">
-                <h5 class="title-description">Description</h5>
+                <h5 class="title-description">Product Description</h5>
                 <p>
                     {{ $this->product->description }}
                 </p>
@@ -168,7 +168,7 @@
             
             
             <div class="container">
-              <br><br>
+              <br>
               <div class="card card-body">
                 
                 <h5 class="title-description">Related products</h5>

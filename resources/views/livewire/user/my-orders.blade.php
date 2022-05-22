@@ -79,16 +79,7 @@
                 <div class="col-md-4">
                     <h6 class="text-muted">Payment</h6>
                     <span class="text-success">
-                        
-                        @if($order->transaction->mode == 'paypal')
-                            PayPal
-                        @elseif($order->transaction->mode == 'cod')
-                            Cash on Delivery
-                        @else
-                            Cash on Delivery    
-                        @endif
-                        
-                        
+                        {{ $order->getPaymentModeAttribute() }}
                     </span>
                     <p>Subtotal: ₱ {{ $order->subtotal }} <br>
                         Shipping fee: ₱ 

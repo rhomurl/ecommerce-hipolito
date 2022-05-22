@@ -105,7 +105,7 @@
                 <div class="card card-banner-lg bg-dark">
                     <img src="{{ asset('images/construction-bot-banner.jpg') }}" class="card-img opacity">
                     <div class="card-img-overlay text-white">
-                      <h2 class="card-title">Construction Equipments on The Go</h2>
+                      <h2 class="card-title">Equipments on The Go</h2>
                         <p class="card-text" style="max-width: 80%">Probably equipments you need during construction. Take a look and browse your desired product.</p>
                       <a href="{{ route('category.search', 'construction-equipment') }}" class="btn btn-light">Discover</a>
                     </div>
@@ -154,7 +154,7 @@
         <article class="box d-flex flex-wrap align-items-center p-5 bg-secondary">
             <div class="text-white mr-auto">
                 <h3>Want to browse all products? </h3>
-                <p>Access all the products you needed</p>
+                <p>Access all the products you need</p>
             </div>
             <div class="mt-3 mt-md-0"><a href="{{ route('products.all') }}" class="btn btn-outline-light">All Products</a></div>
         </article>

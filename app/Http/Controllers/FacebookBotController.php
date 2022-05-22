@@ -132,7 +132,7 @@ class FacebookBotController extends Controller
                             'street_2' => "",
                             'city' => $address->barangay->city->name,
                             'postal_code' => $address->barangay->city->zip,
-                            'state' => 'CA',
+                            'state' => 'BTG',
                             'country' => 'PH'
                         ],
                         'summary' => [

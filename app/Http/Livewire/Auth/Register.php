@@ -22,6 +22,8 @@ class Register extends Component
 
     /** @var string */
     public $passwordConfirmation = '';
+    
+    public $recaptcha;
 
     public function register()
     {
@@ -29,6 +31,7 @@ class Register extends Component
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+            'recaptcha' => ['required', 'captcha']
         ]);
 
         $user = User::create([

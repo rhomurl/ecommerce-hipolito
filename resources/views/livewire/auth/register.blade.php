@@ -70,6 +70,16 @@
                             <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" required class="form-control">
                         </div> <!-- form-group end.// -->  
                     </div>
+                    <div class="form-group mt-2">
+                        <div wire:ignore>
+                            {!! NoCaptcha::renderJs() !!}
+                            {!! NoCaptcha::display(['data-callback' => 'onCallback']) !!}
+                        </div>
+                        @error('recaptcha')
+                        <p class="mt-2 text-warning">{{ $message }}</p>
+                        @enderror
+                        
+                        </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"> Register  </button>
                     </div> <!-- form-group// -->           
@@ -82,3 +92,11 @@
     
     
     </section>
+@section('scripts')
+    <script type="text/javascript">
+        var onCallback = function(){
+            @this.
+            set('recaptcha', grecaptcha.getResponse());
+        };
+    </script>
+@endsection
