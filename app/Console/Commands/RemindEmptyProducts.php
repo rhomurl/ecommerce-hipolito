@@ -43,23 +43,19 @@ class RemindEmptyProducts extends Command
     {
         $admins = User::role(['admin','super-admin'])->get();
 
-        /*$empty_product = Product::where('quantity', 0)->get();
+        $empty_product = Product::where('quantity', 0)->get();
         foreach($empty_product as $empty){
-            //$this->info($empty->name);
-        }
-        */
-        $productData = [
-            'name' => 'Hello admin!',
-            'body' => ' The product is out of stock' ,
-            'orderText' => 'View Order',
-            'product_id' => 69
-           // 'url' => url(route('user.order.details', $order->uuid )),
-        ];
+            $productData = [
+                'name' => 'Hello admin!',
+                'product_name' => $empty->name ,
+                'product_id' => 69
+               // 'url' => url(route('user.order.details', $order->uuid )),
+            ];
+
         foreach($admins as $admin){
-            $admin->notify(new EmptyProductNotification($productData));
+                $admin->notify(new EmptyProductNotification($productData));
+            }
         }
-        
-        
         $this->info('Email Sent to Admin!');
         //return 0;
     }

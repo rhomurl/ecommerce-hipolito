@@ -47,7 +47,7 @@
             </h4>
             <p class="text-gray-600 dark:text-gray-400">
                @if($order->transaction->mode == "paypal") 
-                    <img src="http://localhost:8000/images/misc/payment-paypal.png" class="float-left" height="24">
+                    <img src="{{ asset("images/misc/payment-paypal.png") }}" class="float-left" height="24">
                 @elseif($order->transaction->mode == "cod")
                     Cash on Delivery
                @endif

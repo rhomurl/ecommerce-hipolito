@@ -45,7 +45,8 @@ class Register extends Component
         $user->assignRole('customer');
 
         Auth::login($user, true);
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('auth.redirect'));
+        //return redirect()->intended(route('home'));
     }
 
     public function render()

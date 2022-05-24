@@ -19,6 +19,7 @@
   'admin.role-edit' => 'App\\Http\\Livewire\\Admin\\RoleEdit',
   'admin.role-management' => 'App\\Http\\Livewire\\Admin\\RoleManagement',
   'admin.user-management' => 'App\\Http\\Livewire\\Admin\\UserManagement',
+  'admin.view-user-info' => 'App\\Http\\Livewire\\Admin\\ViewUserInfo',
   'auth.login' => 'App\\Http\\Livewire\\Auth\\Login',
   'auth.passwords.confirm' => 'App\\Http\\Livewire\\Auth\\Passwords\\Confirm',
   'auth.passwords.email' => 'App\\Http\\Livewire\\Auth\\Passwords\\Email',

@@ -41,7 +41,6 @@ class LoginController extends Controller
 
     public function findOrCreateUser($user, $provider)
     {
-        
         $authUser = User::where('email', $user->email)->first();
 
         if ($authUser) {
@@ -55,13 +54,14 @@ class LoginController extends Controller
                 'name' => $user->name,
                 'provider' => $provider,
                 'provider_id' => $user->id,
+                'email_verified_at' => now(),
             ]);
 
-            event(new Registered($newUser));
+            //event(new Registered($newUser));
             return $newUser->assignRole('customer');
 
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             dd($e->getMessage());
         }
     }

@@ -28,7 +28,7 @@ use App\Http\Controllers\GeneratePDF;
 */
 
 Route::get('/', UserHome::class)->name('home');
-//Route::get('redirects', 'App\Http\Controllers\AuthRedirect@index')->middleware('verified');
+Route::get('/auth/redirect', 'App\Http\Controllers\AuthRedirect@index')->middleware('verified')->name('auth.redirect');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -66,8 +66,6 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
-
 Route::get('/sitemap', Sitemap::class)->name('sitemap');
 Route::get('/products/all', Shop\AllProducts::class)->name('products.all');
 Route::get('/product/{slug}', Shop\ProductDetails::class)->name('product.details');
@@ -82,14 +80,7 @@ Route::get('/terms-of-service', Shop\TermsofService::class)->name('terms-service
 Route::get('/privacy-policy', Shop\PrivacyPolicy::class)->name('privacy-policy');
 
 Route::get('/checkout/success/{id}', Shop\CheckoutSuccess::class)->name('checkout.success');
-/*
-Route::post('/checkout/response', 'App\Http\Livewire\Shop\Checkout@response');
-Route::get('/paypal/create', 'App\Http\Controllers\PaypalTest@index')->name('paypal.create');
-Route::get('/paypal/process', 'App\Http\Controllers\PaypalTest@process')->name('paypal.process');
-Route::get('/paypal/success', 'App\Http\Controllers\PaypalTest@success')->name('paypal.success');
 
-Route::get('/paypal/cancel', 'App\Http\Controllers\PaypalTest@cancel')->name('paypal.cancel');
-*/
 Route::get('/order/cancel', Shop\OrderCancel::class)->name('order.cancel');
 Route::get('/checkout', Shop\Checkout\Step1::class)->middleware(['check_if_user', 'verified'])->name('checkout.step1');
 Route::get('/checkout/paypal', Shop\Checkout::class)->middleware('check_if_user')->name('checkout');
@@ -116,8 +107,17 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('managerole', Admin\RoleManagement::class)->middleware(['role:super-admin'])->name('managerole');
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
-    //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
-
     Route::get('/order/{uuid}/generate-pdf/', [GeneratePDF::class, 'generatePDF'])->name('genPDF');
-
+    //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
 }); 
+
+
+/*
+Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
+Route::post('/checkout/response', 'App\Http\Livewire\Shop\Checkout@response');
+Route::get('/paypal/create', 'App\Http\Controllers\PaypalTest@index')->name('paypal.create');
+Route::get('/paypal/process', 'App\Http\Controllers\PaypalTest@process')->name('paypal.process');
+Route::get('/paypal/success', 'App\Http\Controllers\PaypalTest@success')->name('paypal.success');
+
+Route::get('/paypal/cancel', 'App\Http\Controllers\PaypalTest@cancel')->name('paypal.cancel');
+*/

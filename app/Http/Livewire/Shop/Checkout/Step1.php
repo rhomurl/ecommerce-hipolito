@@ -43,7 +43,8 @@ class Step1 extends Component
     public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
     public $address_book_id, $payment_mode, $checkout_message, $shipping, $transid;
 
-    public function mount(){
+    public function mount()
+    {
         if(auth()->user()->address_book_id){
             $this->address_book_id = auth()->user()->address_book_id;
             $this->msg_add_default = "Default";
@@ -138,17 +139,6 @@ class Step1 extends Component
         try{
             $this->resetValidation();
             DB::transaction(function () use ($cart) {
-
-                
-                if($this->shipping_type == "rush")
-                {
-
-                    //$shipping
-                }
-                else if($this->shipping_type == "rush")
-                {
-
-                }
                 /*
                 $order = Order::create([
                     'user_id' => auth()->id(),
@@ -207,7 +197,8 @@ class Step1 extends Component
 
                 //Session::flash('orderid', $order->id);
                //dd($order->id);
-               if($this->payment_mode == 'cod'){
+               if($this->payment_mode == 'cod')
+               {
                     $user = Auth::user();
 
                     $orderData = [
@@ -228,7 +219,8 @@ class Step1 extends Component
                     redirect()
                     ->route('checkout.success', $order->id);
                }
-                else{
+                else
+                {
                     redirect()
                     ->route('checkout')
                     ->with('orderid', $order->id);
@@ -260,10 +252,6 @@ class Step1 extends Component
             //$this->checkout_message = "Something wrong";
             dd("General: " . $exception->getMessage());
         }
-        
-
-        
-
     }
 
     public function cancel()
@@ -330,9 +318,10 @@ class Step1 extends Component
             $this->cities = collect();
 
             //session()->flash('message', 'Address Created Successfully');
-            return redirect()->to('/checkout'); 
             //$this->emit('updateAddress');
             //$this->showForm = false;
+            return redirect()->to('/checkout'); 
+
         });
         }  catch (\Exception $exception){
             $this->error_message = "Something went wrong";
