@@ -18,6 +18,7 @@ class UserManagement extends Component
     use WithPagination;
 
     public $search = "";
+    public $emails;
 
     public function render()
     {
@@ -28,6 +29,19 @@ class UserManagement extends Component
         return view('livewire.admin.user-management',  compact('users'))->layout('layouts.admin');
     }
 
+    public function view($id)
+    {
+        $this->emit("openModal", "admin.view-user-info", ["id" => $id]);
+    }
 
+    /*
+    public function extractEmail(){
+        $users = User::role('customer')->select('email')->get();
 
+        foreach($users as $user){
+            $emails[] = $user->email;
+        }
+
+    }
+    */
 }

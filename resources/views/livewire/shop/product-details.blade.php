@@ -166,7 +166,7 @@
             </div> <!-- box.// -->
             </aside> <!-- col.// -->
             
-            
+            @if($related_products->isNotEmpty())
             <div class="container">
               <br>
               <div class="card card-body">
@@ -203,6 +203,7 @@
                 </div> <!-- row.// -->
               </div>
             </div>
+            @endif
 
 
         </div> <!-- row.// -->

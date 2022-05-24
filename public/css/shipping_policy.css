@@ -8,6 +8,7 @@
     background: black;
     color: white;
 } */
+
 .shipping-policy-title {
     text-align: center;
 }
@@ -106,6 +107,9 @@
     font-size: 16px;
     font-weight: 400;
 }
+.home-who-we-are-wrapper ul{
+    width:70%;
+}
 
 @media all and (max-width: 1400px) {
     .home-who-we-are-wrapper {
@@ -116,6 +120,10 @@
         background-position: center center;
         background-repeat: no-repeat;
         position: relative;
+        
+    }
+    .home-who-we-are-wrapper ul{
+        width:100%;
     }
     .home-who-we-are-sub-title {
         color: white;

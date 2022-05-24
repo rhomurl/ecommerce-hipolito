@@ -41,9 +41,14 @@ class EmptyProductNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.' . $this->productData['name'])
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('[Reminder] Product Out of Stock')
+                    ->greeting('Hello admin!')
+                    ->line('I would like to inform you that the follow item is out of stock:')
+                    ->line($this->productData['product_name'])
+                    
+                    
+                    ->action('View Products', url('/admin/products'))
+                    ->line('Please make an action. Thanks!');
     }
 
     /**

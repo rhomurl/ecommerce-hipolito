@@ -28,14 +28,16 @@ class Login extends Component
 
         if (!Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             $this->addError('email', trans('auth.failed'));
-
             return;
         }
 
-        if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
+        return redirect()->intended(route('auth.redirect'));
+
+        /*if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
             return redirect('/admin');
         }
         return redirect()->intended(route('home'));
+        */
     }
 
     public function render()

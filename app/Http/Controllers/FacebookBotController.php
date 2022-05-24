@@ -137,7 +137,7 @@ class FacebookBotController extends Controller
                         ],
                         'summary' => [
                             'subtotal' => $order->subtotal,
-                            'shipping_cost' => 0,
+                            'shipping_cost' => $order->shipping,
                             'total_tax' => 0,
                             'total_cost' => $order->total
                         ],
@@ -169,10 +169,6 @@ class FacebookBotController extends Controller
         //return $array;
     }
 
-    //public function getStatus(Request $request)
-   // {
-
-   // }/
 
 
 }
