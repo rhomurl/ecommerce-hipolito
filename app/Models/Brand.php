@@ -16,9 +16,9 @@ class Brand extends Model
     {
         parent::boot();
         
-        static::saving(function ($model) {
+        /*static::saving(function ($model) {
             $model->slug = Str::slug($model->name);
-        });
+        });*/
     }
 
     public function brand() {

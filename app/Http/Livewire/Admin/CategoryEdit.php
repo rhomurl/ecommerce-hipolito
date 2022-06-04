@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Services\CategoryService;
 use App\Traits\ModelComponentTrait;
 use App\Models\Category;
 use LivewireUI\Modal\ModalComponent;
@@ -12,33 +13,24 @@ class CategoryEdit extends ModalComponent
     use LivewireAlert;
     use ModelComponentTrait;
 
-    public $category, $name, $category_id, $slug, $type;
-    //public $msg = "199";
+    public $category, $name, $category_id, $slug;
+
+    protected $rules = [
+        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:categories',
+    ];
 
     public function mount($id)
     {
-            $this->category_id = $id;
-            $category = Category::findOrFail($this->category_id);
-            $this->name = $category->name;
-            $this->slug = $category->slug;
-            $this->type = $category->type;
+        $this->category_id = $id;
+        $category = Category::findOrFail($this->category_id);
+        $this->name = $category->name;
+        $this->slug = $category->slug;
     }
 
-    public function create(){
-        $this->validate([
-            'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:categories,name,'.$this->category_id.'',
-            //'type' => 'string|required'
-        ]);
-
-        $category = Category::updateOrCreate(
-            ['id' => $this->category_id],
-            [
-                'name' => $this->name,
-                //'type' => $this->type
-            ]
-        );
+    public function create(CategoryService $category){
+        $this->validate();
+        $category->edit($this->category_id,$this->name); 
         
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->category_id ? 'Category Updated Successfully.' : 'Category Added Successfully']);
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Category Updated Successfully!');

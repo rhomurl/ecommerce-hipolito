@@ -52,7 +52,6 @@
                 </ul>
                 <li><a target="_blank" href="{{ route('cart') }}">Cart</a></li>
                 <li><a target="_blank" href="{{ route('checkout.step1') }}">Checkout</a></li>
-                <li><a target="_blank" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                 <li><a target="_blank" href="{{ route('terms-service') }}">Terms of Service</a></li>
                 <li><a target="_blank" href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                 <li><a target="_blank" href="{{ route('products.all') }}">All Products</a></li>

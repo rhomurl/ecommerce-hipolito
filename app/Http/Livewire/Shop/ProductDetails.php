@@ -82,15 +82,8 @@ class ProductDetails extends Component
             $cart->update(['qty' => $cart->qty + $qty]);
         }
         $this->cartProducts[] = $productId;
-        $this->emit('updateCart');
-        $this->emit('updateWidget');
+        $this->emit('updateWidgets');
 
-        /*$this->alert('success', 'Product Added to Cart!', [
-            'position' => 'top-end',
-            'timer' => '1500',
-            'toast' => true,
-            'timerProgressBar' => true,
-        ]);*/
         $this->successToast('Product Added to Cart!');
         //session()->flash('message', 'Product Added to Cart');
         //return redirect(route('cart'));
@@ -120,6 +113,7 @@ class ProductDetails extends Component
         if (!$wishlist) {
             Wishlist::create(['user_id' => Auth::id(), 'product_id' => $id]);
             $this->successToast('Product Added to Wishlist!');
+            $this->emit('updateWidgets');
         } 
         else {
             $this->errorToast('Product Already in Wishlist!');

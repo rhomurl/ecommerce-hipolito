@@ -31,6 +31,7 @@
                             @if($address->id == auth()->user()->address_book_id)
                             — <b>{{ $this->msg_add_default }}</b> 
                             @endif
+                            [<a href="{{ route('user.address.edit', $address->id)}}">Edit</a>]&nbsp;
                             [<a href="#" wire:click.prevent="deleteAddr({{$address->id}})">Delete</a>]
                             </label>
                        

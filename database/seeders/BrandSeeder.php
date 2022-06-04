@@ -18,7 +18,7 @@ class BrandSeeder extends Seeder
             [
                 //'id' => 1,
                 'name' => 'Firefly',
-                'slug' => 'Firefly',
+                'slug' => 'firefly',
             ],
             [
                 //'id' => 2,

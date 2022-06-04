@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use App\Models\Brand;
+use App\Services\BrandService;
 use App\Traits\ModelComponentTrait;
 
 use LivewireUI\Modal\ModalComponent;
@@ -16,6 +17,10 @@ class BrandEdit extends ModalComponent
 
     public $brand, $name, $brand_id, $slug;
 
+    protected $rules = [
+        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:brands',
+    ];
+
     public function mount($id)
     {
         $this->brand_id = $id;
@@ -24,18 +29,10 @@ class BrandEdit extends ModalComponent
         $this->slug = $brand->slug;
     }
 
-    public function create(){
-        $this->validate([
-            'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:brands,name,'.$this->brand_id.'',
-        ]);
-
-        $brand = Brand::updateOrCreate(['id' => $this->brand_id],
-            [
-                'name' => $this->name
-            ]
-        );
+    public function create(BrandService $brand){
+        $this->validate();
+        $brand->edit($this->brand_id,$this->name); 
         
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->brand_id ? 'Brand Updated Successfully.' : 'Brand Added Successfully']);
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Brand Edited Successfully!');

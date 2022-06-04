@@ -10,6 +10,7 @@ use App\Models\AddressBook;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Services\AddressService;
 
 class MyAddress extends Component
 {
@@ -37,9 +38,14 @@ class MyAddress extends Component
             $user = User::find(Auth::user()->id);
             $user->address_book_id = 0;
             $user->save();
+
             $this->successToast('Address Deleted Successfully!');
-        } catch(\Exception $e){
+            
+        } catch(\Illuminate\Database\QueryException $exception){
             $this->errorAlert('This Address Cannot Be Deleted!');
+        } catch(\Exception $exception){
+            //dd(get_class($exception));
+            //
         }
     }
 
@@ -48,12 +54,9 @@ class MyAddress extends Component
         return redirect()->route('user.address.edit', ['id' => $id]);
     }
 
-    public function setDefault($id)
+    public function setDefault($id, AddressService $user)
     {
-        $user = User::find(Auth::id());
-        $user->address_book_id = $id;
-        $user->save();
-
+        $user->setUserAddressBook($id);
         $this->emit('updateComponent');
     }
 }

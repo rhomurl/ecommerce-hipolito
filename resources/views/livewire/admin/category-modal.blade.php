@@ -7,9 +7,6 @@
     <x-slot name="content">
         <div class="px-4 py-3 mb-8 bg-white rounded-lg">
             <!-- Invalid input -->
-            @if($this->otherModal)
-                {{ $this->otherModal }}
-            @endif
             <label class="block text-sm">
                 <span class="text-gray-700">
                     Name
