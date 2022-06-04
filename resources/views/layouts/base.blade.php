@@ -23,15 +23,12 @@
         <meta property="og:description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
         <meta property="og:image" content="{{ asset('images/thumbnail-meta-tag.jpg') }}">
 
-
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="https://hipolito-hardware.herokuapp.com/">
         <meta property="twitter:title" content="Hipolito's Hardware — Buy, Pay, and Deliver">
         <meta property="twitter:description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
         <meta property="twitter:image" content="{{ asset('images/thumbnail-meta-tag.jpg') }}">
-
-        
 
         <!-- Favicon -->
 		<link href="{{ url(asset('favicon.ico')) }}" rel="shortcut icon" type="image/x-icon">
@@ -73,62 +70,26 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HEJL7HKKM"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-8HEJL7HKKM');
-        </script>  
+    
+        @include('livewire.components.google-analytics')
     </head>
 
     <body>     
         <x-user-header/>
         
         @yield('body')
+        
         <x-user-footer/>
 
         @yield('scripts')
-        
         
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script> 
         <x-livewire-alert::flash />
-      
-        <!-- Messenger Chat Plugin Code -->
-        <div id="fb-root"></div>
 
-        <!-- Your Chat Plugin code -->
-        <div id="fb-customer-chat" class="fb-customerchat">
-        </div>
-
-        <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "105973258289862");
-        chatbox.setAttribute("attribution", "biz_inbox");
-        </script>
-
-        <!-- Your SDK code -->
-        <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            xfbml            : true,
-            version          : 'v13.0'
-            });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        </script>
-        
+        @if(App::environment('production'))
+            @include('livewire.components.fb-customer-chat')
+        @endif
     </body>
 </html>

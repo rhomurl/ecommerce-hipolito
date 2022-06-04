@@ -13,7 +13,13 @@ class AddressEdit extends Component
     public $barangays;
     public $cities;
 
-    public $entry_company, $entry_firstname, $entry_lastname, $entry_landmark, $entry_street_address, $entry_phonenumber, $entry_postcode;
+    public $entry_company, 
+    $entry_firstname, 
+    $entry_lastname, 
+    $entry_landmark, 
+    $entry_street_address, 
+    $entry_phonenumber, 
+    $entry_postcode;
     public $error_message;
     public $barangay;
     public $city;
@@ -39,6 +45,10 @@ class AddressEdit extends Component
 
     public function storeAddress()
     {
+        if(!$this->entry_landmark){
+            $this->entry_landmark = "N/A";
+        }
+        
         try 
         {
             $this->validate([
@@ -50,6 +60,8 @@ class AddressEdit extends Component
                 'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
             ]);
 
+
+
             AddressBook::updateOrCreate(['id' => $this->address_id],
                 ['entry_company' => $this->entry_company,
                 'entry_firstname' => $this->entry_firstname,
@@ -60,10 +72,11 @@ class AddressEdit extends Component
                 'entry_phonenumber' => $this->entry_phonenumber
                 ]);
             
-                session()->flash('message', 'Address Edited Successfully');
-                return redirect(route('user.address'));
+                session()->flash('message', 'Address Edited Successfully'); 
+                redirect(route('user.address'));
+                //return redirect(route('user.address'));
         } 
-        catch (Livewire\Exceptions\PublicPropertyTypeNotAllowedException $exception){
+        catch (\Livewire\Exceptions\PublicPropertyTypeNotAllowedException $exception){
             $this->error_message = "Please check your number";
             //$this->error_message = "Something went wrong";
         }
@@ -72,6 +85,13 @@ class AddressEdit extends Component
             //$this->error_message = "Something went wrong";
         }
         
+       
+    }
+
+    public function updatedCity($value)
+    {
+        $this->barangays = Barangay::where('city_id', $value)->get();
+        $this->barangay = $this->barangays->first()->id ?? null;
     }
 
     public function render()

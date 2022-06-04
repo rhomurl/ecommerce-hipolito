@@ -39,7 +39,7 @@ trait ModelComponentTrait
 
     public function successToast($message){
         $this->alert('success', $message, [
-            'position' => 'bottom-end',
+            'position' => 'top-end',
             'timer' => '1500',
             'toast' => true,
             'timerProgressBar' => true,

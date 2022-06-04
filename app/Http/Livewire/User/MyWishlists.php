@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Wishlist;
 use App\Models\Cart;
+use App\Services\WishlistService;
 
 use Livewire\Component;
 
@@ -20,45 +21,25 @@ class MyWishlists extends Component
     public function render()
     {
         $wishlists = Wishlist::where('user_id', Auth::id())->get();
-        //dd($wishlists);
-
         return view('livewire.user.my-wishlists', compact('wishlists'))->extends('layouts.user-profile');
     }
 
-    public function addToCart($id)
+    public function addToCart($id, WishlistService $cart)
     {
         if(!Auth::check()){
             return redirect()->route('login');
         }
+        $cart->addCart($id);
 
-        $cart = Cart::where('product_id', $id)
-                    ->where('user_id', Auth::id())
-                    ->first();
-
-        if (!$cart) {
-            Cart::create(['user_id' => Auth::id(), 'product_id' => $id, 'qty' => 1]);
-        } 
-        else {
-            $cart->update(['qty' => $cart->qty + 1]);
-        }
-        //$this->cartProducts[] = $id;
-        $this->emit('updateCart');
         $this->successToast('Product Added to Cart!');
-
-        
+        $this->emit('updateWidgets');
     }
 
     public function removefromWishlist($id)
     {
-        $wishlist = Wishlist::where('id', $id)
-                    ->where('user_id', Auth::id());
-        $wishlist2 =  $wishlist->first();
-
-        if ($wishlist) {
-            $wishlist->delete();
-            $this->successToast('Product Removed From Wishlist!');
-        } 
-
-       
+        $wishlist = Wishlist::where('id', $id)->where('user_id', Auth::id());
+        $wishlist->delete();
+        $this->successToast('Product Removed From Wishlist!');
+        $this->emit('updateWidgets');
     }
 }
