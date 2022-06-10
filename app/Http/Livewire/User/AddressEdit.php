@@ -10,33 +10,38 @@ use Livewire\Component;
 
 class AddressEdit extends Component
 {
-    public $barangays;
-    public $cities;
+    public $barangays, $barangay;
+    public $cities, $city;
 
-    public $entry_company, 
-    $entry_firstname, 
-    $entry_lastname, 
-    $entry_landmark, 
-    $entry_street_address, 
-    $entry_phonenumber, 
-    $entry_postcode;
+    public $company, $firstname, $lastname, $landmark, $street_address, $phonenumber, $postcode;
     public $error_message;
-    public $barangay;
-    public $city;
 
+    protected $rules =  [
+        'company' => 'nullable|string|max:255',
+        'firstname' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'landmark' => 'required|string|max:255',
+        'street_address' => 'required|max:255',
+        'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+    ];
+
+    protected $messages = [
+        'phonenumber.regex' => 'Phonenumber format is invalid.',
+    ];
+ 
     public function mount($id)
     {
         $this->address_id = $id;
         $address = AddressBook::findOrFail($this->address_id);
         $this->barangay = $address->barangay->id;
         $this->city = $address->barangay->city->id;
-        $this->entry_company = $address->entry_company;
-        $this->entry_firstname = $address->entry_firstname;
-        $this->entry_lastname = $address->entry_lastname;
-        $this->entry_landmark = $address->entry_landmark;
-        $this->entry_street_address = $address->entry_street_address;
-        $this->entry_phonenumber = $address->entry_phonenumber;
-        $this->entry_postcode = $address->entry_postcode;
+        $this->company = $address->entry_company;
+        $this->firstname = $address->entry_firstname;
+        $this->lastname = $address->entry_lastname;
+        $this->landmark = $address->entry_landmark;
+        $this->street_address = $address->entry_street_address;
+        $this->phonenumber = $address->entry_phonenumber;
+        $this->postcode = $address->entry_postcode;
         $this->cities = City::all();
         //$this->barangays = collect();
         $this->barangays = Barangay::where('city_id',  $this->city)->get();
@@ -45,47 +50,27 @@ class AddressEdit extends Component
 
     public function storeAddress()
     {
-        if(!$this->entry_landmark){
-            $this->entry_landmark = "N/A";
-        }
-        
-        try 
-        {
-            $this->validate([
-                'entry_company' => 'string|max:255',
-                'entry_firstname' => 'required|string|max:255',
-                'entry_lastname' => 'required|string|max:255',
-                'entry_landmark' => 'required|string|max:255',
-                'entry_street_address' => 'required|max:255',
-                'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
-            ]);
-
-
-
+        $this->validate();
+        try {
             AddressBook::updateOrCreate(['id' => $this->address_id],
-                ['entry_company' => $this->entry_company,
-                'entry_firstname' => $this->entry_firstname,
-                'entry_lastname' => $this->entry_lastname,
-                'entry_landmark' => $this->entry_landmark,
-                'entry_street_address' => $this->entry_street_address,
+                ['entry_company' => $this->company,
+                'entry_firstname' => $this->firstname,
+                'entry_lastname' => $this->lastname,
+                'entry_landmark' => $this->landmark,
+                'entry_street_address' => $this->street_address,
                 'barangay_id' => $this->barangay,
-                'entry_phonenumber' => $this->entry_phonenumber
+                'entry_phonenumber' => $this->phonenumber
                 ]);
             
-                session()->flash('message', 'Address Edited Successfully'); 
-                redirect(route('user.address'));
-                //return redirect(route('user.address'));
+            //session()->flash('message', 'Address Edited Successfully'); 
+            sleep(5);
+            return redirect()->route('user.address');
+                
         } 
-        catch (\Livewire\Exceptions\PublicPropertyTypeNotAllowedException $exception){
-            $this->error_message = "Please check your number";
-            //$this->error_message = "Something went wrong";
-        }
         catch (\Exception $exception){
-            $this->error_message = $exception;
-            //$this->error_message = "Something went wrong";
+            //$this->error_message = $exception;
+            $this->error_message = "Something went wrong";
         }
-        
-       
     }
 
     public function updatedCity($value)
