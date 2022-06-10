@@ -1,12 +1,12 @@
 <footer class="section-footer bg-secondary text-white">
     <div class="container">
-        <section class="footer-top  padding-y-lg">
+        <section class="footer-top padding-y-lg">
             <div class="row">
                 @if(!Request::is('about-us'))
                     <aside class="col-md-4 col-12">
                         <article class="mr-md-4">
                             <h5 class="title">Contact us</h5>
-                            <p>We are selling different construction materials like base plate, steel bars, cement, construction supplies and equipments, lumber and one bagger is also available for rent (A frame).</p>
+                            <p class="text-justify">We are selling different construction materials like base plate, steel bars, cement, construction supplies and equipments, lumber and one bagger is also available for rent (A Frame).</p>
                             <ul class="list-icon">
                                 <li> <i class="icon fa fa-map-marker"> </i>Brgy. Marauoy, Lipa City, Batangas</li>
                                 <li> <i class="icon fa fa-envelope"> </i> hipolitoshardware@gmail.com</li>

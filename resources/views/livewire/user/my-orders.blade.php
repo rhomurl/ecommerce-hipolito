@@ -59,7 +59,7 @@
                             Cancel
                         </button>
                         <div class="overflow-hidden">
-                            <span x-show="confirmDelete">Are you sure you want to cancel?<br></span>
+                            <span x-show="confirmDelete">Are you sure do you want to cancel?<br></span>
                             <a wire:click.prevent="cancelOrder({{ $order->id }})" x-show="confirmDelete" x-on:click="confirmDelete=false" href="#" class="btn btn-outline-danger">Yes</a>
                             <a x-show="confirmDelete" x-on:click="confirmDelete=false" class="btn btn-outline-danger">No</a>
                         </div>

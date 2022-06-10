@@ -26,13 +26,15 @@ class SearchCategory extends Component
 
     public function render()
     {
-        $category_id = Category::select('id')->where('slug', '=', $this->slug)->firstOrFail();
-        $this->catname = Category::select('name')->where('slug', '=', $this->slug)->firstOrFail();
-        $results = Product::where('category_id', $category_id->id);
+        $category = Category::with('product')->where('slug', '=', $this->slug)->firstOrFail();
+        $this->catname = $category->name;
+        
+        $results = Product::with('category', 'brand')
+            ->where('category_id', $category->id)
+            ->paginate($this->perpage);
         
         $resultCount = $results->count();
-        $results = $results->paginate($this->perpage);
-        
+
         return view('livewire.shop.search-category', compact('results', 'resultCount'))->layout('layouts.user');
     }
 

@@ -18,8 +18,8 @@
           <div class="form-row">
               <div class="col form-group">
                   <label>Name</label>
-                    <input wire:model="entry_firstname" name="entry_firstname" type="text" class="form-control" value="" required>
-                    @error('entry_firstname')
+                    <input wire:model.defer="firstname" name="firstname" type="text" class="form-control" value="" required>
+                    @error('firstname')
                         <span class="text-danger">
                             {{ $message }}
                         </span>
@@ -27,8 +27,8 @@
               </div> <!-- form-group end.// -->
               <div class="col form-group">
                   <label>Last Name</label>
-                    <input wire:model="entry_lastname" name="entry_lastname" type="text" class="form-control" value="" required>
-                    @error('entry_lastname')
+                    <input wire:model.defer="lastname" name="lastname" type="text" class="form-control" value="" required>
+                    @error('lastname')
                         <span class="text-danger">
                             {{ $message }}
                         </span>
@@ -39,17 +39,18 @@
           <div class="form-row">
             <div class="col form-group">
                 <label>Company</label>
-                  <input wire:model="entry_company" name="entry_company" type="text" class="form-control" value="">
-                  @error('entry_company')
+                  <input wire:model.defer="company" name="company" type="text" class="form-control">
+                  @error('company')
                         <span class="text-danger">
                             {{ $message }}
                         </span>
                     @enderror
             </div> <!-- form-group end.// -->
+            
             <div class="col form-group">
                 <label>Landmark</label>
-                  <input wire:model="entry_landmark" name="entry_landmark" type="text" class="form-control" value="">
-                  @error('entry_landmark')
+                  <input wire:model.defer="landmark" name="landmark" type="text" class="form-control">
+                  @error('landmark')
                         <span class="text-danger">
                             {{ $message }}
                         </span>
@@ -60,8 +61,8 @@
           <div class="form-row">
             <div class="col form-group">
                 <label>Street Address</label>
-                  <input wire:model="entry_street_address" name="entry_street_address" type="text" class="form-control" value="" required>
-                  @error('entry_street_address')
+                  <input wire:model.defer="street_address" name="street_address" type="text" class="form-control" value="" required>
+                  @error('street_address')
                         <span class="text-danger">
                             {{ $message }}
                         </span>
@@ -98,8 +99,8 @@
           <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Phone</label>
-                <input wire:model="entry_phonenumber" name="entry_phonenumber" type="text" class="form-control" placeholder="+639152390900" required>
-                @error('entry_phonenumber')
+                <input wire:model.defer="phonenumber" name="phonenumber" type="text" class="form-control" placeholder="+639152390900" required>
+                @error('phonenumber')
                     <span class="text-danger">
                         {{ $message }}
                     </span>

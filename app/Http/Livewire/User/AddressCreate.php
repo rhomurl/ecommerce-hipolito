@@ -11,38 +11,31 @@ use Livewire\Component;
 
 class AddressCreate extends Component
 {
-    public $barangays;
-    public $cities;
+    public $barangays, $barangay;
+    public $cities, $city;
 
-    public $error_message, 
-    $entry_company, 
-    $entry_landmark, 
-    $entry_firstname, 
-    $entry_lastname, 
-    $entry_street_address, 
-    $entry_phonenumber, 
-    $entry_postcode;
+    public $company, $firstname, $lastname, $landmark, $street_address, $phonenumber, $postcode;
+    public $error_message;
 
-    public $barangay;
-    public $city;
+    protected $rules =  [
+        'company' => 'nullable|string|max:255',
+        'firstname' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'landmark' => 'required|string|max:255',
+        'street_address' => 'required|max:255',
+        'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+    ];
+
+    protected $messages = [
+        'phonenumber.regex' => 'Phonenumber format is invalid.',
+    ];
 
     public function mount()
     {
         $this->cities = City::all();
         $this->barangays = collect();
+        $this->addressCount = AddressBook::where('user_id', Auth::user()->id)->count();
         
-    }
-
-    public function render()
-    {
-        /*$addresses = AddressBook::with('barangay.city')
-            ->where('user_id', Auth::id())
-            ->latest()
-            ->take(5)
-            ->get();*/
-
-            
-        return view('livewire.user.address-create')->extends('layouts.user-profile');
     }
 
     public function updatedCity($value)
@@ -51,56 +44,40 @@ class AddressCreate extends Component
         $this->barangay = $this->barangays->first()->id ?? null;
     }
 
-
     public function storeAddress()
     {
-        $addrcount = AddressBook::where('user_id', Auth::user()->id)->count();
+        
+        $this->validate();
 
-        $this->validate([
-            'entry_company' => 'max:255',
-            'entry_firstname' => 'required|string|max:255',
-            'entry_lastname' => 'required|string|max:255',
-            'entry_landmark' => 'required|string|max:255',
-            'entry_street_address' => 'required|max:255',
-            'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-        ]);
-
-        try{
-            
-            $c_address = AddressBook::create([
+        try {
+            $address = AddressBook::create([
                 'user_id' => Auth::user()->id,
-                'entry_company' => $this->entry_company,
-                'entry_firstname' => $this->entry_firstname,
-                'entry_lastname' => $this->entry_lastname,
-                'entry_landmark' => $this->entry_landmark,
-                'entry_street_address' => $this->entry_street_address,
+                'entry_company' => $this->company,
+                'entry_firstname' => $this->firstname,
+                'entry_lastname' => $this->lastname,
+                'entry_landmark' => $this->landmark,
+                'entry_street_address' => $this->street_address,
                 'barangay_id' => $this->barangay,
-                'entry_phonenumber' => $this->entry_phonenumber,
+                'entry_phonenumber' => $this->phonenumber,
             ]);
 
-            if($addrcount == 0){
+            if($this->addressCount == 0){
                 $user = User::find(Auth::user()->id);
-                $user->address_book_id = $c_address->id;
+                $user->address_book_id = $address->id;
                 $user->save();
-
             }
-            //$transaction = Transaction::where('order_id', '=', $user_orderid)
-            //$cart->update(['qty' => $cart->qty + $qty]);
-            //->update(array('status' => 'cancelled'));
-
-            $this->entry_company = '';
-            $this->entry_firstname = '';
-            $this->entry_lastname = '';
-            $this->entry_landmark = '';
-            $this->entry_street_address = '';
-            $this->entry_phonenumber = '';
 
             $this->cities = collect();
 
             session()->flash('message', 'Address Created Successfully');
-            return redirect(route('user.address'));
+            return redirect()->route('user.address');
         }  catch (\Exception $exception){
             $this->error_message = "Something went wrong";
         }
+    }
+
+    public function render()
+    {
+        return view('livewire.user.address-create')->extends('layouts.user-profile');
     }
 }

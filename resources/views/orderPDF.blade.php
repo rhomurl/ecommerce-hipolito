@@ -110,10 +110,10 @@
                                             <th colspan="3" class="text-right">Shipping Fee:</th>
                                             <th class="text-center">{{ number_format($shippingfee, 2) }} PHP</th>
                                         </tr>
-                                        <tr>
+                                       {{-- <tr>
                                             <th colspan="3" class="text-right">Tax:</th>
                                             <th class="text-center">00.00 PHP</th>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <th colspan="3" class="text-right">Total:</th>
                                             <th class="text-center">{{ number_format($total, 2) }} PHP</th>

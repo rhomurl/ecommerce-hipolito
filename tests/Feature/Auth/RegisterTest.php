@@ -45,6 +45,7 @@ class RegisterTest extends TestCase
             ->set('email', 'tallstack@example.com')
             ->set('password', 'password')
             ->set('passwordConfirmation', 'password')
+            ->set('recaptcha', '12345')
             ->call('register')
             ->assertRedirect(route('home'));
 

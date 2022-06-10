@@ -163,7 +163,7 @@
                 </div>
 
                 <!-- Line chart card -->
-                <div class="col-span-2 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
+               {{-- <div class="col-span-2 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
                     <!-- Card header -->
                     <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
                         <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Line Chart</h4>
@@ -173,7 +173,7 @@
                     </div>
                     <!-- Chart -->
                     
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

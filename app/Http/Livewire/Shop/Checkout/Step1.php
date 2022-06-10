@@ -64,8 +64,9 @@ class Step1 extends Component
 
     public function render()
     {
-        if($this->address_book_id){
-            $address = AddressBook::findOrFail($this->address_book_id);
+        $address = AddressBook::find($this->address_book_id);
+        if($this->address_book_id && $address){
+            
             if($address->barangay->city->id == 41014)
             {
                 if($this->shipping_type == 'express'){
@@ -99,10 +100,10 @@ class Step1 extends Component
             ->map(function (Cart $items) {
                 return (object)[
                     'id' => $items->product_id,
-                    'user_id'=> $items->user_id,
-                    'slug' => $items->products->slug,
+                    //'user_id'=> $items->user_id,
+                    //'slug' => $items->products->slug,
                     'name' => $items->products->name,
-                    'brand' => $items->products->brand->name,
+                    //'brand' => $items->products->brand->name,
                     'image' => $items->products->image,
                     'selling_price' => $items->products->selling_price,
                     'qty' => $items->qty,
@@ -116,26 +117,29 @@ class Step1 extends Component
         }
 
          $this->totalCart = $cartItems->sum('total');
-         $this->totalCartWithoutTax = $cartItems->sum('total');
-         $this->grandTotal = $this->totalCartWithoutTax + $this->shipping;
+         //$this->totalCartWithoutTax = $cartItems->sum('total');
+         $this->grandTotal = $this->totalCart + $this->shipping;
 
         return view('livewire.shop.checkout.step1', compact('addresses', 'cartItems'))->layout('layouts.user');
     }
 
     public function placeOrder()
     {
+        $cart = Cart::with('product')->where('user_id', Auth::id())->get();
+        foreach ($cart as $cartProduct){
+            $product = Product::find($cartProduct->product_id);
+            if($product->quantity < $cartProduct->qty) {
+                Cart::where('product_id', $cartProduct->product->id)->where('user_id', Auth::id())->delete();
+                return redirect()->route('cart')->with('checkout_message', 'Sorry! One of the items in your cart is unavailable.');
+            }
+        }
+
         $this->validate([
             'address_book_id' => 'required',
             'payment_mode' => 'required',
         ]);
                 
-        $cart = Cart::with('product')->where('user_id', Auth::id())->get();
-        $products = Product::select('id', 'quantity')
-            ->whereIn('id', $cart->pluck('product_id'))
-            ->pluck('quantity', 'id');
-
         
-
         try{
             $this->resetValidation();
             DB::transaction(function () use ($cart) {
@@ -229,22 +233,7 @@ class Step1 extends Component
             });
         }
         catch (\Illuminate\Database\QueryException $exception){
-            foreach ($cart as $cartProduct){
-                if(!isset($products[$cartProduct->product_id]) 
-                    || $products[$cartProduct->product_id] < $cartProduct->qty) {
-                        Cart::where('product_id', $cartProduct->product->id)
-                            ->where('user_id', Auth::id())->delete();
-
-
-                        redirect()
-                        ->route('cart')
-                        ->with('checkout_message', $cartProduct->product->name);
-                        
-                    //$this->checkout_message = 'Error: Product ' . $cartProduct->product->name . ' not found in stock';
-                }
-            }
-            
-            //$this->checkout_message = "Something wrong";
+            $this->checkout_message = "Something wrong";
             //dd("Query Exception: " . $exception->getMessage());
         }
          catch (\Exception $exception){
@@ -333,12 +322,13 @@ class Step1 extends Component
         try{
             AddressBook::findOrFail($id)->delete();
             
-            $user = User::find(Auth::user()->id);
-            $user->address_book_id = 0;
-            $user->save();
-            $this->successToast('Address Deleted Successfully!');
+            //$user = User::find(Auth::user()->id);
+            //$user->address_book_id = 0;
+            //$user->save();
+            //$this->successToast('Address Deleted Successfully!');
         } catch(\Exception $e){
-            $this->errorAlert('This Address Cannot Be Deleted!');
+            dd($e->getMessage());
+            //$this->errorAlert('This Address Cannot Be Deleted!');
         }
     }
 

@@ -30,6 +30,7 @@ class UserSeeder extends Seeder
             'name' => 'Don Juan',
             'email' => 'ecomhipolito+user@gmail.com',
             'password' => Hash::make('G.sMb0xK##oQ'),
+            'email_verified_at' => now()
         ]);
         $user->assignRole($role1);
 
@@ -37,6 +38,7 @@ class UserSeeder extends Seeder
             'name' => 'Ecom Admin',
             'email' => 'ecomhipolito+admin@gmail.com',
             'password' => Hash::make('AdRqHMjf`Pw^'),
+            'email_verified_at' => now()
         ]);
         $user->assignRole($role2);
 
@@ -44,6 +46,7 @@ class UserSeeder extends Seeder
             'name' => 'Ecom Superadmin',
             'email' => 'ecomhipolito+sadmin@gmail.com',
             'password' => Hash::make('$ps,@Uv|`Fcp'),
+            'email_verified_at' => now()
         ]);
         $user->assignRole($role3);
 

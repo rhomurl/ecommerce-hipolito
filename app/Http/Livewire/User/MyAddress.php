@@ -2,15 +2,13 @@
 
 namespace App\Http\Livewire\User;
 
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-
 use App\Models\User;
 use App\Models\AddressBook;
-
+use App\Services\AddressService;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
-use App\Services\AddressService;
 
 class MyAddress extends Component
 {

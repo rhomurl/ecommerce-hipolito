@@ -26,12 +26,17 @@ class SearchBrand extends Component
 
     public function render()
     {
-        $brand_id = Brand::select('id')->where('slug', '=', $this->slug)->firstOrFail();
-        $this->brandname = Brand::select('name')->where('slug', '=', $this->slug)->firstOrFail();
-        $results = Product::where('brand_id', $brand_id->id);
+        $brand = Brand::with('product')
+            ->where('slug', '=', $this->slug)
+            ->firstOrFail();
+
+        $this->brandname = $brand->name;
+
+        $results = Product::with('category', 'brand')
+            ->where('brand_id', $brand->id)
+            ->paginate($this->perpage);
         
         $resultCount = $results->count();
-        $results = $results->paginate($this->perpage);
 
         return view('livewire.shop.search-brand', compact('results', 'resultCount'))->layout('layouts.user');
     }
