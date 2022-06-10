@@ -128,12 +128,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
 <script>
 $(document).ready(function(){
-
     $('.counter').counterUp({
-        delay: 20,
-        time: 3000
+        delay: 50,
+        time: 5000
     });
-
 });
 </script>
 @endsection

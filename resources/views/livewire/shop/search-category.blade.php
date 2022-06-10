@@ -2,12 +2,12 @@
 
 
     <!-- ============================  FILTER TOP  ================================= -->
-    <div class="card mb-3">
+    <div class="card mt-3 mb-3">
         <div class="card-body">
             <ol class="breadcrumb float-left">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                 <li class="breadcrumb-item">Category</li>
-                <li class="breadcrumb-item active">{{ $this->catname->name }}</li>
+                <li class="breadcrumb-item active">{{ $this->catname }}</li>
             </ol>
         </div> <!-- card-body .// -->
     </div> <!-- card.// -->

@@ -42,8 +42,8 @@ class BrandSeeder extends Seeder
             ],
             [
                 //'id' => 6,
-                'name' => 'Tokino',
-                'slug' => 'tokino',
+                'name' => 'Tokina',
+                'slug' => 'tokina',
             ],
             [
                 //'id' => 7,

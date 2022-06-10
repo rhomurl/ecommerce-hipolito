@@ -1,5 +1,97 @@
+
 @section('title', 'Home')
-    <!-- BANNER -->
+
+@section('style')
+<style>
+.featured_card_wrapper {
+        padding-top: 10px;
+    }
+    /*===== FIRST_CARD =====*/
+    .featured_card_background_1 {
+        position: relative;
+        background-image: url('https://hipolito-hardware.herokuapp.com/images/plywood-bot-banner.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 300px;
+    }
+    .featured_card_opacity_1 {
+        background-color: rgba(0, 0, 0, 0.3);
+        height: 100%;
+        width: 100%;
+    }
+    .featured_card_content_1 {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        right: 5%;
+        color: white;
+    }
+    .featured_card_button_1 {
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+    }
+    .discover_btn_1  {
+        padding: 5px 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.37rem;
+        border: none;
+        color: black;
+        background-color: white;
+        text-decoration: none;
+    }
+     /*===== END_OF_FIRST_CARD =====*/
+    /*===== SECOND_CARD =====*/
+    .featured_card_background_2 {
+        position: relative;
+        background-image: url('https://hipolito-hardware.herokuapp.com/images/construction-bot-banner.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 300px;
+    }
+    .featured_card_opacity_2 {
+        background-color: rgba(0, 0, 0, 0.3);
+        height: 100%;
+        width: 100%;
+    }
+    .featured_card_content_2 {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        right: 5%;
+        color: white;
+    }
+    .featured_card_button_2 {
+        position: absolute;
+        bottom: 5%;
+        right: 5%;
+    }
+    .discover_btn_2  {
+        padding: 5px 10px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.37rem;
+        border: none;
+        color: black;
+        background-color: white;
+        text-decoration: none;
+    }
+     /*===== END_OF_SECOND_CARD =====*/
+</style>
+@endsection
+
+<!-- BANNER -->
     <section class="section-intro padding-y">
         <div class="container">
         <!-- ==============  COMPONENT SLIDER  BOOTSTRAP ============  -->
@@ -91,27 +183,41 @@
     <!-- =============== SECTION BANNER =============== -->
     <section class="padding-bottom">
         <div class="row">
-            <aside class="col-md-6">
-                <div class="card card-banner-lg bg-dark">
-                    <img src="{{ asset('images/plywood-bot-banner.jpg') }}" class="card-img opacity">
-                    <div class="card-img-overlay text-white">
-                      <h2 class="card-title">Need Plywood For Your House?</h2>
-                      <p class="card-text" style="max-width: 80%">There are different plywoods that will suite in your needs!</p>
-                      <a href="{{ route('category.search', 'plywood') }}" class="btn btn-light">Discover</a>
+            <!-- FIRST_CARD -->
+            <div class="col-lg-6">
+                <div class="featured_card_wrapper">
+                    <div class="featured_card_background_1">
+                        <div class="featured_card_opacity_1">
+                            <div class="featured_card_content_1">
+                                <h2 class="card-title">Need Plywood For Your House?</h3>
+                                <p class="card-text">There are different plywoods that will suite in your needs!</p>
+                            </div>
+                            <div class="featured_card_button_1">
+                                <a href="{{ route('category.search', 'plywood') }}" class="btn btn-light">Discover</a>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-            </aside>
-            <div class="col-md-6">
-                <div class="card card-banner-lg bg-dark">
-                    <img src="{{ asset('images/construction-bot-banner.jpg') }}" class="card-img opacity">
-                    <div class="card-img-overlay text-white">
-                      <h2 class="card-title">Equipments on The Go</h2>
-                        <p class="card-text" style="max-width: 80%">Probably equipments you need during construction. Take a look and browse your desired product.</p>
-                      <a href="{{ route('category.search', 'construction-equipment') }}" class="btn btn-light">Discover</a>
+                </div>
+            </div>
+            <!-- END_OF_FIRST_CARD -->
+            <!-- SECOND_CARD -->
+            <div class="col-lg-6">
+                <div class="featured_card_wrapper">
+                    <div class="featured_card_background_2">
+                        <div class="featured_card_opacity_2">
+                            <div class="featured_card_content_2">
+                                <h2 class="card-title">Equipments on The Go</h3>
+                                <p class="card-text">Equipments you might need during construction. Feel free to choose all the products that you need.</p>
+                            </div>
+                            <div class="featured_card_button_2">
+                                <a href="{{ route('category.search', 'construction-equipment') }}" class="btn btn-light">Discover</a>
+                            </div>
+                        </div>
                     </div>
-                 </div>
-            </div> <!-- col.// -->
-        </div> <!-- row.// -->
+                </div>
+            </div>
+            <!-- END_OF_SECOND_CARD -->
+        </div>
     </section>
     <!-- =============== SECTION BANNER .//END =============== -->
     

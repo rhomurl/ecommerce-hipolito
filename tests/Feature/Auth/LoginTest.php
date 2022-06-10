@@ -48,7 +48,9 @@ class LoginTest extends TestCase
     /** @test */
     public function is_redirected_to_the_home_page_after_login()
     {
-        $user = User::factory()->create(['password' => Hash::make('password')]);
+        $user = User::factory()->create(
+            [   'email_verified_at' => now(),
+                'password' => Hash::make('password')]);
 
         Livewire::test('auth.login')
             ->set('email', $user->email)

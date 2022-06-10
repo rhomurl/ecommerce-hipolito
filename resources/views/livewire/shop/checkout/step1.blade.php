@@ -39,10 +39,10 @@
                         
                     @empty
 
-                        No address. Add an address?
+                        No address found. Add an address?
                         {{--<a href="{{ route('user.address.create')}}" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>--}}
                     @endforelse
-
+                    <br>
                     <button wire:click.prevent="showAddr" type="submit" class="btn btn-primary">Add Address</button>
                     
 
@@ -133,7 +133,7 @@
                             <input wire:model="setAddr" value="1" class="form-check-input" type="checkbox">
                             <span class="form-check-label">Set as default</span>
                         </label>
-                        <button type="submit" class="btn btn-primary">Continue</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                         <button wire:click.prevent="cancel" type="submit" class="btn btn-light">Cancel</button> 
                         </form>
                        @endif

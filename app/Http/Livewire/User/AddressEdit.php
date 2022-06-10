@@ -63,7 +63,7 @@ class AddressEdit extends Component
                 ]);
             
             //session()->flash('message', 'Address Edited Successfully'); 
-            sleep(5);
+            //sleep(5); add message success
             return redirect()->route('user.address');
                 
         } 

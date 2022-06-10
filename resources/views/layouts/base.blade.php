@@ -81,6 +81,7 @@
         
         <x-user-footer/>
 
+        
         @yield('scripts')
         
         @livewireScripts
