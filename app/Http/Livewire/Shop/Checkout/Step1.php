@@ -3,23 +3,17 @@
 namespace App\Http\Livewire\Shop\Checkout;
 
 use DB;
-use App\Traits\ModelComponentTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-
-use App\Notifications\OrderNotification;
-
-use App\Models\AddressBook;
-use App\Models\Barangay;
-use App\Models\Cart;
-use App\Models\City;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\Transaction;
-use App\Models\User;
-
+//use App\Notifications\OrderNotification;
+use App\Mail\OrderConfirmationMail;
+use App\Traits\ModelComponentTrait;
+use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User};
+use App\Services\AddressService;
+use App\Services\CheckoutService;
 use Illuminate\Support\Facades\Auth;
-
+use App\Exceptions\AddressAttachedToOrderException;
 use Livewire\Component;
+use Mail;
 
 class Step1 extends Component
 {
@@ -39,6 +33,8 @@ class Step1 extends Component
     $entry_postcode,
     $shipping_type,
     $setAddr;
+
+
 
     public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
     public $address_book_id, $payment_mode, $checkout_message, $shipping, $transid;
@@ -62,34 +58,17 @@ class Step1 extends Component
         $this->barangay = $this->barangays->first()->id ?? null;
     }
 
+    public function updatedAddressBookId($value)
+    {
+        $this->getShipping($this->shipping_type);
+    }
+
+    public function updatedShippingType($value){
+        $this->getShipping($value);
+    }
+
     public function render()
     {
-        $address = AddressBook::find($this->address_book_id);
-        if($this->address_book_id && $address){
-            
-            if($address->barangay->city->id == 41014)
-            {
-                if($this->shipping_type == 'express'){
-                    $this->shipping = 0;
-                }
-                else if($this->shipping_type == 'standard'){
-                    $this->shipping = 100;
-                }
-            }
-            else if($address->barangay->city->id == 41031)
-            {
-                if($this->shipping_type == 'express'){
-                    $this->shipping = 200;
-                }
-                else if($this->shipping_type == 'standard'){
-                    $this->shipping = 150;
-                }
-            }
-
-        }
-
-
-
         $addresses = AddressBook::with('barangay.city')
         ->where('user_id', Auth::id())
         ->latest()
@@ -137,6 +116,7 @@ class Step1 extends Component
         $this->validate([
             'address_book_id' => 'required',
             'payment_mode' => 'required',
+            'shipping_type' => 'required',
         ]);
                 
         
@@ -155,7 +135,7 @@ class Step1 extends Component
                 ]);*/
 
                 $order = new Order();
-                $order->user_id = auth()->id();
+                //$order->user_id = auth()->id();
                 $order->address_book_id = $this->address_book_id/1;
                 $order->subtotal = $this->totalCart;
                 $order->discount = $this->discount;
@@ -203,30 +183,20 @@ class Step1 extends Component
                //dd($order->id);
                if($this->payment_mode == 'cod')
                {
-                    $user = Auth::user();
+                    $address = AddressBook::with('barangay')->find($order->address_book_id);
+                
+                    $orderData = resolve(CheckoutService::class)->getOrderData(auth()->user(), $address, $order);
+                
+                    Mail::to(auth()->user()->email)
+                        ->send(new OrderConfirmationMail($orderData));
 
-                    $orderData = [
-                        'greeting' => 'Thank you for your order!',
-                        'name' => 'Hello ' . $user->name . ',',
-                        'body' => ' Thank you for your order from Hipolito`s Hardware. We received your order #' . $order->id . ' on ' . $order->created_at->format('F j Y h:i A') . ' and your payment method is Cash on Delivery. We will email you once your order has been shipped. We wish you enjoy shopping with us and thank you again for choosing our store!' ,
-                        'orderText' => 'View Order',
-                        'orderDetails' => [
-                            'id' => $order->id,
-                        ],
-                        'url' => url(route('user.order.details', $order->uuid )),
-                        'thankyou' => ''
-                    ];
-
-                    $user->notify(new OrderNotification($orderData));
-
-                    
                     redirect()
                     ->route('checkout.success', $order->id);
                }
                 else
                 {
                     redirect()
-                    ->route('checkout')
+                    ->route('checkout.step2')
                     ->with('orderid', $order->id);
                 }
                
@@ -237,9 +207,8 @@ class Step1 extends Component
             //dd("Query Exception: " . $exception->getMessage());
         }
          catch (\Exception $exception){
-            
-            //$this->checkout_message = "Something wrong";
-            dd("General: " . $exception->getMessage());
+            $this->checkout_message = "Something wrong";
+            //dd("General: " . $exception->getMessage());
         }
     }
 
@@ -293,9 +262,7 @@ class Step1 extends Component
                 $user->address_book_id = $c_address->id;
                 $user->save();
             }
-            //$transaction = Transaction::where('order_id', '=', $user_orderid)
-            //$cart->update(['qty' => $cart->qty + $qty]);
-            //->update(array('status' => 'cancelled'));
+
 
             $this->entry_company = '';
             $this->entry_firstname = '';
@@ -320,15 +287,51 @@ class Step1 extends Component
     public function deleteAddr($id)
     {
         try{
-            AddressBook::findOrFail($id)->delete();
+            resolve(AddressService::class)->checkAddress($id);
+            if(auth()->user()->address_book_id == $id){
+                $user = User::find(auth()->user()->id);
+                $user->address_book_id = 0;
+                $user->save();
+            }
             
-            //$user = User::find(Auth::user()->id);
-            //$user->address_book_id = 0;
-            //$user->save();
             //$this->successToast('Address Deleted Successfully!');
-        } catch(\Exception $e){
-            dd($e->getMessage());
-            //$this->errorAlert('This Address Cannot Be Deleted!');
+            AddressBook::findOrFail($id)->delete();
+        } catch(AddressAttachedToOrderException $exception){
+            $this->errorAlert('Address Cannot Be Deleted!');
+        }
+    }
+
+    public function getShipping($value){
+        $address = AddressBook::find($this->address_book_id);
+        if($address){
+            if($address->barangay->city->id == 41014)
+            {
+                //Lipa City
+                if($value == 'express'){
+                    $this->shipping = 300;
+                }
+                else if($value == 'standard'){
+                    $this->shipping = 200;
+                }
+
+                if($this->totalCart > 5000){
+                    $this->shipping = 0;
+                }
+            }
+            else if($address->barangay->city->id == 41031)
+            {
+                //Tanauan City
+                if($value == 'express'){
+                    $this->shipping = 500;
+                }
+                else if($value == 'standard'){
+                    $this->shipping = 300;
+                }
+
+                if($this->totalCart > 8000){
+                    $this->shipping = 0;
+                }
+            }
         }
     }
 

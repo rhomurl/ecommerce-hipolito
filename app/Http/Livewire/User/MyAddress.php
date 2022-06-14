@@ -3,11 +3,13 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\AddressBook;
 use App\Services\AddressService;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Exceptions\AddressAttachedToOrderException;
 use Livewire\Component;
 
 class MyAddress extends Component
@@ -31,20 +33,20 @@ class MyAddress extends Component
     public function delete($id)
     {
         try{
-            AddressBook::findOrFail($id)->delete();
+            resolve(AddressService::class)->checkAddress($id);
+            if(auth()->user()->address_book_id == $id){
+                $user = User::find(auth()->user()->id);
+                $user->address_book_id = 0;
+                $user->save();
+            }
             
-            $user = User::find(Auth::user()->id);
-            $user->address_book_id = 0;
-            $user->save();
-
+            AddressBook::findOrFail($id)->delete();
             $this->successToast('Address Deleted Successfully!');
             
-        } catch(\Illuminate\Database\QueryException $exception){
-            $this->errorAlert('This Address Cannot Be Deleted!');
-        } catch(\Exception $exception){
-            //dd(get_class($exception));
-            //
+        } catch(AddressAttachedToOrderException $exception){
+            $this->errorAlert('Address Cannot Be Deleted!');
         }
+        
     }
 
     public function edit($id)

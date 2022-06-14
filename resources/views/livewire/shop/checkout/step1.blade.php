@@ -10,8 +10,8 @@
                     
                     
                     <div class="card-body checkout_card_body">
-                        @if($this->error_message)
-                            {{ $this->error_message }}
+                        @if($this->checkout_message)
+                            {{ $this->checkout_message }}
                         @endif
                         
                         @if($this->showForm == false)
@@ -152,7 +152,7 @@
                                         <input wire:model="shipping_type" value="express" class="form-check-input" type="radio">
                                         <b class="border-oncheck"></b>
                                         <span class="form-check-label">
-                                            "Express delivery"
+                                            Express delivery
                                             <br>
                                             <small class="text-muted">Within the day delivery</small>
                                         </span>
@@ -165,7 +165,7 @@
                                         <input wire:model="shipping_type" value="standard" class="form-check-input" type="radio">
                                         <b class="border-oncheck"></b>
                                         <span class="form-check-label">
-                                            "Standard delivery"
+                                            Standard delivery
                                             <br>
                                             <small class="text-muted">Delivery tomorrow</small>
                                         </span>
@@ -185,9 +185,16 @@
                                     </label>
                                 </div>
                             </div>--}}
+                            @error('shipping_type')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         </div>
+                        
                     </article>
+                   
                     <article class="card">
                         <div class="card-body">
                             <h5 class="card-title">Payment Method</h5>
@@ -260,7 +267,13 @@
                                 </article>
                                 <!-- END_OF_CASH_ON_DELIVERY -->
                             </div>
+                            @error('payment_mode')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
+                        
                     </article>
                 @endif
             </div>
@@ -298,7 +311,7 @@
                             </dd>
                         </dl>
                         <hr>
-                        <h5 class="mb-4">Items in cart</h5>
+                        <h5 class="mb-4">Products</h5>
                         @foreach ($cartItems as $cartItem)
                             <div class="itemside align-items-center mb-4">
                                 <div class="aside">
@@ -401,7 +414,7 @@
             <aside class="col-lg-4">
                 <article class="card">
                     <div class="card-body">
-                            <button class="btn w-100 btn-success">Place Order</button>
+                            <button type="submit" class="btn w-100 btn-success">Place Order</button>
                         </form>
                     </div>
                 </article>

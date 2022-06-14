@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\MultiTenantModelTrait;
 
 class AddressBook extends Model
 {
+    use MultiTenantModelTrait;
+    
     protected $table = 'address_book';
     protected $fillable = ['user_id', 'entry_company', 'entry_firstname', 'entry_lastname', 'entry_landmark', 'entry_street_address', 'barangay_id', 'entry_phonenumber', 'entry_postcode'];
     
@@ -16,5 +19,6 @@ class AddressBook extends Model
     {
         return $this->belongsTo(Barangay::class);
     }
+
 }
 

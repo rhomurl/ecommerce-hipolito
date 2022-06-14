@@ -23,7 +23,7 @@
             <tr class="small text-uppercase">
             <th scope="col">Product</th>
             <th scope="col" width="150">Quantity</th>
-            <th scope="col" width="120">Price</th>
+            <th scope="col" width="150">Price</th>
             <th scope="col" class="text-right" width="200"> </th>
             </tr>
         @endif
@@ -58,7 +58,7 @@
                 </td>
                 <td> 
                     <div class="price-wrap"> 
-                        <var class="price">₱ {{ $cartItem->selling_price * $cartItem->qty }}</var> 
+                        <var class="price">₱ {{ number_format($cartItem->selling_price * $cartItem->qty, 2) }}</var> 
                         <small class="text-muted">₱ {{ $cartItem->selling_price }}  </small> 
                     </div> <!-- price-wrap .// -->
                 </td>
@@ -82,7 +82,7 @@
     </div> <!-- card.// -->
 
     <div class="alert alert-success mt-3">
-        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Shipping for Orders Above 2500 PHP</p>
+        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Shipping for Orders Above 5000 PHP (Lipa) and 8000 PHP (Tanauan)</p>
     </div>
 
     </main> <!-- col.// -->
@@ -92,7 +92,7 @@
                 <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Subtotal:</dt>
-                            <dd class="text-right">₱ {{ $totalCart }}.00</dd>
+                            <dd class="text-right">₱ {{ number_format($this->subTotal, 2) }}</dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Shipping:</dt>

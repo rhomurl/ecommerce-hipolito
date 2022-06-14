@@ -15,7 +15,7 @@ use App\Http\Livewire\Admin;
 use App\Http\Livewire\Shop;
 use App\Http\Livewire\Sitemap;
 use App\Http\Livewire\Testupload;
-use App\Http\Controllers\GeneratePDF;
+use App\Http\Controllers\GenerateOrderPDF;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -83,7 +83,7 @@ Route::get('/checkout/success/{id}', Shop\CheckoutSuccess::class)->name('checkou
 
 Route::get('/order/cancel', Shop\OrderCancel::class)->name('order.cancel');
 Route::get('/checkout', Shop\Checkout\Step1::class)->middleware(['check_if_user', 'verified'])->name('checkout.step1');
-Route::get('/checkout/paypal', Shop\Checkout::class)->middleware('check_if_user')->name('checkout');
+Route::get('/checkout/paypal', Shop\Checkout\Step2::class)->middleware('check_if_user')->name('checkout.step2');
 
 Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])->group(function () {
     Route::get('/', User\AccountOverview::class);
@@ -107,10 +107,10 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('managerole', Admin\RoleManagement::class)->middleware(['role:super-admin'])->name('managerole');
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
-    Route::get('/order/{uuid}/generate-pdf/', [GeneratePDF::class, 'generatePDF'])->name('genPDF');
+    Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
+    Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');
     //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
 }); 
-
 
 /*
 Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');

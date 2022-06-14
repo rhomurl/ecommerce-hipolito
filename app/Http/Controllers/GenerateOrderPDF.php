@@ -8,7 +8,7 @@ use App\Models\AddressBook;
 use PDF;
 use Carbon\Carbon;
 
-class GeneratePDF extends Controller
+class GenerateOrderPDF extends Controller
 {
     public $order;
 
@@ -25,7 +25,6 @@ class GeneratePDF extends Controller
 
 
         $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
             'date' => date('m/d/Y'),    
             'prod' => $order,
             'address' => $address,
@@ -40,7 +39,7 @@ class GeneratePDF extends Controller
         //dd($order);
         $pdf = PDF::loadView('orderPDF', $data);
 
-        return $pdf->stream();
-        //return $pdf->download('itsolutionstuff.pdf');
+        //return $pdf->stream();
+        return $pdf->download('invoice_' . $order->uuid . '.pdf');
     }
 }

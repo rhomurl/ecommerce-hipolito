@@ -39,8 +39,6 @@ class ProductDetails extends Component
 
     public function render()
     {
-        
-
         $query = Product::query();
         $product = (clone $query)
             ->where('slug', $this->slug)
@@ -87,7 +85,6 @@ class ProductDetails extends Component
         $this->successToast('Product Added to Cart!');
         //session()->flash('message', 'Product Added to Cart');
         //return redirect(route('cart'));
-        
     }
 
     public function minusQty(){

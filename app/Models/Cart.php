@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\MultiTenantModelTrait;
 
 class Cart extends Model
 {
     use HasFactory;
+    use MultiTenantModelTrait;
+    
     protected $fillable = ['user_id', 'product_id', 'qty'];
 
     public function products()

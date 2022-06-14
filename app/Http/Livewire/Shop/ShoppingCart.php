@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Product;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Illuminate\Support\Facades\Auth;
+use App\Services\WishlistService;
 use Livewire\Component;
 
 class ShoppingCart extends Component
@@ -15,12 +16,12 @@ class ShoppingCart extends Component
     use LivewireAlert;
     use ModelComponentTrait;
 
-    protected $listeners = ['updateCart' => 'render', 'increaseQuantity' => 'addToCart'];
+    protected $listeners = ['increaseQuantity' => 'addToCart'];
 
-    public $shipping;
-    public $totalCart;
-    public $totalCartWithoutTax;
-    public $countries;
+    //public $shipping;
+    public $subTotal;
+    //public $totalCartWithoutTax;
+    //public $countries;
     public $checkout_message;
 
     public function mount(){
@@ -33,7 +34,7 @@ class ShoppingCart extends Component
             ->map(function (Cart $items) {
                 return (object)[
                     'id' => $items->product_id,
-                    'user_id'=> $items->user_id,
+                    //'user_id'=> $items->user_id,
                     'slug' => $items->products->slug,
                     'name' => $items->products->name,
                     'brand' => $items->products->brand->name,
@@ -45,8 +46,8 @@ class ShoppingCart extends Component
                 ];
             } );
 
-            $this->totalCart = $cartItems->sum('total');
-            $this->totalCartWithoutTax = $cartItems->sum('total') + $this->shipping;
+            $this->subTotal = $cartItems->sum('total');
+            //$this->totalCartWithoutTax = $this->subTotal + $this->shipping;
 
         return view('livewire.shop.shopping-cart', compact('cartItems'));
     }
@@ -67,7 +68,7 @@ class ShoppingCart extends Component
 
                 return redirect()
                 ->route('cart')
-                ->with('checkout_message', $cartProduct->product->name);
+                ->with('checkout_message', $cartProduct->product->name . " is out of stock.");
             }
             
         }
@@ -89,8 +90,9 @@ class ShoppingCart extends Component
             Cart::where('product_id', $id)
                 ->where('user_id', Auth::id())
                 ->delete();
+            $this->emit('updateWidgets');
         }
-        $this->emit('updateCart');
+        
     }
 
     public function removefromCart($id)
@@ -98,29 +100,14 @@ class ShoppingCart extends Component
         Cart::where('product_id', $id)
             ->where('user_id', Auth::id())
             ->delete();
-        $this->emit('updateCart');
+            $this->emit('updateWidgets');
     }
 
-    public function addToCart($productId)
+    public function addToCart($id, WishlistService $cart)
     {
         if(!Auth::check()){
             return redirect()->route('login');
         }
-
-        $cart = Cart::where('product_id', $productId)
-                    ->where('user_id', Auth::id())
-                    ->first();
-        
-        if (!$cart) {
-            Cart::create(['user_id' => Auth::id(), 
-                        'product_id' => $productId, 
-                        'qty' => 1
-            ]);
-        } 
-        else {
-            $cart->update(['qty' => $cart->qty + 1]);
-        }
-        
-        $this->emit('updateCart');
+        $cart->addCart($id);
     }
 }

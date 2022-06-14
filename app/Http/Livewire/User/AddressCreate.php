@@ -51,7 +51,7 @@ class AddressCreate extends Component
 
         try {
             $address = AddressBook::create([
-                'user_id' => Auth::user()->id,
+                //'user_id' => Auth::user()->id,
                 'entry_company' => $this->company,
                 'entry_firstname' => $this->firstname,
                 'entry_lastname' => $this->lastname,

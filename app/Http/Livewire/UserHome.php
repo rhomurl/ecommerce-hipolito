@@ -5,8 +5,7 @@ namespace App\Http\Livewire;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Traits\ModelComponentTrait;
 //use App\Models\Cart;
-use App\Models\Banner;
-use App\Models\Product;
+use App\Models\{Banner, Product};
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -15,12 +14,15 @@ class UserHome extends Component
     use LivewireAlert;
     use ModelComponentTrait;
 
-    public $cartProducts = [];
-    
     public function mount(){
         $this->products = Product::with('brand')->whereNotNull('quantity')->take(12)->get();
         $this->l_products = Product::whereNotNull('quantity')->take(6)->orderBy('id', 'DESC')->get();
         $this->banners = Banner::take(5)->get();
+    }
+
+    public function render()
+    {
+        return view('livewire.user-home')->extends('layouts.user');
     }
 
     /*
@@ -54,8 +56,4 @@ class UserHome extends Component
     }
     */
 
-    public function render()
-    {
-        return view('livewire.user-home')->extends('layouts.user');
-    }
 }

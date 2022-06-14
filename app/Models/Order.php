@@ -65,6 +65,8 @@ class Order extends Model
         return $this->hasOne(Transaction::class);
     }
 
+
+
     public function getPaymentModeAttribute()
     {
         if($this->transaction->mode == 'paypal'){
