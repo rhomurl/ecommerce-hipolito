@@ -64,4 +64,9 @@ trait ModelComponentTrait
         $disk = \Storage::disk('gcs');
         return $disk->temporaryUrl($url, now()->addMinutes(30));
     }
+
+    public function getProductURL_maxtime($url){
+        $disk = \Storage::disk('gcs');
+        return $disk->temporaryUrl($url, now()->addDay(7));
+    }
 }

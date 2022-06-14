@@ -1,3 +1,8 @@
+@section('style')
+  <style>
+
+    </style>
+@endsection
 
   <section class="section-content bg-lightgray padding-y">
       
@@ -69,12 +74,12 @@
         <div class="form-row mt-4">
             <div class="form-group col-md flex-grow-0">
                 <div class="input-group mb-3 input-spinner">
-                  <div class="input-group-append">
+                  <div class="input-group">
                     
                     <button wire:click.prevent="minusQty" {{ $this->qty == 1 ? 'disabled' : '' }} class="btn btn-light" type="button" id="button-minus"> − </button>
                   </div>
                   <input wire:model="qty" type="text" class="form-control">
-                  <div class="input-group-prepend">
+                  <div class="input-group">
                     <button wire:click.prevent="addQty" {{ $this->product->quantity <= $this->qty ? 'disabled' : '' }} class="btn btn-light" type="button" id="button-plus"> + </button>
                   </div>
                 </div>

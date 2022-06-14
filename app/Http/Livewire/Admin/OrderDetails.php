@@ -38,6 +38,11 @@ class OrderDetails extends Component
         return view('livewire.admin.order-details', compact('order', 'address'))->layout('layouts.admin');
     }
 
+    public function viewPaypal($id)
+    {
+        $this->emit("openModal", "admin.order-paypal", ["id" => $id]);
+    }
+
     public function cancelStatus(){
         $this->status = false;
     }
@@ -96,5 +101,9 @@ class OrderDetails extends Component
            ]);
             //session()->flash('message', 'Order Updated Successfully');
         
+    }
+
+    public function redirectTo($route){
+        return redirect()->route($route);
     }
 }

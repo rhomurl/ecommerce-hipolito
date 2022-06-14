@@ -29,6 +29,7 @@ class OrderConfirmationMail extends Mailable
     public function build()
     {
         return $this->view('emails.order-confirmation-mail')
+            ->subject("Order Placed [#HP-" . $this->orderData['order_id'] . "] - " . "Hipolito`s Hardware")
             ->with('orderData', $this->orderData);
     }
 }

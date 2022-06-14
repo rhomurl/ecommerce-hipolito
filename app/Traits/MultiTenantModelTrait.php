@@ -11,15 +11,17 @@ trait MultiTenantModelTrait
     public static function bootMultiTenantModelTrait()
     {
         if(!app()->runningInConsole() && auth()->check()){
-            $isAdmin = auth()->user()->roles->contains(2);
-            static::creating(function ($model) use ($isAdmin){
+            $isCustomer = auth()->user()->roles->contains(1);
+            //$isAdmin = auth()->user()->roles->contains(2);
+            //$isSuperAdmin = auth()->user()->roles->contains(3);
 
-                if(!$isAdmin){
+            static::creating(function ($model) use ($isCustomer){
+                if($isCustomer){
                     $model->user_id = auth()->id();
                 }
             });
 
-            if(!$isAdmin){
+            if($isCustomer){
                 static::addGlobalScope('user_id', function (Builder $builder){
                     $builder->where('user_id', auth()->id());
                 });

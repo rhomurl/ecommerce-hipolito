@@ -58,11 +58,14 @@ onApprove: function(data, actions) {
         var msg = 'Sorry, your transaction could not be processed.';
         if(errorDetail.description) msg += '\n\n' + errorDetail.description;
         if(orderData.debug_id) msg += ' (' + orderData.debug_id + ') ';
-        return alert(msg);
+        return console.log(msg);
         //Avoid using alert in production
       }
 
      if(orderData.status === 'COMPLETED'){
+        //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+        //console.log(orderData.payer);
+        //console.log(orderData.payer.email_address);
         actions.redirect("{{ route('checkout.success', $this->orderidz) }}");
       }
       // Transaction ID

@@ -18,11 +18,16 @@
     </div>
 @endif--}}
 
-<a href="{{ route('admin.orders') }}" class="mb-3">
-    Back to Orders
-</a>
 
-{{--<a href="{{ route('admin.genPDF', $order->uuid) }}" class="mb-3">
+<div>
+    <button wire:click.prevent="redirectTo('admin.orders')" class="flex items-center justify-between mb-3 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        <span>Go to Orders</span>
+    </button>
+</div>
+{{--<a href="{{ route('admin.genOrderPDF', $order->uuid) }}" class="mb-3">
     Get Invoice
 </a>--}}
     <div class="grid gap-6 mb-8 md:grid-cols-2">
@@ -45,14 +50,24 @@
             <h4 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Payment Method
             </h4>
-            <p class="text-gray-600 dark:text-gray-400">
+            
+            <p class="text-gray-600 dark:text-gray-400 mb-5">
                @if($order->transaction->mode == "paypal") 
-                    <img src="{{ asset("images/misc/payment-paypal.png") }}" class="float-left" height="24">
+                <img src="{{ asset("images/misc/payment-paypal.png") }}" class="float-left" height="24">
+                <button wire:click.prevent="viewPaypal( {{ $order->id }} )" class="ml-5 px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                View Paypal Details
+                            </button>
+
                 @elseif($order->transaction->mode == "cod")
                     Cash on Delivery
                @endif
+               
             </p>
+
+            
+       
         </div>
+        
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Payment Information
@@ -63,7 +78,7 @@
                 {{--<b>Discount:</b> ₱ {{ $order->discount }}<br>--}}
                 <b>Order Total:</b> ₱ {{ $order->total }}<br><br>
            
-            Order Status:  
+            <b>Order Status:</b>
             @if($order->status == 'ordered')
                 Ordered
             @elseif($order->status == 'delivered')

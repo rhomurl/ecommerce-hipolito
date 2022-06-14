@@ -415,6 +415,9 @@ p:last-child {
 
 /* ================== SECTIONS =================== */
 .section-header {
+  position:sticky;
+  top:0;
+  z-index: 1;
   background-color: #fff;
   -webkit-box-shadow: 0 0 3px rgba(51, 51, 51, 0.15);
           box-shadow: 0 0 3px rgba(51, 51, 51, 0.15); }

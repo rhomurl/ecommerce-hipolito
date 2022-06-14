@@ -39,7 +39,7 @@ class AllProducts extends Component
 
         
         if (!$cart) {
-            Cart::create(['user_id' => Auth::id(), 'product_id' => $productId, 'qty' => 1]);
+            Cart::create(['product_id' => $productId, 'qty' => 1]);
             $this->add_to_cart_prompt();
         } 
         else {

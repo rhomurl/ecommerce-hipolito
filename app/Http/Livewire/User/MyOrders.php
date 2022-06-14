@@ -39,7 +39,7 @@ class MyOrders extends Component
         
         if($order){
             redirect()
-                ->route('checkout')
+                ->route('checkout.step2')
                 ->with('orderid', $id);
         }
         
@@ -60,7 +60,7 @@ class MyOrders extends Component
             $order->status = 'cancelled';
             $order->save();
 
-        $transaction = Transaction::where('order_id', '=', $user_orderid)
+        Transaction::where('order_id', '=', $user_orderid)
             ->update(array('status' => 'cancelled'));
 
         redirect()->route('order.cancel');

@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use Session;
-use App\Notifications\OrderNotification;
+//use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
-use App\Models\OrderProduct;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
-use App\Models\Transaction;
+use App\Mail\OrderConfirmationMail;
+use App\Services\CheckoutService;
+use App\Models\{OrderProduct, Order, Product, User, Transaction, AddressBook};
+use App\Traits\ModelComponentTrait;
 use DB;
+use Mail;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaypalController extends Controller
 {
+    use ModelComponentTrait;
+
     public function create(Request $request){
         $data = json_decode($request->getContent(), true);
         $total = $data['total'];
@@ -66,23 +68,13 @@ class PaypalController extends Controller
             $order->save();
 
             $transaction = Transaction::where('order_id', '=', $orderidz)
-                ->update(array('status' => 'ordered'));
-            
-            $orderData = [
-                'greeting' => 'Thank you for your order!',
-                'name' => 'Hello '. $user->name . ',',
-                'body' => ' Thank you for your order from Hipolito`s Hardware. We received your order #' . $order->id . ' on ' . $order->created_at->format('F j Y h:i A') . ' and your payment method is PayPal. We will email you once your order has been shipped. We wish you enjoy shopping with us and thank you again for choosing our store!' ,
-                'orderText' => 'View Order',
-                'orderDetails' => [
-                    'id' => $order->id,
-                ],
-                'url' => url(route('user.order.details', $order->uuid )),
-                'thankyou' => ''
-            ];
+                ->update(array('status' => 'ordered'));            
+            $address = AddressBook::with('barangay')->find($order->address_book_id);
 
-            $user->notify(new OrderNotification($orderData));
+            $orderData = resolve(CheckoutService::class)->getOrderData($user, $address, $order);
 
-            
+            Mail::to($user->email)
+                ->send(new OrderConfirmationMail($orderData));
         }
 
         return response()->json($result);
