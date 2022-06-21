@@ -7,8 +7,6 @@
         <div class="row">
             <div class="col-lg-8">
                 <article class="card checkout_card">
-                    
-                    
                     <div class="card-body checkout_card_body">
                         @if($this->checkout_message)
                             {{ $this->checkout_message }}
@@ -16,38 +14,42 @@
                         
                         @if($this->showForm == false)
                             <form wire:submit.prevent="placeOrder">
-                        @endif
-                        <h5 class="card-title checkout_card_title">Shipping Info</h5>
-                        
-                        @forelse($addresses as $address)
                             
-                            <label for="address" class="form-check checkout_form_check">
-                            <input wire:model="address_book_id" value="{{ $address->id }}" type="radio" name="address" >
+                            <h5 class="card-title checkout_card_title">Shipping Info</h5>
                             
-                            {{ $address->entry_street_address }}, 
-                            {{ $address->barangay->name }},
-                            {{ $address->barangay->city->name }},  
-                            {{ $address->barangay->city->zip }}
-                            @if($address->id == auth()->user()->address_book_id)
-                            — <b>{{ $this->msg_add_default }}</b> 
-                            @endif
-                            [<a href="{{ route('user.address.edit', $address->id)}}">Edit</a>]&nbsp;
-                            [<a href="#" wire:click.prevent="deleteAddr({{$address->id}})">Delete</a>]
-                            </label>
-                       
-                        <br>
-                        
-                    @empty
+                            @forelse($addresses as $address)
+                                <label for="address" class="form-check checkout_form_check">
+                                <input wire:model="address_book_id" value="{{ $address->id }}" type="radio" name="address">
+                                {{ $address->entry_street_address }}, 
+                                {{ $address->barangay->name }},
+                                {{ $address->barangay->city->name }},  
+                                {{ $address->barangay->city->zip }}
+                                @if($address->id == auth()->user()->address_book_id)
+                                — <b>{{ $this->msg_add_default }}</b> 
+                                @endif
+                                [<a href="{{ route('user.address.edit', $address->id)}}">Edit</a>]&nbsp;
+                                [<a href="#" wire:click.prevent="deleteAddr({{$address->id}})">Delete</a>]
+                                </label>
+                            @empty
+                                
+                                    No address found. Add an address?
+                                
+                            @endforelse
 
-                        No address found. Add an address?
-                        {{--<a href="{{ route('user.address.create')}}" class="btn btn-light mb-3"> <i class="fa fa-plus"></i> Add new address </a>--}}
-                    @endforelse
-                    <br>
-                    <button wire:click.prevent="showAddr" type="submit" class="btn btn-primary">Add Address</button>
-                    
+                            @error('address_book_id')
+                                <span class="text-danger mt-4">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+
+                            <br>
+                        
+                            <button wire:click.prevent="showAddr" type="submit" class="btn btn-primary">Add Address</button>
+                            <hr>
+                            @endif
 
                         @if($this->showForm == true && $this->addr_count == 0)
-                        <hr>
+                        
                         <h5 class="card-title checkout_card_title">Shipping Info</h5>
                         <form wire:submit.prevent="storeAddress">
                         <div class="row">
@@ -118,7 +120,7 @@
                             </div>
                             <div class="col-sm-4 mb-3">
                                 <label class="form-label checkout_form_label" for="">Phone number</label>
-                                <input wire:model.lazy="entry_phonenumber" class="form-control" type="text" placeholder="Enter phone number">
+                                <input wire:model.lazy="entry_phonenumber" class="form-control" type="tel" placeholder="Enter phone number">
                                 @error('entry_phonenumber')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -186,7 +188,7 @@
                                 </div>
                             </div>--}}
                             @error('shipping_type')
-                                <span class="text-danger">
+                                <span class="text-danger ml-3">
                                     {{ $message }}
                                 </span>
                             @enderror
@@ -414,7 +416,7 @@
             <aside class="col-lg-4">
                 <article class="card">
                     <div class="card-body">
-                            <button type="submit" class="btn w-100 btn-success">Place Order</button>
+                            <button type="submit" class="btn w-100 btn-success" @if($this->showForm == true) {{ "disabled"}} @endif>Place Order</button>
                         </form>
                     </div>
                 </article>

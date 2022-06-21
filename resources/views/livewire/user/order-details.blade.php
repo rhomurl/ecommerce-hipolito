@@ -111,8 +111,7 @@
         <table class="table table-hover ml-5">
                 <tbody>
         <p class="p-2">Products</p>
-            @foreach ($order->orderProduct as $item)
-
+            @foreach ($order->orderProduct as $key => $item)
             <ul class="row">
                 <li class="col-md-5">
                     <figure class="itemside mb-3">
@@ -123,8 +122,7 @@
                         </figcaption>
                     </figure> 
                 </li>
-            </ul>
-
+            </ul>   
             @endforeach
         </tbody></table>
         </div> <!-- table-responsive .end// -->

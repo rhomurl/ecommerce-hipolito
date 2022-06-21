@@ -56,20 +56,24 @@
                           </select>
                         </div> <!-- form-group end.// -->
                     </div>--}} <!-- form-row.// -->
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Create password</label>
-                            <input wire:model.lazy="password" id="password" type="password" required class="form-control" type="password">
+                    
+                        <label>Create password</label>
+                        <div class="input-group mb-3">
+                            <input wire:model.lazy="password" id="password" type="{{ $visible ? 'text' : 'password' }}" required class="form-control" type="password">
+                            <button wire:click="togglePassword" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
+                            </button> 
                         @error('password')
                             <p class="mt-2 text-warning">{{ $message }}</p>
                         @enderror
                         
                         </div> <!-- form-group end.// --> 
-                        <div class="form-group col-md-6">
-                            <label>Repeat password</label>
-                            <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" required class="form-control">
+                        <label>Repeat password</label>
+                        <div class="input-group mb-3">
+                            <input type="{{ $visible ? 'text' : 'password' }}"  wire:model.lazy="passwordConfirmation" required class="form-control">
+                            <button wire:click="togglePassword" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
+                            </button> 
                         </div> <!-- form-group end.// -->  
-                    </div>
+                    
                     <div class="form-group mt-2">
                         <div wire:ignore>
                             {!! NoCaptcha::renderJs() !!}

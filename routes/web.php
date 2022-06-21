@@ -91,6 +91,7 @@ Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])-
     Route::get('orders', User\MyOrders::class)->name('orders');
     Route::get('order/{uuid}', User\OrderDetails::class)->name('order.details');
     Route::get('edit', User\EditProfile::class)->name('edit');
+    Route::get('change-password', User\ChangePassword::class)->name('change-password');
     Route::get('address', User\MyAddress::class)->name('address');
     Route::get('address/create', User\AddressCreate::class)->name('address.create');
     Route::get('address/edit/{id}', User\AddressEdit::class)->name('address.edit');
@@ -100,12 +101,14 @@ Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])-
 Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(function () {
     Route::get('/', Admin\AdminHome::class)->name('overview');
     Route::get('banners', Admin\BannerComponent::class)->name('banners');
+   // Route::get('change-password', Admin\ChangePassword::class)->name('change-password');
     Route::get('products', Admin\ProductComponent::class)->name('products');
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
     Route::get('categories', Admin\CategoryComponent::class)->name('categories');
     Route::get('manageuser', Admin\UserManagement::class)->name('manageuser');
     Route::get('managerole', Admin\RoleManagement::class)->middleware(['role:super-admin'])->name('managerole');
     Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
+    Route::get('sales-report', Admin\SalesReport::class)->name('sales.report');
     Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
     Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
     Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');

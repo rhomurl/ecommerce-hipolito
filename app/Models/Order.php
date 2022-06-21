@@ -65,8 +65,6 @@ class Order extends Model
         return $this->hasOne(Transaction::class);
     }
 
-
-
     public function getPaymentModeAttribute()
     {
         if($this->transaction->mode == 'paypal'){
@@ -74,6 +72,27 @@ class Order extends Model
         }
         else if($this->transaction->mode == 'cod'){
             return 'Cash on Delivery';
+        }
+    }
+
+    public function getOrderStatusAttribute(){
+        if($this->status == 'ordered'){
+            return 'Ordered';
+        }
+        else if($this->status == 'delivered'){
+            return 'Delivered';
+        }
+        else if($this->status == 'otw'){
+            return 'On The Way';
+        }
+        else if($this->status == 'processing'){
+            return 'Processing';
+        }
+        else if($this->status == 'cancelled'){
+            return 'Cancelled';
+        }
+        else{
+            return $this->status;
         }
     }
 }

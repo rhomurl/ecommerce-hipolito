@@ -82,7 +82,7 @@
                     </div>
                 </div>
 
-                <!-- Tickets card -->
+                <!-- Products card -->
                 <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100">
                     <div>
                         <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 dark:text-gray-100 uppercase dark:text-primary-light">

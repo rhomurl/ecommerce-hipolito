@@ -28,15 +28,12 @@ class LoginController extends Controller
 
         $user = Socialite::driver($provider)->user();
         $auth_user = $this->findOrCreateUser($user, $provider);
-        
-       // $auth_user->assignRole('customer');
-
         Auth::login($auth_user, true);
-
-        if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
+        return redirect()->intended(route('auth.redirect'));
+        /*if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
             return redirect('/admin');
         }
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('home'));*/
     }
 
     public function findOrCreateUser($user, $provider)

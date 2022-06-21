@@ -24,10 +24,13 @@ class Reset extends Component
     /** @var string */
     public $passwordConfirmation;
 
+    public $visible;
+
     public function mount($token)
     {
         $this->email = request()->query('email', '');
         $this->token = $token;
+        $this->visible = false;
     }
 
     public function resetPassword()
@@ -84,6 +87,11 @@ class Reset extends Component
     protected function guard()
     {
         return Auth::guard();
+    }
+
+    public function togglePassword(){ $this->visible = !$this->visible;}
+    public function updatedPassword(){
+        $this->resetValidation();
     }
 
     public function render()

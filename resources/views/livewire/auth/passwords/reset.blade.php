@@ -23,8 +23,10 @@
                 <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
                     Password
                 </label>
-                <div class="form-group">
-                    <input wire:model.lazy="password" id="password" type="password" required autofocus class="form-control @error('email') is-invalid @enderror" />
+                <div class="input-group">
+                    <input wire:model.lazy="password" id="password" type="{{ $visible ? 'text' : 'password' }}" required autofocus class="form-control @error('password') is-invalid @enderror" />
+                    <button wire:click="togglePassword" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
+                    </button> 
                 </div> <!-- form-group// -->
                 
                 @error('password')
@@ -32,12 +34,14 @@
                 @enderror
             </div>
 
-            <div>
+            <div class="mb-3 mt-2">
                 <label for="password_confirmation" class="block text-sm font-medium text-gray-700 leading-5">
                     Confirm Password
                 </label>
-                <div class="form-group">
-                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="password" required autofocus class="form-control @error('email') is-invalid @enderror" />
+                <div class="input-group">
+                    <input wire:model.lazy="passwordConfirmation" id="password_confirmation" type="{{ $visible ? 'text' : 'password' }}" required autofocus class="form-control @error('password') is-invalid @enderror" />
+                    <button wire:click="togglePassword" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
+                    </button> 
                 </div> <!-- form-group// -->
             </div>
 

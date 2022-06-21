@@ -6,7 +6,7 @@
         <div id="paypal-button-container"></div>
       </div>
       <span class="text-danger">
-        Please do not back the page to prevent unsuccessful transaction
+        Please do not back or refresh the page to prevent unsuccessful transaction
       </span>
     
     {{--<div class="card mb-4">
