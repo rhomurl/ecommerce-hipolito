@@ -57,7 +57,7 @@ class AllProducts extends Component
             }
         }
         
-        $this->emit('updateWidgets');
+        
         
         
         //session()->flash('message', 'Product Added to Cart');
@@ -71,5 +71,6 @@ class AllProducts extends Component
             'toast' => true,
             'timerProgressBar' => true,
         ]);
+        $this->emit('updateWidgets');
     }
 }

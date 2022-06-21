@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Session;
 
 class Login extends Component
 {
@@ -17,10 +18,17 @@ class Login extends Component
     /** @var bool */
     public $remember = false;
 
+    public $visible;
+
     protected $rules = [
         'email' => ['required', 'email'],
         'password' => ['required'],
     ];
+
+    public function mount(){
+        $this->error = Session::get('error');
+        $this->visible = false;
+    }
 
     public function authenticate()
     {
@@ -32,14 +40,13 @@ class Login extends Component
         }
 
         return redirect()->intended(route('auth.redirect'));
-
-        /*if ( auth()->user()->hasAnyRole(['super-admin', 'admin']) ) {
-            return redirect('/admin');
-        }
-        return redirect()->intended(route('home'));
-        */
     }
 
+    public function togglePassword()
+    {
+        $this->visible = !$this->visible;
+    }
+    
     public function render()
     {
         return view('livewire.auth.login')->extends('layouts.auth');

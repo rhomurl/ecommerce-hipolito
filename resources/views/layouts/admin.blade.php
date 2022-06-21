@@ -15,6 +15,7 @@
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
         @livewireStyles
+        @yield('style')
     </head>
     <body>
         <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
@@ -125,6 +126,18 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                   </svg>
                                 <span class="ml-4">Orders</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li class="relative px-6 py-3">
+                            <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                            <a href="#" onclick="Livewire.emit('openModal', 'admin.change-password')" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                                  </svg>
+                                <span class="ml-4">Change Password</span>
                             </a>
                         </li>
                     </ul>
@@ -288,6 +301,8 @@
                             </a>
                         </li>
                     </ul>
+
+                    
                     {{--<ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.vouchers' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>

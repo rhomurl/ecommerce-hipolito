@@ -29,13 +29,24 @@
                 <span class="block w-full mt-1 text-md p-2">{{ $response['payer']['email_address'] }}</span>
 
             </label>
+
             <label class="block text-md">
                 <span class="text-gray-700">
-                    <b>Mobile Number:</b>
+                    <b>PayPal Country:</b>
                 </span>
-                <span class="block w-full mt-1 text-md p-2">{{ $response['payer']['phone']['phone_number']['national_number'] }}</span>
+                <span class="block w-full mt-1 text-md p-2">{{ $response['payer']['address']['country_code'] }}</span>
 
             </label>
+
+            @if(isset($response['payer']['phone']['phone_number']['national_number']))
+                <label class="block text-md">
+                    <span class="text-gray-700">
+                        <b>Mobile Number:</b>
+                    </span>
+                    <span class="block w-full mt-1 text-md p-2">{{ $response['payer']['phone']['phone_number']['national_number'] }}</span>
+                </label>
+            @endif
+
             <label class="block text-md">
                 <span class="text-gray-700">
                     <b>Shipping Address:</b>

@@ -46,21 +46,27 @@ onApprove: function(data, actions) {
   }).then(function(res) {
       return res.json();
   }).then(function(orderData) {
+      
 
+    //console.log();
+    if(orderData.error && orderData.error.details[0].issue == 'INSTRUMENT_DECLINED'){
+      return actions.restart();
+    }
       // Successful capture! For demo purposes:
-      var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
+      //var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
 
-      if(errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED'){
-        return actions.restart();
-      }
+      //if(errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED'){
+        //
+        
+      //}
 
-      if(errorDetail){
-        var msg = 'Sorry, your transaction could not be processed.';
-        if(errorDetail.description) msg += '\n\n' + errorDetail.description;
-        if(orderData.debug_id) msg += ' (' + orderData.debug_id + ') ';
-        return console.log(msg);
+      //if(errorDetail){
+       // var msg = 'Sorry, your transaction could not be processed.';
+       // if(errorDetail.description) msg += '\n\n' + errorDetail.description;
+       // if(orderData.debug_id) msg += ' (' + orderData.debug_id + ') ';
+        //return console.log(msg);
         //Avoid using alert in production
-      }
+      
 
      if(orderData.status === 'COMPLETED'){
         //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));

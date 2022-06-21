@@ -34,6 +34,11 @@ class Step1 extends Component
     $shipping_type,
     $setAddr;
 
+    protected $messages = [
+        'address_book_id.required' => 'Address is required',
+        'shipping_type.required' => 'Shipping type is required',
+        'payment_mode.required' => 'Payment method is required'
+    ];
 
 
     public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
@@ -280,6 +285,7 @@ class Step1 extends Component
 
         });
         }  catch (\Exception $exception){
+            //dd($exception->getMessage());
             $this->error_message = "Something went wrong";
         }
     }

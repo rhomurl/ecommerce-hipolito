@@ -34,6 +34,17 @@ class UserManagement extends Component
         $this->emit("openModal", "admin.view-user-info", ["id" => $id]);
     }
 
+    public function changeUserStatus($id, $status){
+        $user = User::find($id);
+
+        if($user){
+            $user->status = $status;
+            $user->save();
+            $this->successAlert('User Status Updated Successfully!');
+        }
+
+    }
+
     /*
     public function extractEmail(){
         $users = User::role('customer')->select('email')->get();

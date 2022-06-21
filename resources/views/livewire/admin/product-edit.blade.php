@@ -83,7 +83,7 @@
                     Quantity
                 </span>
                 <input type="number" wire:model.defer="quantity" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Quantity" required>
-                @error('Quantity')
+                @error('quantity')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
                     </span>

@@ -59,8 +59,8 @@ class PaypalController extends Controller
 
         
         $result = $provider->capturePaymentOrder($orderId);
-
-        if($result['status'] == 'COMPLETED'){
+        
+        if(isset($result['status']) && $result['status'] == 'COMPLETED'){
             
             $order = Order::find($orderidz);
             $order->status = 'ordered';

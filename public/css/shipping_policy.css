@@ -108,7 +108,7 @@
     font-weight: 400;
 }
 .home-who-we-are-wrapper ul{
-    width:70%;
+    width:100%;
 }
 
 @media all and (max-width: 1400px) {
@@ -140,4 +140,9 @@
         padding: 30px;
         color: white;
     }
+}
+
+.shipping_policy_section_header {
+    padding-top: 30px;
+    padding-bottom: 30px;
 }

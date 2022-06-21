@@ -15,8 +15,25 @@ class UserHome extends Component
     use ModelComponentTrait;
 
     public function mount(){
-        $this->products = Product::with('brand')->whereNotNull('quantity')->take(12)->get();
-        $this->l_products = Product::whereNotNull('quantity')->take(6)->orderBy('id', 'DESC')->get();
+        $product_query = Product::query();
+
+        /*
+         ? This is for home page logic
+         ! Always check for n+1 query!!
+         TODO: Make the product featured priority for low purchase of orders
+        */
+        $this->products = $product_query
+            ->with('brand')
+            ->whereNotNull('quantity')
+            ->take(12)
+            ->get();
+
+        $this->l_products = $product_query
+            ->whereNotNull('quantity')
+            ->take(6)
+            ->orderBy('id', 'DESC')
+            ->get();
+            
         $this->banners = Banner::take(5)->get();
     }
 

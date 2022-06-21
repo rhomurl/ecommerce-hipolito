@@ -33,6 +33,16 @@
     <div class="grid gap-6 mb-8 md:grid-cols-2">
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
             <h4 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                User Details
+            </h4>
+
+            <p class="text-gray-600 dark:text-gray-400">
+            <b>Name:</b> {{ $order->user->name }}<br>
+            <b>Email:</b> {{ $order->user->email }}
+            </p>
+
+
+            <h4 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                 Delivery Address
             </h4>
             <p class="text-gray-600 dark:text-gray-400">
@@ -47,23 +57,7 @@
                 <br>{{ $address->entry_phonenumber }}  
             </p>
 
-            <h4 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Payment Method
-            </h4>
             
-            <p class="text-gray-600 dark:text-gray-400 mb-5">
-               @if($order->transaction->mode == "paypal") 
-                <img src="{{ asset("images/misc/payment-paypal.png") }}" class="float-left" height="24">
-                <button wire:click.prevent="viewPaypal( {{ $order->id }} )" class="ml-5 px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                View Paypal Details
-                            </button>
-
-                @elseif($order->transaction->mode == "cod")
-                    Cash on Delivery
-               @endif
-               
-            </p>
-
             
        
         </div>
@@ -73,23 +67,12 @@
                 Payment Information
             </h4>
             <p class="text-gray-600 dark:text-gray-400">
-                <b>Subtotal:</b> ₱ {{ $order->subtotal }}<br>
-                <b>Shipping:</b> ₱ {{ $order->shippingfee }} <br>
+                <b>Subtotal:</b> ₱ {{ number_format($order->subtotal, 2) }}<br>
+                <b>Shipping:</b> ₱ {{ number_format($order->shippingfee, 2) }} <br>
                 {{--<b>Discount:</b> ₱ {{ $order->discount }}<br>--}}
-                <b>Order Total:</b> ₱ {{ $order->total }}<br><br>
+                <b>Order Total:</b> ₱ {{ number_format($order->total, 2) }}<br><br>
            
-            <b>Order Status:</b>
-            @if($order->status == 'ordered')
-                Ordered
-            @elseif($order->status == 'delivered')
-                Delivered
-            @elseif($order->status == 'otw')
-                On The Way
-            @elseif($order->status == 'processing')
-                Processing    
-            @else
-                {{ $order->status }}
-            @endif
+            <b>Order Status:</b> {{ $order->getOrderStatusAttribute() }}
             
             @if(!$status)
                 @if($order->status == 'processing' || $order->status == 'otw' || $order->status == 'ordered' )
@@ -109,12 +92,12 @@
                     <option value="delivered" {{ $order->status == 'delivered' ? 'selected': '' }}>Delivered</option>
                 </select>
 
-                <div>
+                <div class="d-flex">
                     <button wire:click.prevent="changeStatus2()" class="px-4 mt-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Save Changes
                     </button>
-                </div>
-                <div>
+                
+                
                     <button wire:click.prevent="cancelStatus()" class="px-4 mt-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Cancel
                     </button>
@@ -122,6 +105,25 @@
             @endif            
 
             </p>
+
+            <h4 class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                Payment Method
+            </h4>
+            
+            <p class="text-gray-600 dark:text-gray-400 mb-5">
+               @if($order->transaction->mode == "paypal") 
+                <img src="{{ asset("images/misc/payment-paypal.png") }}" class="float-left" height="24">
+                    @if($order->transaction->status != 'cancelled')
+                        <button wire:click.prevent="viewPaypal( {{ $order->id }} )" class="ml-5 px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                            View Paypal Details
+                        </button>
+                    @endif
+                @elseif($order->transaction->mode == "cod")
+                    Cash on Delivery
+               @endif
+               
+            </p>
+
         </div>
     </div>
 
@@ -159,11 +161,11 @@
                             </td>
                             <td class="px-4 py-3 text-xs">
                                 <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
-                                ₱ {{ $item->product->selling_price }}
+                                ₱ {{ number_format($item->product->selling_price, 2) }}
                                 </span>
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                ₱ {{ $item->quantity * $item->product->selling_price }} 
+                                ₱ {{ number_format($item->quantity * $item->product->selling_price, 2) }} 
                             </td>
                         </tr>
                     @endforeach

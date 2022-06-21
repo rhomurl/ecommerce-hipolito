@@ -20,7 +20,7 @@
           <div class="form-row">
               <div class="col form-group">
                   <label>Name</label>
-                    <input wire:model="name" name="name" type="text" class="form-control" value="" required>
+                    <input wire:model="name" name="name" type="text" class="form-control" value="" disabled>
                     @error('name')
                         <span class="text-danger">
                             {{ $message }}
@@ -32,16 +32,18 @@
           <div class="form-row">
             <div class="col form-group">
                 <label>Email</label>
-                  <input wire:model="email" disabled name="email" type="text" class="form-control">
-                 {{-- @error('entry_company')
-                        <span class="text-danger">
-                            {{ $message }}
-                        </span>
-                    @enderror --}}
+                  <input wire:model="email" name="email" type="text" class="form-control">
             </div> <!-- form-group end.// -->
-        </div> <!-- form-row.// -->
+          </div> <!-- form-row.// -->
 
-          <button class="btn btn-primary btn-block">Save</button>
+          <div class="form-row">
+            <div class="col form-group">
+                <label>Password</label><br>
+                <a href="{{ route('user.change-password') }}" class="btn btn-secondary float-md-left">Change Password</a>
+            </div> <!-- form-group end.// -->
+          </div> <!-- form-row.// -->
+
+          <button class="btn btn-primary btn-block mt-2">Save</button>
         </form>
         </div> <!-- card-body.// -->
       </div>

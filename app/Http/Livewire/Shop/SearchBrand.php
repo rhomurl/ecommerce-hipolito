@@ -71,7 +71,7 @@ class SearchBrand extends Component
             }
         }
         
-        $this->emit('updateCart');
+        $this->emit('updateWidgets');
         
         
         //session()->flash('message', 'Product Added to Cart');
