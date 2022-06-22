@@ -17,6 +17,11 @@ class Email extends Component
 
     public $recaptcha;
 
+    protected $messages = [
+        'recaptcha.captcha' => 'Captcha expired. Please refresh the page.   ',
+        'recaptcha.required' => 'Captcha is required.'
+    ];
+
     public function sendResetPasswordLink()
     {
 

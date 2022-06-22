@@ -67,32 +67,21 @@ class Order extends Model
 
     public function getPaymentModeAttribute()
     {
-        if($this->transaction->mode == 'paypal'){
-            return 'PayPal';
-        }
-        else if($this->transaction->mode == 'cod'){
-            return 'Cash on Delivery';
+        switch ($this->transaction->mode){
+            case 'paypal': return 'PayPal'; break;
+            case 'cod': return 'Cash on Delivery'; break;
+            default: return ''; break;
         }
     }
 
     public function getOrderStatusAttribute(){
-        if($this->status == 'ordered'){
-            return 'Ordered';
-        }
-        else if($this->status == 'delivered'){
-            return 'Delivered';
-        }
-        else if($this->status == 'otw'){
-            return 'On The Way';
-        }
-        else if($this->status == 'processing'){
-            return 'Processing';
-        }
-        else if($this->status == 'cancelled'){
-            return 'Cancelled';
-        }
-        else{
-            return $this->status;
+        switch ($this->status){
+            case 'ordered': return 'Ordered'; break;
+            case 'delivered': return 'Delivered'; break;
+            case 'otw': return 'On The Way'; break;
+            case 'processing': return 'Processing'; break;
+            case 'cancelled': return 'Cancelled'; break;
+            default: return $this->status; break;
         }
     }
 }

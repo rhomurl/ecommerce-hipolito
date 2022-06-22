@@ -23,7 +23,7 @@
                     <!-- Start .row -->
                     <div class="col-lg-6">
                         <!-- col-lg-6 start here -->
-                        <div class="invoice-logo"><img width="250" src="https://hipolito-hardware.herokuapp.com/images/logo.png" alt="Invoice logo"></div>
+                        <div class="invoice-logo"><img width="250" src="https://hipolito-hardware.xyz/images/logo.png" alt="Invoice logo"></div>
                     </div>
                     <!-- col-lg-6 end here -->
                     <div class="col-lg-6">
@@ -52,14 +52,14 @@
                                             Cash on Delivery
                                         @endif
                                     </li>
-                                    <li><strong>Status:</strong> <span class="label label-{{ $prod->transaction->mode == 'paypal' || $prod->status == 'delivered' ? 'success' : 'danger' }}">
+                                    <li><strong>Status:</strong> 
                                         
                                         @if($prod->transaction->mode == 'paypal' && $prod->status != 'cancelled')
-                                            PAID
+                                            <span class="label label-success">PAID
                                         @elseif($prod->transaction->mode == 'cod' && $prod->status == 'delivered')
-                                            PAID
+                                            <span class="label label-success">PAID
                                         @else
-                                            UNPAID
+                                            <span class="label label-danger">UNPAID
                                         @endif
                                     
                                     </span></li>

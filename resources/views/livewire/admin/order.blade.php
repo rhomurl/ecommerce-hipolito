@@ -24,21 +24,7 @@
 
     <td class="px-4 py-3">
         <p class="font-semibold">
-            @if($order->status == 'ordered')
-                Ordered
-            @elseif($order->status == 'pending')
-                Pending
-            @elseif($order->status == 'delivered')
-                Delivered
-            @elseif($order->status == 'otw')
-                On The Way
-            @elseif($order->status == 'processing')
-                Processing    
-            @elseif($order->status == 'cancelled')
-                Cancelled    
-            @else
-                {{ $order->status }}
-            @endif
+            {{ $order->getOrderStatusAttribute() }}
         </p>
     </td>
 
@@ -58,6 +44,7 @@
             <a href="{{ route('admin.order.details', $order->id ) }}" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" aria-label="Edit">
                 View Order
             </a>
+                @if($order->status != 'cancelled')
                 <div class="my-2 px-2">
                     <a href="{{ route('admin.genOrderPDF', $order->uuid) }}" target="_blank" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -66,6 +53,7 @@
                         Generate PDF
                     </a>
                 </div>
+                @endif
         </div>
     </td>
     

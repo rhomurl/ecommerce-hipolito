@@ -16,7 +16,7 @@ chatbox.setAttribute("attribution", "biz_inbox");
 window.fbAsyncInit = function() {
     FB.init({
     xfbml            : true,
-    version          : 'v13.0'
+    version          : 'v14.0'
     });
 };
 
