@@ -57,10 +57,11 @@ class AdminHome extends Component
         
 
         // Total Sales
-        $revcountToday = Order::whereDate('created_at', today());
-        $order = $revcountToday;
+        $order = Order::query();
+        $revcountToday = $order->whereDate('created_at', today());
+        //$order = $revcountToday;
         $revcountToday = $revcountToday->sum('total');
-        $revcountTotal = Order::sum('total');
+        $revcountTotal = $order->sum('total');
         $this->trev_current_count = $revcountTotal;
         $trevcountYesterday = $revcountTotal - $revcountToday;
         if($revcountTotal == 0 || $trevcountYesterday == 0){

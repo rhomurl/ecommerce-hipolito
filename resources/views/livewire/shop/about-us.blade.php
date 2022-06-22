@@ -112,7 +112,7 @@
                     <div class="our-location">
                         <h1>Our Location</h1>
                         <p>Brgy. Marauoy, Lipa City, Batangas</p>
-                        <p>Email: hipolitoshardware@gmail.com</p>
+                        <p>Email: support@hipolito-hardware.xyz</p>
                         <p>Phone: +(63) 995 140 1951</p>
                         <p>Office hours: Monday - Saturday <br>(7:00 am - 7:00 pm)</p>
                     </div>

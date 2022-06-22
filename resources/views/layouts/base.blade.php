@@ -18,14 +18,14 @@
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://hipolito-hardware.herokuapp.com/">
+        <meta property="og:url" content="https://hipolito-hardware.xyz/">
         <meta property="og:title" content="Hipolito's Hardware — Buy, Pay, and Deliver">
         <meta property="og:description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
         <meta property="og:image" content="{{ asset('images/thumbnail-meta-tag.jpg') }}">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="https://hipolito-hardware.herokuapp.com/">
+        <meta property="twitter:url" content="https://hipolito-hardware.xyz/">
         <meta property="twitter:title" content="Hipolito's Hardware — Buy, Pay, and Deliver">
         <meta property="twitter:description" content="With Hipolito's Hardware, you can purchase your desired construction supplies and equipment in just a few clicks. ">
         <meta property="twitter:image" content="{{ asset('images/thumbnail-meta-tag.jpg') }}">

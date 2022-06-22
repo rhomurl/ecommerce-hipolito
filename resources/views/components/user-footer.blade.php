@@ -9,7 +9,7 @@
                             <p class="text-justify">We are selling different construction materials like base plate, steel bars, cement, construction supplies and equipments, lumber and one bagger is also available for rent (A Frame).</p>
                             <ul class="list-icon">
                                 <li> <i class="icon fa fa-map-marker"> </i>Brgy. Marauoy, Lipa City, Batangas</li>
-                                <li> <i class="icon fa fa-envelope"> </i> hipolitoshardware@gmail.com</li>
+                                <li> <i class="icon fa fa-envelope"> </i> support@hipolito-hardware.xyz</li>
                                 <li> <i class="icon fa fa-phone"> </i> +(63) 995 140 1951 (SMS/Viber)</li>
                                 <li> <i class="icon fa fa-clock"> </i>Mon - Sat 7:00 am - 7:00 pm</li>
                             </ul>

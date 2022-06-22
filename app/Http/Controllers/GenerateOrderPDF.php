@@ -37,7 +37,7 @@ class GenerateOrderPDF extends Controller
 
         
         //dd($order);
-        $pdf = PDF::loadView('orderPDF', $data);
+        $pdf = PDF::loadView('pdf.user-order', $data);
 
         //return $pdf->stream();
         return $pdf->download('invoice_' . $order->uuid . '.pdf');

@@ -27,25 +27,25 @@ class UserSeeder extends Seeder
 
 
         $user = User::create([
-            'name' => 'Don Juan',
-            'email' => 'ecomhipolito+user@gmail.com',
-            'password' => Hash::make('G.sMb0xK##oQ'),
+            'name' => 'Rhomuel Brian Macahilig',
+            'email' => 'rhomuelbrian.macahilig@ama.edu.ph',
+            'password' => Hash::make('lPSjRmBiCjW1$'),
             'email_verified_at' => now()
         ]);
         $user->assignRole($role1);
 
         $user = User::create([
             'name' => 'Ecom Admin',
-            'email' => 'ecomhipolito+admin@gmail.com',
-            'password' => Hash::make('AdRqHMjf`Pw^'),
+            'email' => 'admin@hipolito-hardware.xyz',
+            'password' => Hash::make('HRzFPFpQIRw#'),
             'email_verified_at' => now()
         ]);
         $user->assignRole($role2);
 
         $user = User::create([
             'name' => 'Ecom Superadmin',
-            'email' => 'ecomhipolito+sadmin@gmail.com',
-            'password' => Hash::make('$ps,@Uv|`Fcp'),
+            'email' => 'super@hipolito-hardware.xyz',
+            'password' => Hash::make('yMRF2&0sUYvc4T'),
             'email_verified_at' => now()
         ]);
         $user->assignRole($role3);
