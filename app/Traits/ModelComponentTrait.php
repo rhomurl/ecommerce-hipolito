@@ -61,8 +61,11 @@ trait ModelComponentTrait
     }
 
     public function getProductURL($url){
-        $disk = \Storage::disk('gcs');
-        return $disk->temporaryUrl($url, now()->addMinutes(30));
+        $domain = 'https://files.hipolito-hardware.xyz/';
+        return $domain . $url;
+        //$disk = \Storage::disk('gcs');
+        //return $disk->temporaryUrl($url, now()->addMinutes(30));
+        //return $disk->url($url);
     }
 
     public function getProductURL_maxtime($url){

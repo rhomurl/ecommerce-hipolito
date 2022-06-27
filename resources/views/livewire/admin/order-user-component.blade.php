@@ -8,6 +8,27 @@
         <input wire:model="search" type="text" placeholder="Search order" class="px-2 py-2 text-sm text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-100 focus:border-gray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 " autofocus="">
     </div>
     <div class="w-full overflow-hidden rounded-lg shadow-xs border border-gray-200 dark:border-gray-700">
+        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+            <li class="mr-2">
+                <a href="{{ route('admin.orders', 'all') }}" aria-current="page" class="inline-block p-4 rounded-t-lg @if($this->status == "all") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">All ({{$this->all}})</a>
+            </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.orders', 'ordered') }}" class="inline-block p-4 @if($this->status == "ordered") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Ordered ({{$this->ordered}})</a>
+            </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.orders', 'processing') }}" class="inline-block p-4 rounded-t-lg @if($this->status == "processing") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">To Process ({{$this->process}})</a>
+            </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.orders', 'otw') }}" class="inline-block p-4 rounded-t-lg @if($this->status == "otw") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Shipping ({{$this->otw}})</a>
+            </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.orders', 'delivered') }}" class="inline-block p-4 rounded-t-lg @if($this->status == "delivered") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Completed ({{$this->completed}})</a>
+            </li>
+            {{-- 
+            <li>
+                <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">Disabled</a>
+            </li>--}}
+        </ul>
         <div class="w-full overflow-x-auto">
 
             <table class="w-full whitespace-no-wrap">

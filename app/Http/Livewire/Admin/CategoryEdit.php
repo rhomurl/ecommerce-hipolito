@@ -16,7 +16,7 @@ class CategoryEdit extends ModalComponent
     public $category, $name, $category_id, $slug;
 
     protected $rules = [
-        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:categories',
+        'name' => 'required|max:30|regex:/[a-zA-Z0-9\s]+/|unique:categories',
     ];
 
     public function mount($id)
@@ -27,7 +27,7 @@ class CategoryEdit extends ModalComponent
         $this->slug = $category->slug;
     }
 
-    public function create(CategoryService $category){
+    public function edit(CategoryService $category){
         $this->validate();
         $category->edit($this->category_id,$this->name); 
         

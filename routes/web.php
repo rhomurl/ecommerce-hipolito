@@ -83,6 +83,7 @@ Route::get('/checkout/success/{id}', Shop\CheckoutSuccess::class)->name('checkou
 
 Route::get('/order/cancel', Shop\OrderCancel::class)->name('order.cancel');
 Route::get('/checkout', Shop\Checkout\Step1::class)->middleware(['check_if_user', 'verified'])->name('checkout.step1');
+Route::get('/checkout/confirm/{order}', Shop\Checkout\OrderConfirm::class)->middleware('check_if_user')->name('checkout.confirm');
 Route::get('/checkout/paypal', Shop\Checkout\Step2::class)->middleware('check_if_user')->name('checkout.step2');
 
 Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])->group(function () {
@@ -107,9 +108,9 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('categories', Admin\CategoryComponent::class)->name('categories');
     Route::get('manageuser', Admin\UserManagement::class)->name('manageuser');
     Route::get('managerole', Admin\RoleManagement::class)->middleware(['role:super-admin'])->name('managerole');
-    Route::get('orders', Admin\OrderUserComponent::class)->name('orders');
+    Route::get('/orders/{status}', Admin\OrderUserComponent::class)->name('orders');
     Route::get('sales-report', Admin\SalesReport::class)->name('sales.report');
-    Route::get('/order/{order_id}', Admin\OrderDetails::class)->name('order.details');
+    Route::get('/order/{order}', Admin\OrderDetails::class)->name('order.details');
     Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
     Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');
     //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');

@@ -238,7 +238,7 @@
                     <img src="{{ $this->getProductURL($l_product->image) }}"> 
                 </a>
                 <figcaption class="info-wrap">
-                    <a href="{{ route('product.details', $l_product->slug) }}" class="title">{{ $l_product->name }}</a>
+                    <a href="{{ route('product.details', $l_product->slug) }}" class="title">{{ limitStr($l_product->name, 30) }}</a>
                     <div class="price-wrap">
                         <span class="price">₱ {{ $l_product->selling_price }}</span>
                         <del class="price-old">₱ {{ ($l_product->selling_price * 0.1) + $l_product->selling_price }}</del>

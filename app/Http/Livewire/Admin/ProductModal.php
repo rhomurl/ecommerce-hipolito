@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\{Product, Brand, Category};
+use App\Traits\ModelComponentTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\Product;
-use App\Models\Brand;
-use App\Models\Category;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
@@ -13,11 +12,12 @@ class ProductModal extends ModalComponent
 {
     use LivewireAlert;
     use WithFileUploads;
+    use ModelComponentTrait;
 
     public $product, $name, $category_id, $brand_id, $product_id, $category_idx, $category_namex, $slug, $description, $selling_price, $quantity, $image;
 
     protected $rules = [
-        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products',
+        'name' => 'required|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products',
         'category_id' => 'required',
         'brand_id' => 'required',
         'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:500',
@@ -50,19 +50,9 @@ class ProductModal extends ModalComponent
             'quantity' => $this->quantity]
         );
 
-        
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Product Updated Successfully.' : 'Product Added Successfully']);
         $this->resetInputFields();
         $this->closeModal();
-
-        $this->alert('success', 'Product Created Successfully!', [
-            'position' => 'center',
-            'timer' => '1500',
-            'toast' => false,
-            'timerProgressBar' => true,
-            'width' => '600',
-           ]);
-        $this->emit('updateComponent');
+        $this->successAlert('Product Created Successfully!');
  
     }
 
@@ -73,8 +63,8 @@ class ProductModal extends ModalComponent
 
     public function render()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $brands = Brand::orderBy('name', 'ASC')->get();
 
         return view('livewire.admin.product-modal', compact('categories', 'brands'));
     }

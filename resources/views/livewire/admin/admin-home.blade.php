@@ -109,9 +109,9 @@
                 <div class="col-span-2 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
                     <!-- Card header -->
                     <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
-                        <h4 class="text-lg font-semibold text-gray-500 dark:text-white">Total Revenue (Last 7 days)</h4>
+                        <h4 class="text-lg font-semibold text-gray-500 dark:text-white">Total Revenue</h4>
                         <div class="flex items-center space-x-2">
-                            <span class="text-sm text-gray-500 dark:text-white">Last year</span>
+                            <span class="text-sm text-gray-500 dark:text-white">Last 7 days</span>
                         </div>
                     </div>
                     <!-- Chart -->
@@ -142,16 +142,32 @@
                 <div class="col-span-1 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100">
                     <!-- Card header -->
                     <div class="p-4 border-b dark:border-gray-600">
-                        <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Top 5 Products</h4>
+                        <h4 class="text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Top 5 Products</h4>
                     </div>
-                    <ol class="list-decimal">
-                    @foreach ($topProducts as $topProduct)
-                    
-                        <img src="{{ $this->getProductURL($topProduct->product->image) }}" height="25%" width="25%"/>
-                        <li class="text-xl ml-6 border-b font-medium text-gray-500 dark:text-light">{{ $topProduct->product->name }} - {{ $topProduct->product_qty . ' sold' }}  {{--(₱ $topProduct->product_total)--}} </li>
-                    
-                    @endforeach
-                    </ol>
+
+                    <!-- Card 1 -->
+
+                    <td class="px-4 py-3">
+                        @foreach ($topProducts as $topProduct)
+
+                        <card class="border-gray-300 rounded-xl w-[30rem] py-7 px-5">
+                            <div class="grid grid-cols-6 gap-3">
+                              
+                              <!-- Image -->
+                              <div class="col-span-2">
+                                <img src="{{ $this->getProductURL($topProduct->product->image) }}" />
+                              </div>
+                        
+                              <!-- Description -->
+                              <div class="col-span-4">
+                                <p class="text-gray-700 font-bold dark:text-primary-light dark:text-gray-100"> {{ $topProduct->product->name }} </p>
+                                <p class="text-gray-500 mt-4 dark:text-primary-light dark:text-gray-100"> {{ $topProduct->product_qty . ' sold' }} </p>
+                              </div>
+                        
+                            </div>
+                          </card>
+                        @endforeach
+                    </td>
                     {{--<p class="p-4">
                         <span class="text-2xl font-medium text-gray-500 dark:text-light" id="usersCount">0</span>
                         <span class="text-sm font-medium text-gray-500 dark:text-primary">Users</span>
@@ -163,10 +179,10 @@
                 </div>
 
                 <!-- Line chart card -->
-               <div class="col-span-2 bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
+               <div class="col-span bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
                     <!-- Card header -->
                     <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
-                        <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Orders</h4>
+                        <h4 class="text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Orders</h4>
                         
                     </div>
                     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs border border-gray-200 dark:border-gray-700">
@@ -176,12 +192,12 @@
                                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                         <th class="px-4 py-3">Status</th>
                                         <th class="px-4 py-3">Count</th>
-                                        <th class="px-4 py-3">Last Update</th>
-                                        
                                         <th class="px-4 py-3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                    
+                                    {{-- Ordered Row--}}
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-s">
                                             <span class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
@@ -189,105 +205,97 @@
                                             </span>
                                         </td>
                                         <td class="px-4 py-3">
-                                            <div class="flex items-center text-sm">
-                                                <!-- Avatar with inset shadow -->
-                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                    <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy">
-                                                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                                </div>
-                                                <div>
-                                                    <p class="font-semibold">Hans Burger</p>
-                                                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                        10x Developer
-                                                    </p>
-                                                </div>
-                                            </div>
+                                           {{ $this->ordered->count() }}
                                         </td>
                                         <td class="px-4 py-3 text-sm">
-                                            6/10/2020
-                                        </td>
-                                        
-                                        <td class="px-4 py-3 text-sm">
-                                            <button class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                            <a href="{{ route('admin.orders', 'ordered') }}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                                 View
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
+                                    {{-- End Ordered Row--}}
 
+                                    {{-- Processing Row--}}
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-s">
-                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                Processing
+                                            <span class="px-2 py-1 font-semibold leading-tight text-teal-700 bg-teal-100 rounded-full dark:bg-teal-700 dark:text-teal-100">
+                                                To Process
                                             </span>
                                         </td>
                                         <td class="px-4 py-3">
-                                            <div class="flex items-center text-sm">
-                                                <!-- Avatar with inset shadow -->
-                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                    <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy">
-                                                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                                </div>
-                                                <div>
-                                                    <p class="font-semibold">Hans Burger</p>
-                                                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                        10x Developer
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            {{ $this->process->count() }}
                                         </td>
                                         <td class="px-4 py-3 text-sm">
-                                            6/10/2020
-                                        </td>
-                                        
-                                        <td class="px-4 py-3 text-sm">
-                                            <button class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                            <a href="{{ route('admin.orders', 'processing') }}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                                 View
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
+                                    {{-- End Processing Row--}}
 
+                                    {{-- Shipping Row--}}
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-s">
-                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                On The Way
+                                            <span class="px-2 py-1 font-semibold leading-tight text-blue-500 bg-blue-100 rounded-full dark:bg-blue-700 dark:text-blue-100">
+                                                Shipping
                                             </span>
                                         </td>
                                         <td class="px-4 py-3">
-                                            <div class="flex items-center text-sm">
-                                                <!-- Avatar with inset shadow -->
-                                                <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                                    <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy">
-                                                    <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                                                </div>
-                                                <div>
-                                                    <p class="font-semibold">Hans Burger</p>
-                                                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                        10x Developer
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            {{ $this->otw->count() }}
                                         </td>
                                         <td class="px-4 py-3 text-sm">
-                                            6/10/2020
-                                        </td>
-                                        
-                                        <td class="px-4 py-3 text-sm">
-                                            <button class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                            <a href="{{ route('admin.orders', 'otw') }}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                                 View
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
+                                    {{-- End Shipping Row--}}
 
+                                    {{-- Completed Row--}}
+                                    <tr class="text-gray-700 dark:text-gray-400">
+                                        <td class="px-4 py-3 text-s">
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                                Completed
+                                            </span>
+                                        </td>
+                                        <td class="px-4 py-3">
+                                            {{ $this->completed->count() }}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <a href="{{ route('admin.orders', 'delivered') }}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {{-- End Completed Row--}}
                                 </tbody>
                             </table>
                         </div>
                         
                     </div>
 
-                    <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Recent Orders</h4>
+                    <h4 class="p-4 border-b text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Recent Orders</h4>
                     <!-- Chart -->
                     
                 </div>
+
+                {{--Notification--}}
+                <div class="col-span bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
+                    <!-- Card header -->
+                    <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
+                        <h4 class="text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Notifications</h4>
+                        
+                    </div>
+                    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs border border-gray-200 dark:border-gray-700">
+                        fsdfsdf
+                        
+                    </div>
+
+                    <h4 class="p-4 border-b text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Recent Orders</h4>
+                    <!-- Chart -->
+                    
+                </div>
+                {{--End notification--}}
             </div>
         </div>
     </div>

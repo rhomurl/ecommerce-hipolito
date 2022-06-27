@@ -5,13 +5,9 @@ namespace App\Http\Livewire\Admin;
 use Carbon\Carbon; 
 use DB;
 use App\Traits\ModelComponentTrait;
-use App\Charts\UserChart;
-use App\Charts\OrderChart;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\OrderProduct;
-use App\Models\User;
-
+use App\Charts\{UserChart, OrderChart};
+use App\Models\{Order, Product, OrderProduct, User};
+use App\Services\OrderService;
 //use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -19,6 +15,20 @@ class AdminHome extends Component
 {
     use ModelComponentTrait;
     //use LivewireAlert;
+
+    /*
+        For improvement
+        ? : Make the codes short as possible
+        ! : Check for duplicate queries
+    */
+
+    public function mount(){
+        $this->otw = resolve(OrderService::class)->displayOrders('otw', 'display')->get();
+        $this->ordered = resolve(OrderService::class)->displayOrders('ordered', 'display')->get();
+        $this->process = resolve(OrderService::class)->displayOrders('processing', 'display')->get();
+        $this->completed = resolve(OrderService::class)->displayOrders('delivered', 'display')->get();
+    }
+
     public function render()
     {
         $borderColors = [
@@ -58,10 +68,10 @@ class AdminHome extends Component
 
         // Total Sales
         $order = Order::query();
-        $revcountToday = $order->whereDate('created_at', today());
-        //$order = $revcountToday;
-        $revcountToday = $revcountToday->sum('total');
         $revcountTotal = $order->sum('total');
+        $revcountToday = $order->whereDate('created_at', today())->sum('total');
+        //$order = $revcountToday;
+        
         $this->trev_current_count = $revcountTotal;
         $trevcountYesterday = $revcountTotal - $revcountToday;
         if($revcountTotal == 0 || $trevcountYesterday == 0){

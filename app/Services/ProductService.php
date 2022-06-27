@@ -41,4 +41,27 @@ class ProductService {
         }
         $this->slug = $slug;
     }
+
+    /*
+        ! : This functionality is recommended for super-admin. Will enable this once requested.
+    */
+    public function deleteProduct($prod){
+        $product = Product::where('id', $id)->first();
+        $image = $prod->image;
+        if($prod->quantity > 0){
+            //$this->emit("openModal", "admin.failed-modal", ["message" => 'This product cannot be deleted']); 
+            $this->errorAlert('This Product Cannot Be Deleted!');
+        }
+        else{
+            if (Storage::disk('gcs')->exists($image)) {
+                Storage::disk('gcs')->delete($image);
+                /*
+                    Delete Multiple Files
+                    Storage::delete(['upload/test.png', 'upload/test2.png']);
+                */
+            }
+            Product::where('id', $id)->delete();
+            $this->successAlert('Product Deleted Successfully!');
+        } 
+    }
 }

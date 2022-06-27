@@ -36,6 +36,7 @@
   'shop.banner-component' => 'App\\Http\\Livewire\\Shop\\BannerComponent',
   'shop.cart-icon' => 'App\\Http\\Livewire\\Shop\\CartIcon',
   'shop.checkout-success' => 'App\\Http\\Livewire\\Shop\\CheckoutSuccess',
+  'shop.checkout.order-confirm' => 'App\\Http\\Livewire\\Shop\\Checkout\\OrderConfirm',
   'shop.checkout.step1' => 'App\\Http\\Livewire\\Shop\\Checkout\\Step1',
   'shop.checkout.step2' => 'App\\Http\\Livewire\\Shop\\Checkout\\Step2',
   'shop.order-cancel' => 'App\\Http\\Livewire\\Shop\\OrderCancel',

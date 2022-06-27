@@ -3,22 +3,23 @@
 namespace App\Http\Livewire\Admin;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-
-use App\Models\Product;
-use App\Models\Brand;
-use App\Models\Category;
+use App\Models\{Product,Brand,Category};
 use App\Traits\ModelComponentTrait;
-
-//use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class ProductEdit extends ModalComponent
 {
     use LivewireAlert;
     use ModelComponentTrait;
-    //use WithFileUploads;
 
     public $product, $name, $category_id, $brand_id, $product_id, $slug, $description, $selling_price, $quantity, $image;
+
+    protected $messages = [
+        'selling_price.max' => 'Price cannot be exceeded by 1000000.00', 
+        'quantity.max' => 'Quantity cannot exceed by 999999.',
+        'image.max' => 'Image cannot exceed 2MB.',
+        'image.image' => 'JPEG, PNG, and JPG are the allowed file types.',
+    ];
 
     public function mount($id)
     {
@@ -33,15 +34,14 @@ class ProductEdit extends ModalComponent
         $this->quantity = $product->quantity;
     }
 
-    public function create(){
+    public function edit(){
         $this->validate([
-            'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
+            'name' => 'required|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
             'category_id' => 'required',
             'brand_id' => 'required',
             'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:500',
             'selling_price' => 'required|numeric|min:0|max:1000000.00',
             'quantity' => 'required|integer|min:0|max:999999',
-            //'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         
@@ -51,11 +51,9 @@ class ProductEdit extends ModalComponent
             'brand_id' => $this->brand_id,
             'description' => $this->description,
             'selling_price' => $this->selling_price,
-            // 'image' =>  $this->image->store('images/products', 'public'),
             'quantity' => $this->quantity]
         );
         
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->product_id ? 'Product Updated Successfully.' : 'Product Added Successfully']);
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Product Updated Successfully!');
@@ -65,6 +63,7 @@ class ProductEdit extends ModalComponent
     {
         $categories = Category::orderBy('name', 'ASC')->get();
         $brands = Brand::orderBy('name', 'ASC')->get();
+
         return view('livewire.admin.product-edit', compact('categories', 'brands'));
     }
 }

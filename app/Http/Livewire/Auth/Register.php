@@ -28,9 +28,12 @@ class Register extends Component
     public $visible;
 
     protected $messages = [
+        'name.regex' => 'Name cannot contain special characters',
         'password.min' => 'Password is minimum of 8 characters',
-        'password.regex' => 'Password must contain at least 1 letter (small and capital), number, and special character',
-        'password.same' => 'Password and new confirm password must match'
+        'password.regex' => 'Password should contain at least 1 lowercase, uppercase, number, and special character',
+        'password.same' => 'Password and confirm password must match',
+        'recaptcha.captcha' => 'Captcha expired. Please refresh the page.',
+        'recaptcha.required' => 'Captcha is required'
     ];
 
     public function mount(){
@@ -40,9 +43,10 @@ class Register extends Component
     public function register()
     {                             
         $this->validate([
-            'name' => ['required'],
+            'name' => ['required', 'regex:/^[a-zA-ZÑñ.\s]+$/'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:8', 'same:passwordConfirmation'],
+            'password' => ['required', 'min:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/','same:passwordConfirmation'],
+            'passwordConfirmation' => ['required'],
             'recaptcha' => ['required', 'captcha']
         ]);
 

@@ -61,10 +61,12 @@
                   </svg>
             </button>
 
+            @role('super-admin')
             <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                <input wire:click.prevent="changeUserStatus({{$user->id}}, @if($user->status == 1) {{ '0 '}} @else {{ '1' }} @endif)" type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" @if($user->status == 1) checked @endif/>
+                <input wire:click.prevent="changeUserStatus({{$user->id}}, @if($user->status == 1) {{ '0 '}} @else {{ '1' }} @endif)" type="checkbox" name="toggle" id="toggle" class="focus:outline-none toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" @if($user->status == 1) checked @endif/>
                 <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" ></label>
             </div>
+            @endrole
 
             {{--<div x-data="{ confirmDelete:false }" class="flex flex-wrap -mx-2 overflow-hidden">
                 <button x-show="!confirmDelete" x-on:click="confirmDelete=true" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 hover:bg-gray-200 focus:outline-none focus:shadow-outline-gray">

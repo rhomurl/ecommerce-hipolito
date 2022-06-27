@@ -1,4 +1,4 @@
-<x-modal form-action="create">
+<x-modal form-action="edit">
     {{ csrf_field() }}
     <x-slot name="title">
         Edit Brand

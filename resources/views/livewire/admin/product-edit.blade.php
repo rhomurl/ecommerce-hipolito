@@ -1,4 +1,4 @@
-<x-modal form-action="create">
+<x-modal form-action="edit">
     {{ csrf_field() }}
     <x-slot name="title">
         Edit Product
@@ -70,7 +70,7 @@
                 <span class="text-gray-700">
                     Selling Price
                 </span>
-                <input type="number" wire:model.defer="selling_price" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Selling Price" required>
+                <input type="text" wire:model.defer="selling_price" required class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Selling Price">
                 @error('selling_price')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
@@ -82,7 +82,7 @@
                 <span class="text-gray-700">
                     Quantity
                 </span>
-                <input type="number" wire:model.defer="quantity" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Quantity" required>
+                <input type="number" wire:model.defer="quantity" required min="0" max="999999" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Quantity">
                 @error('quantity')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}

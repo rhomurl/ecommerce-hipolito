@@ -659,11 +659,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mail.privateemail.com',
-        'port' => '587',
-        'encryption' => 'tls',
-        'username' => 'no-reply@hipolito-hardware.xyz',
-        'password' => 'tI6=|Z%V~b!G',
+        'host' => 'smtp.gmail.com',
+        'port' => '465',
+        'encryption' => 'ssl',
+        'username' => 'ecomhipolito@gmail.com',
+        'password' => 'orkpsocbvjhmgzxi',
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),
@@ -705,7 +705,7 @@
     ),
     'from' => 
     array (
-      'address' => 'no-reply@hipolito-hardware.xyz',
+      'address' => 'ecomhipolito@gmail.com',
       'name' => 'Hipolito\'s Hardware',
     ),
     'markdown' => 

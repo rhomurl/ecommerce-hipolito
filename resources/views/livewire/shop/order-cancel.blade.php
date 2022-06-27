@@ -1,6 +1,5 @@
 <section class="text-gray-600 body-font">
     <div class="row">
-
       <div class="col-lg-12 ">
           <article class="card first_card">
               <div class="card-body first_card_body">
@@ -19,9 +18,6 @@
                 <a href="{{ route('home') }}" class="btn ml-2 btn-secondary">Go to Home</a>
               </div>
           </article>
-          
       </div>
-      
   </div>
-  
-  </section>
+</section>
