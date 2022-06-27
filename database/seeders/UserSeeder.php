@@ -25,7 +25,6 @@ class UserSeeder extends Seeder
         $role2 = Role::create(['name' => 'admin']);
         $role3 = Role::create(['name' => 'super-admin']);
 
-
         $user = User::create([
             'name' => 'Rhomuel Brian Macahilig',
             'email' => 'rhomuelbrian.macahilig@ama.edu.ph',
@@ -35,16 +34,24 @@ class UserSeeder extends Seeder
         $user->assignRole($role1);
 
         $user = User::create([
+            'name' => 'Rosalie Cruz',
+            'email' => 'rosaliecruz@pm.me',
+            'password' => Hash::make('M5nfBK5DH&pfz'),
+            'email_verified_at' => now()
+        ]);
+        $user->assignRole($role1);
+
+        $user = User::create([
             'name' => 'Ecom Admin',
-            'email' => 'admin@hipolito-hardware.xyz',
-            'password' => Hash::make('HRzFPFpQIRw#'),
+            'email' => 'ecomhipolito+admin@gmail.com',
+            'password' => Hash::make('HRz5FPFpQIRw#'),
             'email_verified_at' => now()
         ]);
         $user->assignRole($role2);
 
         $user = User::create([
             'name' => 'Ecom Superadmin',
-            'email' => 'super@hipolito-hardware.xyz',
+            'email' => 'ecomhipolito+super@gmail.com',
             'password' => Hash::make('yMRF2&0sUYvc4T'),
             'email_verified_at' => now()
         ]);

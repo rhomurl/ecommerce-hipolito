@@ -9,7 +9,7 @@ use App\Mail\OrderConfirmationMail;
 use App\Traits\ModelComponentTrait;
 use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User};
 use App\Services\AddressService;
-use App\Services\CheckoutService;
+use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
 use App\Exceptions\AddressAttachedToOrderException;
 use Livewire\Component;
@@ -189,20 +189,16 @@ class Step1 extends Component
                if($this->payment_mode == 'cod')
                {
                     $address = AddressBook::with('barangay')->find($order->address_book_id);
-                
-                    $orderData = resolve(CheckoutService::class)->getOrderData(auth()->user(), $address, $order);
+                    $orderData = resolve(OrderService::class)->getOrderData(auth()->user(), $address, $order);
                 
                     Mail::to(auth()->user()->email)
                         ->send(new OrderConfirmationMail($orderData));
 
-                    redirect()
-                    ->route('checkout.success', $order->id);
+                    redirect()->route('checkout.success', $order->id);
                }
                 else
                 {
-                    redirect()
-                    ->route('checkout.step2')
-                    ->with('orderid', $order->id);
+                    redirect()->route('checkout.step2')->with('orderid', $order->id);
                 }
                
             });

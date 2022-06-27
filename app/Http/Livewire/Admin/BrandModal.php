@@ -16,7 +16,7 @@ class BrandModal extends ModalComponent
     public $brand, $name, $brand_id;
 
     protected $rules = [
-        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:brands',
+        'name' => 'required|max:30|regex:/[a-zA-Z0-9\s]+/|unique:brands',
     ];
 
     public function create(BrandService $brand){

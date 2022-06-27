@@ -4,65 +4,45 @@ namespace App\Http\Livewire\User;
 
 use Carbon\Carbon;
 use Livewire\WithPagination;
-use App\Models\AddressBook;
 use App\Models\Order;
-use App\Models\OrderProduct;
-use App\Models\Transaction;
-use App\Models\Product;
-use DB;
-use Illuminate\Support\Facades\Auth;
-
-use Notification;
-use App\Models\User;
 use App\Notifications\OrderNotification;
-
+use App\Services\OrderService;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Traits\ModelComponentTrait;
+use Illuminate\Support\Facades\Auth;
+use Notification;
 use Livewire\Component;
 
 class MyOrders extends Component
 {
     use WithPagination;
-    
+    use ModelComponentTrait;
+    use LivewireAlert;
+
     public function render()
     {
-        $orders = Order::with('transaction')->where('user_id', Auth::id())
+        $orders = Order::with('transaction')
+            ->where('user_id', Auth::id())
             ->orderby('id', 'DESC')
             ->paginate(5);
         return view('livewire.user.my-orders', compact('orders'))->extends('layouts.user-profile');
     }
 
-    public function paynow($id)
+    public function paynow(Order $order)
     {
-        $order = Order::where('status', 'pending')
-            ->where('id', $id)
-            ->where('created_at', '<=', now()->subMinutes(60)->toDateTimeString())
-            ->get();
-        
-        if($order){
-            redirect()
-                ->route('checkout.step2')
-                ->with('orderid', $id);
+        if($order->created_at <= now()->subMinutes(60) || $order->user_id != Auth::id()){
+            $this->errorAlert('Something Went Wrong!');
+        }else{
+            $order = resolve(OrderService::class)->retryOrder($order, Auth::id());
         }
-        
-        
     }
 
-    public function cancelOrder($user_orderid){
-        $cart = OrderProduct::select("product_id", DB::raw("sum(quantity) as product_qty"))
-        ->groupBy('product_id')
-        ->where('order_id', $user_orderid)
-        ->get();
-
-        foreach ($cart as $cartProduct){
-            Product::find($cartProduct->product_id)->increment('quantity', $cartProduct->product_qty);
+    public function cancelOrder(Order $order){
+        if($order->status != 'pending' && $order->user_id != Auth::id()){
+            $this->errorAlert('Something Went Wrong!');
         }
-
-        $order = Order::find($user_orderid);
-            $order->status = 'cancelled';
-            $order->save();
-
-        Transaction::where('order_id', '=', $user_orderid)
-            ->update(array('status' => 'cancelled'));
-
-        redirect()->route('order.cancel');
+        else{
+            resolve(OrderService::class)->cancelOrder($order, Auth::id());
+        }
     }
 }

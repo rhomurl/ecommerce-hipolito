@@ -18,9 +18,7 @@
 </nav>
 --}}
 
-    @if($orders)
-        {{ $orders->links('livewire.pagination.defaultuser')}}
-    @endif
+    
 
     @forelse($orders as $order)
         <article class="card mb-4">
@@ -109,5 +107,8 @@
         </div>
     @endforelse
 
+    @if($orders)
+        {{ $orders->links('livewire.pagination.defaultuser')}}
+    @endif
     
 </div>

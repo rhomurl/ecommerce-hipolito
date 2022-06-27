@@ -42,7 +42,7 @@ class OrderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Order #' . $this->orderData['orderDetails']['id'])
+                    ->subject($this->orderData['subject'])
                     ->greeting($this->orderData['greeting'])
                     ->line($this->orderData['name'])
                     ->line($this->orderData['body'])

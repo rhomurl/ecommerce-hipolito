@@ -15,6 +15,7 @@ class SearchBar extends Component
 
     public function search()
     {
+       // $this->query = str_replace("/", "%2F", $this->query);
         return redirect()->route('product.search', $this->query);
     }
 }

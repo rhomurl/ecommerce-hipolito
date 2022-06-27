@@ -6,7 +6,7 @@ use Session;
 //use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use App\Mail\OrderConfirmationMail;
-use App\Services\CheckoutService;
+use App\Services\OrderService;
 use App\Models\{OrderProduct, Order, Product, User, Transaction, AddressBook};
 use App\Traits\ModelComponentTrait;
 use DB;
@@ -71,7 +71,7 @@ class PaypalController extends Controller
                 ->update(array('status' => 'ordered'));            
             $address = AddressBook::with('barangay')->find($order->address_book_id);
 
-            $orderData = resolve(CheckoutService::class)->getOrderData($user, $address, $order);
+            $orderData = resolve(OrderService::class)->getOrderData($user, $address, $order);
 
             Mail::to($user->email)
                 ->send(new OrderConfirmationMail($orderData));

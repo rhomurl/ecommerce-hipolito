@@ -15,7 +15,7 @@ class ChangePassword extends Component
 
     protected $messages = [
         'new_password.min' => 'New password is minimum of 8 characters.',
-        'new_password.regex' => 'New password must contain at least 1 letter (small and capital), number, and special character',
+        'new_password.regex' => 'New password should contain at least 1 lowercase, uppercase, number, and special character.',
         'new_confirm_password.same' => 'New password and new confirm password must match.'
     ];
 

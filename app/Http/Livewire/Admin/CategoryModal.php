@@ -16,7 +16,7 @@ class CategoryModal extends ModalComponent
     public $category, $name, $category_id;
 
     protected $rules = [
-        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:categories',
+        'name' => 'required|max:30|regex:/[a-zA-Z0-9\s]+/|unique:categories',
     ];
 
     public function create(CategoryService $category){

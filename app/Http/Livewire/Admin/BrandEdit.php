@@ -18,7 +18,7 @@ class BrandEdit extends ModalComponent
     public $brand, $name, $brand_id, $slug;
 
     protected $rules = [
-        'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:brands',
+        'name' => 'required|max:30|regex:/[a-zA-Z0-9\s]+/|unique:brands',
     ];
 
     public function mount($id)
@@ -29,7 +29,7 @@ class BrandEdit extends ModalComponent
         $this->slug = $brand->slug;
     }
 
-    public function create(BrandService $brand){
+    public function edit(BrandService $brand){
         $this->validate();
         $brand->edit($this->brand_id,$this->name); 
         

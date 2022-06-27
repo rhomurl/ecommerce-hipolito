@@ -20,13 +20,15 @@ class SearchResult extends Component
     public $perpage;
 
     public function mount($sdata){
-         $this->sdata = str_replace("+", " ", $sdata);
+         $sdata = str_replace("+", " ", $sdata);
+         //$this->sdata = str_replace("%2F", "/", $sdata);
     }
 
     public function render()
     {
         $results = Product::where('name', 'LIKE', '%' . $this->sdata . '%')
             ->orWhere('slug','LIKE', "%{$this->sdata}%");
+        //$results->name = limitStr($results->name, 30);
 
         $resultCount = $results->count();
         $results = $results->paginate($this->perpage);
@@ -52,36 +54,18 @@ class SearchResult extends Component
         
         if (!$cart) {
             Cart::create(['user_id' => Auth::id(), 'product_id' => $productId, 'qty' => 1]);
-            $this->add_to_cart_prompt();
+            $this->successToast('Product Added to Cart!');
         } 
         else {
             if($cart->qty >= $cart->product->quantity){
-                $this->alert('error', 'Product Not Enough Stock!', [
-                    'position' => 'top-end',
-                    'timer' => '1500',
-                    'toast' => true,
-                    'timerProgressBar' => true,
-                ]);
+                $this->errorToast('Product Not Enough Stock!');
             }
             else {
-            $cart->update(['qty' => $cart->qty + 1]);
-            $this->add_to_cart_prompt();
+                $cart->update(['qty' => $cart->qty + 1]);
+                $this->successToast('Product Added to Cart!');
             }
         }
         
-        $this->emit('updateCart');
-        
-        
-        //session()->flash('message', 'Product Added to Cart');
-        //return redirect(route('cart'));
-    }
-
-    public function add_to_cart_prompt(){
-        $this->alert('success', 'Product Added to Cart!', [
-            'position' => 'top-end',
-            'timer' => '1500',
-            'toast' => true,
-            'timerProgressBar' => true,
-        ]);
+        $this->emit('updateWidgets');
     }
 }

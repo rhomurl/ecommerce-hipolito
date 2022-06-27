@@ -1,6 +1,8 @@
 <script>
 paypal.Buttons({
       onCancel: function (data, actions) {
+        actions.redirect("{{ route('checkout.confirm', $this->orderidz) }}");
+        /*
         return fetch('/api/paypal/order/cancel/', {
           method: 'POST',
           body:JSON.stringify({
@@ -13,6 +15,7 @@ paypal.Buttons({
                 actions.redirect('{{ route('order.cancel') }}');
               }
           });
+          */
     
   },
 

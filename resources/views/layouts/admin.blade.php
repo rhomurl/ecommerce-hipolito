@@ -6,11 +6,13 @@
         <title>@yield('title') - Admin</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-        <link href="https://drive.google.com/uc?export=view&id=1p6Q-7XY-aSiHHR3YO1B_OMranGpZI_yD" rel="stylesheet">
+        {{--<link href="https://drive.google.com/uc?export=view&id=1p6Q-7XY-aSiHHR3YO1B_OMranGpZI_yD" rel="stylesheet">--}}
+        <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="{{ asset('dashboard/assets/js/init-alpine.js') }}"></script>
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+
 
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
@@ -121,7 +123,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                            <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.orders' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.orders' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.orders') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.orders' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.orders', 'all') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                   </svg>
@@ -293,7 +295,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.orders' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.orders' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.orders') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.orders' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.orders', 'all') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                   </svg>
