@@ -14,6 +14,13 @@ trait ModelComponentTrait
         ->orderBy('name', 'ASC')
         ->paginate(10);
     }
+
+    public function getAttribute1($model){
+        return $model::where('id', $model->id)
+            ->select('name','slug')
+            ->get();
+    }
+
     
     public function errorAlert($message){
         $this->alert('error', $message, [

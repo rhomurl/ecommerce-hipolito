@@ -1,4 +1,5 @@
 <?php return array (
+  'admin.activity-log-component' => 'App\\Http\\Livewire\\Admin\\ActivityLogComponent',
   'admin.admin-home' => 'App\\Http\\Livewire\\Admin\\AdminHome',
   'admin.banner-component' => 'App\\Http\\Livewire\\Admin\\BannerComponent',
   'admin.banner-edit' => 'App\\Http\\Livewire\\Admin\\BannerEdit',

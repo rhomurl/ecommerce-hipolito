@@ -12,5 +12,8 @@ function limitStr($field, $limit){
     return Str::limit($field, $limit);
 }
 
+function changeDateFormat1($date){
+    return \Carbon\Carbon::parse($date)->isoFormat('MMM D YYYY, h:mm a');
+}
 
 ?>

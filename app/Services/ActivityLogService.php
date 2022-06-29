@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 class ActivityLogService {
-    public $test = "";
-    public function createLog($model, $description){
-        
-        $attributes = get_class($model)::where('id', $model->id)->select('name','slug')->get();
-        $properties['old'] = '';
+    public function createLog($model, $old, $attributes, $description)
+    {
+        $properties['old'] = $old;
         $properties['attributes'] = $attributes;
 
         ActivityLog::create([

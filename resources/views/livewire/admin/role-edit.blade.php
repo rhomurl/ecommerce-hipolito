@@ -27,6 +27,8 @@
                 @foreach($roles as $role)
                     @if($role->name == $this->role_user)
 
+                    @elseif($role->name == 'super-admin')
+                    {{-- DO NOT INCLUDE SUPER ADMIN IN SELECTION --}}
                     @else
                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                     @endif
