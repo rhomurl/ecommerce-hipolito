@@ -2,24 +2,18 @@
 
 namespace App\Http\Livewire\Admin;
 
-
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Category;
-use App\Models\Product;
-
+use App\Models\{Category, Product};
+use App\Services\ActivityLogService;
 use App\Traits\ModelComponentTrait;
-
-
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
-use Livewire\Component;
 use DB;
+
+use Livewire\Component;
 
 class CategoryComponent extends Component
 {
-    use LivewireAlert;
-    use ModelComponentTrait;
-    use WithPagination;
+    use LivewireAlert, ModelComponentTrait, WithPagination;
 
     protected $listeners = ['updateComponent' => 'render'];
     public $search = "";
@@ -30,21 +24,31 @@ class CategoryComponent extends Component
         return view('livewire.admin.category-component', compact('categories'))->layout('layouts.admin');
     }
 
-    public function edit($id){
-        $this->emit("openModal", "admin.category-edit", ["id" => $id]);
+    public function edit($id)
+    {
+        $this->emit("openModal", "admin.category-edit", ["category" => $id]);
     }
 
-    public function confirmDelete($id)
+    public function confirmDelete(Category $category, ActivityLogService $activity)
     {
-        $product_qty = DB::table('products')->where('category_id', '=', $id)->whereNotNull('quantity')->get();
+        $product_qty = DB::table('products')
+            ->where('category_id', $category->id)
+            ->whereNotNull('quantity')
+            ->get();
+
         if(count($product_qty)){
             $this->errorAlert('This Category Cannot Be Deleted!');
         }
         else{
-            $category = Category::updateOrCreate(['id' => $id], ['deleted_by' => Auth::user()->id,]);
-            //$category = Category::updateOrCreate(['id' => $id], ['deleted_by' => '',]);
+            $attributes = $this->getAttribute1($category);
+            $activity->createLog($category, "", $attributes, 'Deleted category');
             $category->delete();
             $this->successAlert('Category Deleted Successfully!');
         }     
+    }
+
+    public static function closeModalOnEscape(): bool
+    {
+        return true;
     }
 }

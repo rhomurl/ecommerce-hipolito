@@ -2,20 +2,17 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-
+use App\Services\ActivityLogService;
 use App\Traits\ModelComponentTrait;
 use App\Models\User;
-
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithPagination;
+
 use Livewire\Component;
 
 class UserManagement extends Component
 {
-
-    use LivewireAlert;
-    use ModelComponentTrait;
-    use WithPagination;
+    use LivewireAlert, ModelComponentTrait, WithPagination;
 
     public $search = "";
     public $emails;
@@ -34,12 +31,22 @@ class UserManagement extends Component
         $this->emit("openModal", "admin.view-user-info", ["id" => $id]);
     }
 
-    public function changeUserStatus($id, $status){
-        $user = User::find($id);
-
+    public function changeUserStatus(User $user, $status, ActivityLogService $activity){
         if($user){
             $user->status = $status;
             $user->save();
+
+            $attributes = [
+                ['id' => $user->id, 'status' => $status]
+            ];
+
+            if($status == 0){
+                $activity->createLog($user, "", $attributes, 'Disabled user');
+            }
+            else if($status == 1){
+                $activity->createLog($user, "", $attributes, 'Enabled user');
+            } 
+
             $this->successAlert('User Status Updated Successfully!');
         }
 

@@ -38,7 +38,8 @@
 
             <p class="text-gray-600 dark:text-gray-400">
             <b>Name:</b> {{ $order->user->name }}<br>
-            <b>Email:</b> {{ $order->user->email }}
+            <b>Email:</b> {{ $order->user->email }}<br>
+            <b>Date and Time:</b> {{ changeDateFormat1($order->created_at) }}
             </p>
 
 

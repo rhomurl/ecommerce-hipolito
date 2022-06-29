@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Services\ActivityLogService;
 use App\Services\CategoryService;
 use App\Models\Category;
 use App\Traits\ModelComponentTrait;
@@ -19,14 +20,17 @@ class CategoryModal extends ModalComponent
         'name' => 'required|max:30|regex:/[a-zA-Z0-9\s]+/|unique:categories',
     ];
 
-    public function create(CategoryService $category){
+    public function create(CategoryService $category, ActivityLogService $activity)
+    {
         $this->validate();
-        $category->store($this->name);
+
+        $category = $category->store($this->name);
+        $attributes = $this->getAttribute1($category);
+        $activity->createLog($category, "", $attributes, 'Created category');
         
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Category Created Successfully!');
-        $this->emit('updateComponent');
     }
 
     public function render()

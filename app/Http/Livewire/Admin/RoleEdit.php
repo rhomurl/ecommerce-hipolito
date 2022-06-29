@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-
 use App\Models\User;
+use App\Services\ActivityLogService;
 use App\Traits\ModelComponentTrait;
-
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Spatie\Permission\Models\Role;
 //use Spatie\Permission\Models\Permission;
 
@@ -14,8 +13,7 @@ use LivewireUI\Modal\ModalComponent;
 
 class RoleEdit extends ModalComponent
 {
-    use LivewireAlert;
-    use ModelComponentTrait;
+    use LivewireAlert, ModelComponentTrait;
     
     public $role, $user_id, $role_id, $name, $role_user;
 
@@ -25,15 +23,22 @@ class RoleEdit extends ModalComponent
         $user = User::findOrFail($id);
         $this->name = $user->name;
         $this->role_user = $user->getRoleNames()->first();
-        
     }
 
-    public function edit(){
+    public function edit(ActivityLogService $activity){
         $user = User::findorFail($this->user_id);
         $user->removeRole($this->role_user);
         $user->assignRole($this->role_id);
+
+        $old = [
+            ['role' => $this->role_user, 'id' => $user->id]
+        ];
+        $attributes = [
+            ['role' => $this->role_id, 'id' => $user->id]
+        ];
+
+        $activity->createLog($user, $old, $attributes, 'Updated role');
         
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Role Updated Successfully!'); 

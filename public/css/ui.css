@@ -1605,3 +1605,11 @@ header.sticky {
   align-items: center;
 }
 /* End Login CSS */
+
+/* Make mobile devices not sticky */
+@media all and (max-width: 500px) {
+  .section-header {
+    position: relative;
+  }
+}
+/* End non sticky mobile */
