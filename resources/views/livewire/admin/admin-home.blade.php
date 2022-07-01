@@ -95,8 +95,8 @@
                     </div>
                     <div>
                         <span>
-                            <svg class="w-12 h-12 text-gray-300 dark:text-primary-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-300 dark:text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                             </svg>
                         </span>
                     </div>
@@ -124,7 +124,7 @@
                 <div class="bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
                     <!-- Card header -->
                     <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
-                        <h4 class="text-lg font-semibold text-gray-500 dark:text-light">Registered Users</h4>
+                        <h4 class="text-lg font-semibold text-gray-500 dark:text-white">Registered Users</h4>
                         <div class="flex items-center space-x-2">
                             <span class="text-sm text-gray-500 dark:text-white">Last 3 days</span>
                         </div>
@@ -155,7 +155,7 @@
                               
                               <!-- Image -->
                               <div class="col-span-2">
-                                <img src="{{ $this->getProductURL($topProduct->product->image) }}" />
+                                <img src="{{ $this->getProductURL($topProduct->product->image) }}" class="rounded-full" />
                               </div>
                         
                               <!-- Description -->

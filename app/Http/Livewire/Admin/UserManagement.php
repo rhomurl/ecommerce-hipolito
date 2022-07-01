@@ -15,14 +15,26 @@ class UserManagement extends Component
     use LivewireAlert, ModelComponentTrait, WithPagination;
 
     public $search = "";
-    public $emails;
+    public $sortColumn = 'name';
+    public $sortDirection = 'asc';
+
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
 
     public function render()
     {
         $users = User::role('customer')
             ->where('name', 'like', '%'.$this->search.'%')
-            ->orderBy('name', 'ASC')
+            ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(10);
+
         return view('livewire.admin.user-management',  compact('users'))->layout('layouts.admin');
     }
 

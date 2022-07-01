@@ -18,17 +18,31 @@ class ProductComponent extends Component
 
     //https://laravel-livewire.com/docs/2.x/query-string
     protected $listeners = ['updateComponent' => 'render'];
-
+    
     public $isOpen = 0;
     public $search = "";
     public $pagenum = 10;
+    public $sortColumn = 'name';
+    public $sortDirection = 'asc';
+
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
 
     public function render()
     {
-        $products = Product::with('brand', 'category')->where('name', 'like', '%'.$this->search.'%')
-        ->orwhere('selling_price', 'like', '%'.$this->search.'%')
-        ->orwhere('description', 'like', '%'.$this->search.'%')
-        ->paginate($this->pagenum);
+        $products = Product::with('brand', 'category');
+        $products = $products->where('name', 'like', '%'.$this->search.'%')
+            ->orwhere('selling_price', 'like', '%'.$this->search.'%')
+            ->orwhere('description', 'like', '%'.$this->search.'%')
+            ->orderBy($this->sortColumn, $this->sortDirection)
+            ->paginate($this->pagenum);
 
         return view('livewire.admin.product-component', compact('products'))->layout('layouts.admin');
     }

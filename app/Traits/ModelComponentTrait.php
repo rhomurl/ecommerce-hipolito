@@ -15,6 +15,17 @@ trait ModelComponentTrait
         ->paginate(10);
     }
 
+    public function getData2($model)
+    {
+        $m = $model::query();
+        $m->where('name', 'like', '%'.$this->search.'%')
+            ->orderBy($this->sortColumn, $this->sortDirection);
+        $m = $m->paginate(10);
+        return $m;
+    }
+
+
+
     public function getAttribute1($model){
         return $model::where('id', $model->id)
             ->select('name','slug')

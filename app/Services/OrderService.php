@@ -88,6 +88,23 @@ class OrderService
         }  
     }
 
+    public function displayOrders2($status, $method, $sortDirection, $sortColumn){
+        $orders = Order::query()->with('user');
+        
+        if($status != 'all'){
+            $orders = $orders
+                ->where('status',  $status)
+                ->orderBy($sortColumn, $sortDirection);
+        }
+
+        if($method == 'display'){
+            return $orders->orderBy($sortColumn, $sortDirection);
+        }
+        else if($method == 'count'){
+            return $orders->count();
+        }  
+    }
+
     public function retryOrder($order, $auth_id){
         //$order = Order::where('id', $id)
         $order

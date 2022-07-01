@@ -17,10 +17,23 @@ class BrandComponent extends Component
 
     protected $listeners = ['updateComponent' => 'render'];
     public $search = "";
+    public $sortColumn = 'name';
+    public $sortDirection = 'asc';
+
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
 
     public function render()
     {
-        $brands = $this->getData(new Brand());
+        $brands = $this->getData2(new Brand());
+
         return view('livewire.admin.brand-component', compact('brands'))->layout('layouts.admin');
     }
 

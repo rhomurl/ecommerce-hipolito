@@ -8,6 +8,8 @@
 
         {{--<link href="https://drive.google.com/uc?export=view&id=1p6Q-7XY-aSiHHR3YO1B_OMranGpZI_yD" rel="stylesheet">--}}
         <link href="{{ asset('css/tailwind.css') }}" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <script src="{{ asset('dashboard/assets/js/init-alpine.js') }}"></script>
 
@@ -147,10 +149,10 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a href="#" onclick="Livewire.emit('openModal', 'admin.change-password')" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100">
+                            <a href="#" onclick="Livewire.emit('openModal', 'admin.change-password')" class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
-                                  </svg>
+                                </svg>
                                 <span class="ml-4">Change Password</span>
                             </a>
                         </li>
@@ -216,7 +218,7 @@
                     <ul class="mt-6">
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.overview' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.overview' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.overview') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.overview' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.overview') }}">
                                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                                 </svg>
@@ -227,7 +229,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.banners' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.banners' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.banners') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.banners' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.banners') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                                   </svg>
@@ -283,7 +285,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.manageuser' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.manageuser' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.manageuser') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.manageuser' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.manageuser') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                                   </svg>
@@ -295,7 +297,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.managerole' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.managerole' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.managerole') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.managerole' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.managerole') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
@@ -307,7 +309,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.orders' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.orders' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.orders', 'all') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.orders' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.orders', 'all') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                                   </svg>
@@ -319,7 +321,7 @@
                     <ul>
                         <li class="relative px-6 py-3">
                             <span class="absolute inset-y-0 left-0 w-1 {{ \Route::current()->getName() == 'admin.activity-log' ? 'bg-purple-800' : '' }} rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.activity-log' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100" href="{{ route('admin.activity-log') }}">
+                            <a class="inline-flex items-center w-full text-sm font-semibold {{ \Route::current()->getName() == 'admin.activity-log' ? 'text-gray-800 dark:text-gray-100' : '' }} transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="{{ route('admin.activity-log') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
                                 </svg>
@@ -328,6 +330,19 @@
                         </li>
                     </ul>
 
+                    
+
+                    <ul>
+                        <li class="relative px-6 py-3">
+                            <span class="absolute inset-y-0 left-0 w-1  rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>
+                            <a onclick="Livewire.emit('openModal', 'admin.change-password')" href="#" class="inline-flex items-center w-full text-sm font-semibold  transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                                </svg>
+                                <span class="ml-4">Change Password</span>
+                            </a>
+                        </li>
+                    </ul>
                     
                     {{--<ul>
                         <li class="relative px-6 py-3">
