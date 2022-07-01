@@ -16,14 +16,26 @@ class BannerComponent extends Component
 {
     protected $listeners = ['updateComponent' => 'render'];
     public $search = "";
+    public $sortColumn = 'name';
+    public $sortDirection = 'asc';
 
     use LivewireAlert;
     use ModelComponentTrait;
     use WithPagination;
 
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
+    
     public function render()
     {
-        $banners = $this->getData(new Banner());
+        $banners = $this->getData2(new Banner());
         return view('livewire.admin.banner-component', compact('banners'))->layout('layouts.admin');
     }
 

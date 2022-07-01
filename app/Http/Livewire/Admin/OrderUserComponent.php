@@ -14,6 +14,8 @@ class OrderUserComponent extends Component
     public $search;
     public $status;
     public $count;
+    public $sortColumn = 'id';
+    public $sortDirection = 'asc';
 
     public function mount($status){
         $this->status = $status;
@@ -24,9 +26,19 @@ class OrderUserComponent extends Component
         $this->completed = resolve(OrderService::class)->displayOrders('delivered', 'count');
     }
 
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
+
     public function render()
     {   
-        $orders = resolve(OrderService::class)->displayOrders($this->status, 'display')->paginate(10);
+        $orders = resolve(OrderService::class)->displayOrders2($this->status, 'display', $this->sortDirection, $this->sortColumn)->paginate(10);
         /*$orderq = Order::query()->with('user');
         if($this->status == 'all'){
             $orders = $orderq->paginate(5);

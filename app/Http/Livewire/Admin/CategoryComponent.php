@@ -17,10 +17,22 @@ class CategoryComponent extends Component
 
     protected $listeners = ['updateComponent' => 'render'];
     public $search = "";
+    public $sortColumn = 'name';
+    public $sortDirection = 'asc';
+
+    public function sortByColumn($column)
+    {
+        if ($this->sortColumn == $column) {
+            $this->sortDirection = $this->sortDirection == 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->reset('sortDirection');
+            $this->sortColumn = $column;
+        }
+    }
 
     public function render()
     {
-        $categories = $this->getData(new Category());
+        $categories = $this->getData2(new Category());
         return view('livewire.admin.category-component', compact('categories'))->layout('layouts.admin');
     }
 

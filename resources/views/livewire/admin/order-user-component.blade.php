@@ -34,10 +34,30 @@
             <table class="w-full whitespace-no-wrap">
                 <thead>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                        <th class="px-4 py-3">Order ID</th>
+                        <th wire:click="sortByColumn('id')" class="px-4 py-3">Order ID
+                            @if ($sortColumn == 'id')
+                                <i class="fa fa-fw fa-sort-{{ $sortDirection }}"></i>
+                            @else
+                                <i class="fa fa-fw fa-sort" style="color:#DCDCDC"></i>
+                            @endif  
+                        </th>
                         <th class="px-4 py-3">Account Name</th>
-                        <th class="px-4 py-3">Order Total</th>
-                        <th class="px-4 py-3">Status</th>
+                        <th wire:click="sortByColumn('total')" class="px-4 py-3">Order Total
+                            @if ($sortColumn == 'total')
+                                <i class="fa fa-fw fa-sort-{{ $sortDirection }}"></i>
+                            @else
+                                <i class="fa fa-fw fa-sort" style="color:#DCDCDC"></i>
+                            @endif  
+                        </th>
+                        <th @if($this->status == 'all') wire:click="sortByColumn('status')" @endif class="px-4 py-3">Status
+                            @if($this->status == 'all')
+                                @if ($sortColumn == 'status')
+                                    <i class="fa fa-fw fa-sort-{{ $sortDirection }}"></i>
+                                @else
+                                    <i class="fa fa-fw fa-sort" style="color:#DCDCDC"></i>
+                                @endif  
+                            @endif
+                        </th>
                         <th class="px-4 py-3">Action</th>
                     </tr>
                 </thead>

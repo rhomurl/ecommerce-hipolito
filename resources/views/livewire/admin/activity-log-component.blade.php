@@ -17,7 +17,13 @@
                 <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">Description</th>
                     <th class="px-4 py-3">Action by</th>
-                    <th class="px-4 py-3">Date and Time</th>
+                    <th wire:click="sortByColumn('created_at')" class="px-4 py-3">Date and Time
+                        @if ($sortColumn == 'created_at')
+                                <i class="fa fa-fw fa-sort-{{ $sortDirection }}"></i>
+                            @else
+                                <i class="fa fa-fw fa-sort" style="color:#DCDCDC"></i>
+                            @endif
+                    </th>
                     <th class="px-4 py-3">Action</th>
                 </tr>
             </thead>
