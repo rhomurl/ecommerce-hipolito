@@ -115,7 +115,7 @@
             <ul class="row">
                 <li class="col-md-5">
                     <figure class="itemside mb-3">
-                        <div class="aside"><img src="{{ $this->getProductURL($item->product->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $item->product->image }}'" class="img-sm border"></div>
+                        <div class="aside"><img src="{{ $this->getProductURL($item->product->image) }}" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
                             <p class="title">{{ $item->product->name}}</p>
                             <span class="text-muted">₱ {{$item->price}} <br> Qty: {{$item->quantity}}</span>

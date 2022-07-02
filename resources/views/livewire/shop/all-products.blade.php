@@ -97,8 +97,8 @@
             <div class="row no-gutters">
                 <aside class="col-md-3">
                     <a href="{{ route('product.details', $result->slug ) }}" class="img-wrap">
-                        <span class="badge badge-danger"> NEW </span>
-                        <img src="{{ $this->getProductURL($result->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $result->image }}'">
+                        <span class="badge badge-danger"> NEW</span>
+                        <img src="{{ $this->getProductURL($result->image) }}">
                     </a>
                 </aside> <!-- col.// -->
                 <div class="col-md-6">
