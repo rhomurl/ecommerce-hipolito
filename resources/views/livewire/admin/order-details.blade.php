@@ -146,7 +146,7 @@
                                 <div class="flex items-center text-sm">
                                     <!-- Avatar with inset shadow -->
                                     <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                                        <img class="object-cover w-full h-full rounded-full" src="{{ $this->getProductURL($item->product->image) }}" onerror="this.src='{{ asset('storage/app/public/') }}/{{ $item->product->image }}'" alt="" loading="lazy">
+                                        <img class="object-cover w-full h-full rounded-full" src="{{ $this->getProductURL($item->product->image) }}" alt="{{ $item->product->name }}" loading="lazy">
                                         <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                     </div>
                                     <div>

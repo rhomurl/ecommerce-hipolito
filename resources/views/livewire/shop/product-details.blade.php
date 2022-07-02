@@ -156,7 +156,7 @@
             @forelse($random_products as $random_product)
               <article class="media mb-3">
                 <a href="{{ route('product.details', $random_product->slug) }}">
-                  <img src="{{ $this->getProductURL($random_product->image) }}" onerror="this.src=''" class="border img-sm mr-3">
+                  <img src="{{ $this->getProductURL($random_product->image) }}" class="border img-sm mr-3">
                 </a>
                 <div class="media-body">
                   <h6 class="mt-0"><a href="{{ route('product.details', $random_product->slug) }}">{{ $random_product->name }}</a></h6>
@@ -182,7 +182,7 @@
                       <figure class="itemside mb-2">
                         <div class="aside">
                           <a href="{{ route('product.details', $related_product->slug) }}">
-                            <img src="{{ $this->getProductURL($related_product->image) }}" onerror="this.src=''" class="border img-sm">
+                            <img src="{{ $this->getProductURL($related_product->image) }}" class="border img-sm">
                           </a>
                           </div>
                         <figcaption class="info align-self-center">
