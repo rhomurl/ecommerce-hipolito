@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use App\Traits\MultiTenantModelTrait;
+use App\Traits\SearchableTrait;
 
 class Order extends Model
 {
-    use HasFactory, MultiTenantModelTrait, Notifiable;
+    use HasFactory, MultiTenantModelTrait, Notifiable, SearchableTrait;
 
     protected $dates = [
         'created_at',
         'updated_at',
-        //'deleted_at'
     ];
     
     protected $fillable = [
@@ -30,6 +30,9 @@ class Order extends Model
         'uuid',
         'shipping_type',
     ];
+
+    public $searchable = ['id', 'user.name', 'subtotal', 'total', 'shipping_type'];
+
 
     protected static function boot()
     {

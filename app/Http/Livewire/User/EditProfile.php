@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use Session;    
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -31,6 +32,14 @@ class EditProfile extends Component
             ['id' => Auth::user()->id],
             ['email' => $this->email]
         );
+
+        if ($user->wasChanged('email')) {
+            $user->email_verified_at = null;
+            $user->save();
+            event(new Registered($user));
+        }
+
+        
         
         session()->flash('message', 'User Profile Updated Successfully');
         return redirect()->route('user.edit');

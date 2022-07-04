@@ -9,7 +9,7 @@
            
            
             
-                <p class="text-justify">Thanks for signing up! Please verify your email address by clicking on the link we just emailed to you. You can also check your spam folder. If you didn't receive the email, we can send you another.</p>
+                <p class="text-justify">Please verify your email address by clicking on the link we just emailed to you. You can also check your spam folder. If you didn't receive the email, we can send you another.</p>
 
                 <p class="mt-3">
                     If you did not receive the email, click the button below</a>.

@@ -671,507 +671,557 @@ class ProductSeeder extends Seeder
 
         $inventory = 
         [
-            [
-              "status" => "",
-              "product_id" => 1,
-              "received_at" => "2015-05-07",
-              "product_cost" => 423,
-              "starting_stock" => 50,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 2,
-              "received_at" => "2015-09-10",
-              "product_cost" => 365.5,
-              "starting_stock" => 38,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 3,
-              "received_at" => "2015-09-16",
-              "product_cost" => 722.5,
-              "starting_stock" => 38,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 4,
-              "received_at" => "2015-12-03",
-              "product_cost" => 143.65,
-              "starting_stock" => 10,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 5,
-              "received_at" => "2016-05-06",
-              "product_cost" => 212.5,
-              "starting_stock" => 5,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 6,
-              "received_at" => "2016-06-23",
-              "product_cost" => 314.5,
-              "starting_stock" => 92,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 7,
-              "received_at" => "2016-09-07",
-              "product_cost" => 849.15,
-              "starting_stock" => 64,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 8,
-              "received_at" => "2016-10-19",
-              "product_cost" => 1368.5,
-              "starting_stock" => 105,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 9,
-              "received_at" => "2017-12-20",
-              "product_cost" => 1351.5,
-              "starting_stock" => 87,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 10,
-              "received_at" => "2018-02-23",
-              "product_cost" => 556.75,
-              "starting_stock" => 70,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 11,
-              "received_at" => "2019-11-05",
-              "product_cost" => 594.15,
-              "starting_stock" => 25,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 12,
-              "received_at" => "2020-05-08",
-              "product_cost" => 17,
-              "starting_stock" => 25,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 13,
-              "received_at" => "2020-11-25",
-              "product_cost" => 42.5,
-              "starting_stock" => 139,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 14,
-              "received_at" => "2021-02-10",
-              "product_cost" => 476,
-              "starting_stock" => 28,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 15,
-              "received_at" => "2022-02-15",
-              "product_cost" => 63,
-              "starting_stock" => 30,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 16,
-              "received_at" => "2016-12-22",
-              "product_cost" => 58.5,
-              "starting_stock" => 40,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 17,
-              "received_at" => "2017-04-20",
-              "product_cost" => 67.5,
-              "starting_stock" => 50,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 18,
-              "received_at" => "2017-08-09",
-              "product_cost" => 78.3,
-              "starting_stock" => 35,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 19,
-              "received_at" => "2018-04-10",
-              "product_cost" => 112.5,
-              "starting_stock" => 65,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 20,
-              "received_at" => "2018-09-28",
-              "product_cost" => 216,
-              "starting_stock" => 53,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 21,
-              "received_at" => "2019-02-19",
-              "product_cost" => 162,
-              "starting_stock" => 30,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 22,
-              "received_at" => "2020-04-16",
-              "product_cost" => 94.5,
-              "starting_stock" => 30,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 23,
-              "received_at" => "2020-07-20",
-              "product_cost" => 522,
-              "starting_stock" => 50,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 24,
-              "received_at" => "2020-07-30",
-              "product_cost" => 143.1,
-              "starting_stock" => 125,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 25,
-              "received_at" => "2020-12-10",
-              "product_cost" => 39.01,
-              "starting_stock" => 225,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 26,
-              "received_at" => "2021-02-04",
-              "product_cost" => 1357.6,
-              "starting_stock" => 15,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 27,
-              "received_at" => "2021-04-07",
-              "product_cost" => 119.2,
-              "starting_stock" => 30,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 28,
-              "received_at" => "2021-04-16",
-              "product_cost" => 137.6,
-              "starting_stock" => 73,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 29,
-              "received_at" => "2021-06-01",
-              "product_cost" => 72,
-              "starting_stock" => 21,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 30,
-              "received_at" => "2021-11-29",
-              "product_cost" => 258.4,
-              "starting_stock" => 86,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 31,
-              "received_at" => "2015-04-15",
-              "product_cost" => 388,
-              "starting_stock" => 19,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 32,
-              "received_at" => "2015-08-12",
-              "product_cost" => 509.6,
-              "starting_stock" => 100,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 33,
-              "received_at" => "2015-11-06",
-              "product_cost" => 58.1,
-              "starting_stock" => 70,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 34,
-              "received_at" => "2016-02-03",
-              "product_cost" => 24.9,
-              "starting_stock" => 100,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 35,
-              "received_at" => "2016-05-13",
-              "product_cost" => 118.69,
-              "starting_stock" => 74,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 36,
-              "received_at" => "2016-07-14",
-              "product_cost" => 301.29,
-              "starting_stock" => 22,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 37,
-              "received_at" => "2016-09-21",
-              "product_cost" => 190.9,
-              "starting_stock" => 322,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 38,
-              "received_at" => "2018-07-02",
-              "product_cost" => 224.1,
-              "starting_stock" => 550,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 39,
-              "received_at" => "2019-01-17",
-              "product_cost" => 190.9,
-              "starting_stock" => 322,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 40,
-              "received_at" => "2019-05-02",
-              "product_cost" => 1162,
-              "starting_stock" => 3,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 41,
-              "received_at" => "2019-10-15",
-              "product_cost" => 5561,
-              "starting_stock" => 3,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 42,
-              "received_at" => "2020-04-10",
-              "product_cost" => 8250,
-              "starting_stock" => 1,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 43,
-              "received_at" => "2020-09-18",
-              "product_cost" => 322.5,
-              "starting_stock" => 50,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 44,
-              "received_at" => "2020-10-05",
-              "product_cost" => 221.25,
-              "starting_stock" => 55,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 45,
-              "received_at" => "2022-03-11",
-              "product_cost" => 112.5,
-              "starting_stock" => 25,
-              "reorder_level" => 15,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 46,
-              "received_at" => "2015-03-13",
-              "product_cost" => 172.5,
-              "starting_stock" => 15,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 47,
-              "received_at" => "2015-07-13",
-              "product_cost" => 33.75,
-              "starting_stock" => 70,
-              "reorder_level" => 5,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 48,
-              "received_at" => "2015-07-27",
-              "product_cost" => 207,
-              "starting_stock" => 80,
-              "reorder_level" => 10,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 49,
-              "received_at" => "2016-02-10",
-              "product_cost" => 125.25,
-              "starting_stock" => 35,
-              "reorder_level" => 8,
-              "created_at" => now(),
-              "updated_at" => now()
-            ],
-            [
-              "status" => "",
-              "product_id" => 50,
-              "received_at" => "2016-08-24",
-              "product_cost" => 52.5,
-              "starting_stock" => 35,
-              "reorder_level" => 6,
-              "created_at" => now(),
-              "updated_at" => now()
-            ]
-        ];
+          [
+            "status" => "",
+            "product_id" => 1,
+            "supplier" => "Did Right Resources",
+            "received_at" => "2015-05-07",
+            "product_cost" => 423,
+            "starting_stock" => 50,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 2,
+            "supplier" => "Regency Construction",
+            "received_at" => "2015-09-10",
+            "product_cost" => 365.5,
+            "starting_stock" => 38,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 3,
+            "supplier" => "Premier General",
+            "received_at" => "2015-09-16",
+            "product_cost" => 722.5,
+            "starting_stock" => 38,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 4,
+            "supplier" => "Memo Providers",
+            "received_at" => "2015-12-03",
+            "product_cost" => 143.65,
+            "starting_stock" => 10,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 5,
+            "supplier" => "Eco Stone",
+            "received_at" => "2016-05-06",
+            "product_cost" => 212.5,
+            "starting_stock" => 5,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 6,
+            "supplier" => "Titan Builders",
+            "received_at" => "2016-06-23",
+            "product_cost" => 314.5,
+            "starting_stock" => 92,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 7,
+            "supplier" => "Tick Constructions",
+            "received_at" => "2016-09-07",
+            "product_cost" => 849.15,
+            "starting_stock" => 64,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 8,
+            "supplier" => "Big Rock Construction",
+            "received_at" => "2016-10-19",
+            "product_cost" => 1368.5,
+            "starting_stock" => 105,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 9,
+            "supplier" => "RailWorks Corporation",
+            "received_at" => "2017-12-20",
+            "product_cost" => 1351.5,
+            "starting_stock" => 87,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 10,
+            "supplier" => "R2 Construction Group",
+            "received_at" => "2018-02-23",
+            "product_cost" => 556.75,
+            "starting_stock" => 70,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 11,
+            "supplier" => "Regency Construction",
+            "received_at" => "2019-11-05",
+            "product_cost" => 594.15,
+            "starting_stock" => 25,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 12,
+            "supplier" => "Titan Builders",
+            "received_at" => "2020-05-08",
+            "product_cost" => 17,
+            "starting_stock" => 25,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 13,
+            "supplier" => "Memo Providers",
+            "received_at" => "2020-11-25",
+            "product_cost" => 42.5,
+            "starting_stock" => 139,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 14,
+            "supplier" => "Tick Constructions",
+            "received_at" => "2021-02-10",
+            "product_cost" => 476,
+            "starting_stock" => 28,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 15,
+            "supplier" => "Premier General",
+            "received_at" => "2022-02-15",
+            "product_cost" => 63,
+            "starting_stock" => 30,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 16,
+            "supplier" => "Eco Stone",
+            "received_at" => "2016-12-22",
+            "product_cost" => 58.5,
+            "starting_stock" => 40,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 17,
+            "supplier" => "Big Rock Construction",
+            "received_at" => "2017-04-20",
+            "product_cost" => 67.5,
+            "starting_stock" => 50,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 18,
+            "supplier" => "R2 Construction Group",
+            "received_at" => "2017-08-09",
+            "product_cost" => 78.3,
+            "starting_stock" => 35,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 19,
+            "supplier" => "RailWorks Corporation",
+            "received_at" => "2018-04-10",
+            "product_cost" => 112.5,
+            "starting_stock" => 65,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 20,
+            "supplier" => "Did Right Resources",
+            "received_at" => "2018-09-28",
+            "product_cost" => 216,
+            "starting_stock" => 53,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 21,
+            "supplier" => "Tick Constructions",
+            "received_at" => "2019-02-19",
+            "product_cost" => 162,
+            "starting_stock" => 30,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 22,
+            "supplier" => "Eco Stone",
+            "received_at" => "2020-04-16",
+            "product_cost" => 94.5,
+            "starting_stock" => 30,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 23,
+            "supplier" => "Did Right Resources",
+            "received_at" => "2020-07-20",
+            "product_cost" => 522,
+            "starting_stock" => 50,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 24,
+            "supplier" => "RailWorks Corporation",
+            "received_at" => "2020-07-30",
+            "product_cost" => 143.1,
+            "starting_stock" => 125,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 25,
+            "supplier" => "R2 Construction Group",
+            "received_at" => "2020-12-10",
+            "product_cost" => 39.01,
+            "starting_stock" => 225,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 26,
+            "supplier" => "Memo Providers",
+            "received_at" => "2021-02-04",
+            "product_cost" => 1357.6,
+            "starting_stock" => 15,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 27,
+            "supplier" => "Regency Construction",
+            "received_at" => "2021-04-07",
+            "product_cost" => 119.2,
+            "starting_stock" => 30,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 28,
+            "supplier" => "Big Rock Construction",
+            "received_at" => "2021-04-16",
+            "product_cost" => 137.6,
+            "starting_stock" => 73,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 29,
+            "supplier" => "Titan Builders",
+            "received_at" => "2021-06-01",
+            "product_cost" => 72,
+            "starting_stock" => 21,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 30,
+            "supplier" => "Premier General",
+            "received_at" => "2021-11-29",
+            "product_cost" => 258.4,
+            "starting_stock" => 86,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 31,
+            "supplier" => "Eco Stone",
+            "received_at" => "2015-04-15",
+            "product_cost" => 388,
+            "starting_stock" => 19,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 32,
+            "supplier" => "Tick Constructions",
+            "received_at" => "2015-08-12",
+            "product_cost" => 509.6,
+            "starting_stock" => 100,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 33,
+            "supplier" => "Regency Construction",
+            "received_at" => "2015-11-06",
+            "product_cost" => 58.1,
+            "starting_stock" => 70,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 34,
+            "supplier" => "RailWorks Corporation",
+            "received_at" => "2016-02-03",
+            "product_cost" => 24.9,
+            "starting_stock" => 100,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 35,
+            "supplier" => "Tick Constructions",
+            "received_at" => "2016-05-13",
+            "product_cost" => 118.69,
+            "starting_stock" => 74,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 36,
+            "supplier" => "Premier General",
+            "received_at" => "2016-07-14",
+            "product_cost" => 301.29,
+            "starting_stock" => 22,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 37,
+            "supplier" => "Titan Builders",
+            "received_at" => "2016-09-21",
+            "product_cost" => 190.9,
+            "starting_stock" => 322,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 38,
+            "supplier" => "Eco Stone",
+            "received_at" => "2018-07-02",
+            "product_cost" => 224.1,
+            "starting_stock" => 550,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 39,
+            "supplier" => "Regency Construction",
+            "received_at" => "2019-01-17",
+            "product_cost" => 190.9,
+            "starting_stock" => 322,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 40,
+            "supplier" => "RailWorks Corporation",
+            "received_at" => "2019-05-02",
+            "product_cost" => 1162,
+            "starting_stock" => 3,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 41,
+            "supplier" => "R2 Construction Group",
+            "received_at" => "2019-10-15",
+            "product_cost" => 5561,
+            "starting_stock" => 3,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 42,
+            "supplier" => "Premier General",
+            "received_at" => "2020-04-10",
+            "product_cost" => 8250,
+            "starting_stock" => 1,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 43,
+            "supplier" => "Tick Constructions",
+            "received_at" => "2020-09-18",
+            "product_cost" => 322.5,
+            "starting_stock" => 50,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 44,
+            "supplier" => "Big Rock Construction",
+            "received_at" => "2020-10-05",
+            "product_cost" => 221.25,
+            "starting_stock" => 55,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 45,
+            "supplier" => "Regency Construction",
+            "received_at" => "2022-03-11",
+            "product_cost" => 112.5,
+            "starting_stock" => 25,
+            "reorder_level" => 15,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 46,
+            "supplier" => "Did Right Resources",
+            "received_at" => "2015-03-13",
+            "product_cost" => 172.5,
+            "starting_stock" => 15,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 47,
+            "supplier" => "Premier General",
+            "received_at" => "2015-07-13",
+            "product_cost" => 33.75,
+            "starting_stock" => 70,
+            "reorder_level" => 5,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 48,
+            "supplier" => "Eco Stone",
+            "received_at" => "2015-07-27",
+            "product_cost" => 207,
+            "starting_stock" => 80,
+            "reorder_level" => 10,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 49,
+            "supplier" => "Big Rock Construction",
+            "received_at" => "2016-02-10",
+            "product_cost" => 125.25,
+            "starting_stock" => 35,
+            "reorder_level" => 8,
+            "created_at" => now(),
+            "updated_at" => now()
+          ],
+          [
+            "status" => "",
+            "product_id" => 50,
+            "supplier" => "Memo Providers",
+            "received_at" => "2016-08-24",
+            "product_cost" => 52.5,
+            "starting_stock" => 35,
+            "reorder_level" => 6,
+            "created_at" => now(),
+            "updated_at" => now()
+          ]
+         ];
         
         Product::insert($products);
         ProductInventory::insert($inventory);

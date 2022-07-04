@@ -148,7 +148,7 @@
                     <!-- Card 1 -->
 
                     <td class="px-4 py-3">
-                        @foreach ($topProducts as $topProduct)
+                        @forelse ($topProducts as $topProduct)
 
                         <card class="border-gray-300 rounded-xl w-[30rem] py-7 px-5">
                             <div class="grid grid-cols-6 gap-3">
@@ -166,7 +166,9 @@
                         
                             </div>
                           </card>
-                        @endforeach
+                        @empty
+                          No top products found
+                        @endforelse
                     </td>
                     {{--<p class="p-4">
                         <span class="text-2xl font-medium text-gray-500 dark:text-light" id="usersCount">0</span>
@@ -277,20 +279,20 @@
                     <h4 class="p-4 border-b text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Recent Orders</h4>
                     <div class="w-full overflow-x-auto">
                         <table class="w-full whitespace-no-wrap">
-                            <thead>
-                                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                                    <th class="px-4 py-3"></th>
-                                    <th class="px-4 py-3">Status</th>
-                                    {{--<th class="px-4 py-3">Date</th>--}}
-                                    <th class="px-4 py-3">Action</th>
-                                </tr>
-                            </thead>
+                                <thead>
+                                    @if($this->recent_orders->count() != 0)
+                                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                        <th class="px-4 py-3"></th>
+                                        <th class="px-4 py-3">Status</th>
+                                        <th class="px-4 py-3">Action</th>
+                                    </tr>
+                                    @endif
+                                </thead>
                             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                                 @forelse($this->recent_orders as $recent_order)
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3">
                                             <div class="flex items-center text-sm">
-                                                <!-- Avatar with inset shadow -->
                                                 <div>
                                                     <p class="font-semibold">Order #{{ $recent_order->id }}</p>
                                                     <p class="text-xs text-gray-600 dark:text-gray-400">
@@ -299,14 +301,13 @@
                                                 </div>
                                             </div>
                                         </td>
+
                                         <td class="px-4 py-3 text-sm">
                                             <span>
                                                 {{ $recent_order->getOrderStatusAttribute() }}
                                             </span>
                                         </td>
-                                        {{--<td class="px-4 py-3 text-sm">
-                                            {{ changeDateFormat1($recent_order->created_at) }}
-                                        </td>--}}
+
                                         <td class="px-4 py-3">
                                             <div class="flex items-center space-x-4 text-sm">
                                                 <a href="{{ route('admin.order.details', $recent_order->id) }}" target="_blank" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
@@ -319,7 +320,7 @@
                                         </td>
                                     </tr>
                                 @empty
-
+                                    No recent orders found
                                 @endforelse
                             </tbody>
                         </table>
@@ -357,7 +358,7 @@
                                 No logs found
                             @endforelse
 
-                            @if($this->activity_log)
+                            @if($this->activity_log->count() != 0)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">
                                     <a href="{{ route('admin.activity-log') }}" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

@@ -38,9 +38,7 @@ class ProductComponent extends Component
     public function render()
     {
         $products = Product::with('brand', 'category');
-        $products = $products->where('name', 'like', '%'.$this->search.'%')
-            ->orwhere('selling_price', 'like', '%'.$this->search.'%')
-            ->orwhere('description', 'like', '%'.$this->search.'%')
+        $products = $products->search($this->search)
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate($this->pagenum);
 
