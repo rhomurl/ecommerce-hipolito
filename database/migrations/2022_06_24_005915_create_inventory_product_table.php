@@ -13,13 +13,13 @@ class CreateInventoryProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_product', function (Blueprint $table) {
+        Schema::create('product_inventory', function (Blueprint $table) {
             $table->id();
             $table->string('status');
             //category
             $table->foreignId('product_id')->constrained('products')->unique(); //noneditabled
             $table->string('supplier'); //editable
-            $table->timestamp('received_at');
+            
             $table->decimal('product_cost', 9, 2);
             //selling price
             //profit
@@ -27,6 +27,7 @@ class CreateInventoryProductTable extends Migration
             //stock quantity 
             //inventory value
             $table->unsignedInteger('reorder_level');
+            $table->timestamp('received_at');
             $table->timestamps();
         });
     }

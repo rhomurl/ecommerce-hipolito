@@ -103,7 +103,6 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('/', Admin\AdminHome::class)->name('overview');
     Route::get('activity-log', Admin\ActivityLogComponent::class)->name('activity-log');
     Route::get('banners', Admin\BannerComponent::class)->name('banners');
-   // Route::get('change-password', Admin\ChangePassword::class)->name('change-password');
     Route::get('products', Admin\ProductComponent::class)->name('products');
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
     Route::get('categories', Admin\CategoryComponent::class)->name('categories');
@@ -114,6 +113,7 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('/order/{order}', Admin\OrderDetails::class)->name('order.details');
     Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
     Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');
+    Route::get('product-inventory', Admin\ProductInventoryComponent::class)->name('product-inventory');
     //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
 }); 
 
