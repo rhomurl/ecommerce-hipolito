@@ -38,7 +38,7 @@ class OrderUserComponent extends Component
 
     public function render()
     {   
-        $orders = resolve(OrderService::class)->displayOrders2($this->status, 'display', $this->sortDirection, $this->sortColumn)->paginate(10);
+        $orders = resolve(OrderService::class)->displayOrders2($this->status, 'display', $this->sortDirection, $this->sortColumn)->search($this->search)->paginate(10);
         /*$orderq = Order::query()->with('user');
         if($this->status == 'all'){
             $orders = $orderq->paginate(5);
