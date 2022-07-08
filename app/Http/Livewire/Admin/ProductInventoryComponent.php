@@ -15,6 +15,8 @@ class ProductInventoryComponent extends Component
     use LivewireAlert;
     use WithPagination;
 
+    protected $listeners = ['updateComponent' => 'render'];
+    
     public $search;
     public $paginate = 10;
     public $sortColumn = 'id';
@@ -28,6 +30,11 @@ class ProductInventoryComponent extends Component
             $this->reset('sortDirection');
             $this->sortColumn = $column;
         }
+    }
+
+    public function edit($id)
+    {
+        $this->emit("openModal", "admin.product-inventory-edit", ["inventory" => $id]);
     }
 
     public function render()
