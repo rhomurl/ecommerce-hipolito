@@ -97,7 +97,7 @@
             <div class="row no-gutters">
                 <aside class="col-md-3">
                     <a href="{{ route('product.details', $result->slug ) }}" class="img-wrap">
-                        <span class="badge badge-danger"> NEW </span>
+                        {{--<span class="badge badge-danger"> NEW </span>--}}
                         <img src="{{ $this->getProductURL($result->image) }}" alt="{{ $result->name }}">
                     </a>
                 </aside> <!-- col.// -->
