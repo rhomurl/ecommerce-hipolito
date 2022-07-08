@@ -19,18 +19,10 @@ class BannerModal extends ModalComponent
     use WithFileUploads;
     use LivewireAlert;
     use ModelComponentTrait;
-    /*
-    public function mount($id)
-    {
-        $this->banner_id = $id;
-        $category = Banner::findOrFail($this->banner_id);
-        $this->name = $banner->name;
-        $this->image = $banner->image; 
-    }*/
 
     public function create(){
         $this->validate([
-            'name' => 'required|regex:/[a-zA-Z0-9\s]+/|unique:brands',
+            'name' => 'required|regex:/[a-zA-Z0-9\s]+/',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -45,7 +37,7 @@ class BannerModal extends ModalComponent
                 'image' => $this->image->storeAs('images/banners', $banner_name , 'gcs')
             ]
         );
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
+
         $this->resetInputFields();
         $this->closeModal();
         $message = $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully';
