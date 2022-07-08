@@ -28,7 +28,7 @@ class AdminHome extends Component
         $this->process = resolve(OrderService::class)->displayOrders('processing', 'display')->get();
         $this->completed = resolve(OrderService::class)->displayOrders('delivered', 'display')->get();
         
-        $this->recent_orders = Order::with('user')->limit(5)->latest()->get();
+        $this->recent_orders = Order::with('user')->limit(10)->latest()->get();
         $this->activity_log = ActivityLog::limit(10)->latest()->get();
     
     }
