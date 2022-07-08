@@ -109,11 +109,14 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('manage-user', Admin\UserManagement::class)->name('manageuser');
     Route::get('manage-role', Admin\RoleManagement::class)->middleware(['role:super-admin'])->name('managerole');
     Route::get('/orders/{status}', Admin\OrderUserComponent::class)->name('orders');
-    Route::get('sales-report', Admin\SalesReport::class)->name('sales.report');
+    
     Route::get('/order/{order}', Admin\OrderDetails::class)->name('order.details');
     Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
     Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');
     Route::get('product-inventory', Admin\ProductInventoryComponent::class)->name('product-inventory');
+    Route::get('report', Admin\ReportManagement::class)->name('report');
+    Route::get('report/sales-report', Admin\SalesReport::class)->name('sales-report');
+    Route::get('report/sales-report-group', Admin\SalesReportGroup::class)->name('sales-report-group');
     //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
 }); 
 

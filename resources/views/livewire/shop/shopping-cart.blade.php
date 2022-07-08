@@ -82,7 +82,7 @@
     </div> <!-- card.// -->
 
     <div class="alert alert-success mt-3">
-        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Shipping for Orders Above 5000 PHP (Lipa) and 8000 PHP (Tanauan)</p>
+        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Shipping for Orders Above 5000 PHP for Lipa City and 8000 PHP for Tanauan City</p>
     </div>
 
     </main> <!-- col.// -->

@@ -69,7 +69,10 @@
                 <span class="text-gray-700">
                     Date Received
                 </span>
-                <input type="date" wire:model.defer="input.received_date" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Description" required>
+                <input type="date" wire:model.defer="input.received_date" min="2000-01-01" max="{{ now()->toDateString() }}" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Description" required>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                    dd/mm/yyyy
+                </p>
                 @error('input.received_date')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
@@ -81,7 +84,8 @@
                 <span class="text-gray-700">
                     Description
                 </span>
-                <input type="text" wire:model.defer="input.description" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Description" required>
+                <textarea type="text" wire:model.defer="input.description" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Description" required>
+                </textarea>
                 @error('input.description')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}

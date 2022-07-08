@@ -22,21 +22,11 @@
                     <tr class="text-xs font-semibold tracking-wide text-left uppercase border-b dark:border-gray-700  dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3 text-left">
                             @if($this->date_from && $this->date_to)
-                                Results from {{ \Carbon\Carbon::parse($this->date_from)->format('F j, Y') }} to {{ \Carbon\Carbon::parse($this->date_to)->format('F j, Y') }}
-
-                            @elseif($this->year_from && $this->month_from && $this->year_to && $this->month_to)
-                                Results from {{ date('M', strtotime('2022-'.$this->month_from.'-01')) }} {{ $this->year_from}} to {{ date('M', strtotime('2022-'.$this->month_to.'-01')) }} {{ $this->year_to}}
-
+                            Results from {{ \Carbon\Carbon::parse($this->date_from)->format('F j, Y') }} to {{ \Carbon\Carbon::parse($this->date_to)->format('F j, Y') }}
                             @elseif($this->year_from && $this->month_from)
-                                Results from Year {{ date('M', strtotime('2022-'.$this->month_from.'-01')) }} {{ $this->year_from}}
+                            Results from {{ date('M', strtotime('2022-'.$this->month_from.'-01')) }}
 
-                            @elseif($this->year_from && $this->year_to)
-                                Results from Year {{ $this->year_from }} to {{ $this->year_to }}
-
-                            @elseif($this->year_from)
-                                Results from Year {{ $this->year_from }}
-
-                            
+                            {{ date('Y', strtotime($this->year_from.'-01-01')) }}
                             @endif
 
                             
@@ -55,8 +45,6 @@
                     </tr>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Order</th>
-                        <th class="px-4 py-3">Payment Method</th>
-                        <th class="px-4 py-3">Status</th>
                         <th class="px-4 py-3">Order Date</th>
                         <th class="px-4 py-3">Total</th>
                     </tr>
@@ -68,15 +56,6 @@
                             Order #{{ $order->id }}
                         </td>
 
-                        <td class="px-4 py-3">
-                            {{ $order->getPaymentModeAttribute() }}
-                        </td>
-
-                        <td class="px-4 py-3 text-sm">
-                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                {{ $order->getOrderStatusAttribute() }}
-                            </span>
-                        </td>
                         <td class="px-4 py-3">
                             {{ \Carbon\Carbon::parse($order->created_at)->format('m-d-Y') }}
                         </td>
@@ -95,12 +74,7 @@
                         <td class="px-4 py-3 text-sm">
                             
                         </td>
-                        <td class="px-4 py-3 text-sm">
-                           
-                        </td>
-                        <td class="px-4 py-3 text-sm">
-                            
-                        </td>
+
                         <td class="px-4 py-3 text-sm font-semibold">
                             TOTAL
                         </td>

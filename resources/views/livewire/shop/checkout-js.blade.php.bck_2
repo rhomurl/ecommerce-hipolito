@@ -1,0 +1,43 @@
+<script>
+paypal.Buttons({
+      onCancel: function (data, actions) {
+        actions.redirect("{{ route('checkout.confirm', $this->orderidz) }}"); 
+  },
+
+createOrder: function(data, actions) {
+  return fetch('/api/paypal/order/create/', {
+      method: 'POST',
+      body:JSON.stringify({
+          'total': "{{ $this->grandTotal }}",
+      })
+  }).then(function(res) {
+      return res.json();
+  }).then(function(orderData) {
+      return orderData.id;
+  });
+},
+
+onApprove: function(data, actions) {
+  return fetch('/api/paypal/order/capture/' , {
+      method: 'POST',
+      body :JSON.stringify({
+          paypal_orderid : data.orderID,
+          user_orderid : '{{ $this->orderidz }}',
+          user_id: "{{ auth()->user()->id }}", 
+      })
+  }).then(function(res) {
+      return res.json();
+  }).then(function(orderData) {
+      
+    if(orderData.error && orderData.error.details[0].issue == 'INSTRUMENT_DECLINED'){
+      return actions.restart();
+    }
+
+     if(orderData.status === 'COMPLETED'){
+        actions.redirect("{{ route('checkout.success', $this->orderidz) }}");
+      }
+  });
+}
+
+}).render('#paypal-button-container');
+</script>

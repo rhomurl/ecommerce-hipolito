@@ -23,9 +23,8 @@ class ProductInvModal1 extends ModalComponent
         'input.supplier' => 'required:regex:/^[a-zA-ZÑñ.\s]+$/',
         'input.category_id' => 'required',
         'input.brand_id' => 'required',
-        'input.received_date' => 'required|date',
+        'input.received_date' => 'required|date|before:tomorrow|after:2000-01-01',
         'input.description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:500',
-        
         //'input.quantity' => 'required|integer|min:0|max:999999',
         //'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
     ];
@@ -33,6 +32,8 @@ class ProductInvModal1 extends ModalComponent
     protected $messages = [
         'input.selling_price.max' => 'Price cannot be exceeded by 1000000.00', 
         'input.quantity.max' => 'Quantity cannot exceed by 999999.',
+        'input.received_date.after' => 'Date received must be a date after 1998-01-01',       
+        'input.received_date.before' => 'Date received must be a date before tomorrow'
         //'input.image.max' => 'Image cannot exceed 2MB.',
        // 'input.image.image' => 'JPEG, PNG, and JPG are the allowed file types.',
     ];

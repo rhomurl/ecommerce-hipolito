@@ -2,31 +2,24 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-
 use App\Models\Banner;
 use App\Traits\ModelComponentTrait;
-
 use Illuminate\Support\Facades\Storage;
-
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
-//use Livewire\WithFileUploads;
 
 class BannerEdit extends ModalComponent
 {
-    use LivewireAlert;
-    use ModelComponentTrait;
-    //use WithFileUploads;
+    use LivewireAlert, ModelComponentTrait;
 
     public $name, $banner_id;
 
-    public function mount($id){
-        $this->banner_id = $id;
-        $banner = Banner::findOrFail($this->banner_id);
+    public function mount(Banner $banner){
+        $this->banner_id = $banner->id;
         $this->name = $banner->name;
     }
 
-    public function create(){
+    public function edit(){
         $this->validate([
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/',
         ]);
@@ -34,9 +27,8 @@ class BannerEdit extends ModalComponent
         $product = Banner::updateOrCreate(['id' => $this->banner_id],
             [
                 'name' =>  $this->name,
-            ]
-        );
-        //$this->emit("openModal", "admin.success-modal", ["message" => $this->banner_id ? 'Banner Updated Successfully.' : 'Banner Added Successfully']);
+            ]);
+
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Banner Updated Successfully!'); 
