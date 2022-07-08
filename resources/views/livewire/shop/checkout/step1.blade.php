@@ -230,7 +230,7 @@
                                         <label class="accordion-button collapsed"
                                             data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                             aria-expanded="false">
-                                            <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                            <input wire:model.defer="payment_mode" value="creditcard" type="radio" name="payment_mode" class="accordions">
                                             &nbsp;
                                             Credit Card
                                         </label>
@@ -370,7 +370,7 @@
                                     <label class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                         aria-expanded="false">
-                                        <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                        <input wire:model.defer="payment_mode" value="creditcard" type="radio" name="payment_mode" class="accordions">
                                         &nbsp;
                                         Credit Card
                                     </label>
