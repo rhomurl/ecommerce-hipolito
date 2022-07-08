@@ -141,7 +141,7 @@
     <!-- =============== SECTION 1 =============== -->
     <section class="padding-bottom">
     <header class="section-heading mb-4">
-        <h3 class="title-section">Recommended items</h3>
+        <h3 class="title-section">Featured products</h3>
     </header>
     
     <div class="row">

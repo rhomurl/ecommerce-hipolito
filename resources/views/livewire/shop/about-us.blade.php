@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="about-view-detail-btn">
-                        <a class="view-details-btn" href="">Shop now</a>
+                        <a class="view-details-btn" href="{{ route('products.all') }}">Shop now</a>
                     </div>
 
                 </div>

@@ -32,7 +32,7 @@
                         <input wire:model.lazy="password" id="password" type="{{ $visible ? 'text' : 'password' }}" required class="form-control" type="password">
                         <button wire:click="togglePassword" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
                         </button> 
-                        <small class="form-text text-muted @error('password') d-none @enderror">It should contain at least 1 lowercase, uppercase, number, and special character.</small>
+                        <small class="form-text text-muted @error('password') d-none @enderror">Password must be at least 8 characters. It should contain at least 1 lowercase, uppercase, number, and special character (@$!%*#?&).</small>
                     </div> <!-- form-group end.// --> 
                     
                     @error('password')
