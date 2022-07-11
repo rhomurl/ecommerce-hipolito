@@ -5,10 +5,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* body {
-    background: black;
-    color: white;
-} */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 /*===================================== ABOUT_2ND_SECTION =================================*/
 #about-second-section {
     padding-top: 100px;
@@ -21,17 +20,12 @@
     border-radius: 50%;
 }
 .about-first-section-title {
-    font-size: 40px;
-    line-height: 46px;
     margin: 50px 0px 0px 0px;
-    font-weight: 600;
-    color: #002639;
+    color: black;
 }
 .about_para {
-    font-size: 16px;
-    font-weight: 400;
     line-height: 24px;
-    color: #484848;
+    color: black;
 }
 .about_para1 {
     margin: 20px 0px 0px 0px;
@@ -51,22 +45,12 @@
 }
 .view-details-btn {
     text-decoration: none;
-    color: #252628;
-    display: inline-block;
-    font-weight: 700;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    padding: 0 40px;
-    font-size: 16px;
-    height: 50px;
-    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+    padding: 0 20px;
     cursor: pointer;
-    z-index: 5;
     margin-top: 35px;
-    border: 2px solid #fcc741;
-    line-height: 46px;
-    transition: all 0.3s linear;
+    line-height: 36px;
 }
 
 /* COUNTER UP ANIMATION */
@@ -75,31 +59,47 @@
     padding-top: 30px;
 }
 .counter-box {
-    background: lightgray;
+    background: lightgrey;
     text-align: center;
     padding: 15px;
+    height: 230px;
 }
-.counter-title {
-    font-weight: 400;
-    font-size: 16px;
-    color: #203151;
-}
-.counter {
-    font-size: 30px;
-    font-weight: 700;
-    color: #203151;
+
+@media all and (max-width: 1200px) {
+    .counter-box {
+        background: lightgrey;
+        text-align: center;
+        padding: 15px;
+        height: 290px;
+    }
 }
 @media all and (max-width: 992px) {
     .counter-wrapper {
         gap: 10px;
     }
+    .counter-box {
+        background: lightgrey;
+        text-align: center;
+        padding: 15px;
+        height: 190px;
+    }
 }
 
-.counter-plus-sign {
-    /* float: right; */
-    color: #203151;
-    font-size: 30px;
-    font-weight: 600;
+.about_svg_img_wrapper_1,
+.about_svg_img_wrapper_2,
+.about_svg_img_wrapper_3,
+.about_svg_img_wrapper_4 {
+    padding-bottom: 10px;
+}
+.about_svg_1,
+.about_svg_2,
+.about_svg_3,
+.about_svg_4 {
+    height: 50px;
+    width: 50px;
+}
+.about_box_para {
+    color: black;
 }
 /* END OF COUNTER UP ANIMATION */
 /*======================================= END_OF_ABOUT_2ND_SECTION ======================*/
@@ -117,12 +117,10 @@
 .our-location h1 {
     font-size: 40px;
     font-weight: 600;
-    font-family: 'Poppins', sans-serif;
 }
 .our-location p {
     font-size: 16px;
     font-weight: 400;
-    font-family: Arial;
 }
 .our-location {
     background-color: rgba(27, 41, 69, 0.95);

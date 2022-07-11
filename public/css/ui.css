@@ -1137,17 +1137,23 @@ a[class*='card'] {
       float: right; }
 
 .dropdown-large {
-  padding: 20px; }
+  padding: 20px; 
+  min-width: 500px;
+}
   .dropdown-large a {
     display: block;
     color: #212529;
-    padding: 5px 0; }
+    padding: 5px 0; 
+  }
     .dropdown-large a:hover {
-      color: #0d6efd; }
+      color: #0d6efd; 
+    }
 
 @media all and (min-width: 992px) {
   .dropdown-large {
-    min-width: 500px; } }
+    min-width: 500px; 
+  } 
+}
 
 .form-inline input[type='number'] {
   max-width: 100px; }
@@ -1607,7 +1613,7 @@ header.sticky {
 /* End Login CSS */
 
 /* Make mobile devices not sticky */
-@media all and (max-width: 500px) {
+@media all and (max-width: 762px) {
   .section-header {
     position: relative;
   }

@@ -1,7 +1,11 @@
 @section('style')
   <style>
-
-    </style>
+      .quantity_input_field {
+          width: 100%;
+          text-align: center;
+          border: none;
+      }
+  </style>
 @endsection
 
   <section class="section-content bg-lightgray padding-y">
@@ -78,7 +82,7 @@
                     
                     <button wire:click.prevent="minusQty" {{ $this->qty == 1 ? 'disabled' : '' }} class="btn btn-light" type="button" id="button-minus"> − </button>
                   </div>
-                  <input wire:model="qty" type="text" class="form-control">
+                  <input wire:model="qty" type="text" class="quantity_input_field">
                   <div class="input-group">
                     <button wire:click.prevent="addQty" {{ $this->product->quantity <= $this->qty ? 'disabled' : '' }} class="btn btn-light" type="button" id="button-plus"> + </button>
                   </div>
