@@ -90,4 +90,38 @@ trait ModelComponentTrait
         $disk = \Storage::disk('gcs');
         return $disk->temporaryUrl($url, now()->addDay(7));
     }
+
+    public function getRange(){
+        switch($this->selected_filter) {
+            case('date'):
+                if($this->date_from && $this->date_to){
+                   return $this->date_from . " to " . $this->date_to;
+                }
+                else if($this->date_from){
+                    return $this->date_from;
+                }
+                break;
+
+            case('month'):
+                if($this->month_from && $this->year_from && $this->year_to && $this->year_from){
+                    return $this->month_from . "_" . $this->year_from . " to " . $this->month_to . "_" . $this->year_to;
+                }
+                else if($this->month_from && $this->year_from){
+                    return  $this->month_from . "_" . $this->year_from;
+                }
+                break;
+
+            case('year'):
+                if($this->year_from && $this->year_to){
+                    return $this->year_from . " to " . $this->year_to;
+                }
+                else if($this->year_from){
+                    return $this->year_from; 
+                }
+                break;
+                
+            default:
+                return "all";
+        }
+    }
 }
