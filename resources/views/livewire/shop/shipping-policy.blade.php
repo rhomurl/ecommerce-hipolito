@@ -19,11 +19,11 @@
                     <div class="row">
                         <!--<p class="who-we-are-title">Please take note of the following:</p>!-->
                         <div class="col-lg-6">
-                            <h1 class="home-who-we-are-sub-title">We deliver within Lipa and Tanauan area only.</h1>
+                            <h1 class="home-who-we-are-sub-title">We deliver across Lipa City and Tanauan City area only.</h1>
                         </div>
                         <div class="col-lg-6">
                             <div class="home-meet-btn-wrapper">
-                                <a class="home-meet-btn" href="{{ route('products.all') }}">All products</a>
+                                <a class="home-meet-btn btn btn-primary" href="{{ route('products.all') }}">All products</a>
                             </div>
                         </div>
                     </div>

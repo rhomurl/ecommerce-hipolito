@@ -4,11 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-/* body {
-    background: black;
-    color: white;
-} */
-
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 .shipping-policy-title {
     text-align: center;
 }
@@ -62,22 +60,11 @@
 }
 .home-meet-btn {
     text-decoration: none;
-    background-color: #fcc741;
-    transition: all 0.3s linear;
-    border: 0;
-    padding: 10px 20px;
-    color: #252628;
-    font-weight: 600;
-    display: inline-block;
-    text-align: center;
-    border-radius: 50px;
-    cursor: pointer;
-    z-index: 5;
-}
-.home-meet-btn:hover {
-    transition: all 0.3s linear;
-    background-color: rgb(164, 118, 3);
     color: white;
+    font-weight: 600;
+    padding: 0 20px;
+    cursor: pointer;
+    line-height: 36px;
 }
 .who-we-are-card-wrapper {
     padding-top: 0px;
