@@ -722,8 +722,8 @@
     'mode' => 'sandbox',
     'sandbox' => 
     array (
-      'client_id' => 'AckmZ9rFsnnMBcJmQ22Ruw5OaYT3n2Rm6ZXd06UqX-XXZbTBSLphD9hLvzZ0xb7rtMT5g-U_5N2fvyMa',
-      'client_secret' => 'EIiJQfcmDGfvzmDNdGO4qR0oAZ_M-PMKslSxFalhxwgfEW91GAvYYnBYWqMw7LmAKo8nxZ_k1Ri1q4kY',
+      'client_id' => 'AdPk0qcNcjnJlIPfrRB_69A9YTNXx6Qo9DR_b_LD-mM7To_FnWcpkvqrjfkDzm_iFiC8Yjuk2Nj8S3in',
+      'client_secret' => 'EMItW7DrF2ek0lqYB075Qm3oiS3hNs6wdZRqgJ_p00fvDCZq6HR-KnRmIdpYZjWQWXFlwP29uAQCPP0l',
       'app_id' => 'APP-80W284485P519543T',
     ),
     'live' => 
@@ -865,6 +865,10 @@
       'verify_csrf_token' => 'App\\Http\\Middleware\\VerifyCsrfToken',
       'encrypt_cookies' => 'App\\Http\\Middleware\\EncryptCookies',
     ),
+  ),
+  'searchable' => 
+  array (
+    'key' => 'q',
   ),
   'services' => 
   array (
