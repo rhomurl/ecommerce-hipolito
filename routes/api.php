@@ -35,3 +35,6 @@ Route::get('/order/details/{id}', [FacebookBotController::class, 'getOrderDetail
 Route::get('/user/verify/{email}', [FacebookBotController::class, 'checkEmail'])
 ->middleware('throttle:5,1');
 
+Route::post('user/sendEmailInquiry', [FacebookBotController::class, 'sendEmailInquiry'])
+    ->middleware('throttle:5,1');
+
