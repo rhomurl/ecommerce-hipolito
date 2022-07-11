@@ -2,9 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Str;
-use App\Models\Product;
-
 class ReportService {
 
     public function get_filter($orders, $data){
