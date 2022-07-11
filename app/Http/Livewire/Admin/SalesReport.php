@@ -4,20 +4,24 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Order;
 use Carbon\Carbon;
-use DB;
+use App\Services\ReportService;
+use PDF;
+
+//use DB;
 use Livewire\Component;
-use Session;
+//use Session;
 
 class SalesReport extends Component
 {
     public $selected_filter, $group_by;
     public $month_from, $month_to, $year_from, $year_to;
     public $date_from, $date_to;
+    public $genOrders, $range, $data1;
 
-    public function mount(){
-        
-        $data = session()->get('data');
+    public function mount(){    
         if(session()->has('data')){    
+            $data = session()->get('data');
+            $this->data1 = $data;
             $this->selected_filter = $data['selected_filter'];
             $this->group_by = $data['group_by'];
 
@@ -33,6 +37,55 @@ class SalesReport extends Component
         }
     }
 
+    public function generatePDF(){
+        switch($this->selected_filter) {
+            case('date'):
+                if($this->date_from && $this->date_to){
+                   $range = $this->date_from . "_to_" . $this->date_to;
+                }
+                else if($this->date_from){
+                    $range = $this->date_from;
+                }
+                break;
+
+            case('month'):
+                if($this->month_from && $this->year_from && $this->year_to && $this->year_from){
+                    $range = $this->month_from . "_" . $this->year_from . "_to_" . $this->month_to . "_" . $this->year_to;
+                }
+                else if($this->month_from && $this->year_from){
+                    $range = $this->month_from . "_" . $this->year_from;
+                }
+                break;
+
+            case('year'):
+                if($this->year_from && $this->year_to){
+                    $range = $this->year_from . "_to_" . $this->year_to;
+                }
+                else if($this->year_from){
+                    $range = $this->year_from; 
+                }
+                break;
+                
+            default:
+                $range = "all";
+        }
+
+        $data = [
+            'genOrders' => $this->genOrders,
+            'generatedAt' => Carbon::now()->format('M d Y h:i A'),
+            'range' => $range
+        ];
+        //$pdf = PDF::loadView('pdf.sales-report', $data);
+        //return $pdf->download('sales-report_.pdf');
+        //return $pdf->stream();
+
+        $pdfContent = PDF::loadView('pdf.sales-report', $data)->output();
+        return response()->streamDownload(
+            fn () => print($pdfContent),
+            "sales_report_".$range.".pdf"
+        );
+    }
+
     public function redirectTo($route){
         return redirect()->route($route);
     }
@@ -41,62 +94,22 @@ class SalesReport extends Component
     {
         $orders = Order::query();
 
-        switch($this->selected_filter) {
-            case('date'):
+        if($this->selected_filter){
+            $orders = resolve(ReportService::class)->get_filter($orders, $this->data1);
+        }
+        
 
-                if($this->date_from && $this->date_to){
-                    $orders = $orders->whereDate('created_at', '>=', $this->date_from)
-                    ->whereDate('created_at', '<=', $this->date_to);
-                }
-                else if($this->date_from){
-                    $orders = $orders->whereDate('created_at', '=', $this->date_from);
-
-                }
-                break;
- 
-            case('month'):
-
-                if($this->month_from && $this->year_from && $this->year_to && $this->year_from)
-                {
-                    $orders = $orders
-                    ->whereDate('created_at', '>=', date($this->year_from.'-'.$this->month_from.'-01').' 00:00:00')
-                    ->whereDate('created_at', '<=', date($this->year_to.'-'.$this->month_to.'-31').' 23:59:59');
-                }
-                else if($this->month_from && $this->year_from){
-                    $orders = $orders
-                    //->whereMonth('created_at', '>=', $this->month_from)
-                    ->whereDate('created_at', '>=', date($this->year_from.'-'.$this->month_from.'-01').' 00:00:00')
-                    ->whereDate('created_at', '<=', date($this->year_from.'-'.$this->month_from.'-31').' 23:59:59');
-                }
-                   
-                    //date('m')
-                //$q->whereYear('created_at', '=', date('Y'));
-                    
-                break;
- 
-            case('year'):
-
-                if($this->year_from && $this->year_to)
-                {
-                    $orders = $orders
-                        ->whereYear('created_at', '>=', date($this->year_from))
-                        ->whereYear('created_at', '<=', date($this->year_to));
-                }
-                else if($this->year_from)
-                {
-                    $orders = $orders
-                    ->whereYear('created_at', '=', date($this->year_from));
-                }
-                   
-                break;
-            default:
-               
-            }
+        $this->genOrders = $orders
+            ->where('status', '!=', 'cancelled')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         $orders = $orders
             ->where('status', '!=', 'cancelled')
             ->orderBy('created_at', 'DESC')
             ->paginate(10);
+
+        
 
         return view('livewire.admin.sales-report', compact('orders'))->layout('layouts.admin');
     }

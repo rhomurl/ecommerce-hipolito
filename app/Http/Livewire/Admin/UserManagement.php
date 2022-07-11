@@ -30,8 +30,13 @@ class UserManagement extends Component
 
     public function render()
     {
-        $users = User::role('customer')
-            ->where('name', 'like', '%'.$this->search.'%')
+        $users = User::query();
+        if ( auth()->user()->hasRole('admin') ) {
+            $users = $users->role('customer');
+        }
+
+        $users = $users->where('name', 'like', '%'.$this->search.'%')
+            ->where('id', '!=', auth()->user()->id)
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(10);
 
