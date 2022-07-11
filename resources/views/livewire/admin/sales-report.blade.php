@@ -11,9 +11,14 @@
               </svg>
             <span>Go to Report Management</span>
         </button>
-        <button wire:click.prevent="generatePDF" class="flex items-center justify-between mb-3 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            <span>Generate PDF</span>
-        </button>
+        <div class="flex flex-col flex-wrap mb-4 space-y-4 md:flex-row md:items-end md:space-x-4">
+            <button wire:click.prevent="generatePDF" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            <span>Export to PDF</span>
+            </button>
+            <button wire:click.prevent="exportCsv" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                <span>Export to CSV</span>
+            </button>
+        </div>
     </div>
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs border border-gray-200 dark:border-gray-700">
@@ -57,7 +62,7 @@
                        
                     </tr>
                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                        <th class="px-4 py-3">Order</th>
+                        <th class="px-4 py-3">Order #</th>
                         <th class="px-4 py-3">Payment Method</th>
                         <th class="px-4 py-3">Status</th>
                         <th class="px-4 py-3">Order Date</th>
