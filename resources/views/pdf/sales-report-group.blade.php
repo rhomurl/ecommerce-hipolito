@@ -64,7 +64,7 @@
                                         <tr>
                                             <td class="text-center">{{ $order->count }} order(s)</td>
                                             <td class="text-center">
-                                                @if($group_by == 'date')
+                                            @if($group_by == 'date')
                                                 {{ $order->date }}
                                             @elseif($group_by == 'month_year')
                                                 {{ date('M Y', strtotime($order->date)) }}
@@ -73,8 +73,6 @@
                                             @else
                                                 {{ $order->date }}
                                             @endif</td>
-                                            <td class="text-center">{{ $order->getOrderStatusAttribute() }}</td>
-                                            <td class="text-center"> {{ \Carbon\Carbon::parse($order->created_at)->format('m-d-Y') }}</td>
                                             <td class="text-center"> {{ number_format($order->total, 2) }} PHP</td>
                                         </tr>
                                         @endforeach
@@ -82,7 +80,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colspan="4" class="text-right">Total:</th>
+                                            <th colspan="2" class="text-right">Total:</th>
                                             <th class="text-center"> {{ number_format($genOrders->sum('total'), 2) }} PHP</th>
                                         </tr>
                                     </tfoot>
