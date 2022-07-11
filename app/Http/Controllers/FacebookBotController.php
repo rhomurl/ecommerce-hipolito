@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMessageToAdminMail;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -10,12 +11,57 @@ use App\Models\AddressBook;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Mail;
 
 class FacebookBotController extends Controller
 {
     public $message;
     use ModelComponentTrait;
+
+    public function sendEmailInquiry(Request $request){
+
+        $key = "CpDIuvmNuagozSiwqjgQLvoyusUbBnNV";
+
+        if($request->header('X-Hipolito') != $key){
+            return response()->json(['message' => 'Something went wrong!', 'code' => '403']);
+        }
+        
+        $name = $request->name;
+        $user_email = $request->email;
+        $user_message = $request->message;
+
+        $orderData = [
+            'name' => $name,
+            'message' => $user_message,
+            'email' => $user_email
+        ];
+
+        if (filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+            $error = "";
+            Mail::to('ecomhipolito@gmail.com')
+        ->send(new SendMessageToAdminMail($orderData));
+            $msg = "Email sent!";
+        }
+        else{
+            $msg = "";
+            $error = "Email not valid!";
+        }
+
+        
+        $array = [
+            "set_attributes" => 
+                [
+                    "error" => $error,
+                ],
+            'messages' => [
+                [
+                    "text" => $msg,
+                ],
+            ]
+        ];
+
+        return response()->json($array);
+    }
 
     public function getStatus(Request $request, $id, $email)
     {

@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Order;
+use App\Traits\ModelComponentTrait;
 use Carbon\Carbon;
+
 use App\Services\ReportService;
 use PDF;
 
@@ -13,6 +15,8 @@ use Livewire\Component;
 
 class SalesReport extends Component
 {
+    use ModelComponentTrait;
+
     public $selected_filter, $group_by;
     public $month_from, $month_to, $year_from, $year_to;
     public $date_from, $date_to;
@@ -25,7 +29,6 @@ class SalesReport extends Component
             $this->selected_filter = $data['selected_filter'];
             $this->group_by = $data['group_by'];
 
-            // For Month and Year
             $this->month_from = $data['month_from'];
             $this->month_to = $data['month_to'];
             $this->year_from = $data['year_from'];
@@ -38,37 +41,7 @@ class SalesReport extends Component
     }
 
     public function generatePDF(){
-        switch($this->selected_filter) {
-            case('date'):
-                if($this->date_from && $this->date_to){
-                   $range = $this->date_from . "_to_" . $this->date_to;
-                }
-                else if($this->date_from){
-                    $range = $this->date_from;
-                }
-                break;
-
-            case('month'):
-                if($this->month_from && $this->year_from && $this->year_to && $this->year_from){
-                    $range = $this->month_from . "_" . $this->year_from . "_to_" . $this->month_to . "_" . $this->year_to;
-                }
-                else if($this->month_from && $this->year_from){
-                    $range = $this->month_from . "_" . $this->year_from;
-                }
-                break;
-
-            case('year'):
-                if($this->year_from && $this->year_to){
-                    $range = $this->year_from . "_to_" . $this->year_to;
-                }
-                else if($this->year_from){
-                    $range = $this->year_from; 
-                }
-                break;
-                
-            default:
-                $range = "all";
-        }
+        $range = $this->getRange();
 
         $data = [
             'genOrders' => $this->genOrders,
@@ -84,6 +57,41 @@ class SalesReport extends Component
             fn () => print($pdfContent),
             "sales_report_".$range.".pdf"
         );
+    }
+
+    public function exportCsv(){
+        $range = $this->getRange();
+
+        $fileName = 'sales_report_'.$range; 
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+        $genOr = $this->genOrders;
+        $columns = array('Order #', 'Payment Method', 'Status', 'Order Date', 'Total');
+
+        $callback = function() use($genOr, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($genOr as $order) {
+                $row['Order #']  = $order->id;
+                $row['Payment Method']    = $order->getPaymentModeAttribute();
+                $row['Status']    = $order->getOrderStatusAttribute();
+                $row['Order Date']  = \Carbon\Carbon::parse($order->created_at)->format('m-d-Y');
+                $row['Total']  = number_format($order->total, 2);
+
+                fputcsv($file, array($row['Order #'], $row['Payment Method'], $row['Status'], $row['Order Date'], $row['Total']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 
     public function redirectTo($route){
