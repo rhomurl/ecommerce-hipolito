@@ -127,7 +127,7 @@
                     <span class="text-gray-700 dark:text-gray-400">
                         Year To
                     </span>
-                    <select wire:model="year_to" min="{{ $this->min_year }}" max="{{ $this->max_year }}" class="block w-full mt-1 text-sm border rounded appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                    <select wire:model="year_to" min="{{ $this->min_year }}" max="{{ $this->max_year }}" class="block w-50 mt-1 text-sm border rounded appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option>-- Select year to --</option>
                         @foreach(range(date('Y'), date('Y')-$this->year_gap) as $y)
                         <option value="{{$y}}">{{$y}}</option>
@@ -149,7 +149,7 @@
                             <option value="date">Date</option>
                         @else
                             <option value="date">Date</option>
-                            <option value="month">Month</option>
+                            <option value="month_year">Month and Year</option>
                             @if($this->year_to  )<option value="year">Year</option>@endif
                         @endif
                     </select>
