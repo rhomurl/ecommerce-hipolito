@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="shipping_policy_section_header">
-        <h2>Shipping Policy</h2>
+        <h2>SHIPPING POLICY</h2>
         <ul class="shipping_policy_ul">
             <li>For Lipa City areas, Hipolito's Hardware and Construction Supply aims to deliver the orders within the day with a shipping flat rate of 300 php, while 200 php within next day.</li>
             <li>For Tanauan City areas, Hipolito's Hardware and Construction Supply aims to deliver the orders within the day with a shipping flat rate of 500 php, while 300 php within next day.</li>
