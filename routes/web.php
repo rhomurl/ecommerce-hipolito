@@ -14,7 +14,7 @@ use App\Http\Livewire\User;
 use App\Http\Livewire\Admin;
 use App\Http\Livewire\Shop;
 use App\Http\Livewire\Sitemap;
-use App\Http\Livewire\Testupload;
+//use App\Http\Livewire\Testupload;
 use App\Http\Controllers\GenerateOrderPDF;
 /*
 |--------------------------------------------------------------------------
@@ -114,9 +114,10 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
     Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');
     Route::get('product-inventory', Admin\ProductInventoryComponent::class)->name('product-inventory');
-    Route::get('report', Admin\ReportManagement::class)->name('report');
-    Route::get('report/sales-report', Admin\SalesReport::class)->name('sales-report');
-    Route::get('report/sales-report-group', Admin\SalesReportGroup::class)->name('sales-report-group');
+    Route::get('reports', Admin\ReportManagement::class)->name('reports');
+   // Route::get('report/sales/generate-pdf/{orders}', [GenerateSalesReport::class, 'generatePDF'])->name('genSalesPDF');
+    Route::get('report/sales', Admin\SalesReport::class)->name('sales-report');
+    Route::get('report/sales/group', Admin\SalesReportGroup::class)->name('sales-report-group');
     //Route::get('vouchers', Admin\BrandComponent::class)->name('vouchers');
 }); 
 
