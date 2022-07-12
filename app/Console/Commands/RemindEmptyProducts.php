@@ -48,7 +48,7 @@ class RemindEmptyProducts extends Command
             $productData = [
                 'name' => 'Hello admin!',
                 'product_name' => $empty->name ,
-                'product_id' => 69
+                'product_id' => $empty->id
                // 'url' => url(route('user.order.details', $order->uuid )),
             ];
 
