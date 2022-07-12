@@ -167,6 +167,22 @@
         
     </div>
 
+    <div class="max-w-2xl px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+        <h2 class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200">
+            Product Sales Report
+        </h2>
+        <p class="mb-4 text-gray-600 dark:text-gray-400">
+        
+            <div class="mt-4">
+                <a href="{{ route('admin.product-sales-report') }}" class="px-4 py-2  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Go
+                </a>
+            </div>
+        </p>
+
+        
+    </div>
+
     
     
 </div>
