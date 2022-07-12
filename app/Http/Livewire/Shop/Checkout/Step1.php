@@ -154,7 +154,7 @@ class Step1 extends Component
                 else{
                     $order->status = 'pending';
                 }
-                $order->save();
+                
 
                 foreach ($cart as $cartProduct){
                     
@@ -180,6 +180,9 @@ class Step1 extends Component
                     $transaction->status = 'pending';
                 }
                 $transaction->save();
+
+                $order->transaction_id = $transaction->id();
+                $order->save();
                
                 Cart::where('user_id', Auth::user()->id)->delete();
                 $this->emit('updateCart');

@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Sales Report</title>
+    <meta charset="ut   f-8">
+    <title>Product Sales Report</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -42,48 +42,40 @@
                         <!-- col-lg-12 start here -->
                         <div class="invoice-details mt25">
                             <div class="well">
-                                <span class="text-center"><b>Sales Report ({{ $range }})
+                                <span class="text-center"><b>Product Sales Report {{--( $range )--}}
                                 {{--Replace this with readable date ex. july 2020 to aug 2020--}}
                                 </b></span>
                                 
                             </div>
                         </div>
-                        
                         <div class="invoice-items">
                             <div class="table-responsive" style="overflow: hidden; outline: none;" tabindex="0">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th class="per15 text-center">Order Count</th>
-                                            <th class="per15 text-center">Order Date/Year</th>
+                                            <th class="per15 text-center">Product Name</th>
+                                            <th class="per15 text-center">Products Sold</th>
+                                            <th class="per15 text-center">Current Stock</th>
+                                            <th class="per15 text-center">Product Cost</th>
+                                            <th class="per15 text-center">Selling Price</th>
                                             <th class="per15 text-center">Total</th>
+                                            <th class="per15 text-center">Profit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($genOrders as $order)
+                                        @foreach($order_products as $order_product)
                                         <tr>
-                                            <td class="text-center">{{ $order->count }} order(s)</td>
-                                            <td class="text-center">
-                                            @if($group_by == 'date')
-                                                {{ $order->date }}
-                                            @elseif($group_by == 'month_year')
-                                                {{ date('M Y', strtotime($order->date)) }}
-                                            @elseif($group_by == 'year')
-                                                {{ $order->year }}
-                                            @else
-                                                {{ $order->date }}
-                                            @endif</td>
-                                            <td class="text-center"> {{ number_format($order->total, 2) }} PHP</td>
+                                            <td class="text-center">{{ $order_product->product->name }}</td>
+                                            <td class="text-center">{{ $order_product->total_quantity }}</td>
+                                            <td class="text-center">{{ $order_product->product->quantity }}</td>
+                                            <td class="text-center"> {{ number_format($order_product->product->productInventory->product_cost, 2) }} PHP</td>
+                                            <td class="text-center"> {{ number_format($order_product->price, 2) }} PHP</td>
+                                            <td class="text-center">  {{ number_format($order_product->total_amount, 2) }} PHP</td>
+                                            <td class="text-center"> {{ number_format($order_product->total_amount - ($order_product->product->productInventory->product_cost * $order_product->total_quantity), 2 ) }} PHP </td>
                                         </tr>
                                         @endforeach
                                         
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="2" class="text-right">Total:</th>
-                                            <th class="text-center"> {{ number_format($genOrders->sum('total'), 2) }} PHP</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

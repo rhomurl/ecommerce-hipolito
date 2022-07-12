@@ -43,7 +43,7 @@ class EmptyProductNotification extends Notification
         return (new MailMessage)
                     ->subject('[Reminder] Product Out of Stock')
                     ->greeting('Hello admin!')
-                    ->line('I would like to inform you that the follow item is out of stock:')
+                    ->line('I would like to inform you that the following item is out of stock:')
                     ->line($this->productData['product_name'])
                     
                     

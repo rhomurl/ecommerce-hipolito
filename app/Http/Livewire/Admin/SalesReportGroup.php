@@ -7,13 +7,14 @@ use App\Services\ReportService;
 use App\Traits\ModelComponentTrait;
 use Carbon\Carbon;
 use DB;
-use Livewire\Component;
+use Livewire\{Component, WithPagination};
 use PDF;
 //use Session;
 
 class SalesReportGroup extends Component
 {
     use ModelComponentTrait;
+    use WithPagination;
 
     public $selected_filter, $group_by;
     public $month_from, $month_to, $year_from, $year_to;

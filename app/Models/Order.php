@@ -27,6 +27,7 @@ class Order extends Model
         'discount',
         'total',
         'status',
+        'transaction_id',
         'uuid',
         'shipping_type',
     ];

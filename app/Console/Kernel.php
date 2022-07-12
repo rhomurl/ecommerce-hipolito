@@ -23,6 +23,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('auth:clear-resets')->everyFifteenMinutes();
         $schedule->command('cancel:order')->everyTwoMinutes()->withoutOverlapping();
+        $schedule->command('notify:no-stock-product')->twiceDaily(8, 13);
         
         /*$schedule->call(function () {
             Order::where('status', 'pending')

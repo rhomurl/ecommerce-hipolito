@@ -96,7 +96,7 @@ class ReportManagement extends Component
         else 
         {
             return redirect()->route('admin.sales-report')
-            ->with('data', $data);
+                ->with('data', $data);
         }
     }
 }
