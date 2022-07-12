@@ -27,7 +27,7 @@
                     <div class="col-lg-6">
                         <!-- col-lg-6 start here -->
                         <div class="invoice-from">
-                            <ul class="list-unstyled text-right">
+                            <ul class="list-unstyled text-left">
                                 <li>Hipolito's Hardware and Construction Supply</li>
                                 <li>060-A District 1C, Marawoy</li>
                                 <li>Lipa City, Batangas 4217</li>
