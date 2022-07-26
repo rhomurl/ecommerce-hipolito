@@ -28,7 +28,7 @@
                     <button wire:click="togglePassword" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
                     </button> 
                 </div> <!-- form-group// -->
-                
+                <small class="form-text text-muted">Password must be at least 8 characters. It should contain at least 1 lowercase, uppercase, number, and special character (@$!%*#?&).</small>
                 @error('password')
                     <p class="mt-2 text-sm text-warning">{{ $message }}</p>
                 @enderror

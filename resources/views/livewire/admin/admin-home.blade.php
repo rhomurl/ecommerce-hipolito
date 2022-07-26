@@ -193,7 +193,7 @@
                                 <thead>
                                     <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                         <th class="px-4 py-3">Status</th>
-                                        <th class="px-4 py-3">Count</th>
+                                        <th class="px-4 py-3">Order Count</th>
                                         <th class="px-4 py-3">Action</th>
                                     </tr>
                                 </thead>
@@ -221,7 +221,7 @@
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-s">
                                             <span class="px-2 py-1 font-semibold leading-tight text-teal-700 bg-teal-100 rounded-full dark:bg-teal-700 dark:text-teal-100">
-                                                To Process
+                                                Processing
                                             </span>
                                         </td>
                                         <td class="px-4 py-3">
@@ -257,7 +257,7 @@
                                     <tr class="text-gray-700 dark:text-gray-400">
                                         <td class="px-4 py-3 text-s">
                                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                Completed
+                                                Delivered
                                             </span>
                                         </td>
                                         <td class="px-4 py-3">
