@@ -120,6 +120,10 @@
           @if($this->product->quantity <= $this->qty)
             {{ "You have reached the maximum quantity for this product" }}
           @endif
+
+          @error('qty')
+            {{ $message }}
+          @enderror
         </span>
     </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->

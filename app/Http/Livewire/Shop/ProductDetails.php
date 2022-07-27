@@ -23,6 +23,11 @@ class ProductDetails extends Component
     public $cartProducts = [];
     public $slug, $productSold, $qty = 1;
     
+    protected $messages = [
+        'qty.integer' => 'Quantity must be an integer',
+        'qty.min' => 'Quantity must be at least 1',
+        'qty.max' => 'Quantity is maximum of 99'
+    ];
 
     public function mount ($slug)
     {
@@ -65,6 +70,10 @@ class ProductDetails extends Component
     
     public function addToCart($productId, $qty)
     {
+        $this->validate([
+            'qty' => 'integer|min:1|max:99',
+        ]);
+
         if(!Auth::check()){
             return redirect()->route('login');
         }
@@ -99,6 +108,10 @@ class ProductDetails extends Component
 
     public function addToWishlist($id)
     {
+        $this->validate([
+            'qty' => 'integer|min:1|max:99',
+        ]);
+
         if(!Auth::check()){
             return redirect()->route('login');
         }
