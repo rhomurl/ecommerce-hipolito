@@ -20,15 +20,26 @@ class ReportManagement extends Component
         'date_from' => '',
     ];
 
+    public function mount(){
+        $order = Order::count();
+        //dd($order);
+        if(!$order){
+            //return redirect()->route('admin.overview');
+            return redirect()->to('/admin');
+         }
+    }
+
     public function render()
     {
         $order_latest = Order::select('created_at')
             ->orderBy('created_at', 'DESC')
             ->first();
-        
+
         $order_first = Order::select('created_at')
             ->orderBy('created_at', 'ASC')
             ->first();
+
+       
 
         $ordertime = Carbon::parse($order_first->created_at);
         $ordertime_latest = Carbon::parse($order_latest->created_at);
