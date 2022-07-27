@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Order;
-//use App\Models\User;
+//use App\Models\Order;
+use App\Models\User;
 use App\Services\OrderService;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -24,6 +24,7 @@ class OrderUserComponent extends Component
         $this->ordered = resolve(OrderService::class)->displayOrders('ordered', 'count');
         $this->process = resolve(OrderService::class)->displayOrders('processing', 'count');
         $this->completed = resolve(OrderService::class)->displayOrders('delivered', 'count');
+        $this->cancelled = resolve(OrderService::class)->displayOrders('cancelled', 'count');
     }
 
     public function sortByColumn($column)
@@ -36,22 +37,14 @@ class OrderUserComponent extends Component
         }
     }
 
+    public function getAdminName($id){
+        $usr = User::find($id);
+        return $usr->name;
+    }
+
     public function render()
     {   
         $orders = resolve(OrderService::class)->displayOrders2($this->status, 'display', $this->sortDirection, $this->sortColumn)->search($this->search)->paginate(10);
-        /*$orderq = Order::query()->with('user');
-        if($this->status == 'all'){
-            $orders = $orderq->paginate(5);
-        }
-        else {
-            $orders = $orderq->where('status',  $this->status)
-        ->paginate(5);
-        }*/
-
-                //$orders = Order::where('status', 'like', '%'.$this->status.'%')
-           // ->orWhere('id', 'like', '%'.$this->search.'%')
-          //  ->orderby('id', 'DESC')
-            //
 
         return view('livewire.admin.order-user-component', compact('orders'))->layout('layouts.admin');
     }

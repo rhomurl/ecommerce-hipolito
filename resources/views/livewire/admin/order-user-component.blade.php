@@ -24,6 +24,9 @@
             <li class="mr-2">
                 <a href="{{ route('admin.orders', 'delivered') }}" class="inline-block p-4 rounded-t-lg @if($this->status == "delivered") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Completed ({{$this->completed}})</a>
             </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.orders', 'cancelled') }}" class="inline-block p-4 rounded-t-lg @if($this->status == "cancelled") text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Cancelled ({{$this->cancelled}})</a>
+            </li>
             {{-- 
             <li>
                 <a class="inline-block p-4 text-gray-400 rounded-t-lg cursor-not-allowed dark:text-gray-500">Disabled</a>
@@ -58,6 +61,7 @@
                                 @endif  
                             @endif
                         </th>
+                        <th class="px-4 py-3">Processed by</th>
                         <th class="px-4 py-3">Action</th>
                     </tr>
                 </thead>
