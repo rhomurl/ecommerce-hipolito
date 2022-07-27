@@ -1,5 +1,6 @@
 <?php return array (
   'admin.activity-log-component' => 'App\\Http\\Livewire\\Admin\\ActivityLogComponent',
+  'admin.activity-log-modal' => 'App\\Http\\Livewire\\Admin\\ActivityLogModal',
   'admin.admin-home' => 'App\\Http\\Livewire\\Admin\\AdminHome',
   'admin.banner-component' => 'App\\Http\\Livewire\\Admin\\BannerComponent',
   'admin.banner-edit' => 'App\\Http\\Livewire\\Admin\\BannerEdit',
@@ -23,6 +24,7 @@
   'admin.product-inventory-component' => 'App\\Http\\Livewire\\Admin\\ProductInventoryComponent',
   'admin.product-inventory-edit' => 'App\\Http\\Livewire\\Admin\\ProductInventoryEdit',
   'admin.product-modal' => 'App\\Http\\Livewire\\Admin\\ProductModal',
+  'admin.product-sales-report' => 'App\\Http\\Livewire\\Admin\\ProductSalesReport',
   'admin.report-management' => 'App\\Http\\Livewire\\Admin\\ReportManagement',
   'admin.role-edit' => 'App\\Http\\Livewire\\Admin\\RoleEdit',
   'admin.role-management' => 'App\\Http\\Livewire\\Admin\\RoleManagement',

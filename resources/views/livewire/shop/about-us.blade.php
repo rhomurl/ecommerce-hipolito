@@ -140,7 +140,7 @@
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1935.9842305010995!2d121.166677!3d13.960483!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xae79eaf289b85675!2sHerminio%20Hipolito&#39;s%20Hardware%20%26%20Construction%20Supply!5e0!3m2!1sen!2sph!4v1648396698855!5m2!1sen!2sph" width="100%" height="800" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <div class="our-location">
                         <h1>Our Location</h1>
-                        <p>Brgy. Marauoy, Lipa City, Batangas</p>
+                        <p>Brgy. Maraouy, Lipa City, Batangas</p>
                         <p>Email: ecomhipolito@gmail.com</p>
                         <p>Phone: +(63) 995 140 1951</p>
                         <p>Office hours: Monday - Saturday <br>(7:00 am - 7:00 pm)</p>

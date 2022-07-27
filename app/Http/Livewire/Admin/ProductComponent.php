@@ -46,7 +46,7 @@ class ProductComponent extends Component
     }
 
     public function edit($id){
-        $this->emit("openModal", "admin.product-edit", ["id" => $id]);
+        $this->emit("openModal", "admin.product-edit", ["product" => $id]);
     }
 
     public function confirmDelete($id)

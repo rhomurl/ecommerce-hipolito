@@ -8,9 +8,7 @@
             <div class="col-lg-8">
                 <article class="card checkout_card">
                     <div class="card-body checkout_card_body">
-                        @if($this->checkout_message)
-                            {{ $this->checkout_message }}
-                        @endif
+                        
                         
                         @if($this->showForm == false)
                             <form wire:submit.prevent="placeOrder">
@@ -419,6 +417,11 @@
                             <button type="submit" class="btn w-100 btn-success" @if($this->showForm == true) {{ "disabled"}} @endif>Place Order</button>
                         </form>
                     </div>
+                    @if($this->checkout_message)
+                    <div class="card-body">
+                         {{ $this->checkout_message }}
+                    </div>
+                    @endif
                 </article>
             </aside>
         </div>

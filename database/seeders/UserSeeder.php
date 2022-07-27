@@ -33,6 +33,23 @@ class UserSeeder extends Seeder
         ]);
         $user->assignRole($role1);
 
+        /*$user = User::create([
+            'name' => 'Donald Comia',
+            'email' => 'rhomuelbrian.macahilig@ama.edu.ph',
+            'password' => Hash::make('lPSjRmBiCjW1$'),
+            'email_verified_at' => now()
+        ]);
+        $user->assignRole($role1);
+
+        $user = User::create([
+            'name' => 'Maurice Mae Cuevas',
+            'email' => 'rhomuelbrian.macahilig@ama.edu.ph',
+            'password' => Hash::make('lPSjRmBiCjW1$'),
+            'email_verified_at' => now()
+        ]);
+        $user->assignRole($role1);
+        */
+        
         $user = User::create([
             'name' => 'Rosalie Cruz',
             'email' => 'rosaliecruz@pm.me',

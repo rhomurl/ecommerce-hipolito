@@ -65,37 +65,42 @@ class FacebookBotController extends Controller
 
     public function getStatus(Request $request, $id, $email)
     {
+        $error = "";
         //last 4 char string
         //substr($dynamicstring, -4);
         $key = "s0WBJhAfLbdgTbyVVDX2SYQdsPdsJ9CA";
         //$vv = $request->header('X-Hipolito');
         
-        $user = User::where('email', $email)->first();
+        
 
-        if ($user === null) {
-            $error = "";
-            $message = "User not found";
-        }
-        else if($request->header('X-Hipolito') != $key){
+        if($request->header('X-Hipolito') != $key){
             return response()->json(['message' => 'Something went wrong!', 'code' => '403']);
         }
-        else if($user){
-            $order = Order::where('id', $id)
-                ->where('user_id', $user->id)
-                ->first();
+        else {
+            $user = User::where('email', $email)->first();
+            if($user === null) {
+                $error = "";
+                $message = "User not found";
+            }
+            else if($user){
+                $order = Order::where('id', $id)
+                    ->where('user_id', $user->id)
+                    ->first();
 
-            if($order === null){
-                $message = "Order ID or User is incorrect.";
+                if($order === null){
+                    $message = "Order ID or User is incorrect.";
+                    $error = 'true';
+                }
+                else{
+                    $message = "Hello {{first name}}! Your order #". $id  ." is " . $order->status . ".";
+                    $error = "";
+                }
             }
             else{
-                $message = "Hello {{first name}}! Your order #". $id  ." is " . $order->status . ".";
-                $error = "";
+                
+                return response()->json(['message' => 'Something went wrong!', 'code' => '404']);
+        
             }
-        }
-        else{
-            
-            return response()->json(['message' => 'Something went wrong!', 'code' => '404']);
-    
         }
         
         //$message = "User not found.";
@@ -118,27 +123,34 @@ class FacebookBotController extends Controller
     }
 
     public function checkEmail(Request $request, $email){
-        $user = User::where('email', $email)->first();
+        $key = "s0WBJhAfLbdgTbyVVDX2SYQdsPdsJ9CA";
 
-        if(!$user){
-            $error = 'true';
-            $msg = 'Email not found';
+        if($request->header('X-Hipolito') != $key){
+            return response()->json(['message' => 'Something went wrong!', 'code' => '403']);
         }
-        else{
-            $error = 'false';
-            $msg = '';
+        else {
+            $user = User::where('email', $email)->first();
+
+            if(!$user){
+                $error = 'true';
+                $msg = 'Email not found';
+            }
+            else{
+                $error = 'false';
+                $msg = '';
+            }
+            $array = [
+                "set_attributes" => 
+                    [
+                        "error" => $error,
+                    ],
+                'messages' => [
+                    [
+                        "text" => $msg,
+                    ],
+                ]
+            ];
         }
-        $array = [
-            "set_attributes" => 
-                [
-                    "error" => $error,
-                ],
-            'messages' => [
-                [
-                    "text" => $msg,
-                ],
-            ]
-        ];
 
         return response()->json($array);
     }

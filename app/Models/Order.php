@@ -30,9 +30,10 @@ class Order extends Model
         'transaction_id',
         'uuid',
         'shipping_type',
+        'admin_id',
     ];
 
-    public $searchable = ['id', 'user.name', 'subtotal', 'total', 'shipping_type'];
+    public $searchable = ['id', 'user.name', 'subtotal', 'total', 'shipping_type', 'admin_id'];
 
 
     protected static function boot()

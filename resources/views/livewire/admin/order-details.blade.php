@@ -88,9 +88,13 @@
             @if($status)
                 <select wire:model="order_status" class="block w-sm mt-1 text-sm border rounded appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                     <option value="" selected>-- select status --</option>
-                    <option value="processing" {{ $order->status == 'processing' ? 'selected': '' }}>Processing</option>
-                    <option value="otw" {{ $order->status == 'otw' ? 'selected': '' }}>On The Way</option>
-                    <option value="delivered" {{ $order->status == 'delivered' ? 'selected': '' }}>Delivered</option>
+                    <option value="cancelled" @if($order->status == 'delivered' || $order->status == 'otw') 
+                    {{ 'hidden' }} @else{{ '' }}@endif>Cancel</option>
+                    <option value="processing" @if($order->status == 'processing' || $order->status == 'otw') 
+                        {{ 'hidden' }} @else{{ '' }}@endif>Processing</option>
+                    <option value="otw" {{ $order->status == 'otw' ? 'hidden': '' }}>On The Way</option>
+                    <option value="delivered" {{ $order->status == 'delivered' ? 'hidden': '' }}>Delivered</option>
+                    
                 </select>
 
                 <div class="d-flex">

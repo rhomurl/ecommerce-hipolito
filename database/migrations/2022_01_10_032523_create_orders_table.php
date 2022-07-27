@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->double('shippingfee', 5, 2)->nullable();
             $table->double('total', 8, 2);
             $table->string('status');
-            
+            $table->unsignedBigInteger('admin_id')->index();
             $table->timestamps();
         });
     }

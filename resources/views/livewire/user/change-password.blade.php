@@ -50,9 +50,11 @@
                   <button wire:click="togglePassword2" type="button" class="btn btn-light"> <i class="text-muted fa fa-eye"></i> 
                   </button>    
             </div> <!-- form-group end.// -->
+            
         </div> <!-- form-row.// -->
+        <small class="form-text text-muted mb-2">Password must be at least 8 characters. It should contain at least 1 lowercase, uppercase, number, and special character (@$!%*#?&).</small>
        
-
+        
         <label>Confirm New Password</label>
         @error('new_confirm_password')
             <span class="text-danger">
