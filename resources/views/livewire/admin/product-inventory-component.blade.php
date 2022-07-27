@@ -38,6 +38,8 @@
                             @endif
                         </th>
 
+                        <th class="px-4 py-3">Current Stock</th>
+
                         <th wire:click="sortByColumn('reorder_level')" class="px-4 py-3">Reorder Level
                             @if ($sortColumn == 'reorder_level')
                                 <i class="fa fa-fw fa-sort-{{ $sortDirection }}"></i>
@@ -91,6 +93,14 @@
                                 <div class="flex items-center text-sm">
                                     <div>
                                         <p class="font-semibold">{{ $inventory->starting_stock }}</p>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                    <div>
+                                        <p class="font-semibold">{{ $inventory->product->quantity }}</p>
                                     </div>
                                 </div>
                             </td>

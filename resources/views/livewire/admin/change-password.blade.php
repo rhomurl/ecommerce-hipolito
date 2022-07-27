@@ -45,6 +45,9 @@
 
                   </div>
                 </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                  Enter your old password.
+                </p>
                 @error('current_password')
                     <span class="text-xs text-red-600 dark:text-red-400">
                         {{ $message }}
@@ -75,7 +78,12 @@
                     </svg>
 
                   </div>
+
+                  
                 </div>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                  Password must be at least 8 characters. It should contain at least 1 lowercase, uppercase, number, and special character (@$!%*#?&).
+                </p>
                 @error('new_password')
                 <span class="text-xs text-red-600 dark:text-red-400">
                     {{ $message }}
@@ -97,7 +105,7 @@
             </label>--}}
 
             <div class="py-2" x-data="{ show: true }">
-                <span class="px-1 text-sm text-gray-600">New Password</span>
+                <span class="px-1 text-sm text-gray-600">Confirm New Password</span>
                 <div class="relative">
                   <input placeholder="" :type="show ? 'password' : 'text'" wire:model="new_confirm_password" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" required>
                   <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">

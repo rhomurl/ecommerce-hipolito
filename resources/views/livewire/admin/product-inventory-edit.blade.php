@@ -42,8 +42,15 @@
                     Starting Stock
                 </span>
                 <input wire:model="starting_stock" type="text" class="block bg-gray-100 w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Starting stock" disabled>
+            </label>
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700">
+                    Current Stock
+                </span>
+                <input wire:model="quantity" type="text" class="block bg-gray-100 w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Starting stock" disabled>
                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                    Quantity/stock can be changed in Product page.
+                    Quantity/stock can be change in <a href="{{ route('admin.products') }}" class="border-1">Product</a> page.
                 </p>
             </label>
 

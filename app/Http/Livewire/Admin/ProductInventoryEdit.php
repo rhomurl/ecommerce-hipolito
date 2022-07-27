@@ -44,6 +44,7 @@ class ProductInventoryEdit extends ModalComponent
         $this->product_cost = $inventory->product_cost;
         $this->selling_price = $inventory->product->selling_price;
         $this->starting_stock = $inventory->starting_stock;
+        $this->quantity = $inventory->product->quantity;
         $this->reorder_level = $inventory->reorder_level;
         $this->received_at = Carbon::parse($inventory->received_at)->format('Y-m-d');
         //Carbon::createFromFormat('Y-m-d', $this->received_at)->toDateString();
