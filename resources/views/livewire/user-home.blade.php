@@ -226,7 +226,7 @@
     <section class="padding-bottom">
     
     <header class="section-heading mb-4">
-        <h3 class="title-section">New Arrival</h3>
+        <h3 class="title-section">Products on Sale</h3>
     </header>
     
     <div class="row row-sm">
