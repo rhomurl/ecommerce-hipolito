@@ -26,12 +26,16 @@ class ActivityLogComponent extends Component
             $this->sortColumn = $column;
         }
     }
+
+    public function view($id)
+    {
+        $this->emit("openModal", "admin.activity-log-modal", ["activity" => $id]);
+    }
     
     public function render()
     {
         $activities = ActivityLog::with('user')
-            ->where('description', 'LIKE','%'.$this->search.'%')
-            ->where('properties', 'LIKE','%'.$this->search.'%')
+            ->search($this->search)
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate(10);
 
