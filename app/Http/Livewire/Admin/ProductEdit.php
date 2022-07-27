@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\{Product,Brand,Category};
+use App\Models\{Product, Brand, Category};
+use App\Services\ActivityLogService;
 use App\Traits\ModelComponentTrait;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use LivewireUI\Modal\ModalComponent;
 
 class ProductEdit extends ModalComponent
@@ -12,7 +14,7 @@ class ProductEdit extends ModalComponent
     use LivewireAlert;
     use ModelComponentTrait;
 
-    public $product, $name, $category_id, $brand_id, $product_id, $slug, $description, $selling_price, $quantity, $image;
+    public $product, $name, $category_id, $brand_id, $product_id, $slug, $description, $selling_price, $quantity, $image, $old;
 
     protected $messages = [
         'selling_price.max' => 'Price cannot be exceeded by 1000000.00', 
@@ -21,10 +23,20 @@ class ProductEdit extends ModalComponent
         'image.image' => 'JPEG, PNG, and JPG are the allowed file types.',
     ];
 
-    public function mount($id)
+    public function mount(Product $product)
     {
-        $this->product_id = $id;
-        $product = Product::findOrFail($this->product_id);
+        $this->old = [
+            [
+            'name' => $product->name, 
+            'slug' => $product->slug,
+            'category_id' => $product->category_id, 
+            'brand_id' => $product->brand_id,
+            'description' => $product->description,
+            'selling_price' => $product->selling_price,
+            'quantity' => $product->quantity,
+            ]
+        ];
+        $this->product_id = $product->id;
         $this->name = $product->name;
         $this->category_id = $product->category_id;
         $this->brand_id = $product->brand_id;
@@ -34,7 +46,7 @@ class ProductEdit extends ModalComponent
         $this->quantity = $product->quantity;
     }
 
-    public function edit(){
+    public function edit(ActivityLogService $activity){
         $this->validate([
             'name' => 'required|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
             'category_id' => 'required',
@@ -53,9 +65,24 @@ class ProductEdit extends ModalComponent
             'selling_price' => $this->selling_price,
             'quantity' => $this->quantity]
         );
+
+        $old = $this->old;
+        $attributes = [
+            [
+            'name' => $product->name, 
+            'slug' => $product->slug,
+            'category_id' => $product->category_id, 
+            'brand_id' => $product->brand_id,
+            'description' => $product->description,
+            'selling_price' => $product->selling_price,
+            'quantity' => $product->quantity,
+            ]
+        ];
+        $activity->createLog($product, $old, $attributes, 'Updated product');
         
         $this->resetInputFields();
         $this->closeModal();
+        
         $this->successAlert('Product Updated Successfully!');
     }
     

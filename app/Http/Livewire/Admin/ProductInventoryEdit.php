@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\ProductInventory;
+use App\Services\ActivityLogService;
 use App\Traits\ModelComponentTrait;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -11,7 +12,7 @@ use LivewireUI\Modal\ModalComponent;
 class ProductInventoryEdit extends ModalComponent
 {
     use ModelComponentTrait, LivewireAlert;
-    public $updated_received, $inventory_id, $product_name, $supplier, $product_cost, $selling_price, $starting_stock, $reorder_level, $received_at;
+    public $updated_received, $inventory_id, $product_name, $supplier, $product_cost, $selling_price, $starting_stock, $reorder_level, $received_at, $old;
 
     protected $rules = [
         'supplier' => 'required:regex:/^[a-zA-ZÑñ.\s]+$/',
@@ -27,6 +28,16 @@ class ProductInventoryEdit extends ModalComponent
 
     public function mount(ProductInventory $inventory)
     {
+        $this->old = [
+            [
+                'supplier' => $inventory->supplier,
+                'product_cost' => $inventory->product_cost,
+                'reorder_level' => $inventory->reorder_level,
+                'received_at' => $inventory->received_at,
+            ]
+        ];
+
+
         $this->inventory_id = $inventory->id;
         $this->product_name = $inventory->product->name;
         $this->supplier = $inventory->supplier;
@@ -39,17 +50,28 @@ class ProductInventoryEdit extends ModalComponent
 
     }
 
-    public function edit()
+    public function edit(ActivityLogService $activity)
     {
         $this->validate(); 
 
-        $category = ProductInventory::updateOrCreate(['id' => $this->inventory_id],
+        $product_inventory = ProductInventory::updateOrCreate(['id' => $this->inventory_id],
         [
             'supplier' => $this->supplier,
             'product_cost' => $this->product_cost,
             'reorder_level' => $this->reorder_level,
             'received_at' => $this->received_at,
         ]);
+
+        $old = $this->old;
+        $attributes = [
+            [
+                'supplier' => $product_inventory->supplier,
+                'product_cost' => $product_inventory->product_cost,
+                'reorder_level' => $product_inventory->reorder_level,
+                'received_at' => $product_inventory->received_at,
+            ]
+        ];
+        $activity->createLog($product_inventory, $old, $attributes, 'Updated product inventory');
 
         $this->resetInputFields();
         $this->closeModal();
