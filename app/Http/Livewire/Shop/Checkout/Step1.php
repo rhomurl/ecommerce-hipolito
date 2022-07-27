@@ -147,15 +147,14 @@ class Step1 extends Component
                 $order->shippingfee = $this->shipping;
                 $order->total = $this->grandTotal - $this->discount;
                 $order->shipping_type = $this->shipping_type;
-
                 if($this->payment_mode == 'cod'){
                     $order->status = 'ordered';
                 }
                 else{
                     $order->status = 'pending';
                 }
+                $order->save();
                 
-
                 foreach ($cart as $cartProduct){
                     
                     //if($cartProduct->product->quantity > $cartProduct->qty){
@@ -181,8 +180,9 @@ class Step1 extends Component
                 }
                 $transaction->save();
 
-                $order->transaction_id = $transaction->id();
-                $order->save();
+                $order_mod = Order::find($order->id);
+                $order_mod->transaction_id = $transaction->id;
+                $order_mod->save();
                
                 Cart::where('user_id', Auth::user()->id)->delete();
                 $this->emit('updateCart');
@@ -207,12 +207,12 @@ class Step1 extends Component
             });
         }
         catch (\Illuminate\Database\QueryException $exception){
-            $this->checkout_message = "Something wrong";
+            $this->checkout_message = "Something went wrong";
             //dd("Query Exception: " . $exception->getMessage());
         }
          catch (\Exception $exception){
-            $this->checkout_message = "Something wrong";
-            //dd("General: " . $exception->getMessage());
+            $this->checkout_message = "Something went wrong";
+            //dd("General: " . $exception);
         }
     }
 
