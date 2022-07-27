@@ -26,6 +26,12 @@ class Reset extends Component
 
     public $visible;
 
+    protected $messages = [
+        'password.min' => 'Password is minimum of 8 characters.',
+        'password.regex' => 'Password should contain at least 1 lowercase, uppercase, number, and special character.',
+        'password.same' => 'Password and confirm password must match.'
+    ];
+
     public function mount($token)
     {
         $this->email = request()->query('email', '');
@@ -38,7 +44,16 @@ class Reset extends Component
         $this->validate([
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8|same:passwordConfirmation',
+            'password' => [
+                'required', 
+                'min:8',
+                'regex:/[a-z]/', 
+                'regex:/[A-Z]/', 
+                'regex:/[0-9]/', 
+                'regex:/[@$!%*#?&]/',
+                'same:passwordConfirmation'
+            ],
+            //'password' => 'required|min:8|same:passwordConfirmation',
         ]);
 
         $response = $this->broker()->reset(
