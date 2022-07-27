@@ -642,8 +642,8 @@ class ProductSeeder extends Seeder
             ],
             [
                 'id' => 49,
-                'name' => 'Boysen Aryclic Color Yellow 1L',
-                'slug' => 'boysen-aryclic-color-yellow-1l',
+                'name' => 'Boysen Acrylic Color Yellow 1L',
+                'slug' => 'boysen-acrylic-color-yellow-1l',
                 //'s_description' => 'is a 100% acrylic latex paint with excellent hiding, durability and dirt pick – up resistance.',
                 'description' => 'They disperse easily and produce tints from pastel to medium shades with even finishes. To produce dark shades, choose from factory mixed colors, Mix-and-Match outlets, or intermix premixed colors to get desired shade. Ideal ratio of tinting color to paint is 1:16, respectively.',
                 'selling_price' => '167.00',
