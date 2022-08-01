@@ -16,13 +16,13 @@ class BannerEditImage extends ModalComponent
     public $banner_id, $image;
 
     public function mount(Banner $banner){
-        $this->banner_id = $id;
+        $this->banner_id = $banner->id;
         $this->image = $banner->image;
     }
 
     public function create(){
         $this->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         $bannerxx = Banner::findOrFail($this->banner_id);
