@@ -5,19 +5,6 @@
         @yield('title')
     </h2>
 
-   
-    
-{{--@if ($message = Session::get('message'))
-    <div role="alert">
-    <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
-        Success
-    </div>
-    <div class="mb-5 border border-t-0 border-green-400 rounded-b bg-blue-100 px-4 py-3 text-green-700">
-        <p>{{ $message }}</p>
-    </div>
-    </div>
-@endif--}}
-
 
 <div>
     <button wire:click.prevent="redirectTo('admin.orders')" class="flex items-center justify-between mb-3 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
@@ -118,7 +105,7 @@
             <p class="text-gray-600 dark:text-gray-400 mb-5">
                @if($order->transaction->mode == "paypal" || $order->transaction->mode == "creditcard" ) 
                 <img src="{{ asset("images/misc/payment-paypal.png") }}" class="float-left" height="24">
-                    @if($order->transaction->status != 'cancelled' || $order->transaction->status != 'pending')
+                    @if($order->transaction->status != 'cancelled' && $order->transaction->status != 'pending')
                         <button wire:click.prevent="viewPaypal( {{ $order->id }} )" class="ml-5 px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                             View Paypal Details
                         </button>
