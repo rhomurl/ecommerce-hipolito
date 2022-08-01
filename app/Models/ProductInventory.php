@@ -20,7 +20,7 @@ class ProductInventory extends Model
         'received_at' => 'datetime',
     ];
 
-    public $searchable = ['supplier', 'product_cost', 'starting_stock', 'reorder_level', 'product.name'];
+    public $searchable = ['supplier', 'product_cost', 'starting_stock', 'reorder_level', 'product.name', 'product.quantity'];
 
     public function product()
     {
