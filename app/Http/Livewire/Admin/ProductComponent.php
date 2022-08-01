@@ -49,6 +49,48 @@ class ProductComponent extends Component
         $this->emit("openModal", "admin.product-edit", ["product" => $id]);
     }
 
+    public function exportCsv(){
+
+        $products = Product::with('brand', 'category')
+            ->search($this->search)
+            ->orderBy($this->sortColumn, $this->sortDirection)
+            ->get();
+
+        $fileName = 'products_'.now(); 
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = array('Product Name', 'Brand', 'Category', 'Description', 'Selling Price', 'Quantity');
+
+        $callback = function() use($products, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($products as $product) {
+
+                $row['Product Name']  = $product->name;
+                $row['Brand'] = $product->brand->name;
+                $row['Category']  = $product->category->name;
+                $row['Description']  = $product->description;
+                $row['Selling Price']  = $product->selling_price;
+                $row['Quantity']  = $product->quantity;
+        
+
+                fputcsv($file, array($row['Product Name'], $row['Brand'], $row['Category'], $row['Description'], $row['Selling Price'], $row['Quantity']));
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
     public function confirmDelete($id)
     {
         resolve(ProductService::class)->deleteProduct($id);
