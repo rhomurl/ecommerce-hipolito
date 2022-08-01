@@ -190,8 +190,10 @@
                             </a>
                         </li>
                     </ul>--}}
+
                     
                     <div class="px-6 my-6">
+                        Hi, <b>{{ auth()->user()->name }}</b> <br><br>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}"
@@ -235,7 +237,7 @@
             >
                 <div class="py-4 text-gray-500 dark:text-gray-400">
                     <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
-                        Allena Mindoro - Admin
+                        Hipolito's Hardware
                     </a>
                     <ul class="mt-6">
                         <li class="relative px-6 py-3">
@@ -401,6 +403,7 @@
                     </ul>--}}
 
                     <div class="px-6 my-6">
+                        Hi, <b>{{ auth()->user()->name }}</b> <br><br>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}"
