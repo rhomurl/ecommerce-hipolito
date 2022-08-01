@@ -87,6 +87,7 @@ class Order extends Model
             case 'otw': return 'On The Way'; break;
             case 'processing': return 'Processing'; break;
             case 'cancelled': return 'Cancelled'; break;
+            case 'pending': return 'Pending'; break;
             default: return $this->status; break;
         }
     }
