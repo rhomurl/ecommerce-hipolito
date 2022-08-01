@@ -12,7 +12,7 @@ use LivewireUI\Modal\ModalComponent;
 class ProductInventoryEdit extends ModalComponent
 {
     use ModelComponentTrait, LivewireAlert;
-    public $updated_received, $inventory_id, $product_name, $supplier, $product_cost, $selling_price, $starting_stock, $reorder_level, $received_at, $old;
+    public $updated_received, $inventory_id, $product_name, $supplier, $product_cost, $selling_price, $starting_stock, $reorder_level, $received_at, $old, $quantity;
 
     protected $rules = [
         'supplier' => 'required:regex:/^[a-zA-ZÑñ.\s]+$/',
