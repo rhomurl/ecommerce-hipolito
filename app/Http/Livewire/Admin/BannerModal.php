@@ -23,7 +23,7 @@ class BannerModal extends ModalComponent
     public function create(){
         $this->validate([
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048'
         ]);
 
 
