@@ -66,7 +66,7 @@ class ProductComponent extends Component
             "Expires"             => "0"
         );
 
-        $columns = array('Product Name', 'Brand', 'Category', 'Description', 'Selling Price', 'Quantity');
+        $columns = array('Product Name', 'Brand', 'Category', 'Description', 'Selling Price', 'Quantity', 'Image URL');
 
         $callback = function() use($products, $columns) {
             $file = fopen('php://output', 'w');
@@ -80,9 +80,10 @@ class ProductComponent extends Component
                 $row['Description']  = $product->description;
                 $row['Selling Price']  = $product->selling_price;
                 $row['Quantity']  = $product->quantity;
-        
+                $row['Image URL']  = $this->getProductURL($product->image);
 
-                fputcsv($file, array($row['Product Name'], $row['Brand'], $row['Category'], $row['Description'], $row['Selling Price'], $row['Quantity']));
+
+                fputcsv($file, array($row['Product Name'], $row['Brand'], $row['Category'], $row['Description'], $row['Selling Price'], $row['Quantity'], $row['Image URL']));
             }
 
             fclose($file);
