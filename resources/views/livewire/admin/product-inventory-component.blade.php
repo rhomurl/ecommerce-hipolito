@@ -85,8 +85,8 @@
                             @endif
                         </th>
 
-                        <th wire:click="sortByColumn('received_at')" class="px-4 py-3">Received At
-                            @if ($sortColumn == 'received_at')
+                        <th wire:click="sortByColumn('created_at')" class="px-4 py-3">Created At
+                            @if ($sortColumn == 'created_at')
                                 <i class="fa fa-fw fa-sort-{{ $sortDirection }}"></i>
                             @else
                                 <i class="fa fa-fw fa-sort" style="color:#DCDCDC"></i>
@@ -153,7 +153,7 @@
                             <td class="px-4 py-3">
                                 <div class="flex items-center text-sm">
                                     <div>
-                                        <p class="font-semibold">{{ \Carbon\Carbon::parse($inventory->received_at)->format('F j, Y') }}</p>
+                                        <p class="font-semibold">{{ \Carbon\Carbon::parse($inventory->created_at)->format('F j, Y') }}</p>
                                         {{-- format('l, F j Y')--}}
                                     </div>
                                 </div>
