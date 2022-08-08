@@ -1,5 +1,28 @@
 @section('title', 'My Orders')
     
+
+@section('style')
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<style>
+.modal-body .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #f15e5e;
+}
+.modal-body .icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+}
+</style>
+@endsection
+
 <div>
 
 
@@ -20,7 +43,7 @@
 
     
 
-    @forelse($orders as $order)
+    @forelse($orders as $key => $order)
         <article class="card mb-4">
         <header class="card-header">
             {{--<a href="#" class="float-right"> <i class="fa fa-print"></i> Print</a>--}}
@@ -52,7 +75,10 @@
                     <br>
                     @if($order->status == "pending" || ($order->transaction->mode == "cod" && $order->status == "ordered"))
 
-                    <div x-data="{ confirmDelete:false }" class="overflow-hidden">
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#dialogCenter{{ $key }}">
+                            Cancel
+                        </button>
+                    {{--<div x-data="{ confirmDelete:false }" class="overflow-hidden">
                         <button x-show="!confirmDelete" x-on:click="confirmDelete=true" class="btn btn-outline-primary">
                             Cancel
                         </button>
@@ -61,11 +87,11 @@
                             <a wire:click.prevent="cancelOrder({{ $order->id }})" x-show="confirmDelete" x-on:click="confirmDelete=false" href="#" class="btn btn-outline-danger">Yes</a>
                             <a x-show="confirmDelete" x-on:click="confirmDelete=false" class="btn btn-outline-danger">No</a>
                         </div>
-                    </div>
+                    </div>--}}
                     @endif
 
                     @if($order->status == "pending")
-                        <a wire:click.prevent="paynow({{ $order->id }})" href="#" class="btn btn-outline-danger">Pay Now</a>
+                        <a wire:click.prevent="paynow({{ $order->id }})" href="#" class="btn btn-light">Pay Now</a>
                     @endif
                     
                     @if($order->status == "pending" && $order->transaction->mode == "paypal")
@@ -98,6 +124,32 @@
         </div> <!-- card-body .// -->
 
         </article> <!-- card order-item .// -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="dialogCenter{{ $key }}" tabindex="-1" role="dialog" aria-labelledby="dialogCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="dialogCenterTitle">Confirm Cancel Order</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE5CD;</i>
+                    </div>	
+                    <h3>Are you sure?</h3>
+                Do you really want to cancel this order?<br>This process cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button wire:click.prevent="cancelOrder({{ $order->id }})" data-dismiss="modal" type="button" class="btn btn-primary">Cancel Order</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- End Modal -->
     @empty
         <div class="card-body">
 
