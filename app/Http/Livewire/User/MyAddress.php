@@ -2,25 +2,23 @@
 
 namespace App\Http\Livewire\User;
 
-use App\Models\User;
-use App\Models\Order;
-use App\Models\AddressBook;
+use App\Models\{AddressBook, User, Barangay};
+use App\Services\ActivityLogService;
 use App\Services\AddressService;
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Exceptions\AddressAttachedToOrderException;
 use Livewire\Component;
 
 class MyAddress extends Component
 {
-    use LivewireAlert;
     use ModelComponentTrait;
 
     protected $listeners = ['updateComponent' => 'render'];
 
     public function render()
     {
+        
         $addresses = AddressBook::with('barangay.city')
         ->where('user_id', Auth::id())
         ->orderBy('created_at', 'ASC')
@@ -30,7 +28,7 @@ class MyAddress extends Component
         return view('livewire.user.my-address', compact('addresses'))->extends('layouts.user-profile');;
     }
 
-    public function delete($id)
+    public function delete($id, ActivityLogService $activity)
     {
         try{
             resolve(AddressService::class)->checkAddress($id);
@@ -40,7 +38,26 @@ class MyAddress extends Component
                 $user->save();
             }
             
-            AddressBook::findOrFail($id)->delete();
+            $address_book = AddressBook::findOrFail($id);
+            
+            $barangay_old = Barangay::find($address_book->barangay_id);
+
+            $attributes = [
+                [
+                    'entry_company' => $address_book->entry_company,
+                    'entry_firstname' => $address_book->entry_firstname,
+                    'entry_lastname' => $address_book->entry_lastname,
+                    'entry_landmark' => $address_book->entry_landmark,
+                    'entry_street_address' => $address_book->entry_street_address,
+                    'barangay' => $barangay_old->name,
+                    'city' => $barangay_old->city->name,
+                    'entry_phonenumber' => $address_book->entry_phonenumber
+                ]
+            ];
+            $activity->createLog($address_book, '', $attributes, 'Deleted Address');
+            $address_book->delete();
+
+            
             $this->successToast('Address Deleted Successfully!');
             
         } catch(AddressAttachedToOrderException $exception){
@@ -57,6 +74,7 @@ class MyAddress extends Component
     public function setDefault($id, AddressService $user)
     {
         $user->setUserAddressBook($id);
+        $this->successAlert('Default Address Updated Successfully');
         $this->emit('updateComponent');
     }
 }
