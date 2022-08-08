@@ -146,7 +146,7 @@
                         <div class="card-body">
                         <h5 class="card-title checkout_card_title">Shipping type</h5>
                         <div class="row mb-3">
-                            <div class="col-lg-6 mb-3">
+                            <div class="col-lg-4 mb-3">
                                 <div class="box box-check checkout_box">
                                     <label class="form-check checkout_form_check">
                                         <input wire:model="shipping_type" value="express" class="form-check-input" type="radio">
@@ -159,7 +159,7 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-lg-6 mb-3">
+                            <div class="col-lg-4 mb-3">
                                 <div class="box box-check checkout_box">
                                     <label class="form-check checkout_form_check">
                                         <input wire:model="shipping_type" value="standard" class="form-check-input" type="radio">
@@ -168,6 +168,21 @@
                                             Standard delivery
                                             <br>
                                             <small class="text-muted">Delivery tomorrow</small>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <div class="box box-check checkout_box">
+                                    <label class="form-check checkout_form_check">
+                                        <input wire:model="shipping_type" value="pickup" class="form-check-input" type="radio">
+                                        <b class="border-oncheck"></b>
+                                        <span class="form-check-label">
+                                            Pickup In Store
+                                            <br>
+                                            <small class="text-muted">Pickup at 060-A District 1C Brgy. Maraouy, Lipa, Batangas, 4217<br>
+                                            <a href="{{ route('about', '#company-location') }}" target="_blank">Click to view map</a>
+                                            </small>
                                         </span>
                                     </label>
                                 </div>
@@ -222,6 +237,27 @@
                                     </div>
                                 </article>
                                 <!-- END_OF_PAYPAL -->
+                                <!-- CASH_ON_DELIVERY -->
+                                <article class="accordion-item">
+                                    <h6 class="accordion-header">
+                                        <label class="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false">
+                                            <input wire:model.defer="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
+                                            &nbsp;
+                                            Cash on Delivery
+                                        </label>
+                                    </h6>
+                                    <div id="collapseThree" data-bs-parent="#accordion_pay"
+                                        class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p class="text-center text-muted">
+                                                "Payment will be given upon delivery or pickup."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <!-- END_OF_CASH_ON_DELIVERY -->
                                 <!-- CREDIT_CARD -->
                                 <article class="accordion-item">
                                     <h6 class="accordion-header">
@@ -245,28 +281,9 @@
                                     </div>
                                 </article>
                                 <!-- END_OF_CREDIT_CARD -->
-                                <!-- CASH_ON_DELIVERY -->
-                                <article class="accordion-item">
-                                    <h6 class="accordion-header">
-                                        <label class="accordion-button collapsed"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                            aria-expanded="false">
-                                            <input wire:model.defer="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
-                                            &nbsp;
-                                            Cash on Delivery
-                                        </label>
-                                    </h6>
-                                    <div id="collapseThree" data-bs-parent="#accordion_pay"
-                                        class="accordion-collapse collapse">
-                                        <div class="accordion-body">
-                                            <p class="text-center text-muted">
-                                                "Payment will be given upon delivery."
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-                                <!-- END_OF_CASH_ON_DELIVERY -->
+                                
                             </div>
+                           
                             @error('payment_mode')
                                 <span class="text-danger">
                                     {{ $message }}
@@ -312,7 +329,9 @@
                         </dl>
                         <hr>
                         <h5 class="mb-4">Products</h5>
-                        @foreach ($cartItems as $cartItem)
+                       
+                        @foreach ($cartItems as $key => $cartItem)
+                            @if ($key < 6)
                             <div class="itemside align-items-center mb-4">
                                 <div class="aside">
                                     <b class="badge bg-secondary rounded-pill">{{ $cartItem->qty }}</b>
@@ -323,6 +342,11 @@
                                     <div class="price text-muted">Total: ₱{{ number_format($cartItem->selling_price * $cartItem->qty, 2) }}</div>
                                 </div>
                             </div>
+                            @else
+                                {{ $cartItems->count() - 6 }}
+                                {{ "more product/s" }}
+                                @break
+                            @endif
                         @endforeach
 
                     </div>
