@@ -47,6 +47,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('shipping.policy') }}">Shipping Policy</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('faq') }}">Frequently Asked Questions</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-md-auto">
             @guest

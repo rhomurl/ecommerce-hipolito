@@ -21,6 +21,7 @@
                     <ul class="list-unstyled">
                         <li> <a href="{{ route('about') }}">About Us</a></li>
                         <li> <a href="{{ route('shipping.policy') }}">Shipping Policy</a></li>
+                        <li> <a href="{{ route('faq') }}">Frequently Asked Questions</a></li>
                         <li> <a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                         <li> <a href="{{ route('terms-service') }}">Terms of Service</a></li>
                         <li> <a href="{{ route('sitemap') }}">Sitemap</a></li>
