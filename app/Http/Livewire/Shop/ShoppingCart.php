@@ -47,13 +47,18 @@ class ShoppingCart extends Component
             } );
 
             $this->subTotal = $cartItems->sum('total');
+
+            
             //$this->totalCartWithoutTax = $this->subTotal + $this->shipping;
 
         return view('livewire.shop.shopping-cart', compact('cartItems'));
     }
 
     public function setAmountForCheckout(){ 
-        
+        /*
+        if($this->subTotal < 100){
+            return redirect()->route('cart')->with('checkout_message', 'Subtotal must be 100 PHP above.');
+        }*/
         $cart = Cart::with('product')->where('user_id', Auth::id())->get();
         $products = Product::select('id', 'quantity')
             ->whereIn('id', $cart->pluck('product_id'))
@@ -61,7 +66,7 @@ class ShoppingCart extends Component
 
         foreach ($cart as $cartProduct){
             if(!isset($products[$cartProduct->product_id]) 
-                || $products[$cartProduct->product_id] < $cartProduct->qty) {
+                || $products[$cartProduct->product_id] <= $cartProduct->qty) {
                     Cart::where('product_id', $cartProduct->product->id)
                     ->where('user_id', Auth::id())->delete();
 
