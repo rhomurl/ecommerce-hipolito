@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c794362f2ffc0e3e27ae4567793bc3db",
+    "content-hash": "aa849dc1a4d3f0e08ba8dc3c3e0956a6",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -9712,6 +9712,7 @@
                     "type": "tidelift"
                 }
             ],
+            "abandoned": "symfony/error-handler",
             "time": "2022-04-12T15:19:55+00:00"
         },
         {
@@ -9771,7 +9772,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4",
         "ext-gd": "*"
     },
     "platform-dev": [],
