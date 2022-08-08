@@ -102,7 +102,7 @@ Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])-
 
 Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(function () {
     Route::get('/', Admin\AdminHome::class)->name('overview');
-    Route::get('activity-log', Admin\ActivityLogComponent::class)->name('activity-log');
+    Route::get('/activity-log/{role}', Admin\ActivityLogComponent::class)->name('activity-log');
     Route::get('banners', Admin\BannerComponent::class)->name('banners');
     Route::get('products', Admin\ProductComponent::class)->name('products');
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
