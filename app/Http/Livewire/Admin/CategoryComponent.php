@@ -19,6 +19,7 @@ class CategoryComponent extends Component
     public $search = "";
     public $sortColumn = 'name';
     public $sortDirection = 'asc';
+    public $model;
 
     public function sortByColumn($column)
     {
@@ -28,6 +29,10 @@ class CategoryComponent extends Component
             $this->reset('sortDirection');
             $this->sortColumn = $column;
         }
+    }
+
+    public function delete_dialog($id, $model){
+        $this->emit("openModal", "admin.delete-confirmation-dialog", ["id" => $id, "model" => $model]);
     }
 
     public function render()
@@ -41,10 +46,11 @@ class CategoryComponent extends Component
         $this->emit("openModal", "admin.category-edit", ["category" => $id]);
     }
 
-    public function confirmDelete(Category $category, ActivityLogService $activity)
+/*
+    public function confirmDelete(ActivityLogService $activity)
     {
         $product_qty = DB::table('products')
-            ->where('category_id', $category->id)
+            ->where('category_id', $this->deleteId)
             ->whereNotNull('quantity')
             ->get();
 
@@ -58,6 +64,7 @@ class CategoryComponent extends Component
             $this->successAlert('Category Deleted Successfully!');
         }     
     }
+    */
 
     public static function closeModalOnEscape(): bool
     {
