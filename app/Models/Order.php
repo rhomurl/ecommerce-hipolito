@@ -75,6 +75,8 @@ class Order extends Model
         switch ($this->transaction->mode){
             case 'paypal': return 'PayPal'; break;
             case 'creditcard': return 'Credit Card'; break;
+            case 'grab_pay': return 'Grab Pay'; break;
+            case 'gcash': return 'GCash'; break;
             case 'cod': return 'Cash on Delivery'; break;
             default: return ''; break;
         }
