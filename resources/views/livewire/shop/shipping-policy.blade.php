@@ -1,5 +1,5 @@
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/shipping_policy.css')}}">
+    <link href="{{ asset('css/shipping_policy.css') }}" rel="stylesheet">
 @endsection
 
 <div class="container">
