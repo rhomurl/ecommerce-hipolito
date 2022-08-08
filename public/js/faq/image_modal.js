@@ -16,3 +16,9 @@ images.forEach((image) => {
     });
 
 });
+
+modal.addEventListener('click', (event) => {
+    if (modal == modal) {
+        modal.classList.remove("appear");
+    }
+});
