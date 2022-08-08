@@ -95,7 +95,7 @@
     <section class="section-intro padding-y">
         <div class="container">
         <!-- ==============  COMPONENT SLIDER  BOOTSTRAP ============  -->
-        <div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
+        <div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel" style="z-index: 0">
           <ol class="carousel-indicators">
             <li data-target="#carousel1_indicator" data-slide-to="0" class="active"></li>
             <li data-target="#carousel1_indicator" data-slide-to="1" class=""></li>

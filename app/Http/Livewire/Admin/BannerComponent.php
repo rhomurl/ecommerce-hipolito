@@ -18,6 +18,7 @@ class BannerComponent extends Component
     public $search = "";
     public $sortColumn = 'name';
     public $sortDirection = 'asc';
+    public $model;
 
     use LivewireAlert;
     use ModelComponentTrait;
@@ -39,11 +40,16 @@ class BannerComponent extends Component
         return view('livewire.admin.banner-component', compact('banners'))->layout('layouts.admin');
     }
 
+    public function delete_dialog($id, $model){
+        $this->emit("openModal", "admin.delete-confirmation-dialog", ["id" => $id, "model" => $model]);
+    }
+
     public function edit($id){
         $this->emit("openModal", "admin.banner-edit", ["id" => $id]);
     }
 
-    public function confirmDelete($id)
+    /*
+    public function confirmDelet($id)
     {
         $prod = Banner::where('id', $id)->first();
         $image = $prod->image;
@@ -53,9 +59,10 @@ class BannerComponent extends Component
             /*
                 Delete Multiple File like this way
                 Storage::delete(['upload/test.png', 'upload/test2.png']);
-            */
+            
         }
         Banner::where('id', $id)->delete();  
         $this->successAlert('Banner Deleted Successfully!');
     }
+    */
 }

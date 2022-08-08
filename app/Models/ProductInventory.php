@@ -13,11 +13,7 @@ class ProductInventory extends Model
     protected $table = "product_inventory";
 
     protected $fillable = [
-        'status', 'product_id', 'supplier', 'product_cost', 'starting_stock', 'reorder_level', 'received_at'
-    ];
-
-    protected $casts = [
-        'received_at' => 'datetime',
+        'status', 'product_id', 'supplier', 'product_cost', 'starting_stock', 'reorder_level', 
     ];
 
     public $searchable = ['supplier', 'product_cost', 'starting_stock', 'reorder_level', 'product.name', 'product.quantity'];

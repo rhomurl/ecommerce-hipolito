@@ -74,7 +74,7 @@ class ProductInventoryComponent extends Component
                 $row['Starting Stock']  = $inventory->starting_stock;
                 $row['Current Stock']  = $inventory->product->quantity;
                 $row['Reorder Level']  = $inventory->reorder_level;
-                $row['Received At']  = $inventory->received_at;
+                $row['Created At']  = $inventory->created_at;
                 //$row['Status']  = $inventory->reorder_level;
 
                 fputcsv($file, array($row['Product Name'], $row['Supplier'], $row['Product Cost'], $row['Starting Stock'], $row['Current Stock'], $row['Reorder Level'], $row['Received At'], $row['Status']));

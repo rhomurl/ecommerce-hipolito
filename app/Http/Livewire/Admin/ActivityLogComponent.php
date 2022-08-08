@@ -17,6 +17,10 @@ class ActivityLogComponent extends Component
     public $sortColumn = 'created_at';
     public $sortDirection = 'desc';
 
+    public function mount($role){
+        $this->role = $role;
+    }
+
     public function sortByColumn($column)
     {
         if ($this->sortColumn == $column) {
@@ -34,11 +38,22 @@ class ActivityLogComponent extends Component
     
     public function render()
     {
-        $activities = ActivityLog::with('user')
-            ->search($this->search)
-            ->orderBy($this->sortColumn, $this->sortDirection)
-            ->paginate(10);
 
+        if($this->role != 'all'){
+            $activities = ActivityLog::with('user')
+            ->search($this->search)
+            ->orderBy($this->sortColumn, $this->sortDirection)      
+            ->where('role', $this->role)
+            ->paginate(10);
+        }
+        else if($this->role == 'all'){
+            $activities = ActivityLog::with('user')
+            ->search($this->search)
+            ->orderBy($this->sortColumn, $this->sortDirection)      
+            ->paginate(10);
+        }
+
+      
         return view('livewire.admin.activity-log-component', compact('activities'))->layout('layouts.admin');
     }
 }

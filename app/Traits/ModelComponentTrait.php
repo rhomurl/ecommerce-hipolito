@@ -2,12 +2,16 @@
 
 namespace App\Traits;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
-use Spatie\Permission\Models\Role;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
+//use App\Models\User;
+//use Illuminate\Database\Eloquent\Builder;
+//use Spatie\Permission\Models\Role;
 
 trait ModelComponentTrait
 {
+    use LivewireAlert;
+    
     public function getData($model)
     {
         return $model::where('name', 'like', '%'.$this->search.'%')

@@ -18,8 +18,8 @@
 
     <form wire:submit.prevent="authenticate">
 
-          <a href="{{ route('socialLogin.redirect', 'facebook') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/facebook.svg" width="20" height="20"> &nbsp;  Facebook</a>
-          <a href="{{ route('socialLogin.redirect', 'google') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/google.svg" width="20" height="20"> &nbsp;  Google</a>
+          <a href="{{ route('socialLogin.redirect', 'facebook') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/facebook.svg" width="20" height="20"> &nbsp; Continue with Facebook</a>
+          <a href="{{ route('socialLogin.redirect', 'google') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/google.svg" width="20" height="20"> &nbsp; Continue with Google</a>
  
           <p class="text-divider my-4"> Or login with email </p>
         <div class="form-group">

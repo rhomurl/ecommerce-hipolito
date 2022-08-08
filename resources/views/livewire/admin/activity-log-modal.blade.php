@@ -4,19 +4,27 @@
     </x-slot>
     <x-slot name="content">
         <div class="px-4 py-3 mb-8 bg-white rounded-lg">
-
+            @if(!str_contains($this->activity->description, 'Deleted'))
             Data:<br>
-            @foreach ($this->activity->properties['attributes'][0] as $key=>$item)
-                <b>{{ $key }}:</b> {{ $item}}<br>
-            @endforeach
-            <br><br>
-
-            
-            @if(str_contains($this->activity->description, 'Updated'))   
-            Updated data:<br>
                 @foreach ($this->activity->properties['old'][0] as $key=>$item)
+                    <b>{{ $key }}:</b> {{ $item}}<br>
+                    
+                @endforeach
+                <br><br>
+            @endif
+            
+            @if(str_contains($this->activity->description, 'Updated') || str_contains($this->activity->description, 'Deleted'))   
+            
+                @if(str_contains($this->activity->description, 'Updated'))
+                Updated data:
+                @elseif(str_contains($this->activity->description, 'Deleted'))
+                Deleted data:
+                @endif<br>
+                @foreach ($this->activity->properties['attributes'][0] as $key=>$item)
                     <b>{{ $key }}:</b> {{ $item }}<br>
                 @endforeach
+                
+
             @endif
         </div>
     </x-slot>

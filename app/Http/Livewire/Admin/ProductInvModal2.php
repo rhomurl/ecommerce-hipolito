@@ -70,7 +70,6 @@ class ProductInvModal2 extends ModalComponent
             'status' => '',
             'product_id' => $product->id,
             'supplier' => $this->supplier,
-            'received_at' => $this->received_date,
             'product_cost' => $this->product_cost,
             'starting_stock' => $this->starting_stock,
             'reorder_level' => $this->reorder_level

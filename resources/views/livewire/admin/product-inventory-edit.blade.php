@@ -66,20 +66,6 @@
                 @enderror
             </label>
 
-            <label class="block mt-4 text-sm">
-                <span class="text-gray-700">
-                    Date Received
-                </span>
-                <input wire:model="received_at" type="date" min="2000-01-01" max="{{ now()->toDateString() }}" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" required>
-                <p class="text-xs text-gray-600 dark:text-gray-400">
-                    dd/mm/yyyy
-                </p>
-                @error('received_at')
-                    <span class="text-xs text-red-600 dark:text-red-400">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </label>
         </div>
     </x-slot>
 

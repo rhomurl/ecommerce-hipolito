@@ -10,6 +10,7 @@ use App\Traits\ModelComponentTrait;
 use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User};
 use App\Services\AddressService;
 use App\Services\OrderService;
+use App\Services\CheckoutService;
 use Illuminate\Support\Facades\Auth;
 use App\Exceptions\AddressAttachedToOrderException;
 use Livewire\Component;
@@ -32,7 +33,8 @@ class Step1 extends Component
     $entry_phonenumber, 
     $entry_postcode,
     $shipping_type,
-    $setAddr;
+    $setAddr,
+    $data;
 
     protected $messages = [
         'address_book_id.required' => 'Address is required',
@@ -65,11 +67,12 @@ class Step1 extends Component
 
     public function updatedAddressBookId($value)
     {
-        $this->getShipping($this->shipping_type);
+        $this->shipping = resolve(CheckoutService::class)->getShipping($value, $this->shipping_type, $this->totalCart);
+        
     }
 
     public function updatedShippingType($value){
-        $this->getShipping($value);
+        $this->shipping = resolve(CheckoutService::class)->getShipping($this->address_book_id, $value, $this->totalCart);
     }
 
     public function render()
@@ -109,10 +112,15 @@ class Step1 extends Component
 
     public function placeOrder()
     {
+        /* UNCOMMENT 
+        if($this->grandTotal < 100){
+            return redirect()->route('cart')->with('checkout_message', 'Grand total must be 100 PHP above.');
+        }
+        */
         $cart = Cart::with('product')->where('user_id', Auth::id())->get();
         foreach ($cart as $cartProduct){
             $product = Product::find($cartProduct->product_id);
-            if($product->quantity < $cartProduct->qty) {
+            if($product->quantity <= $cartProduct->qty) {
                 Cart::where('product_id', $cartProduct->product->id)->where('user_id', Auth::id())->delete();
                 return redirect()->route('cart')->with('checkout_message', 'Sorry! One of the items in your cart is unavailable.');
             }
@@ -150,6 +158,9 @@ class Step1 extends Component
                 if($this->payment_mode == 'cod'){
                     $order->status = 'ordered';
                 }
+                else if($this->payment_mode == 'grab_pay' || $this->payment_mode == 'gcash'){
+                    $order->status = 'pending';
+                }
                 else{
                     $order->status = 'pending';
                 }
@@ -181,7 +192,12 @@ class Step1 extends Component
                 $transaction->save();
 
                 $order_mod = Order::find($order->id);
-                $order_mod->transaction_id = $transaction->id;
+                if($this->payment_mode == 'grab_pay' || $this->payment_mode == 'gcash'){
+                    $data = resolve(CheckoutService::class)->payment($order, $this->payment_mode);
+                    $order_mod->transaction_id = $data['id'];
+                } else {
+                    $order_mod->transaction_id = $transaction->id;
+                }
                 $order_mod->save();
                
                 Cart::where('user_id', Auth::user()->id)->delete();
@@ -199,6 +215,10 @@ class Step1 extends Component
 
                     redirect()->route('checkout.success', $order->id);
                }
+               else if($this->payment_mode == 'grab_pay' || $this->payment_mode == 'gcash'){
+                    
+                    return redirect($data['checkout_url']);
+               }
                 else
                 {
                     redirect()->route('checkout.step2')->with('orderid', $order->id);
@@ -207,18 +227,17 @@ class Step1 extends Component
             });
         }
         catch (\Illuminate\Database\QueryException $exception){
-            $this->checkout_message = "Something went wrong";
+            $this->checkout_message = "Something went wrong,";
             //dd("Query Exception: " . $exception->getMessage());
         }
          catch (\Exception $exception){
-            $this->checkout_message = "Something went wrong";
+            $this->checkout_message = "Something went wrong.";
             //dd("General: " . $exception);
         }
     }
 
     public function cancel()
     {
-        
         return redirect()->to('/checkout'); 
     }
 
@@ -227,7 +246,6 @@ class Step1 extends Component
         $this->showForm = true;
         $this->addr_count = 0;
     }
-
 
     public function storeAddress()
     {
@@ -306,38 +324,6 @@ class Step1 extends Component
         }
     }
 
-    public function getShipping($value){
-        $address = AddressBook::find($this->address_book_id);
-        if($address){
-            if($address->barangay->city->id == 41014)
-            {
-                //Lipa City
-                if($value == 'express'){
-                    $this->shipping = 300;
-                }
-                else if($value == 'standard'){
-                    $this->shipping = 200;
-                }
-
-                if($this->totalCart > 5000){
-                    $this->shipping = 0;
-                }
-            }
-            else if($address->barangay->city->id == 41031)
-            {
-                //Tanauan City
-                if($value == 'express'){
-                    $this->shipping = 500;
-                }
-                else if($value == 'standard'){
-                    $this->shipping = 300;
-                }
-
-                if($this->totalCart > 8000){
-                    $this->shipping = 0;
-                }
-            }
-        }
-    }
+    
 
 }

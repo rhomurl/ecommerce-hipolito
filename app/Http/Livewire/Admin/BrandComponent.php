@@ -19,6 +19,7 @@ class BrandComponent extends Component
     public $search = "";
     public $sortColumn = 'name';
     public $sortDirection = 'asc';
+    public $model;
 
     public function sortByColumn($column)
     {
@@ -37,12 +38,17 @@ class BrandComponent extends Component
         return view('livewire.admin.brand-component', compact('brands'))->layout('layouts.admin');
     }
 
+    public function delete_dialog($id, $model){
+        $this->emit("openModal", "admin.delete-confirmation-dialog", ["id" => $id, "model" => $model]);
+    }
+
     public function edit($id)
     {
         $this->emit("openModal", "admin.brand-edit", ["brand" => $id]);
     }
 
-    public function confirmDelete(Brand $brand, ActivityLogService $activity)
+    /*
+    public function confirmDelet(Brand $brand, ActivityLogService $activity)
     {
         $product_qty = DB::table('products')
             ->where('brand_id', $brand->id)
@@ -59,6 +65,7 @@ class BrandComponent extends Component
             $this->successAlert('Brand Deleted Successfully!');
         }     
     }
+    */
 
     public static function closeModalOnEscape(): bool
     {

@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Models\ActivityLog;
+use App\Models\{ActivityLog, User};
 //, Banner, Brand, Category, Order, Product, ProductInventory, Transaction, User
-use Illuminate\Support\Facades\Auth;
-
 
 class ActivityLogService {
     public function createLog($model, $old, $attributes, $description)
@@ -13,14 +11,19 @@ class ActivityLogService {
         $properties['old'] = $old;
         $properties['attributes'] = $attributes;
 
-        ActivityLog::create([
+        $user = User::findorFail(auth()->user()->id);
+        
+        $activity = ActivityLog::create([
             'log_name' => class_basename($model),
             'description' => $description,
             'model_id' => $model->id,
             'model_type' => get_class($model),
-            'user_id' => Auth::id(),
-            'properties' => $properties
+            'user_id' => auth()->user()->id,
+            'properties' => $properties,
+            'role' => $user->getRoleNames()->first()
         ]);
+
+        return $activity;
     }
 
 }

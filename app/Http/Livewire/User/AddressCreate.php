@@ -19,8 +19,8 @@ class AddressCreate extends Component
 
     protected $rules =  [
         'company' => 'nullable|string|max:255',
-        'firstname' => 'required|string|max:255',
-        'lastname' => 'required|string|max:255',
+        'firstname' => 'required|alpha|max:255',
+        'lastname' => 'required|alpha|max:255',
         'landmark' => 'required|string|max:255',
         'street_address' => 'required|max:255',
         'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'

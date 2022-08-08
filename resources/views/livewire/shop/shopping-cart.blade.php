@@ -47,7 +47,7 @@
                 <td> 
                     
                     <div class="form-inline">
-                        @if($cartItem->quantity > $cartItem->qty)
+                        @if($cartItem->quantity >= $cartItem->qty)
                         <button wire:click.prevent="decreaseQuantity({{ $cartItem->id }}, {{$cartItem->qty }})" type="submit" class="btn btn-sm btn-light mr-2">-</button>
                             {{ $cartItem->qty }}
                         <button wire:click.prevent="increaseQuantity({{ $cartItem->id }})" type="submit" class="btn btn-sm btn-light ml-2">+</button>

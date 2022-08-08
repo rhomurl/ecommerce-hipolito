@@ -11,6 +11,24 @@
         <div class="ml-5 mt-4 mb-5">
             <input wire:model="search" type="text" placeholder="Search activity" class="px-2 py-2 text-sm text-black transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-100 focus:border-gray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 " autofocus/>
         </div>
+
+        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+            <li class="mr-2">
+                <a href="{{ route('admin.activity-log', 'all') }}" aria-current="page" class="inline-block p-4 rounded-t-lg @if($this->role == 'all') text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">All</a>
+            </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.activity-log', 'customer') }}" class="inline-block p-4 @if($this->role == 'customer') text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Customer</a>
+            </li>
+            <li class="mr-2">
+                <a href="{{ route('admin.activity-log', 'admin') }}" class="inline-block p-4 @if($this->role == 'admin') text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Admin</a>
+            </li>
+            @role('super-admin')
+            <li class="mr-2">
+                <a href="{{ route('admin.activity-log', 'super-admin') }}" class="inline-block p-4 @if($this->role == 'super-admin') text-blue-600 bg-gray-100 active border-b-2 border-blue-600 dark:bg-gray-800 dark:text-blue-500 @else hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 @endif">Super admin</a>
+            </li>
+            @endrole
+            
+        </ul>
     
         <table class="w-full whitespace-no-wrap">
             <thead>
@@ -72,7 +90,7 @@
                     </tr>
                 @empty
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="w-full px-4 py-3">No results</td>
+                        <td colspan="3" class="w-full px-4 py-3">No results</td>
                     </tr>
                 @endforelse
             </tbody>

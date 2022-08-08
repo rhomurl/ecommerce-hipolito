@@ -75,6 +75,7 @@ Route::get('/search/brand/{slug}', Shop\SearchBrand::class)->name('brand.search'
 Route::get('/cart', Shop\ShoppingCart::class)->middleware('auth')->name('cart');
 
 Route::get('/shipping-policy', Shop\ShippingPolicy::class)->name('shipping.policy');
+Route::get('/faq', Shop\FAQ::class)->name('faq');
 Route::get('/about-us', Shop\AboutUs::class)->name('about');
 Route::get('/terms-of-service', Shop\TermsofService::class)->name('terms-service');
 Route::get('/privacy-policy', Shop\PrivacyPolicy::class)->name('privacy-policy');
@@ -101,7 +102,7 @@ Route::name('user.')->prefix('user')->middleware(['check_if_user', 'verified'])-
 
 Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(function () {
     Route::get('/', Admin\AdminHome::class)->name('overview');
-    Route::get('activity-log', Admin\ActivityLogComponent::class)->name('activity-log');
+    Route::get('/activity-log/{role}', Admin\ActivityLogComponent::class)->name('activity-log');
     Route::get('banners', Admin\BannerComponent::class)->name('banners');
     Route::get('products', Admin\ProductComponent::class)->name('products');
     Route::get('brands', Admin\BrandComponent::class)->name('brands');
@@ -119,6 +120,9 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('report/sales/group', Admin\SalesReportGroup::class)->name('sales-report-group');
     Route::get('report/product-sales', Admin\ProductSalesReport::class)->name('product-sales-report');   
 }); 
+
+
+//Route::get('/paymongo', Shop\Checkout\PayMongoPayment::class)->name('paymongo');
 
 /*
 Route::get('/upload', Testupload::class)->middleware('auth')->name('ul_test');
