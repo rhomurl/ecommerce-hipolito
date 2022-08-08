@@ -24,7 +24,7 @@ class BannerEdit extends ModalComponent
             'name' => 'required|regex:/[a-zA-Z0-9\s]+/',
         ]);
 
-        $product = Banner::updateOrCreate(['id' => $this->banner_id],
+        $banner = Banner::updateOrCreate(['id' => $this->banner_id],
             [
                 'name' =>  $this->name,
             ]);
