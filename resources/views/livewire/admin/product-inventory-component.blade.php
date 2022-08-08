@@ -190,7 +190,7 @@
                         </tr>
                     @empty
                         <tr class="text-gray-700 dark:text-gray-400">
-                            <td class="w-full px-4 py-3">No results</td>
+                            <td colspan="9" class="w-full px-4 py-3">No results</td>
                         </tr>
                     @endforelse
                 </tbody>
