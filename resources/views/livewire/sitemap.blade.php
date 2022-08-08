@@ -40,6 +40,7 @@
                 
                 <li><a target="_blank" href="{{ route('about') }}">About Us</a></li>
                 <li><a target="_blank" href="{{ route('shipping.policy') }}">Shipping Policy</a></li>
+                <li><a target="_blank" href="{{ route('faq') }}">Frequently Asked Questions</a></li>
                 <li><a target="_blank" href="{{ route('login') }}">Sign In</a></li>
                 <li><a target="_blank" href="{{ route('register') }}">Sign Up</a></li>
                 <li><a target="_blank" href="{{ route('password.request') }}">Forgot Password</a></li>
