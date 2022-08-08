@@ -2,21 +2,16 @@
 
 namespace App\Http\Livewire\Shop;
 
-//use Google\Cloud\Storage\StorageClient;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-use App\Models\Product;
-use App\Models\Cart;
-use App\Models\Wishlist;
-use App\Models\OrderProduct;
+use App\Models\{Product, Cart, Wishlist, OrderProduct};
 use App\Traits\ModelComponentTrait;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use Livewire\Component;
 
 class ProductDetails extends Component
 {
-    use LivewireAlert;
-    use ModelComponentTrait;
+    use LivewireAlert, ModelComponentTrait;
 
     protected $listeners = ['increaseQuantity' => 'addToCart'];
     
@@ -32,9 +27,7 @@ class ProductDetails extends Component
     public function mount ($slug)
     {
         $this->slug = $slug; 
-       
         $this->product = Product::where('slug', $this->slug)->firstorFail();
-
         $productsold = OrderProduct::where('product_id', $this->product->id)->sum('quantity');
         if($productsold){
             $this->productSold = $productsold;
@@ -45,12 +38,11 @@ class ProductDetails extends Component
     public function render()
     {
         $query = Product::query();
-        $product = (clone $query)
-            ->where('slug', $this->slug)
-            ->first();
-        $productId = (clone $query)
-            ->select('id')
-            ->where('slug', $this->slug);
+
+        $product = $this->product;
+
+        $productId = (clone $query)->select('id')->where('slug', $this->slug);
+
         $related_products = Product::where('category_id', $product->category_id)
             ->whereNotIn('id', $productId)
             ->inRandomOrder()
@@ -58,16 +50,13 @@ class ProductDetails extends Component
             ->get();
         
         $random_products = Product::whereNotIn('id', $productId)
-        ->inRandomOrder()
-        ->limit(3)
-        ->get();
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
         
-        //$product_image_url = $disk->temporaryUrl($product_url, now()->addMinutes(30));
-
         return view('livewire.shop.product-details', compact('related_products', 'random_products'))->layout('layouts.user');
     }
 
-    
     public function addToCart($productId, $qty)
     {
         $this->validate([
@@ -79,8 +68,8 @@ class ProductDetails extends Component
         }
 
         $cart = Cart::where('product_id', $productId)
-                    ->where('user_id', Auth::id())
-                    ->first();
+            ->where('user_id', Auth::id())
+            ->first();
 
         if (!$cart) {
             Cart::create(['user_id' => Auth::id(), 'product_id' => $productId, 'qty' => $qty]);
@@ -88,12 +77,10 @@ class ProductDetails extends Component
         else {
             $cart->update(['qty' => $cart->qty + $qty]);
         }
+
         $this->cartProducts[] = $productId;
         $this->emit('updateWidgets');
-
         $this->successToast('Product Added to Cart!');
-        //session()->flash('message', 'Product Added to Cart');
-        //return redirect(route('cart'));
     }
 
     public function minusQty(){
@@ -103,7 +90,6 @@ class ProductDetails extends Component
     }
     public function addQty(){
         $this->qty = $this->qty + 1;
-
     }
 
     public function addToWishlist($id)
