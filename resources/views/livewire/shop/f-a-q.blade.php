@@ -10,7 +10,7 @@
                 <div class="col-lg-12 faq-left">
                     <div class="faq-left-content">
                         <div class="faq-title">
-                            <h2>FAQ</h2>
+                            <h2>Frequently Asked Questions</h2>
                         </div>
                         <div class="col faq-text"> 
                             <p>
@@ -47,7 +47,7 @@
                                     <p>
                                         <div class="container">
                                             <div class="images">
-                                                <img src="{{ asset('images/faq/place_order.png') }}" height="auto" alt="">
+                                                <img src="{{ asset('images/faq/place_order.jpg') }}" height="auto" alt="">
                                             </div>
                                             <div class="img_modal">
                                               <span class="close"><i class="fas fa-times"></i></span>
@@ -66,7 +66,9 @@
                                         <span class="faq_2">
                                             3. Review your cart and if the products on your cart is added successfully, click the Checkout button.
                                         </span>
-
+                                        <span class="faq_2">
+                                            4. Add or edit your address, then select the shipping type and shipping method that you prefer and then click the Place order.
+                                        </span>
                                     </p>
                                 </div>
                             <div class="faq-div faq-div-border">
