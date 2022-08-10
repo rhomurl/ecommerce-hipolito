@@ -32,7 +32,7 @@ class EditProfile extends Component
     public function edit(ActivityLogService $activity){
         $this->validate([
             //'name' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/',
-            'email' => 'required|email'
+            'email' => 'required|email|unique:users'
         ]);
 
         $user = User::updateOrCreate(

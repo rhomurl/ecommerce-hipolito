@@ -34,7 +34,10 @@
                 <label>Email</label>
                   <input wire:model="email" name="email" type="text" class="form-control">
                   <small class="form-text text-muted">By changing this, you will be asked to verify your new email.</small>
-            </div> <!-- form-group end.// -->
+              @error('email')
+                <p class="mt-2 text-danger">{{ $message }}</p>
+              @enderror
+                </div> <!-- form-group end.// -->
           </div> <!-- form-row.// -->
 
           <div class="form-row">
