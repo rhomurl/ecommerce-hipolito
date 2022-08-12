@@ -54,9 +54,9 @@ return [
 
         'gcs' => [
             'driver' => 'gcs',
-            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'vigilant-shell-347412'),
-            'key_file' => env('GOOGLE_CLOUD_KEY_FILE', '../vigilant-shell-347412-f56445493e1d.json'), 
-            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'hipolito-storage-1'),
+            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'solid-ego-359215'),
+            'key_file' => env('GOOGLE_CLOUD_KEY_FILE', '../solid-ego-359215-1f0e21abf551.json'), 
+            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'hipolito'),
         ]
 
     ],

@@ -14,6 +14,6 @@ return [
     |
     */
 
-    'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'vigilant-shell-347412'),
-    'storage_bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'hipolito-storage-1'),
+    'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'solid-ego-359215'),
+    'storage_bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'hipolito'),
 ];
