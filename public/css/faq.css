@@ -5,153 +5,55 @@
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
-    /* overflow-y: scroll; */
 }
-.customer-faq {
-    padding-top: 40px;
+.faq_title {
+    padding-top: 50px;
 }
-.faq-text {
-    padding: 0px !important;
-    letter-spacing: 1px;
+.faq_content_wrapper {
+    padding-top: 60px;
 }
-.faq-divs {
-    margin-top: 40px;
-}
-.faq-div{
-    display: block;
-    background: white;
-    padding: 10px;
-    position: relative;
-}
-.faq-div-border{
-    border-top:1px solid lightgray;
-}
-.faq-div a{
-    font-size: 20px;
-    font-weight: bold;
-   
+.faq_second_row {
+    padding-top: 50px;
 }
 
-.faq-div::before{
-    font-family: "Font Awesome 5 Free";
-    font-weight: 600;
-    content:"\f067";
-    color: white;
-    font-size: 15px;
-    display: block;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    top: 7px;
-    right: 10px;
-    background-color: initial;
-    position: absolute;
-    background: #0d6efd;
-}
-
-
-.faq-content{
-    height: 0;
-    overflow: hidden;
-    margin: 0;
-    background: white;
-    font-size: 15px;
-    color: black;
-    transition: .3s ease-in;
-}
-.faq-content p{
-    padding: 20px;
-}
-.faq_2 {
-    padding: 20px;
-}
-.faq-right{
-    background-color: #F3F3F3;
-}
-.faq-right-content{  
-    padding: 100px;
-}
-.faq-form div{
-    margin-bottom: 20px;
-    height: 50px;
-}
-.ct-input input, select{
-   width: 100%;
-   height: 100%;
-   border: 1px solid lightgray;
-}
-.ct-input input::placeholder{
-    padding-left: 15px;
-}
-.ct-input textarea::placeholder{
-    padding-left: 15px;
-}
-.ct-input select{
-    padding-left: 15px;
-}
-.ct-input textarea{
-    border: 1px solid lightgray;
-    margin-bottom: 50%;
-}
-.faq-button{
-    margin-top: 20%;
-}
-.faq-button-a a{
-    padding:15px 40px;
-    background: red;
-    color: white;
-    font-size: 15px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    margin-right: 50px;
-}
-  .faq-div-active{
-    background-color: #0d6efd;
-    color: white;
-    transition: .3s ease;
-  }
-  .faq-content-active{
-      height: 350px;
-  }
-  .faq-div {
-    cursor: pointer;
-  }
-  
-@media all and (max-width: 600px){
-    .faq-content{
-        overflow: auto;
+@media all and (max-width: 560px) {
+    .faq_content_wrapper {
+        padding-top: 40px;
     }
-    .faq-left-content{
-        padding: 0px;
-        padding-bottom: 100px;
-        padding-top:50px;
+    .faq_content_first_title {
+        padding-bottom: 15px;
     }
-    .faq-right-content{
-        padding: 0px;
-        padding-bottom: 100px;
-        padding-top:50px;
-    }  
-    .faq-button {
-        margin-top: 45%;
+    .faq_content_wrapper .faq_content_second_title {
+        padding-top: 20px;
     }
-    .faq-div a{
-        font-size: 16px;
+    .faq_content_second_title {
+        padding-bottom: 15px;
     }
-    .active-height{
-        height: 150px;
+    .faq_second_row {
+        padding-top: 0px;
     }
-    .verify_img {
-        width: 100%;
+    .faq_content_wrapper .faq_content_nested_account_content {
+      padding-top: 0px;
+    }
+    .faq_content_wrapper .faq_content_second_title {
+      padding-top: 50px;
     }
 }
 
-/* MAGNIFYING CSS */
+.faq_content_nested_account {
+  opacity: 0;
+}
+.faq_content_nested_account_content {
+  padding-top: 30px;
+}
+
+
+/*===== IMAGE MODAL =====*/
 .images img {
-    width: 10%;
+    width: 20%;
     cursor: pointer;
     transition: 0.3s all ease;
-    padding-left: 20px;
+    padding-left: 10px;
   }
   .images img:hover {
     transform: scale(0.9);
@@ -210,3 +112,4 @@ body {
       transform: scale(1);
     }
   }
+/*===== END OF IMAGE MODAL =====*/
