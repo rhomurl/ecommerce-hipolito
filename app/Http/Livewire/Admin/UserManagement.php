@@ -54,7 +54,10 @@ class UserManagement extends Component
             $user->save();
 
             $attributes = [
-                ['id' => $user->id, 'status' => $status]
+                ['id' => $user->id, 
+                'name' => $user->name,
+                'status' => $status
+                ]
             ];
 
             if($status == 0){

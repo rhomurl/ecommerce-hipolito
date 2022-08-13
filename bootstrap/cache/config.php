@@ -243,7 +243,7 @@
     'sitekey' => '6LdiUwkgAAAAALD4SX_W5GaqCDIT3hZwn__lW--i',
     'options' => 
     array (
-      'timeout' => 30,
+      'timeout' => 60,
     ),
   ),
   'charts' => 
@@ -473,6 +473,30 @@
     'theme' => 'auto',
     'debug_backtrace_limit' => 50,
   ),
+  'dompdf' => 
+  array (
+    'show_warnings' => false,
+    'orientation' => 'portrait',
+    'convert_entities' => true,
+    'defines' => 
+    array (
+      'font_dir' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\fonts',
+      'font_cache' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\fonts',
+      'temp_dir' => 'C:\\Users\\Stein\\AppData\\Local\\Temp',
+      'chroot' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito',
+      'enable_font_subsetting' => false,
+      'pdf_backend' => 'CPDF',
+      'default_media_type' => 'screen',
+      'default_paper_size' => 'a4',
+      'default_font' => 'serif',
+      'dpi' => 96,
+      'enable_php' => false,
+      'enable_javascript' => true,
+      'enable_remote' => true,
+      'font_height_ratio' => 1.1,
+      'enable_html5_parser' => false,
+    ),
+  ),
   'filesystems' => 
   array (
     'default' => 'local',
@@ -504,9 +528,9 @@
       'gcs' => 
       array (
         'driver' => 'gcs',
-        'project_id' => 'vigilant-shell-347412',
-        'key_file' => '../vigilant-shell-347412-f56445493e1d.json',
-        'bucket' => 'hipolito-storage-1',
+        'project_id' => 'solid-ego-359215',
+        'key_file' => '../solid-ego-359215-1f0e21abf551.json',
+        'bucket' => 'hipolito',
       ),
     ),
     'links' => 
@@ -516,8 +540,8 @@
   ),
   'googlecloud' => 
   array (
-    'project_id' => 'vigilant-shell-347412',
-    'storage_bucket' => 'hipolito-storage-1',
+    'project_id' => 'solid-ego-359215',
+    'storage_bucket' => 'hipolito',
   ),
   'hashing' => 
   array (
@@ -719,7 +743,7 @@
   ),
   'paypal' => 
   array (
-    'mode' => 'sandbox',
+    'mode' => 'live',
     'sandbox' => 
     array (
       'client_id' => 'AdPk0qcNcjnJlIPfrRB_69A9YTNXx6Qo9DR_b_LD-mM7To_FnWcpkvqrjfkDzm_iFiC8Yjuk2Nj8S3in',
@@ -728,8 +752,8 @@
     ),
     'live' => 
     array (
-      'client_id' => '',
-      'client_secret' => '',
+      'client_id' => 'ASptvwG26Z1um1ZPtjaUhEF5UINzt6UI_oxW_tGvj_YajvuP0CHlmHsHwIF3yQy64EBWrs5eKoqAdgM4',
+      'client_secret' => 'EEUy8kNqklXsZUss8R6_N1MpI5Tt4qMFqWXCfg8LOEvl_ihyDiuv3FNIDHiYyLP_KL4HLvvAXFxLTaOh',
       'app_id' => '',
     ),
     'payment_action' => 'Sale',
@@ -905,7 +929,7 @@
   'session' => 
   array (
     'driver' => 'file',
-    'lifetime' => '120',
+    'lifetime' => '30',
     'expire_on_close' => false,
     'encrypt' => true,
     'files' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\framework/sessions',
@@ -931,30 +955,6 @@
       0 => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\resources\\views',
     ),
     'compiled' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\framework\\views',
-  ),
-  'dompdf' => 
-  array (
-    'show_warnings' => false,
-    'orientation' => 'portrait',
-    'convert_entities' => true,
-    'defines' => 
-    array (
-      'font_dir' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\fonts',
-      'font_cache' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito\\storage\\fonts',
-      'temp_dir' => 'C:\\Users\\Stein\\AppData\\Local\\Temp',
-      'chroot' => 'D:\\laragon\\www\\Laravel\\ecommerce-hipolito',
-      'enable_font_subsetting' => false,
-      'pdf_backend' => 'CPDF',
-      'default_media_type' => 'screen',
-      'default_paper_size' => 'a4',
-      'default_font' => 'serif',
-      'dpi' => 96,
-      'enable_php' => false,
-      'enable_javascript' => true,
-      'enable_remote' => true,
-      'font_height_ratio' => 1.1,
-      'enable_html5_parser' => false,
-    ),
   ),
   'flare' => 
   array (

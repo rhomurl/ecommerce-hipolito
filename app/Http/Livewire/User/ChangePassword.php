@@ -54,7 +54,7 @@ class ChangePassword extends Component
                 'name' => auth()->user()->name
             ]
         ];
-        $activity->createLog($user, $old, '', 'Changed Password');
+        $activity->createLog($user, $old, '', 'Updated Password');
 
 
 
