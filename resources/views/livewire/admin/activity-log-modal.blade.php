@@ -4,17 +4,16 @@
     </x-slot>
     <x-slot name="content">
         <div class="px-4 py-3 mb-8 bg-white rounded-lg">
-            @if(str_contains($this->activity->description, 'Updated'))
+            @if(str_contains($this->activity->description, 'Updated') || str_contains($this->activity->description, 'Password'))
             Data:<br>
-                @foreach ($this->activity->properties['old'][0] as $key=>$item)
+                @foreach($this->activity->properties['old'][0] as $key=>$item)
                     <b>{{ $key }}:</b> {{ $item}}<br>
-                    
                 @endforeach
                 <br><br>
             @endif
             
             
-            @if(str_contains($this->activity->description, 'Updated'))
+            @if(str_contains($this->activity->description, 'Updated') && !str_contains($this->activity->description, 'Password'))
             Updated data:
             @elseif(str_contains($this->activity->description, 'Deleted'))
             Deleted data:
@@ -23,9 +22,11 @@
             str_contains($this->activity->description, 'Disabled')) 
             Data:
             @endif<br>
-            @foreach ($this->activity->properties['attributes'][0] as $key=>$item)
-                <b>{{ $key }}:</b> {{ $item }}<br>
-            @endforeach
+            @if(!str_contains($this->activity->description, 'Password'))
+                @foreach ($this->activity->properties['attributes'][0] as $key=>$item)
+                    <b>{{ $key }}:</b> {{ $item }}<br>
+                @endforeach
+            @endif
 
         </div>
     </x-slot>
