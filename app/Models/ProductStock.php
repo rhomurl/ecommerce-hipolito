@@ -2,31 +2,27 @@
 
 namespace App\Models;
 
+use App\Traits\SearchableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\SearchableTrait;
 
-class ProductInventory extends Model
+class ProductStock extends Model
 {
     use SearchableTrait, HasFactory;
 
-    protected $table = "product_inventory";
+    protected $table = "product_stock";
     protected $fillable = [
-        'status', 
         'product_id', 
-        'supplier', 
-        'product_cost', 
-        'starting_stock', 
-        'reorder_level', 
+        'quantity', 
+        'remarks'
     ];
 
     public $searchable = [
-        'supplier', 
-        'product_cost', 
-        'starting_stock', 
-        'reorder_level', 
         'product.name', 
-        'product.quantity'];
+        'product.quantity', 
+        'quantity', 
+        'remarks'
+    ];
 
     public function product()
     {
