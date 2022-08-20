@@ -17,7 +17,16 @@ class ReportManagement extends Component
     
     protected $rules = [
         'selected_filter' => 'required',
-        'date_from' => '',
+        'date_from' => 'required_if:selected_filter,date',
+        'month_from' => 'required_if:selected_filter,month',
+        'year_from' => 'required_if:selected_filter,month',
+        'year_from' => 'required_if:selected_filter,year',
+    ];
+
+    protected $messages = [
+        'date_from.required_if' => 'Date from is required', 
+        'month_from.required_if' => 'Month from is required', 
+        'year_from.required_if' => 'Year from is required', 
     ];
 
     public function mount(){
@@ -27,6 +36,11 @@ class ReportManagement extends Component
             //return redirect()->route('admin.overview');
             return redirect()->to('/admin');
          }
+    }
+
+    public function selectedFilterUpdate(){
+        $this->reset();
+        $this->resetValidation();
     }
 
     public function render()
