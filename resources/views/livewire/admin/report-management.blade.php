@@ -80,6 +80,17 @@
                             <option value="{{$y}}">{{$y}}</option>
                             @endforeach
                         </select>
+                        <br>
+                        @error('month_from')
+                            <span class="text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </span><br>
+                        @enderror   
+                        @error('year_from')
+                            <span class="text-xs text-red-600 dark:text-red-400">
+                                {{ $message }}
+                            </span>
+                        @enderror   
                     </label>
                     
                 </div>
@@ -120,6 +131,12 @@
                         <option value="{{$y}}">{{$y}}</option>
                         @endforeach
                     </select>
+
+                    @error('year_from')
+                        <span class="text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </span>
+                    @enderror   
                 </label>
 
                 @if($this->year_from)
