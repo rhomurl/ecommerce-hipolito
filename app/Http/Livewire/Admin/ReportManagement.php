@@ -15,12 +15,14 @@ class ReportManagement extends Component
     public $min_date = [];
     public $max_date = [];
     
+    //'start_date' => ['date','before_or_equal:end_date'],
+    //'end_date' => ['date','after_or_equal:start_date'],
+
     protected $rules = [
         'selected_filter' => 'required',
         'date_from' => 'required_if:selected_filter,date',
         'month_from' => 'required_if:selected_filter,month',
-        'year_from' => 'required_if:selected_filter,month',
-        'year_from' => 'required_if:selected_filter,year',
+        'year_from' => 'required_if:selected_filter,month,year',
     ];
 
     protected $messages = [
