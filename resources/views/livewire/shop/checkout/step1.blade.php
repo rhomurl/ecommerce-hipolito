@@ -12,7 +12,7 @@
                         
                         @if($this->showForm == false)
                             <form wire:submit.prevent="placeOrder">
-                            
+                                @csrf
                             <h5 class="card-title checkout_card_title">Shipping Info</h5>
                             
                             @forelse($addresses as $address)
@@ -50,6 +50,7 @@
                         
                         <h5 class="card-title checkout_card_title">Shipping Info</h5>
                         <form wire:submit.prevent="storeAddress">
+                            @csrf
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <label class="form-label checkout_form_label" for="">First Name</label>
@@ -220,7 +221,7 @@
                                         <label class="accordion-button collapsed"
                                             data-bs-toggle="collapse" data-bs-target="#collapseOne"
                                             aria-expanded="false">
-                                            <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                            <input wire:model="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
                                             &nbsp;
                                             Paypal
                                         </label>
@@ -243,7 +244,7 @@
                                         <label class="accordion-button collapsed"
                                             data-bs-toggle="collapse" data-bs-target="#collapseThree"
                                             aria-expanded="false">
-                                            <input wire:model.defer="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
+                                            <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
                                             &nbsp;
                                             Cash on Delivery
                                         </label>
@@ -264,7 +265,7 @@
                                         <label class="accordion-button collapsed"
                                             data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                             aria-expanded="false">
-                                            <input wire:model.defer="payment_mode" value="creditcard" type="radio" name="payment_mode" class="accordions">
+                                            <input wire:model="payment_mode" value="creditcard" type="radio" name="payment_mode" class="accordions">
                                             &nbsp;
                                             Credit Card
                                         </label>
@@ -369,7 +370,7 @@
                                     <label class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseOne"
                                         aria-expanded="false">
-                                        <input wire:model.defer="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
+                                        <input wire:model="payment_mode" value="paypal" type="radio" name="payment_mode" class="accordions">
                                         &nbsp;
                                         Paypal
                                     </label>
@@ -392,7 +393,7 @@
                                     <label class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseTwo"
                                         aria-expanded="false">
-                                        <input wire:model.defer="payment_mode" value="creditcard" type="radio" name="payment_mode" class="accordions">
+                                        <input wire:model="payment_mode" value="creditcard" type="radio" name="payment_mode" class="accordions">
                                         &nbsp;
                                         Credit Card
                                     </label>
@@ -415,7 +416,7 @@
                                     <label class="accordion-button collapsed"
                                         data-bs-toggle="collapse" data-bs-target="#collapseThree"
                                         aria-expanded="false">
-                                        <input wire:model.defer="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
+                                        <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
                                         &nbsp;
                                         Cash on Delivery
                                     </label>
@@ -437,14 +438,16 @@
             </div>
             <aside class="col-lg-4">
                 <article class="card">
-                    <div class="card-body">
-                            <button type="submit" class="btn w-100 btn-success" @if($this->showForm == true) {{ "disabled"}} @endif>Place Order</button>
+                    <div class="card-body" >
+                            {{--<button wire:click.prevent="placeOrder" type="submit" class="btn w-100 btn-success @if($this->showForm == true || ($pmCount != 'active' && $stCount != 'active' && $abiCount != 'active')) disabled @endif">Place Order</button>--}}
+                            <button type="submit" wire:loading.attr="disabled" class="btn w-100 btn-success @if($this->showForm == true || ($pmCount != 'active' && $stCount != 'active' && $abiCount != 'active')) disabled @endif">Place Order</button>
                         </form>
+                        
                     </div>
                     @if($this->checkout_message)
-                    <div class="card-body">
-                         {{ $this->checkout_message }}
-                    </div>
+                            <div class="card-body">
+                                {{ $this->checkout_message }}
+                            </div>
                     @endif
                 </article>
             </aside>
