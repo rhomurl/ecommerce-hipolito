@@ -54,7 +54,7 @@ class ProductInventoryComponent extends Component
             "Expires"             => "0"
         );
 
-        $columns = array('Product Name', 'Supplier', 'Product Cost', 'Starting Stock', 'Current Stock', 'Reorder Level', 'Received At', 'Status');
+        $columns = array('Product Name', 'Supplier', 'Product Cost', 'Starting Stock', 'Current Stock', 'Reorder Level', 'Created At', 'Status');
 
         $callback = function() use($inventories, $columns) {
             $file = fopen('php://output', 'w');
@@ -77,7 +77,7 @@ class ProductInventoryComponent extends Component
                 $row['Created At']  = $inventory->created_at;
                 //$row['Status']  = $inventory->reorder_level;
 
-                fputcsv($file, array($row['Product Name'], $row['Supplier'], $row['Product Cost'], $row['Starting Stock'], $row['Current Stock'], $row['Reorder Level'], $row['Received At'], $row['Status']));
+                fputcsv($file, array($row['Product Name'], $row['Supplier'], $row['Product Cost'], $row['Starting Stock'], $row['Current Stock'], $row['Reorder Level'], $row['Created At'], $row['Status']));
             }
 
             fclose($file);
