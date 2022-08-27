@@ -23,7 +23,7 @@ class CreateInventoryProductTable extends Migration
             $table->decimal('product_cost', 9, 2);
             //selling price
             //profit
-            //$table->unsignedInteger('starting_stock');
+            $table->unsignedInteger('starting_stock');
             //stock quantity 
             //inventory value
             $table->unsignedInteger('reorder_level');
