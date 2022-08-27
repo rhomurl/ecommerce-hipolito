@@ -32,6 +32,7 @@ class ProductInventoryEdit extends ModalComponent
 
 
         $this->inventory_id = $inventory->id;
+        $this->product_id = $inventory->product->id;
         $this->product_name = $inventory->product->name;
         $this->supplier = $inventory->supplier;
         $this->product_cost = $inventory->product_cost;
@@ -41,6 +42,10 @@ class ProductInventoryEdit extends ModalComponent
         $this->reorder_level = $inventory->reorder_level;
         $this->created_at = Carbon::parse($inventory->created_at)->format('Y-m-d');
 
+    }
+
+    public function editStock($id){
+        $this->emit("openModal", "admin.product-stock-edit", ["product" => $id]);
     }
 
     public function edit(ActivityLogService $activity)
