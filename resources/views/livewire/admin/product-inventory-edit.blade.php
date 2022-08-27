@@ -44,7 +44,7 @@
                 <input wire:model="starting_stock" type="text" class="block bg-gray-100 w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Starting stock" disabled>
             </label>
 
-            <label class="block mt-4 text-sm">
+            {{--<label class="block mt-4 text-sm">
                 <span class="text-gray-700">
                     Current Stock
                 </span>
@@ -52,6 +52,15 @@
                 <p class="text-xs text-gray-600 dark:text-gray-400">
                     Quantity/stock can be change in <a href="{{ route('admin.products') }}" class="border-1">Product</a> page.
                 </p>
+            </label>--}}
+
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700">
+                    Quantity
+                </span><br>
+                <button wire:click.prevent="editStock({{$this->product_id}})" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Edit Stock
+                </button>
             </label>
 
             <label class="block mt-4 text-sm">

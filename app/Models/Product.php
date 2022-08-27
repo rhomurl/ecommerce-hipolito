@@ -13,12 +13,26 @@ class Product extends Model
     use HasFactory, SearchableTrait;
 
     protected $table = 'products';
-    
-    protected $fillable = [
-        'name', 'slug', 'description', 'selling_price', 'quantity', 'image', 'category_id', 'brand_id'
-    ];
 
-    public $searchable = ['name', 'slug', 'description', 'selling_price', 'quantity', 'category.name', 'brand.name'];
+    protected $fillable = [
+        'name', 
+        'slug', 
+        'description', 
+        'selling_price', 
+        'quantity', 
+        'image', 
+        'category_id', 
+        'brand_id'];
+
+    public $searchable = [
+        'name', 
+        'slug', 
+        'description', 
+        'selling_price', 
+        'quantity', 
+        'category.name', 
+        'brand.name'
+    ];
 
     protected static function boot()
     {

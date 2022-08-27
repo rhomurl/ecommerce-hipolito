@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\{Product, Transaction, User, Order, OrderProduct, AddressBook};
+use App\Models\{Product, Transaction, User, Order, OrderProduct, AddressBook, ProductStock};
 use App\Notifications\OrderNotification;
 use App\Services\OrderService;
 use App\Traits\ModelComponentTrait;
@@ -64,6 +64,11 @@ class OrderDetails extends Component
                     ->get();
 
                 foreach($cart as $cartProduct){
+                    ProductStock::create([
+                        'product_id' => $cartProduct->product_id,
+                        'quantity' => $cartProduct->product_qty,
+                        'remarks' => 'cancel_order'
+                    ]);
                     Product::find($cartProduct->product_id)
                         ->increment('quantity', $cartProduct->product_qty);
                 }

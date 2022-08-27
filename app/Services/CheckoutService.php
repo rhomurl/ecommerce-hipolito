@@ -8,6 +8,7 @@ use App\Models\AddressBook;
 
 class CheckoutService {
 
+    /*
     public function payment($order, $payment_mode){
 
         $new_total = str_replace('.','', $order->total);
@@ -50,6 +51,8 @@ class CheckoutService {
 
         return $payment;
     }
+    */
+    
 
     public function getShipping($add_id, $value, $total){
         $address = AddressBook::find($add_id);

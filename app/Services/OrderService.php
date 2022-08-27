@@ -2,7 +2,7 @@
 
 namespace App\Services;
 use App\Traits\ModelComponentTrait;
-use App\Models\{Order, OrderProduct, User, Product, AddressBook, Transaction};
+use App\Models\{Order, OrderProduct, User, Product, AddressBook, Transaction, ProductStock};
 use DB;
 
 class OrderService
@@ -127,6 +127,11 @@ class OrderService
         ->get();
 
         foreach ($cart as $cartProduct){
+            ProductStock::create([
+                'product_id' => $cartProduct->product_id,
+                'quantity' => $cartProduct->product_qty,
+                'remarks' => 'cancel_order'
+            ]);
             Product::find($cartProduct->product_id)->increment('quantity', $cartProduct->product_qty);
         }
 

@@ -7,7 +7,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 //use App\Notifications\OrderNotification;
 use App\Mail\OrderConfirmationMail;
 use App\Traits\ModelComponentTrait;
-use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User};
+use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User, ProductStock};
 use App\Services\AddressService;
 use App\Services\OrderService;
 use App\Services\CheckoutService;
@@ -19,8 +19,10 @@ use Mail;
 class Step1 extends Component
 {
     protected $listeners = ['updateAddress' => 'render'];
+
     use LivewireAlert;
     use ModelComponentTrait;
+    
     public $showForm = false;
     public $barangays, $barangay;
     public $cities, $city;
@@ -34,17 +36,17 @@ class Step1 extends Component
     $entry_postcode,
     $shipping_type,
     $setAddr,
-    $data;
+    $data,
+    $pmCount, $stCount, $abiCount;
+
+    public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
+    public $address_book_id, $payment_mode, $checkout_message, $shipping, $transid;
 
     protected $messages = [
         'address_book_id.required' => 'Address is required',
         'shipping_type.required' => 'Shipping type is required',
         'payment_mode.required' => 'Payment method is required'
     ];
-
-
-    public $voucher, $discount, $voucher_msg, $vouchercount, $usage_qty;
-    public $address_book_id, $payment_mode, $checkout_message, $shipping, $transid;
 
     public function mount()
     {
@@ -55,8 +57,8 @@ class Step1 extends Component
 
         $this->addr_count = AddressBook::where('user_id', Auth::id())->count();
 
-            $this->cities = City::all();
-            $this->barangays = collect();
+        $this->cities = City::all();
+        $this->barangays = collect();
     }
 
     public function updatedCity($value)
@@ -72,7 +74,15 @@ class Step1 extends Component
     }
 
     public function updatedShippingType($value){
+        $this->stCount = 'active';
+        if($this->address_book_id){
+            $this->abiCount = $this->stCount;
+        }
         $this->shipping = resolve(CheckoutService::class)->getShipping($this->address_book_id, $value, $this->totalCart);
+    }
+    
+    public function updatedPaymentMode($value){
+        $this->pmCount = 'active';
     }
 
     public function render()
@@ -87,10 +97,7 @@ class Step1 extends Component
             ->map(function (Cart $items) {
                 return (object)[
                     'id' => $items->product_id,
-                    //'user_id'=> $items->user_id,
-                    //'slug' => $items->products->slug,
                     'name' => $items->products->name,
-                    //'brand' => $items->products->brand->name,
                     'image' => $items->products->image,
                     'selling_price' => $items->products->selling_price,
                     'qty' => $items->qty,
@@ -104,7 +111,6 @@ class Step1 extends Component
         }
 
          $this->totalCart = $cartItems->sum('total');
-         //$this->totalCartWithoutTax = $cartItems->sum('total');
          $this->grandTotal = $this->totalCart + $this->shipping;
 
         return view('livewire.shop.checkout.step1', compact('addresses', 'cartItems'))->layout('layouts.user');
@@ -135,6 +141,7 @@ class Step1 extends Component
         
         try{
             $this->resetValidation();
+
             DB::transaction(function () use ($cart) {
                 /*
                 $order = Order::create([
@@ -147,6 +154,8 @@ class Step1 extends Component
                     'status' => 'pending'
                 ]);*/
 
+                /*
+                Create order start
                 $order = new Order();
                 //$order->user_id = auth()->id();
                 $order->address_book_id = $this->address_book_id/1;
@@ -165,12 +174,33 @@ class Step1 extends Component
                     $order->status = 'pending';
                 }
                 $order->save();
+                Create order end */
+
                 
+                $order = Order::create(
+                    [
+                        'address_book_id' => $this->address_book_id/1,
+                        'subtotal' => $this->totalCart,
+                        'discount' => $this->discount,
+                        'shippingfee' => $this->shipping,
+                        'total' => $this->grandTotal - $this->discount,
+                        'shipping_type' => $this->shipping_type,
+                        'status' => $this->payment_mode == 'cod' ? 'ordered' : 'pending',
+                    ]
+                );
+                
+
+                //create a service
                 foreach ($cart as $cartProduct){
                     
                     //if($cartProduct->product->quantity > $cartProduct->qty){
                     //    dd('no way');
                    // }
+                    ProductStock::create([
+                        'product_id' => $cartProduct->product_id,
+                        'quantity' => -$cartProduct->qty,
+                        'remarks' => 'user_order',
+                    ]);
                     $order->products()->attach($cartProduct->product_id, [
                         'quantity' => $cartProduct->qty,
                         'user_id' => auth()->id(),
@@ -179,32 +209,23 @@ class Step1 extends Component
                     Product::find($cartProduct->product_id)->decrement('quantity', $cartProduct->qty);
                 }
 
-                $transaction = new Transaction();
-                $transaction->order_id = $order->id;
-                $transaction->user_id = Auth::user()->id;
-                $transaction->mode = $this->payment_mode;
-                if($this->payment_mode == 'cod'){
-                    $transaction->status = 'ordered';
-                }
-                else{
-                    $transaction->status = 'pending';
-                }
-                $transaction->save();
+                $transaction = Transaction::create(
+                    [
+                        'user_id'=> auth()->user()->id,
+                        'order_id' => $order->id,
+                        'mode' => $this->payment_mode,
+                        'status' => $this->payment_mode == 'cod' ? 'ordered' : 'pending',
+                    ]
+                );
 
                 $order_mod = Order::find($order->id);
-                if($this->payment_mode == 'grab_pay' || $this->payment_mode == 'gcash'){
-                    $data = resolve(CheckoutService::class)->payment($order, $this->payment_mode);
-                    $order_mod->transaction_id = $data['id'];
-                } else {
-                    $order_mod->transaction_id = $transaction->id;
-                }
+                $order_mod->transaction_id = $transaction->id;
                 $order_mod->save();
                
                 Cart::where('user_id', Auth::user()->id)->delete();
                 $this->emit('updateCart');
 
-                //Session::flash('orderid', $order->id);
-               //dd($order->id);
+
                if($this->payment_mode == 'cod')
                {
                     $address = AddressBook::with('barangay')->find($order->address_book_id);
@@ -214,10 +235,6 @@ class Step1 extends Component
                         ->send(new OrderConfirmationMail($orderData));
 
                     redirect()->route('checkout.success', $order->id);
-               }
-               else if($this->payment_mode == 'grab_pay' || $this->payment_mode == 'gcash'){
-                    
-                    return redirect($data['checkout_url']);
                }
                 else
                 {
@@ -232,7 +249,6 @@ class Step1 extends Component
         }
          catch (\Exception $exception){
             $this->checkout_message = "Something went wrong.";
-            //dd("General: " . $exception);
         }
     }
 

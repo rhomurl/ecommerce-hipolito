@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Barangay extends Model
 {
     use HasFactory;
+    
     protected $fillable = ['city_id', 'name'];
 
     public function city()

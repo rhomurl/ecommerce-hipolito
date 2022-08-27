@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\MultiTenantModelTrait;
+use App\Traits\SearchableTrait;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use App\Traits\MultiTenantModelTrait;
-use App\Traits\SearchableTrait;
 
 class Order extends Model
 {
@@ -33,7 +33,14 @@ class Order extends Model
         'admin_id',
     ];
 
-    public $searchable = ['id', 'user.name', 'subtotal', 'total', 'shipping_type', 'admin_id'];
+    public $searchable = [
+        'id', 
+        'user.name', 
+        'subtotal', 
+        'total', 
+        'shipping_type', 
+        'admin_id'
+    ];
 
 
     protected static function boot()

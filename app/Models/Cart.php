@@ -2,16 +2,19 @@
 
 namespace App\Models;
 
+use App\Traits\MultiTenantModelTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\MultiTenantModelTrait;
 
 class Cart extends Model
 {
-    use HasFactory;
-    use MultiTenantModelTrait;
+    use HasFactory, MultiTenantModelTrait;
     
-    protected $fillable = ['user_id', 'product_id', 'qty'];
+    protected $fillable = [
+        'user_id', 
+        'product_id', 
+        'qty'
+    ];
 
     public function products()
     {

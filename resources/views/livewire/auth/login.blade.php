@@ -18,7 +18,7 @@
 
     <form wire:submit.prevent="authenticate">
 
-          <a href="{{ route('socialLogin.redirect', 'facebook') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/facebook.svg" width="20" height="20"> &nbsp; Continue with Facebook</a>
+          {{--<a href="{{ route('socialLogin.redirect', 'facebook') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/facebook.svg" width="20" height="20"> &nbsp; Continue with Facebook</a>--}}
           <a href="{{ route('socialLogin.redirect', 'google') }}" class="btn btn-light btn-block"> <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/icons/social/google.svg" width="20" height="20"> &nbsp; Continue with Google</a>
  
           <p class="text-divider my-4"> Or login with email </p>
@@ -32,17 +32,6 @@
           </button> 
         </div>
 
-
-        
-        {{--<div class="form-group">
-          <input wire:model.lazy="password" placeholder="Enter your password" id="password" type="password" required  class="form-control">
-
-          
-            
-        </div> <!-- form-group// -->
-      --}}
-
-        
         <div class="form-group">
             <a href="{{ route('password.request') }}" class="float-right">Forgot password?</a> 
           <label class="float-left custom-control custom-checkbox"> 
