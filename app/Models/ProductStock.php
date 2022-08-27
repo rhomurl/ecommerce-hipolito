@@ -11,6 +11,12 @@ class ProductStock extends Model
     use SearchableTrait, HasFactory;
 
     protected $table = "product_stock";
+    
+    protected $dates = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'product_id', 
         'quantity', 
@@ -28,5 +34,6 @@ class ProductStock extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    
 
 }
