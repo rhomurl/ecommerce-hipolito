@@ -119,6 +119,8 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('report/sales', Admin\SalesReport::class)->name('sales-report');
     Route::get('report/sales/group', Admin\SalesReportGroup::class)->name('sales-report-group');
     Route::get('report/product-sales', Admin\ProductSalesReport::class)->name('product-sales-report');   
+    Route::get('report/sales/stock', Admin\StockReport::class)->name('stock-report');
+    Route::get('report/sales/stock-group', Admin\StockReportGroup::class)->name('stock-report-group');
 }); 
 
 
