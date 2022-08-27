@@ -81,22 +81,19 @@
             <label class="block mt-4 text-sm">
                 <span class="text-gray-700">
                     Quantity
-                </span>
-                <input type="number" wire:model.defer="quantity" required min="0" max="999999" class="block w-full mt-1 text-sm border rounded appearance-none p-2 focus:shadow-outline-blue focus:outline-none form-input" placeholder="Quantity">
-                @error('quantity')
-                    <span class="text-xs text-red-600 dark:text-red-400">
-                        {{ $message }}
-                    </span>
-                @enderror
+                </span><br>
+                <button wire:click.prevent="editStock({{$this->product_id}})" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Edit Stock
+                </button>
             </label>
 
             <label class="block mt-4 text-sm">
                 <span class="text-gray-700">
                     Image
-                </span><br><br>
-                <a onclick='Livewire.emit("openModal", "admin.edit-product-image", {{ json_encode(["id" => $this->product_id ]) }})' class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                </span><br>
+                <button wire:click.prevent="editImage({{$this->product_id}})" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:w-auto sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Replace image
-                </a>
+                </button>
             </label>
 
         </div>

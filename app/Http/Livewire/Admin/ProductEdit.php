@@ -53,17 +53,19 @@ class ProductEdit extends ModalComponent
             'brand_id' => 'required',
             'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:500',
             'selling_price' => 'required|numeric|min:0|max:1000000.00',
-            'quantity' => 'required|integer|min:0|max:999999',
+            //'quantity' => 'required|integer|min:0|max:999999',
         ]);
 
         
         $product = Product::updateOrCreate(['id' => $this->product_id],
-            ['name' => $this->name,
-            'category_id' => $this->category_id,
-            'brand_id' => $this->brand_id,
-            'description' => $this->description,
-            'selling_price' => $this->selling_price,
-            'quantity' => $this->quantity]
+            [
+                'name' => $this->name,
+                'category_id' => $this->category_id,
+                'brand_id' => $this->brand_id,
+                'description' => $this->description,
+                'selling_price' => $this->selling_price
+            ]
+            //'quantity' => $this->quantity]
         );
 
         $old = $this->old;
@@ -84,6 +86,14 @@ class ProductEdit extends ModalComponent
         $this->closeModal();
         
         $this->successAlert('Product Updated Successfully!');
+    }
+
+    public function editStock($id){
+        $this->emit("openModal", "admin.product-stock-edit", ["product" => $id]);
+    }
+
+    public function editImage($id){
+        $this->emit("openModal", "admin.edit-product-image", ["id" => $id]);
     }
     
     public function render()
