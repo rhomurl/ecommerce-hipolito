@@ -7,7 +7,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 //use App\Notifications\OrderNotification;
 use App\Mail\OrderConfirmationMail;
 use App\Traits\ModelComponentTrait;
-use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User};
+use App\Models\{AddressBook, Barangay, Cart, City, Order, Product, Transaction, User, ProductStock};
 use App\Services\AddressService;
 use App\Services\OrderService;
 use App\Services\CheckoutService;
@@ -196,6 +196,11 @@ class Step1 extends Component
                     //if($cartProduct->product->quantity > $cartProduct->qty){
                     //    dd('no way');
                    // }
+                    ProductStock::create([
+                        'product_id' => $cartProduct->product_id,
+                        'quantity' => -$cartProduct->qty,
+                        'remarks' => 'user_order',
+                    ]);
                     $order->products()->attach($cartProduct->product_id, [
                         'quantity' => $cartProduct->qty,
                         'user_id' => auth()->id(),
@@ -206,7 +211,7 @@ class Step1 extends Component
 
                 $transaction = Transaction::create(
                     [
-                        'user_id'=> auth()->user->id,
+                        'user_id'=> auth()->user()->id,
                         'order_id' => $order->id,
                         'mode' => $this->payment_mode,
                         'status' => $this->payment_mode == 'cod' ? 'ordered' : 'pending',
@@ -244,7 +249,6 @@ class Step1 extends Component
         }
          catch (\Exception $exception){
             $this->checkout_message = "Something went wrong.";
-            
         }
     }
 
