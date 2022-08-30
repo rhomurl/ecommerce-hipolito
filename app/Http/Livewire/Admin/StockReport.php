@@ -40,11 +40,12 @@ class StockReport extends Component
         }
     }
 
-    /*
+    
     public function generatePDF(){
         $range = $this->getRange();
 
         $data = [
+            'groupProduct' => $this->groupProduct,
             'genOrders' => $this->genOrders,
             'generatedAt' => Carbon::now()->format('M d Y h:i A'),
             'range' => $range
@@ -53,13 +54,13 @@ class StockReport extends Component
         //return $pdf->download('sales-report_.pdf');
         //return $pdf->stream();
 
-        $pdfContent = PDF::loadView('pdf.sales-report', $data)->output();
+        $pdfContent = PDF::loadView('pdf.stock-report', $data)->output();
         return response()->streamDownload(
             fn () => print($pdfContent),
-            "sales_report_".$range.".pdf"
+            "stock_report_".$range.".pdf"
         );
     }
-    */
+    
     public function exportCsv(){
         $range = $this->getRange();
 
