@@ -350,7 +350,7 @@
             </label>
             @endif
 
-            @if($selected_filter)
+            @if($selected_filter2)
             <label class="block mt-4 text-sm">
                 Group by (optional)
                 <div class="relative text-gray-500 focus-within:text-purple-600">

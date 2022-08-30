@@ -154,8 +154,16 @@ class ReportManagement extends Component
             'date_to' => $this->date_to
         ];
 
-        return redirect()->route('admin.stock-report')
+        if($this->group_by)
+        {
+            return redirect()->route('admin.stock-report-group')
                 ->with('data', $data);
+        }
+        else 
+        {
+            return redirect()->route('admin.stock-report')
+                ->with('data', $data);
+        }
 
 
     }
