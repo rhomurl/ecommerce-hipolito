@@ -9,14 +9,14 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use Livewire\{Component, WithPagination};
 
-class ProductInventoryComponent extends Component
+class ProductInventoryLow extends Component
 {
     use ModelComponentTrait;
     use LivewireAlert;
     use WithPagination;
 
     protected $listeners = ['updateComponent' => 'render'];
-    
+
     public $search;
     public $paginate = 10;
     public $sortColumn = 'id';
@@ -47,6 +47,7 @@ class ProductInventoryComponent extends Component
         $inventories = ProductInventory::with('product')
         ->search($this->search) //['supplier', 'product_cost', 'starting_stock', 'reorder_level', 'product.name']
         ->orderBy($this->sortColumn, $this->sortDirection)
+        ->where()
         ->get();
 
         $fileName = 'product_inventory_'.now(); 
@@ -90,18 +91,16 @@ class ProductInventoryComponent extends Component
 
         return response()->stream($callback, 200, $headers);
     }
+    
 
     public function render()
     {
-        $inventories = ProductInventory::with('product')
-            ->search($this->search) //['supplier', 'product_cost', 'starting_stock', 'reorder_level', 'product.name']
+        $inventories = ProductInventory::groupBy('product_id')
+            ->search($this->search)
+            ->where('status', 'REORDER')
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->paginate($this->paginate);
-    
 
-        return view('livewire.admin.product-inventory-component', compact('inventories'))->layout('layouts.admin');
+        return view('livewire.admin.product-inventory-low', compact('inventories'))->layout('layouts.admin');
     }
-
-
-
 }
