@@ -22,6 +22,11 @@ class ProductInventoryComponent extends Component
     public $sortColumn = 'id';
     public $sortDirection = 'asc';
 
+    public function mount(){
+        $this->all_count = ProductInventory::count();
+        $this->low_count = ProductInventory::where('status', 'REORDER')->count();
+    }
+
     public function sortByColumn($column)
     {
         if ($this->sortColumn == $column) {
