@@ -115,6 +115,7 @@ Route::name('admin.')->prefix('admin')->middleware(['check_if_admin'])->group(fu
     Route::get('/order/generate-pdf/invoice_{uuid}.pdf', [GenerateOrderPDF::class, 'generatePDF'])->name('genOrderPDF');
     Route::get('/order/paypal', Admin\OrderPaypal::class)->name('order.paypal');
     Route::get('product-inventory', Admin\ProductInventoryComponent::class)->name('product-inventory');
+    Route::get('product-inventory/low', Admin\ProductInventoryLow::class)->name('product-inventory-low');
     Route::get('reports', Admin\ReportManagement::class)->name('reports');
     Route::get('report/sales', Admin\SalesReport::class)->name('sales-report');
     Route::get('report/sales/group', Admin\SalesReportGroup::class)->name('sales-report-group');
