@@ -47,7 +47,7 @@ class OrderDetails extends Component
             Transaction::updateOrCreate(['order_id' => $this->order_id],['status' => $this->order_status]);
         }
 
-        if($this->order_status == 'otw'){
+        if($this->order_status == 'otw' || $this->order_status == 'r2p'){
             $order = Order::findorFail($this->order_id);
             $user = User::where('id', $order->user_id)->first();
         

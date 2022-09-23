@@ -24,6 +24,7 @@
   'admin.product-inv-modal2' => 'App\\Http\\Livewire\\Admin\\ProductInvModal2',
   'admin.product-inventory-component' => 'App\\Http\\Livewire\\Admin\\ProductInventoryComponent',
   'admin.product-inventory-edit' => 'App\\Http\\Livewire\\Admin\\ProductInventoryEdit',
+  'admin.product-inventory-low' => 'App\\Http\\Livewire\\Admin\\ProductInventoryLow',
   'admin.product-modal' => 'App\\Http\\Livewire\\Admin\\ProductModal',
   'admin.product-sales-report' => 'App\\Http\\Livewire\\Admin\\ProductSalesReport',
   'admin.product-stock-edit' => 'App\\Http\\Livewire\\Admin\\ProductStockEdit',

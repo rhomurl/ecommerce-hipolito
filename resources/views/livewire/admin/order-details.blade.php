@@ -63,7 +63,7 @@
             <b>Order Status:</b> {{ $order->getOrderStatusAttribute() }}
             
             @if(!$status)
-                @if($order->status == 'processing' || $order->status == 'otw' || $order->status == 'ordered' )
+                @if($order->status == 'processing' || $order->status == 'otw' || $order->status == 'processing' || $order->status == 'r2p' || $order->status == 'ordered' )
                     <br><button wire:click.prevent="changeStatus1()" class="px-4 mt-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Change Status
                 </button>
@@ -75,12 +75,14 @@
             @if($status)
                 <select wire:model="order_status" class="block w-sm mt-1 text-sm border rounded appearance-none dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                     <option value="" selected>-- select status --</option>
-                    <option value="cancelled" @if($order->status == 'delivered' || $order->status == 'otw') 
+                    <option value="cancelled" @if($order->status == 'delivered' || $order->status == 'otw' || $order->status == 'r2p') 
                     {{ 'hidden' }} @else{{ '' }}@endif>Cancel</option>
-                    <option value="processing" @if($order->status == 'processing' || $order->status == 'otw') 
+                    <option value="processing" @if($order->status == 'processing' || $order->status == 'otw' || $order->status == 'r2p') 
                         {{ 'hidden' }} @else{{ '' }}@endif>Processing</option>
-                    <option value="otw" {{ $order->status == 'otw' ? 'hidden': '' }}>On The Way</option>
-                    <option value="delivered" {{ $order->status == 'delivered' ? 'hidden': '' }}>Delivered</option>
+                    <option value="otw" {{ $order->status == 'otw' ? 'hidden': $order->shipping_type == 'pickup' ? 'hidden' : '' }}>On The Way</option>
+                    <option value="r2p" {{ $order->status == 'r2p' ? 'hidden': $order->shipping_type != 'pickup' ? 'hidden' : '' }}>Ready to Pickup</option>
+                    <option value="delivered" {{ $order->status == 'delivered' ? 'hidden': $order->shipping_type == 'pickup' ? 'hidden' : '' }}>Delivered</option>
+                    <option value="completed" {{ $order->status == 'completed' ? 'hidden': $order->shipping_type != 'pickup' ? 'hidden' : '' }}>Completed</option>
                     
                 </select>
 

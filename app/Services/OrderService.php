@@ -49,15 +49,34 @@ class OrderService
         if($order->transaction->mode == 'cod'){
             $msg_payment = ' Kindly prepare an amount of ' . number_format($order->total, 2) . ' PHP.';
         }
-        else if($order->transaction->mode == 'paypal'){
-            $msg_payment = ' Make sure there is a receiver for your order.';
+        //else if($order->transaction->mode == 'paypal'){
+        //    $msg_payment = ' Make sure there is a receiver for your order.';
+        //}
+
+        if($order->shipping_type == 'pickup'){
+            $greeting = 'Your order is ready to pickup!';
+            $bd = 'ready for pickup.';
+            $sbj = 'Ready for Pickup';
+            if($order->transaction->mode == 'paypal'){
+                $msg_payment = ' You can pickup your order in our store.';
+            }
         }
+        else{
+            $greeting = 'You order is on the way!';
+            $bd = 'out for delivery.';
+            $sbj = 'On The Way';
+            if($order->transaction->mode == 'paypal'){
+                $msg_payment = ' Make sure there is a receiver for your order.';
+            }
+        }
+        
+
             $orderData = [
-                'greeting' => 'You order is on the way!',
+                'greeting' => $greeting,
                 'name' => 'Hello ' . $user->name . ',',
-                'body' => ' We are glad that your order #HP-' . $order->id . ' ordered on ' . $order->created_at->format('F j Y h:i A') . ' is out for delivery.' . $msg_payment .  ' Thank you again for choosing our store!' ,
+                'body' => ' We are glad that your order #HP-' . $order->id . ' ordered on ' . $order->created_at->format('F j Y h:i A') . ' is '. $bd . $msg_payment .  ' Thank you again for choosing our store!' ,
                 'orderText' => 'View Order',
-                'subject' => 'On The Way [#HP-'.$order->id.'] - Hipolito`s Hardware',
+                'subject' => $sbj . ' [#HP-'.$order->id.'] - Hipolito`s Hardware',
                 'url' => url(route('user.order.details', $order->uuid )),
             ];
 
