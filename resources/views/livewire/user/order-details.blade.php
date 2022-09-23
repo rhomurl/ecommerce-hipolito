@@ -12,66 +12,132 @@
         </header>
         <div class="card-body">
             <div class="tracking-wrap">
-                @if($order->status == 'cancelled')
-                    <div class="step {{ $order->status == 'cancelled' ? 'error' : 'error' }}">
-                        <span class="icon"> <i class="fa fa-times"></i> </span>
-                        <span class="text">Cancelled</span>
+                @if($order->shipping_type == 'pickup')
+                    @if($order->status == 'cancelled')
+                        <div class="step {{ $order->status == 'cancelled' ? 'error' : 'error' }}">
+                            <span class="icon"> <i class="fa fa-times"></i> </span>
+                            <span class="text">Cancelled</span>
+                        </div> <!-- step.// -->
+                    @else
+                        <div class="step {{ $order->status == 'ordered' ? 'active' : 'active' }}">
+                            <span class="icon"> <i class="fa fa-receipt"></i> </span>
+                            <span class="text">Order Placed</span>
+                        </div> <!-- step.// -->
+                    @endif
+
+                    @if($order->status == 'ordered')
+                        <div class="step">
+                    @elseif($order->status == 'processing')
+                        <div class="step active">
+                    @elseif($order->status == 'r2p')
+                        <div class="step active">
+                    @elseif($order->status == 'completed')
+                        <div class="step active">
+                    @else
+                        <div class="step">
+                    @endif
+            
+                        <span class="icon"> <i class="fa fa-spinner"></i> </span>
+                        <span class="text">Processing</span>
                     </div> <!-- step.// -->
-                @else
-                    <div class="step {{ $order->status == 'ordered' ? 'active' : 'active' }}">
+
+                    @if($order->status == 'ordered')
+                        <div class="step">
+                    @elseif($order->status == 'processing')
+                        <div class="step">
+                    @elseif($order->status == 'r2p')
+                        <div class="step active">
+                    @elseif($order->status == 'completed')
+                        <div class="step active">
+                    @else
+                        <div class="step">
+                    @endif
+            
+                        <span class="icon"> <i class="fa fa-user"></i> </span>
+                        <span class="text">Ready to Pickup</span>
+                    </div> <!-- step.// -->
+
+                    @if($order->status == 'ordered')
+                        <div class="step">
+                    @elseif($order->status == 'processing')
+                        <div class="step">
+                    @elseif($order->status == 'r2p')
+                        <div class="step">
+                    @elseif($order->status == 'completed')
+                        <div class="step active">
+                    @else
+                        <div class="step">
+                    @endif
+            
                         <span class="icon"> <i class="fa fa-check"></i> </span>
-                        <span class="text">Order Placed</span>
+                        <span class="text">Completed</span>
                     </div> <!-- step.// -->
-                @endif
+                    
+                    
+
+                @else
+                    @if($order->status == 'cancelled')
+                        <div class="step {{ $order->status == 'cancelled' ? 'error' : 'error' }}">
+                            <span class="icon"> <i class="fa fa-times"></i> </span>
+                            <span class="text">Cancelled</span>
+                        </div> <!-- step.// -->
+                    @else
+                        <div class="step {{ $order->status == 'ordered' ? 'active' : 'active' }}">
+                            <span class="icon"> <i class="fa fa-receipt"></i> </span>
+                            <span class="text">Order Placed</span>
+                        </div> <!-- step.// -->
+                    @endif
+                    
+                        @if($order->status == 'ordered')
+                            <div class="step">
+                        @elseif($order->status == 'processing')
+                            <div class="step active">
+                        @elseif($order->status == 'otw')
+                            <div class="step active">
+                        @elseif($order->status == 'delivered')
+                            <div class="step active">
+                        @else
+                            <div class="step">
+                        @endif
+                    
+                        <span class="icon"> <i class="fa fa-spinner"></i> </span>
+                        <span class="text">Processing</span>
+                    </div> <!-- step.// -->
+
+                        @if($order->status == 'ordered')
+                            <div class="step">
+                        @elseif($order->status == 'processing')
+                            <div class="step">
+                        @elseif($order->status == 'otw')
+                            <div class="step active">
+                        @elseif($order->status == 'delivered')
+                            <div class="step active">
+                        @else
+                            <div class="step">
+                        @endif
+
+                        <span class="icon"> <i class="fa fa-truck"></i> </span>
+                        <span class="text">On the way</span>
+                    </div> <!-- step.// -->
+
+                        @if($order->status == 'ordered')
+                            <div class="step">
+                        @elseif($order->status == 'processing')
+                            <div class="step">
+                        @elseif($order->status == 'otw')
+                            <div class="step">
+                        @elseif($order->status == 'delivered')
+                            <div class="step active">
+                        @else
+                            <div class="step">
+                        @endif
+
+                        <span class="icon"> <i class="fa fa-box"></i> </span>
+                        <span class="text">Delivered</span>
+                        </div> <!-- step.// -->@endif
+                    </div>
                 
-                    @if($order->status == 'ordered')
-                        <div class="step">
-                    @elseif($order->status == 'processing')
-                        <div class="step active">
-                    @elseif($order->status == 'otw')
-                        <div class="step active">
-                    @elseif($order->status == 'delivered')
-                        <div class="step active">
-                    @else
-                        <div class="step">
-                    @endif
-                
-                    <span class="icon"> <i class="fa fa-user"></i> </span>
-                    <span class="text">Processing</span>
-                </div> <!-- step.// -->
-
-                    @if($order->status == 'ordered')
-                        <div class="step">
-                    @elseif($order->status == 'processing')
-                        <div class="step">
-                    @elseif($order->status == 'otw')
-                        <div class="step active">
-                    @elseif($order->status == 'delivered')
-                        <div class="step active">
-                    @else
-                        <div class="step">
-                    @endif
-
-                    <span class="icon"> <i class="fa fa-truck"></i> </span>
-                    <span class="text">On the way</span>
-                </div> <!-- step.// -->
-
-                    @if($order->status == 'ordered')
-                        <div class="step">
-                    @elseif($order->status == 'processing')
-                        <div class="step">
-                    @elseif($order->status == 'otw')
-                        <div class="step">
-                    @elseif($order->status == 'delivered')
-                        <div class="step active">
-                    @else
-                        <div class="step">
-                    @endif
-
-                    <span class="icon"> <i class="fa fa-box"></i> </span>
-                    <span class="text">Delivered</span>
-                </div> <!-- step.// -->
-            </div><br>
+            <br>
 
             <div class="row"> 
                 <div class="col-md-8">
