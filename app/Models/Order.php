@@ -94,7 +94,9 @@ class Order extends Model
             case 'ordered': return 'Ordered'; break;
             case 'delivered': return 'Delivered'; break;
             case 'otw': return 'On The Way'; break;
+            case 'r2p': return 'Ready to Pickup'; break;
             case 'processing': return 'Processing'; break;
+            case 'completed': return 'Completed'; break;
             case 'cancelled': return 'Cancelled'; break;
             case 'pending': return 'Pending'; break;
             default: return $this->status; break;
