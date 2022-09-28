@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use DB;
 use App\Traits\ModelComponentTrait;
 use App\Charts\{UserChart, OrderChart};
-use App\Models\{ActivityLog, Order, OrderProduct, Product, User};
+use App\Models\{ActivityLog, Order, OrderProduct, Product, ProductInventory, User};
 use App\Services\OrderService;
 //use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -30,7 +30,9 @@ class AdminHome extends Component
         
         $this->recent_orders = Order::with('user')->limit(10)->latest()->get();
         $this->activity_log = ActivityLog::limit(10)->latest()->get();
-    
+
+        $this->low_inventory = ProductInventory::where('status', 'REORDER')->limit(5)->get();
+        $this->low_inventory_count = ProductInventory::where('status', 'REORDER')->count();
     }
 
     public function render()

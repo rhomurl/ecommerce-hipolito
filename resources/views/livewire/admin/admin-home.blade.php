@@ -328,9 +328,50 @@
                     
                 </div>
 
-               
+              
+
+
                 <div class="col-span bg-white rounded-md dark:bg-gray-800 dark:text-gray-100" x-data="{ isOn: false }">
-                     {{--Notification
+                    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+                        <h4 class="p-4 border-b text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Product Inventory - Low Stock ({{ $this->low_inventory_count }})</h4>
+                        <table class="w-full whitespace-no-wrap">
+                            
+                            <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                                    <th class="px-4 py-3">Name</th>
+                                    <th class="px-4 py-3">Stock Count</th>
+                                </tr>
+                                @forelse($this->low_inventory as $inventory)
+                                <tr class="text-gray-700 dark:text-gray-400">
+                                    <td class="px-4 py-3 text-sm">
+                                        {{ $inventory->product->name }}
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        {{ $inventory->product->quantity }}
+                                    </td>
+                                </tr>
+                                @empty
+                                    No low stock found
+                                @endforelse
+
+                                @if($this->low_inventory->count() != 0)
+                                <tr class="text-gray-700 dark:text-gray-400">
+                                    <td class="px-4 py-3 text-sm">
+                                    </td>
+                                    <td class="px-4 py-3 text-sm">
+                                        <a href="{{ route('admin.product-inventory-low') }}" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                            <span>View More</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    {{--Notification
                     <div class="flex items-center justify-between p-4 border-b dark:border-gray-600">
                         <h4 class="text-lg font-semibold text-gray-500 dark:text-primary-light dark:text-gray-100">Notifications</h4>
                         
@@ -361,23 +402,23 @@
                             @if($this->activity_log->count() != 0)
                             <tr class="text-gray-700 dark:text-gray-400">
                                 <td class="px-4 py-3 text-sm">
+                                </td>
+                                <td class="px-4 py-3 text-sm">
                                     <a href="{{ route('admin.activity-log', 'all') }}" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                        <span>More</span>
+                                        <span>View More</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                           </svg>
                                     </a>
                                 </td>
-                                <td class="px-4 py-3 text-sm">
-                                </td>
+                                
                             </tr>
                             @endif
 
                         </tbody>
                     </table>
 
-                    <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs border border-gray-200 dark:border-gray-700">
-                    </div>
+                   
                     
                 </div>
                 {{--End notification--}}
