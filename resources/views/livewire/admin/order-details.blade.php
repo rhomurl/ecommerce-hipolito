@@ -60,6 +60,7 @@
                 {{--<b>Discount:</b> ₱ {{ $order->discount }}<br>--}}
                 <b>Order Total:</b> ₱ {{ number_format($order->total, 2) }}<br><br>
            
+            <b>Shipping Type:</b> {{ ucfirst($order->shipping_type) }}<br>
             <b>Order Status:</b> {{ $order->getOrderStatusAttribute() }}
             
             @if(!$status)

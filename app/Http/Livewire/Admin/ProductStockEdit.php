@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\{Product, ProductStock};
+use App\Models\{Product, ProductInventory, ProductStock};
 use App\Traits\ModelComponentTrait;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -67,14 +67,18 @@ class ProductStockEdit extends ModalComponent
 
         $product = Product::find($this->product_id);
         if($this->action == 'add'){
-        $product->increment('quantity', $this->quantity);
+            $product->increment('quantity', $this->quantity);
         } else if($this->action == 'remove'){
             $product->decrement('quantity', $this->quantity);
         }
         
+        $product_inventory = ProductInventory::where('product_id', $this->product_id)->first();
+        $product_inventory->status = $this->updated_quantity > $product_inventory->reorder_level ? 'ACTIVE' : 'REORDER';
+        $product_inventory->save();
 
         $this->resetInputFields();
         $this->forceClose()->closeModal();
         $this->successAlert('Product Stock Updated Successfully!');
+        $this->emit('updateValue');
     }
 }
