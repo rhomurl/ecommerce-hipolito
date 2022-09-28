@@ -15,7 +15,10 @@ class ProductInventoryComponent extends Component
     use LivewireAlert;
     use WithPagination;
 
-    protected $listeners = ['updateComponent' => 'render'];
+    protected $listeners = [
+        'updateComponent' => 'render',
+        'updateValue' => 'mount'
+    ];
     
     public $search;
     public $paginate = 10;
