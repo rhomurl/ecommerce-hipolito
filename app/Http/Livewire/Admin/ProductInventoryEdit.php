@@ -72,7 +72,6 @@ class ProductInventoryEdit extends ModalComponent
         $this->resetInputFields();
         $this->closeModal();
         $this->successAlert('Product Inventory Updated Successfully!');
-
     }
 
     public function render()
