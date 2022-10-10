@@ -9,7 +9,7 @@
         "ext-gd": "*",
         "anhskohbo/no-captcha": "^3.4",
         "barryvdh/laravel-dompdf": "^1.0",
-        "consoletvs/charts": "6.*",
+        "consoletvs/charts": "^6",
         "fruitcake/laravel-cors": "^2.0",
         "google/cloud-storage": "^1.26",
         "guzzlehttp/guzzle": "^7.0.1",
