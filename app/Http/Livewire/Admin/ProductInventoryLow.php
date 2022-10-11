@@ -50,7 +50,7 @@ class ProductInventoryLow extends Component
         $inventories = ProductInventory::with('product')
         ->search($this->search) //['supplier', 'product_cost', 'starting_stock', 'reorder_level', 'product.name']
         ->orderBy($this->sortColumn, $this->sortDirection)
-        ->where()
+        ->where('status', 'REORDER')
         ->get();
 
         $fileName = 'product_inventory_'.now(); 
