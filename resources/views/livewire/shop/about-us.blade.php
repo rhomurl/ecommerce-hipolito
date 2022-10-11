@@ -118,7 +118,7 @@
                         <h3 class="counter-title">Flexible Payment</h3>
                         <p class="about_box_para">
                             The customers could choose the payment method that they prefer.
-                            They could either pay with paypal, credit card or cash on delivery.  
+                            They could either pay with paypal, credit card or cash on delivery/cash on pickup.  
                         </p>
                     </div>
                 </div>

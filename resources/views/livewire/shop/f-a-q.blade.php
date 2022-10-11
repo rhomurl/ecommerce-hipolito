@@ -189,7 +189,7 @@
                             </div>
                             <div class="col-lg-7 faq_second_row">
                                 <p>We have 3 kinds of payment methods:</p>
-                                <span>1. Cash on delivery</span>
+                                <span>1. Cash on Delivery/Cash on Pickup</span>
                                 <br>
                                 <span>2. PayPal</span>
                                 <br>

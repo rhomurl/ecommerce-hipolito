@@ -47,7 +47,7 @@
                                         @if($prod->transaction->mode == 'paypal')
                                             PayPal
                                         @elseif($prod->transaction->mode == 'cod') 
-                                            Cash on Delivery
+                                            Cash on Delivery / Cash on Pickup
                                         @endif
                                     </li>
                                     <li><strong>Status:</strong> 

@@ -114,7 +114,7 @@
                         </button>
                     @endif
                 @elseif($order->transaction->mode == "cod")
-                    Cash on Delivery
+                    Cash on Delivery / Cash on Pickup
                @endif
                
             </p>
