@@ -79,7 +79,7 @@
                               <dt>Method:</dt>
                               <dd>
                                 @if($order->transaction->mode == 'cod')
-                                    Cash on Delivery
+                                    Cash on Delivery / Cash on Pickup
                                 @elseif($order->transaction->mode == 'paypal')
                                     PayPal
                                 @endif

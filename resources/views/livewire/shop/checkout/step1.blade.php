@@ -246,7 +246,7 @@
                                             aria-expanded="false">
                                             <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
                                             &nbsp;
-                                            Cash on Delivery
+                                            Cash on Delivery / Cash on Pickup
                                         </label>
                                     </h6>
                                     <div id="collapseThree" data-bs-parent="#accordion_pay"
@@ -418,7 +418,7 @@
                                         aria-expanded="false">
                                         <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
                                         &nbsp;
-                                        Cash on Delivery
+                                        Cash on Delivery / Cash on Pickup
                                     </label>
                                 </h6>
                                 <div id="collapseThree" data-bs-parent="#accordion_pay"

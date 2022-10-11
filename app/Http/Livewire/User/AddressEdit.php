@@ -23,14 +23,16 @@ class AddressEdit extends Component
 
     protected $rules =  [
         'company' => 'nullable|string|max:255',
-        'firstname' => 'required|alpha|max:255',
-        'lastname' => 'required|alpha|max:255',
+        'firstname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
+        'lastname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
         'landmark' => 'required|string|max:255',
         'street_address' => 'required|max:255',
         'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
     ];
 
     protected $messages = [
+        'firstname.regex' => 'First name cannot contain special characters',
+        'lastname.regex' => 'Last name cannot contain special characters',
         'phonenumber.regex' => 'Phonenumber format is invalid.',
     ];
  

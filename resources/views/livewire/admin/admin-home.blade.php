@@ -337,10 +337,14 @@
                         <table class="w-full whitespace-no-wrap">
                             
                             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                
+                                @if($this->low_inventory->count() > 0)
                                 <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                                     <th class="px-4 py-3">Name</th>
                                     <th class="px-4 py-3">Stock Count</th>
                                 </tr>
+                                @endif
+
                                 @forelse($this->low_inventory as $inventory)
                                 <tr class="text-gray-700 dark:text-gray-400">
                                     <td class="px-4 py-3 text-sm">
@@ -351,7 +355,9 @@
                                     </td>
                                 </tr>
                                 @empty
+                                <span class="px-3 mt-3">
                                     No low stock found
+                                </span>
                                 @endforelse
 
                                 @if($this->low_inventory->count() != 0)

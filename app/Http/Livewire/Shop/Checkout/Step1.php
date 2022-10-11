@@ -45,7 +45,9 @@ class Step1 extends Component
     protected $messages = [
         'address_book_id.required' => 'Address is required',
         'shipping_type.required' => 'Shipping type is required',
-        'payment_mode.required' => 'Payment method is required'
+        'payment_mode.required' => 'Payment method is required',
+        'entry_firstname.regex' => 'First name cannot contain special characters',
+        'entry_lastname.regex' => 'Last name cannot contain special characters'
     ];
 
     public function mount()
@@ -269,8 +271,8 @@ class Step1 extends Component
 
         $this->validate([
             'entry_company' => 'max:255',
-            'entry_firstname' => 'required|string|max:255',
-            'entry_lastname' => 'required|string|max:255',
+            'entry_firstname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
+            'entry_lastname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
             'entry_landmark' => 'required|string|max:255',
             'entry_street_address' => 'required|max:255',
             'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
