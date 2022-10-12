@@ -119,7 +119,7 @@
                                 <p>To place an order, simply follow these steps:</p>
                                 <span>1. Log in with your account.</span>
                                 <br>
-                                <span>1. Search for the products that you want to purchase.</span>
+                                <span>2. Search for the products that you want to purchase.</span>
                                 <br>
                                 <span>3. Click the product and edit the quantity of the products that you have selected and then click Add to Cart button.</span>
                                 <div class="container">
