@@ -15,7 +15,7 @@ class ProductInventoryEdit extends ModalComponent
     public $updated_received, $inventory_id, $product_name, $supplier, $product_cost, $selling_price, $starting_stock, $reorder_level, $old, $quantity;
 
     protected $rules = [
-        'supplier' => 'required:regex:/^[a-zA-ZÑñ.\s]+$/',
+        'supplier' => 'required|min:5|max:60|regex:/^[a-zA-ZÑñ.\s]+$/',
         'product_cost' => 'required|numeric|min:0|max:1000000.00|lt:selling_price',
         'reorder_level' => 'required|integer|min:0|max:999999|lt:starting_stock',
     ];

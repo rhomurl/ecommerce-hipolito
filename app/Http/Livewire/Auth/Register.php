@@ -43,7 +43,7 @@ class Register extends Component
     public function register()
     {                             
         $this->validate([
-            'name' => ['required', 'regex:/^[a-zA-ZÑñ.\s]+$/'],
+            'name' => ['required', 'min:4', 'max:50', 'regex:/^[a-zA-ZÑñ.\s]+$/'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*#?&]/','same:passwordConfirmation'],
             'passwordConfirmation' => ['required'],

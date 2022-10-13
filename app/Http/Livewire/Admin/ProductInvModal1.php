@@ -19,8 +19,8 @@ class ProductInvModal1 extends ModalComponent
     */
 
     protected $rules = [
-        'name' => 'required|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products',
-        'input.supplier' => 'required:regex:/^[a-zA-ZÑñ.\s]+$/',
+        'name' => 'required|min:5|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products',
+        'input.supplier' => 'required|min:5|max:60|regex:/^[a-zA-ZÑñ.\s]+$/',
         'input.category_id' => 'required',
         'input.brand_id' => 'required',
         'input.received_date' => 'required|date|before:tomorrow|after:2000-01-01',
