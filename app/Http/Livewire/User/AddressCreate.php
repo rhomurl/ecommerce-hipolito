@@ -18,17 +18,20 @@ class AddressCreate extends Component
     public $error_message;
 
     protected $rules =  [
-        'company' => 'nullable|string|max:255',
-        'firstname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
-        'lastname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
-        'landmark' => 'required|string|max:255',
-        'street_address' => 'required|max:255',
-        'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+        'company' => 'nullable|regex:/^[0-9a-zA-ZÑñ.\s]+$/|min:2|max:255',
+        'firstname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|min:3|max:50',
+        'lastname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|min:2|max:50',
+        'landmark' => 'required|regex:/^[0-9a-zA-ZÑñ.\s]+$/|min:5|max:100',
+        'street_address' => 'required|regex:/^[[0-9a-zA-ZÑñ.\s]+$/|min:3|max:100',
+        'phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:20'
     ];
 
     protected $messages = [
         'firstname.regex' => 'First name cannot contain special characters',
         'lastname.regex' => 'Last name cannot contain special characters',
+        'company.regex' => 'Company cannot contain special characters',
+        'landmark.regex' => 'Landmark cannot contain special characters',
+        'street_address.regex' => 'Street address cannot contain special characters',
         'phonenumber.regex' => 'Phonenumber format is invalid.',
     ];
 

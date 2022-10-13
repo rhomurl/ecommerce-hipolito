@@ -47,7 +47,10 @@ class Step1 extends Component
         'shipping_type.required' => 'Shipping type is required',
         'payment_mode.required' => 'Payment method is required',
         'entry_firstname.regex' => 'First name cannot contain special characters',
-        'entry_lastname.regex' => 'Last name cannot contain special characters'
+        'entry_lastname.regex' => 'Last name cannot contain special characters',
+        'entry_company.regex' => 'Company cannot contain special characters',
+        'entry_landmark.regex' => 'Landmark cannot contain special characters',
+        'entry_street_address.regex' => 'Street address cannot contain special characters'
     ];
 
     public function mount()
@@ -270,12 +273,12 @@ class Step1 extends Component
         $addrcount = AddressBook::where('user_id', Auth::user()->id)->count();
 
         $this->validate([
-            'entry_company' => 'max:255',
-            'entry_firstname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
-            'entry_lastname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|max:255',
-            'entry_landmark' => 'required|string|max:255',
-            'entry_street_address' => 'required|max:255',
-            'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'entry_company' => 'nullable|regex:/^[0-9a-zA-ZÑñ.\s]+$/|min:2|max:255',
+            'entry_firstname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|min:3|max:50',
+            'entry_lastname' => 'required|regex:/^[a-zA-ZÑñ.\s]+$/|min:3|max:50',
+            'entry_landmark' => 'required|regex:/^[0-9a-zA-ZÑñ.\s]+$/|min:5|max:100',
+            'entry_street_address' => 'required|regex:/^[[0-9a-zA-ZÑñ.\s]+$/|min:3|max:100',
+            'entry_phonenumber' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:20',
         ]);
 
         if($addrcount == 5){
