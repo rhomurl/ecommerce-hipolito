@@ -48,7 +48,7 @@ class ProductEdit extends ModalComponent
 
     public function edit(ActivityLogService $activity){
         $this->validate([
-            'name' => 'required|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
+            'name' => 'required|min:5|max:60|regex:/[a-zA-Z0-9\s]+/|unique:products,name,'.$this->product_id.'',
             'category_id' => 'required',
             'brand_id' => 'required',
             'description' => 'required|regex:/[a-zA-Z0-9\s]+/|max:500',
