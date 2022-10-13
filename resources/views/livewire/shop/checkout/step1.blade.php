@@ -239,6 +239,28 @@
                                 </article>
                                 <!-- END_OF_PAYPAL -->
                                 <!-- CASH_ON_DELIVERY -->
+                                
+                                @if($shipping_type == 'pickup')
+                                <article class="accordion-item">
+                                    <h6 class="accordion-header">
+                                        <label class="accordion-button collapsed"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false">
+                                            <input wire:model="payment_mode" value="cop" type="radio" name="payment_mode" class="accordions">
+                                            &nbsp;
+                                            Cash on Pickup
+                                        </label>
+                                    </h6>
+                                    <div id="collapseThree" data-bs-parent="#accordion_pay"
+                                        class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            <p class="text-center text-muted">
+                                                "Payment will be given upon pickup."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                @else
                                 <article class="accordion-item">
                                     <h6 class="accordion-header">
                                         <label class="accordion-button collapsed"
@@ -246,18 +268,19 @@
                                             aria-expanded="false">
                                             <input wire:model="payment_mode" value="cod" type="radio" name="payment_mode" class="accordions">
                                             &nbsp;
-                                            Cash on Delivery / Cash on Pickup
+                                            Cash on Delivery
                                         </label>
                                     </h6>
                                     <div id="collapseThree" data-bs-parent="#accordion_pay"
                                         class="accordion-collapse collapse">
                                         <div class="accordion-body">
                                             <p class="text-center text-muted">
-                                                "Payment will be given upon delivery or pickup."
+                                                "Payment will be given upon delivery."
                                             </p>
                                         </div>
                                     </div>
                                 </article>
+                                @endif
                                 <!-- END_OF_CASH_ON_DELIVERY -->
                                 <!-- CREDIT_CARD -->
                                 <article class="accordion-item">

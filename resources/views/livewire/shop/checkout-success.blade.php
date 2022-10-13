@@ -32,11 +32,11 @@
                             </li>
                               <li class="step step_2">
                                   <span class="icon icon_2 black_text">3</span>
-                                  <span class="text black_text">On the way</span>
+                                  <span class="text black_text">{{ $order->transaction->mode == 'cop' ? 'Ready to Pickup' : 'On the way' }}</span>
                               </li>
                               <li class="step step_2">
                                   <span class="icon icon_2 black_text">4</span>
-                                  <span class="text black_text">Delivery</span>
+                                  <span class="text black_text">{{ $order->transaction->mode == 'cop' ? 'Completed' : 'Delivery' }}</span>
                               </li>
                           </ul>
                       </div>
@@ -51,7 +51,7 @@
                               <div class="aside">
                                   <span class="icon-sm text-secondary bg-primary-dark rounded"> 
 
-                                    @if($order->transaction->mode == 'cod')  
+                                    @if($order->transaction->mode == 'cod' || $order->transaction->mode == 'cop')  
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                       </svg>    
@@ -79,7 +79,9 @@
                               <dt>Method:</dt>
                               <dd>
                                 @if($order->transaction->mode == 'cod')
-                                    Cash on Delivery / Cash on Pickup
+                                    Cash on Delivery
+                                @elseif($order->transaction->mode == 'cop')
+                                    Cash on Pickup
                                 @elseif($order->transaction->mode == 'paypal')
                                     PayPal
                                 @endif

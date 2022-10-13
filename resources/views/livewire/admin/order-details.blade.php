@@ -113,8 +113,10 @@
                             View Paypal Details
                         </button>
                     @endif
+                @elseif($order->transaction->mode == "cop")
+                    Cash on Pickup
                 @elseif($order->transaction->mode == "cod")
-                    Cash on Delivery / Cash on Pickup
+                    Cash on Delivery
                @endif
                
             </p>
