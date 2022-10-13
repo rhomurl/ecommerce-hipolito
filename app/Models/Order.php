@@ -84,7 +84,8 @@ class Order extends Model
             case 'creditcard': return 'Credit Card'; break;
             case 'grab_pay': return 'Grab Pay'; break;
             case 'gcash': return 'GCash'; break;
-            case 'cod': return 'Cash on Delivery/Cash on Pickup'; break;
+            case 'cod': return 'Cash on Delivery'; break;
+            case 'cop': return 'Cash on Pickup'; break;
             default: return ''; break;
         }
     }

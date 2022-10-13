@@ -187,7 +187,7 @@ class Step1 extends Component
                         'shippingfee' => $this->shipping,
                         'total' => $this->grandTotal - $this->discount,
                         'shipping_type' => $this->shipping_type,
-                        'status' => $this->payment_mode == 'cod' ? 'ordered' : 'pending',
+                        'status' => $this->payment_mode == 'cod' || $this->payment_mode == 'cop'  ? 'ordered' : 'pending',
                     ]
                 );
                 
@@ -216,7 +216,7 @@ class Step1 extends Component
                         'user_id'=> auth()->user()->id,
                         'order_id' => $order->id,
                         'mode' => $this->payment_mode,
-                        'status' => $this->payment_mode == 'cod' ? 'ordered' : 'pending',
+                        'status' => $this->payment_mode == 'cod' || $this->payment_mode == 'cop' ? 'ordered' : 'pending',
                     ]
                 );
 
@@ -228,7 +228,7 @@ class Step1 extends Component
                 $this->emit('updateCart');
 
 
-               if($this->payment_mode == 'cod')
+               if($this->payment_mode == 'cod' || $this->payment_mode == 'cop')
                {
                     $address = AddressBook::with('barangay')->find($order->address_book_id);
                     $orderData = resolve(OrderService::class)->getOrderData(auth()->user(), $address, $order);
