@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "teak-formula-370004",
+  "private_key_id": "e2ff39a1bdfc4a1e53b3c499d06f3232d4b196fa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDv+l8PlFSqnion\n9n9uxJHaGd6RrnkZcxuqsWU9QLelyr1SBItdmue1L/++7w3Tlj4qV4XIsUTLiy1l\n6sjM8WLXi7kk3r4sXUm/rXVGQXvLzMEsCA764iUAs8jYo6hBB/m9oP4+JMdg00S9\nxUb22dtGkGBa+Q7n401cW4dTq6R9Jw02XXVbYyzpNzQ5hmZM6J8W66jJZGj/Id3G\nrPq7/V1TcYAZSPSZdwoLxYPs/2/GYJiDCmTdz+PDggZ/jTBf1iWqMEtAILkaGGwc\nF+4V/PBNIq6a4g63vHyzTij+y18tYKNO5utKuaCX6eBVJTPEEdReengSilL0uhLB\nKqPgmajjAgMBAAECggEAB7NaD47r9JmksqmXRz+pin0gBj66BhYKgjy1CfUkr35E\n+vfIXRWWb9r9cuwK3opIrmUmlt0RXxK1Pzr8fI8WY+JI66T2J0hLEIqJY9rAFTcZ\nz8bmbCiLlW0vebwurv+JhQtAfVAC0dmVsB0/fLZa8fW6EdFCKDDED72kJwwv+BAT\n1QkzrhUNBaGxW5UsC+zAZcU4riXUX0WJKsbl6hPy9uGUPJnhcEx/dy87kIN57ZhO\nBLcZMbA5D39kqMdwz5GxCdEwJXYLnrntsd80dMrsw/HGRxmGvxUTWjNLXogTb3Qu\nEv3paycwkCn+j9weC86Wm0wTh/QWayJ5Swa2iDTE4QKBgQD6ICj8Cpd57p5iro+/\nlYTwa67FDAXuqVdtUh5ZTeT11OnGAuvA56FLzKuykSackYGD03+RUZ+kHOOwIznb\ndR6SF1kFsdvDfswnj0rQo6bFCZLriZIo0L49O0h8OGCRJyf52IJRmDyHQoH1YI3o\nBRJMo+EUWwBs1Qbaz6fF35oLMwKBgQD1nTNKiU/DsdYsE7l3OsL1VLvMzzOQuKW+\nsK8rmPYSLnyikkWU0GWoX6PE+R5HkpNpSUYuYoF5Q3lvDREJzseSLDG44KhnVL+9\nNad10tKhuVTRNCamaAyuVQG1zekLMMCSMOLoNKqpLSq4dHKLa6gy5Xyuk+r+r7iF\nylAowalrkQKBgFFWo/1SdG/yaQ8uNRDYTqLgYbUyc7to1kV2rufbrNlEo8EAsinJ\nKWq85BjtmuDPcI6t+I4JPSDhRCnDSs1TCN35ObngXNb2JO24a1vt3A23T0/JLP6Y\n40SGQswiiUSqtxVIkxh1qTlTJ2/kNkF9ZLYHlOpJrZm2rMP7Q1PVowKBAoGAI0y7\nkWvYreyCNoWDM1KbsHzEHPRumc8f6x8jneV3ADf0K71QCMpGwgM021tecbTsQMaK\nMqJvr0j2S/KZz0oLvsNhRgvryCYTBJOQhMuPADVNrl+LaoEryWZoP4PfiX8xPhGO\nmwbuvC/EowwBZm5Llz0KRWD29jG1GG1yRdlHizECgYEAoyvjqxL9nFsawl3TIamE\nqCdv6Peycb2YjlY1H/SzZ/mEaL9digqKKTExdVHOhFnhfBwhPNg/WqfqVt7lno+f\nja1xKAgbLSaVkFsVYdNfUr7cXd2KkMOi6DKWm2uL4VPUC6/mC64CpsKUhzTp1Nqe\n3tMUcU6lY8oWuMuBVGVoH6w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "gstorage@teak-formula-370004.iam.gserviceaccount.com",
+  "client_id": "110847985159363063067",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gstorage%40teak-formula-370004.iam.gserviceaccount.com"
+}
