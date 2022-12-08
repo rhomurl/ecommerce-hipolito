@@ -9,7 +9,7 @@
     /*===== FIRST_CARD =====*/
     .featured_card_background_1 {
         position: relative;
-        background-image: url('https://hipolito-hardware.xyz/images/plywood-bot-banner.jpg');
+        background-image: url('https://hipolito-hardware.com/images/plywood-bot-banner.jpg');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -50,7 +50,7 @@
     /*===== SECOND_CARD =====*/
     .featured_card_background_2 {
         position: relative;
-        background-image: url('https://hipolito-hardware.xyz/images/construction-bot-banner.jpg');
+        background-image: url('https://hipolito-hardware.com/images/construction-bot-banner.jpg');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
