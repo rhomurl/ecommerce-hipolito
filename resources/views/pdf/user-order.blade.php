@@ -21,7 +21,7 @@
                     <!-- Start .row -->
                     <div class="col-lg-6">
                         <!-- col-lg-6 start here -->
-                        <div class="invoice-logo"><img width="250" src="https://hipolito-hardware.xyz/images/logo.png" alt="Invoice logo"></div>
+                        <div class="invoice-logo"><img width="250" src="https://hipolito-hardware.com/images/logo.png" alt="Invoice logo"></div>
                     </div>
                     <!-- col-lg-6 end here -->
                     <div class="col-lg-6">
