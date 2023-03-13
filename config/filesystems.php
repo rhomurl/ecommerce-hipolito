@@ -57,7 +57,15 @@ return [
             'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'solid-ego-359215'),
             'key_file' => env('GOOGLE_CLOUD_KEY_FILE', '../solid-ego-359215-1f0e21abf551.json'), 
             'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'hipolito'),
-        ]
+        ],
+
+        'sftp' => [
+            'driver' => 'sftp',
+            'url' => 'http://hipolito-hardware.xyz/files/',
+            'host' => env('SFTP_HIPOLITO_HOST'),
+            'username' => env('SFTP_HIPOLITO_USERNAME'),
+            'password' => env('SFTP_HIPOLITO_PASSWORD'),
+      ],
 
     ],
 
