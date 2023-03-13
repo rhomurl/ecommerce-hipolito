@@ -19,6 +19,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
+        "league/flysystem-sftp": "~1.0",
         "livewire/livewire": "^2.8",
         "spatie/laravel-permission": "^5.4",
         "srmklive/paypal": "~3.0",
@@ -72,7 +73,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": { 
+            "php": "7.4" 
+        } 
     },
     "minimum-stability": "dev",
     "prefer-stable": true
