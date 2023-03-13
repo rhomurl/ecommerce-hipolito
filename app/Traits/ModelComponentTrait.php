@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-
+use Illuminate\Support\Facades\Storage;
 //use App\Models\User;
 //use Illuminate\Database\Eloquent\Builder;
 //use Spatie\Permission\Models\Role;
@@ -83,12 +83,12 @@ trait ModelComponentTrait
     }
 
     public function getProductURL($url){
-        $disk = \Storage::disk('gcs');
+        $disk = Storage::disk('sftp');
         return $disk->url($url);  
     }
 
     public function getProductURL_maxtime($url){
-        $disk = \Storage::disk('gcs');
+        $disk = Storage::disk('gcs');
         return $disk->temporaryUrl($url, now()->addDay(7));
     }
 
